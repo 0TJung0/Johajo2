@@ -10,5 +10,6 @@
 	<body>
 		<h2>${message}</h2>
 		<br>
+		bang
 	</body>
 </html>
