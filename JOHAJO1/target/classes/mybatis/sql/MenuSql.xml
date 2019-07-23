@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu">
+	<select id="menuSelect" resultType="mndto">
+		select * from food
+	</select>
+	<select id="menuSelectList" parameterType="int" resultType="mndto">
+		select * from food where kind = #{kind}
+	</select>
+	<select id="menuSelectIdx" parameterType="int" resultType="mndto">
+		select * from food where idx = #{idx}
+	</select>
+	<select id="menuSelectTwo" resultType="mndto" parameterType="HashMap">
+		select * from food where kind = #{kind} and idx = #{idx}
+	</select>
+	
+	<!-- insert, update, delete  -->
+	<insert id="menuInsert" parameterType="mndto">
+		insert into food values (seq_food.nextval,#{fname},#{kind},#{calorie},#{imgname},0,#{price},#{origin})	
+	</insert>
+	<update id="menuUpdate" parameterType="mndto">
+		update food set fname=#{fname},kind=#{kind},calorie=#{calorie},price=#{price},origin=#{origin} where idx=#{idx}
+	</update>
+	<delete id="menuDelete" parameterType="int">
+		delete from food where idx = #{idx} 
+	</delete>
+	
+	<!-- admin -->
+	<select id="menuSelectKind" resultType="mndto">
+		select Distinct(kind) from food order by kind
+	</select>
+</mapper>

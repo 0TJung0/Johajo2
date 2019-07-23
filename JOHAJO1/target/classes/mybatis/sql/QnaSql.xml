@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	<select id="QnaTotalCount" parameterType="int" resultType="int">
+		select count(*) from qna where mem_f=#{idx}
+	</select>
+	<select id="QnaSelectList" parameterType="HashMap" resultType="qdto">
+		<![CDATA[
+		  
+		  select  a.* from (select ROWNUM as RNUM,B.* from 
+			(select * from  qna where mem_f=#{idx} order by idx desc)b )a 
+		where a.RNUM >= #{start} 
+		  and a.RNUM <= #{end}
+		  
+		]]>
+	</select>
+	<insert id="QnaDataInsert" parameterType="qdto">
+		insert into qna(idx, anw, selection, title, content, mem_f, writeday) 
+		values(#{idx},#{anw},#{selection},#{title},#{content},#{mem_f},sysdate)
+	</insert>
+	<select id="QnaMaxNum" resultType="int">
+		select NVL(max(idx),0)  from qna
+	</select>
+	<update id="QnaDataUpdate" parameterType="int">
+		update set content=${content} where idx=#{idx}
+	</update>
+	<delete id="QnaDataDelete" parameterType="int">
+		delete from qna where idx=#{idx}
+	</delete>
+	<update id="answerInsert" parameterType="HashMap">
+		update qna set anw=1, content2='${content2}', anwday='${anwday}'  where idx=#{idx}
+	</update>
+	<update id="answerDelete" parameterType="HashMap">
+		update qna set anw=0, content2='', anwday=''  where idx=#{idx}
+	</update>
+	<select id="answerSelect" parameterType="int" resultType="qdto">
+		select * from qna where idx=#{idx}
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

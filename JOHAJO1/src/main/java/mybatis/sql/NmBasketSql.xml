@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nmbasket">
+	<select id="nmMaxBasketCount" resultType="int">
+		select Max(nmidx) from nm_basket
+	</select>
+	<select id="nmBasketCount" resultType="int">
+		select count(nmidx) from nm_basket
+	</select>
+	<insert id="nmBasketInsert" parameterType="HashMap">
+		insert into nm_basket(idx,fidx,nmidx,today) values(seq_nmbasket.nextval,#{fidx},#{nmidx},to_date(sysdate,'DD/MM/RR'))
+	</insert>
+	<select id="nmBasketCheck" resultType="int" parameterType="HashMap">
+		select NVL(Max(count),'0') from nm_basket where nmidx=#{nmidx} and fidx=#{fidx}
+	</select>
+	<update id="nmBasketupdate" parameterType="HashMap">
+		UPDATE nm_basket set count=count+1 where fidx=#{fidx} and nmidx=#{nmidx}
+	</update>
+	<select id="nmBasketC" resultType="int" parameterType="int">
+		select NVL(count(*),0) from nm_basket where nmidx=#{nmidx}
+	</select>
+	<select id="nmBasketlist" resultType="nmsdto" parameterType="int">
+		select n.idx as idx,f.fname as fname,f.price as price,n.count as count,n.today as today from food f 
+		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx}
+	</select>
+	<select id="nmBasketPrice" resultType="int" parameterType="int">
+		select SUM(f.price) from food f 
+		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx}
+	</select>
+	
+</mapper>

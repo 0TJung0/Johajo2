@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="spring.data.StoreDto" alias="sdto"/>
+		<typeAlias type="spring.data.MemberDto" alias="mdto"/>
+		<typeAlias type="spring.data.NoticeDto" alias="ndto"/>
+		<typeAlias type="spring.data.EventDto" alias="edto"/>
+		<typeAlias type="spring.data.FaqDto" alias="fdto"/>
+		<typeAlias type="spring.data.FoodDto" alias="fooddto"/>
+		<typeAlias type="spring.data.QnaDto" alias="qdto"/>
+		<typeAlias type="spring.data.MenuDto" alias="mndto"/>
+		<typeAlias type="spring.data.AllergyDto" alias="adto"/>
+		<typeAlias type="spring.data.CourseDto" alias="cdto"/>
+		<typeAlias type="spring.data.TableDto" alias="tdto"/>
+		<typeAlias type="spring.data.CouponDto" alias="coudto"/>
+		<typeAlias type="spring.data.NmBasketDto" alias="nmbadto"/>
+		<typeAlias type="spring.data.singlebasketDto" alias="singledto"/>
+		<typeAlias type="spring.data.ReservationDto" alias="resdto"/>
+		<typeAlias type="spring.data.nmSearchDto" alias="nmsdto"/>
+		<typeAlias type="spring.data.mSearchDto" alias="msdto"/>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mybatis/sql/BoardSql.xml"/>
+		<mapper resource="mybatis/sql/StoreSql.xml"/>
+		<mapper resource="mybatis/sql/MemberSql.xml"/>
+		<mapper resource="mybatis/sql/NoticeSql.xml"/>
+		<mapper resource="mybatis/sql/EventSql.xml"/>
+		<mapper resource="mybatis/sql/FaqSql.xml"/>
+		<mapper resource="mybatis/sql/FoodSql.xml"/>
+		<mapper resource="mybatis/sql/QnaSql.xml"/>
+		<mapper resource="mybatis/sql/MenuSql.xml"/>
+		<mapper resource="mybatis/sql/AllergySql.xml"/>
+		<mapper resource="mybatis/sql/CourseSql.xml"/>
+		<mapper resource="mybatis/sql/TableSql.xml"/>
+		<mapper resource="mybatis/sql/CouponSql.xml"/>
+		<mapper resource="mybatis/sql/SinglebasketSql.xml"/>
+		<mapper resource="mybatis/sql/NmBasketSql.xml"/>
+		<mapper resource="mybatis/sql/ReservationSql.xml"/>
+	</mappers>
+</configuration>

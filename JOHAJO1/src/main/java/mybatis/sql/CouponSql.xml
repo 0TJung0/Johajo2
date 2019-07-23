@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+	<select id="couponSelectCount" parameterType="HashMap" resultType="int">
+		select count(*) from coupon where member_f=#{member_f} and event_f=#{event_f}
+	</select>
+	<insert id="eventInsertCoupon" parameterType="coudto">
+		insert into coupon(idx,coupon_name,discount,member_f,event_f,use,validity) values
+		(seq_coupon.nextval,#{coupon_name},#{discount},${member_f},${event_f},0,to_date('${validity}','DD/MM/RR'))
+	</insert>
+</mapper>

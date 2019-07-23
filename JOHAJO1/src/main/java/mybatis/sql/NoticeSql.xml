@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+	<select id="noticeTotalCount" resultType="int">
+		select count(*) from notice
+	</select>
+	<select id="noticePagingList" resultType="ndto" parameterType="HashMap">
+		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from notice order by selection asc,idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
+	</select>
+	<select id="noticeSelectData" parameterType="int" resultType="ndto">
+		select * from notice where idx=#{idx}
+	</select>
+	<insert id="noticeInsert" parameterType="ndto">
+		insert into notice values(seq_notice.nextval,#{selecrtion},#{title},#{contents},
+		#{image_name},#{file_name},sysdate,#{hide})
+	</insert>
+	<delete id="noticeDelete" parameterType="int">
+		delete from notice where idx=#{idx}	
+	</delete>
+</mapper>

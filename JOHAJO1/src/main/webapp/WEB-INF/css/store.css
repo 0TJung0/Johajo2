@@ -1,0 +1,28 @@
+div.storlist{
+	width: 1200px;
+	position: relative;
+	left: 10%;
+}
+
+#storeMap1 {
+	width:90%; 
+	height:600px; 
+	clear:both;
+	margin-left: 5%;
+}
+
+.infostore{
+	
+	margin-left: 5px;
+	position:relative;
+	font-size: 22pt;
+	left: 10%;
+	
+}
+.selStore1{
+	display: none;
+}
+
+.infostore img{
+	width: 30px;
+}

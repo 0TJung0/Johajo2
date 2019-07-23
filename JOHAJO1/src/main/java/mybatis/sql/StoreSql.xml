@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Store">
+	<select id="storeTotalCount" resultType="int">
+		select count(*) from store
+	</select>
+	<select id="storeGetData" parameterType="int" resultType="sdto">
+		select * from store where idx=#{idx}
+	</select>
+	<select id="storeAllData" resultType="sdto">
+		select * from store
+	</select>
+	<select id="storePagingList" parameterType="HashMap" resultType="sdto">
+	   <![CDATA[
+	   	select a.* from (select ROWNUM as RNUM,
+		b.* from (select * from store order by idx desc)b )a 
+		where a.RNUM>=#{start} and a.RNUM<=#{end}
+		 ]]>		
+	</select>
+	<select id="storeSearch" parameterType="String" resultType="sdto">
+		select * from store where name like '%'||#{name}||'%' 
+	</select>
+	<select id="storeSearchCount" resultType="int" parameterType="String">
+		select count(*) from store where name like '%'||#{name}||'%'
+	</select>
+	<insert id="storeInsert" parameterType="sdto">
+		insert into store values(seq_store.nextval,#{name},#{ohours},#{phone},#{service},
+		#{xpoint},#{ypoint},#{addr},#{photo})
+	</insert>
+	<update id="storeUpData" parameterType="sdto">
+		update store set name=#{name},ohours=#{ohours},phone=#{phone},service=#{service},
+		xpoint=#{xpoint},ypoint=#{ypoint},addr=#{addr},photo=#{photo} where idx=#{idx}
+	</update>
+	<delete id="storeDelete" parameterType="int">
+		delete from store where idx=#{idx}
+	</delete>
+	<select id="storeGetDataName" parameterType="String" resultType="int">
+		select idx from store where name=#{name}
+	</select>
+</mapper>

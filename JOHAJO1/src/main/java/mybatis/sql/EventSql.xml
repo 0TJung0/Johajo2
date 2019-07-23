@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="event">
+	<select id="eventTotalCount" resultType="int">
+		select count(*) from event
+	</select>
+	<select id="eventPagingList" resultType="edto" parameterType="HashMap">
+		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from event order by idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
+	</select>
+	<select id="eventSelectData" parameterType="int" resultType="edto">
+		select * from event where idx=#{idx} 
+	</select>
+	<select id="eventAllData" resultType="edto">
+		select * from event
+	</select>
+</mapper>

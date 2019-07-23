@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+	<select id="faqTotalCount" resultType="int">
+		select count(*) from question where selection=2
+	</select>
+	<select id="faqPagingList" resultType="fdto" parameterType="HashMap">
+		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from question where selection=2 order by idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
+	</select>
+	<select id="faqSelectData" parameterType="int" resultType="fdto">
+		select * from question where selection=4 and idx=#{idx}
+	</select>
+</mapper>

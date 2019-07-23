@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="course">
+	<select id="courseSelectList" parameterType="String" resultType="cdto">
+		select * from course where course_name = #{course_name}
+	</select>
+	<select id="courseList" parameterType="int" resultType="cdto">
+		select c.idx,c.tot_pri,c.show,a.fname as appe,s.fname as soup,m.fname as main,si.fname as side,de.fname as des,
+		 dr.fname as drink from course c INNER JOIN food a on c.appe=a.idx INNER JOIN food s 
+		 on c.soup=s.idx INNER JOIN food m on c.main=m.idx INNER JOIN food si on 
+		 c.side=si.idx INNER JOIN food de on c.des=de.idx INNER JOIN food dr on c.drink=dr.idx where c.idx=#{idx}	 
+	</select>
+	<!-- updatecourse select -->
+	<select id="courseformList" parameterType="int" resultType="cdto">
+		select c.idx,c.show,c.course_name,c.appe,c.soup,c.main,c.side,c.des,c.drink,
+		a.price as appe_p,s.price as soup_p,si.price as side_p,m.price as main_p,de.price as des_p,dr.price as drink_p,c.tot_pri
+		from course c INNER JOIN food a on c.appe=a.idx INNER JOIN food s on c.soup=s.idx INNER JOIN 
+		food m on c.main=m.idx INNER JOIN food si on c.side=si.idx INNER JOIN food de on c.des=de.idx INNER JOIN 
+		food dr on c.drink=dr.idx where c.idx=#{idx}
+	</select>
+	
+	<!-- insert, update, delete  -->
+	<insert id="courseInsert" parameterType="cdto">
+		insert into course values (seq_course.nextval,#{appe},#{soup},#{main},#{side},#{des},#{drink},#{tot_pri},#{course_name},#{show})
+	</insert>
+	<update id="courseUpdate" parameterType="cdto">
+		update course set appe=#{appe}, soup=#{soup}, main=#{main}, side=#{side}, des=#{des}, drink=#{drink}, tot_pri=#{tot_pri}, course_name=#{course_name},show=#{show} where idx=#{idx}
+	</update>
+</mapper>
