@@ -13,13 +13,5 @@
 	<body>
 		<c:redirect url="main.do"/>
 	</body>
+	Tae
 </html>
-
-
-
-
-
-
-
-
-
