@@ -15,28 +15,28 @@
 			<div class="menu_list">
 				<div class="menu_left">
 					<div class="menu_mmain">
-						<a href="menusel.do?kind=3"><img src="./image/menu02.jpg" id="main_img"></a>
+						<a href="menusel.do?kind=3"><img src="./image/main.jpg" id="main_img" title="main" ></a>
 					</div>
 					<div class="menu_left2">
 						<div class="menu_soup">
-						<a href="menusel.do?kind=2"><img src="./image/menu01.jpg" id="soup_img"></a>
+						<a href="menusel.do?kind=2"><img src="./image/soup.jpg" id="soup_img" title="soup"></a>
 						</div>
 						<div class="menu_dess">
-						<a href="menusel.do?kind=5"><img src="./image/menu01.jpg" id="dess_img"></a>
+						<a href="menusel.do?kind=5"><img src="./image/des.jpg" id="dess_img" title="dessert"></a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="menu_right">
 					<div class="menu_appe">
-					<a href="menusel.do?kind=1"><img src="./image/menu03.jpg"  id="appe_img"></a>
+					<a href="menusel.do?kind=1"><img src="./image/appe.jpg"  id="appe_img" title="appetizer"></a>
 					</div>
 						<div class="menu_right2">
-							<div class="menu_drink">
-							<a href="menusel.do?kind=6"><img src="./image/menu01.jpg" id="drink_img"></a>
-							</div>
 							<div class="menu_side">
-							<a href="menusel.do?kind=4"><img src="./image/menu01.jpg" id="side_img"></a>
+							<a href="menusel.do?kind=4"><img src="./image/side.jpg" id="side_img" title="side dish"></a>
+							</div>
+							<div class="menu_drink">
+							<a href="menusel.do?kind=6"><img src="./image/drink.jpg" id="drink_img" title="drink"></a>
 							</div>
 						</div>
 				</div>

@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<div class="list2_div">
-			<img class="list2_img" src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg">
+			<img class="list2_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${list2.imgname}">
 			<br>
 			메뉴 ${list2.fname}<br>
 			칼로리 ${list2.calorie}<br>

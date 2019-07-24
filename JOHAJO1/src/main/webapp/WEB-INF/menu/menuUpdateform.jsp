@@ -109,7 +109,7 @@ $(function() {
 </script>
 </head>
 <body>
-	<form action="menuupdate.do" method="post">
+	<form action="menuupdate.do" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<th>종류</th>

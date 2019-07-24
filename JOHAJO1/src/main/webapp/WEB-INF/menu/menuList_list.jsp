@@ -9,15 +9,17 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.menulist_list{
-		border: 1px solid gray;
+		border: 1px solid lightgray;
 		width:100%;
 	}
 	.menulist_list li{
 		display: inline-block;
 	}
-	#menulist_img{
+	.menulist_img{
 		width: 300px;
-		height: 80%;
+	}
+	.menu_fname{
+		font-size: 1.25em;
 	}
 </style>
 <script type="text/javascript">
@@ -26,9 +28,7 @@ $(function(){
 		var idx = $(this).attr("idx");
 		console.log(idx);
 		
-		var link = document.location.href;
-		console.log(link);
-		window.open('http://localhost:9000/JOHAJO/menuselpop.do?idx='+idx, 'menulistPop', 'width=350, height=500, left=700, top=100,resizable=no', '_blank');
+		window.open('http://localhost:9000/SpringTilesMybatis/menuselpop.do?idx='+idx, 'menulistPop', 'width=350, height=500, left=700, top=100,resizable=no', '_blank');
 	});
 	
 });
@@ -41,11 +41,11 @@ $(function(){
 		<c:forEach var="dto" items="${list}" >	
 				<div class="menulist_list" >
 					<ul>
-						<li><img id="menulist_img" class="menulist_img" src="./image/menu04.jpg" idx="${dto.idx}" ></li>
-						<li>${dto.fname}</li>
-						<li>${dto.price} ${dto.idx}${dto.kind }</li>
-						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
+						<li><img class="menulist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
 						
+						<li class="menu_fname">&nbsp;&nbsp;&nbsp;<b>${dto.fname}</b></li>
+						
+						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
 						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
 					</ul>
 				</div>

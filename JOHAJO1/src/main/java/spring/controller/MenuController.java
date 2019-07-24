@@ -1,6 +1,9 @@
 package spring.controller;
 
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.data.MenuDto;
 import spring.service.MenuService;
+import upload.util.SpringFileWriter;
 
 
 @Controller
@@ -60,12 +65,35 @@ public class MenuController {
 	{
 		return "/menu/menuWriteform";
 	}
+	
 	@PostMapping("/menuwrite.do")
-	public String readmenuData(@ModelAttribute MenuDto dto)
+	public String readmenuData(@ModelAttribute MenuDto dto,HttpServletRequest request)
 	{
+	
+		
+		
+		//이미지 업로드 경로
+		String path=request.getSession().getServletContext().getRealPath("/menuImg");
+		System.out.println(path);
+		
+		//path경로에 이미지 저장
+		
+		SpringFileWriter fileWriter=new SpringFileWriter();
+		String imgname = "";
+		//파일명
+		MultipartFile mf=dto.getUpfile();
+		System.out.println("파일명 : "+mf.getOriginalFilename());
+		imgname += mf.getOriginalFilename();
+		//이미지 저장 메소드 호출
+		fileWriter.writeFile(mf, path, mf.getOriginalFilename());
+		
+		//dto에 이미지 이름저장
+		dto.setImgname(imgname);
+		
 		service.insertMenu(dto);
 		return "redirect:menulist.do";
 	}
+	
 	
 	/* 메뉴 수정 */
 	@RequestMapping("/menuupdateform.do")

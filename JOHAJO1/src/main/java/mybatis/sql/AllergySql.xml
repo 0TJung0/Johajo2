@@ -4,4 +4,10 @@
 	<select id="allergySelect" resultType="adto">
 		select * from allergy
 	</select>
+	<select id="allergyList" parameterType="String" resultType="adto">
+		select f.fname as aname,f.kind as f from allergy a INNER JOIN food f on a.f=f.idx where a.aname=#{aname} order by f.idx
+	</select>
+	<select id="allergyAname" parameterType="String" resultType="adto">
+		select * from allergy where aname = #{aname}
+	</select>
 </mapper>
