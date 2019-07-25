@@ -1,5 +1,7 @@
 package spring.data;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +32,9 @@ public class CourseDao extends SqlSessionDaoSupport {
 	public void courseUpdate(CourseDto dto)
 	{
 		getSqlSession().update("courseUpdate",dto);
+	}
+	public List<CourseDto> rescourselist() {
+		return getSqlSession().selectList("rescourselist");
 	}
 	
 }

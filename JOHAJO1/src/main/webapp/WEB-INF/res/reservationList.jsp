@@ -377,6 +377,24 @@
 		      return false;
 		  }
    });
+   //코스 클릭시
+   
+   $(document).on('click','.sidebar3',function() { 
+	   $.ajax({
+	        url:'rescoursesel.do',
+	        type : "GET",
+	        data:{"nsid":sid},
+	        cache : false,
+	        success : function(res){
+	        var html = "";
+	        html +="<table><tr>";
+	        for(var i=0; i<res.length; i++){
+	       		html +="<th idx="+res[i].idx+">"+res[i].course_name+"</th>";
+	        	
+	        	}
+	        }
+       });
+   }
    
 });
 </script>
@@ -459,9 +477,11 @@
                   <div id="sidebar">
                      <!-- 사이드바 -->
                      <div id="sidebar1">
+                     	<ul>
+                     		<li class="sidebar3">course</li>
+                        	<li class="sidebar4"><a>HotMenu</a></li>
+                     	</ul>
                         <ul class="sidebar2">
-                           <li class="sidebar3">course</li>
-                           <li><a href="#">HotMenu</a></li>
                            <li><a name="1">Appetizer</a></li>
                            <li><a name="2">Soup</a></li>
                            <li><a name="3">MainDish</a></li>

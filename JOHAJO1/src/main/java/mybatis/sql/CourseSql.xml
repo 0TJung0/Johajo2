@@ -26,4 +26,7 @@
 	<update id="courseUpdate" parameterType="cdto">
 		update course set appe=#{appe}, soup=#{soup}, main=#{main}, side=#{side}, des=#{des}, drink=#{drink}, tot_pri=#{tot_pri}, course_name=#{course_name},show=#{show} where idx=#{idx}
 	</update>
+	<select id="rescourselist" parameterType="String" resultType="cdto">
+		select * from course 
+	</select>
 </mapper>

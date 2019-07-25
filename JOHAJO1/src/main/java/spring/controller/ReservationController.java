@@ -27,12 +27,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.data.CourseDto;
 import spring.data.FoodDto;
 import spring.data.NmBasketDto;
 import spring.data.ReservationDto;
 import spring.data.StoreDto;
 import spring.data.TableDto;
+import spring.data.mSearchDto;
 import spring.data.singlebasketDto;
+import spring.service.CourseService;
 import spring.service.FoodService;
 import spring.service.MemberService;
 import spring.service.StoreService;
@@ -50,6 +53,8 @@ public class ReservationController {
 	  private FoodService fservice;
 	  @Autowired
 	  private TableService tservice;
+	  @Autowired
+	  private CourseService cou_service;
 	  @Autowired
 	  private MemberService mservice;
 	  @Autowired
@@ -373,4 +378,13 @@ public class ReservationController {
 		model.setViewName("/res/reservationList");
 		return model;
 	}
+	
+	
+	@RequestMapping(value="/rescoursesel.do",method=RequestMethod.GET)
+	 public @ResponseBody List<CourseDto> resfinsh(HttpSession session){	
+		List<CourseDto> list = new ArrayList<CourseDto>(); 
+		list=cou_service.resCourselist();
+		return list;
+		
+	 }
 }
