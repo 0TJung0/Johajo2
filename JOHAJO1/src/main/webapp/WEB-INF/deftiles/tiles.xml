@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
    	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
@@ -65,4 +66,73 @@
 
 
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+   	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="mainLayout" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
+		<put-attribute name="leftmenu" value="/WEB-INF/layout/leftmenu.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	<definition name="main.tiles" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	
+	<!--popup-tiles 추가  -->
+	 <definition name="popup-tiles" template="/WEB-INF/layout/popup.jsp">
+	  <put-attribute name="popup"   value="" />
+	 </definition>
+	 
+	 <!--popup-tiles 추가  -->
+	 <definition name="adpopup-tiles" template="/WEB-INF/admin/layout/ad_popup.jsp">
+	  <put-attribute name="adpopup"   value="" />
+	 </definition>
+ 
+ 	<!-- admin tiles 추가 -->
+ 	<definition name="admainLayout" template="/WEB-INF/admin/layout/ad_layout.jsp">
+		<put-attribute name="adtop" value="/WEB-INF/admin/layout/ad_top.jsp"/>
+		<put-attribute name="admain" value="/WEB-INF/admin/layout/ad_main.jsp"/>
+	</definition>
+	<definition name="admain.tiles" extends="admainLayout">
+		<put-attribute name="admain" value="/WEB-INF/admin/layout/ad_main.jsp"/>
+	</definition>
+ 
+	
+<!-- macro -->
+
+	
+	 
+	<definition name="/*/*" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
+	<!--popup-tiles 추가  -->
+	<definition name="/pop/*/*" extends="popup-tiles">
+	  <put-attribute name="popup"   value="/WEB-INF/{1}/{2}.jsp" />
+	 </definition>
+	 
+	 
+	 
+	<!-- admin tiles 추가 -->
+	<definition name="/ad/*/*" extends="admainLayout">
+		<put-attribute name="admain" value="/WEB-INF/admin/{1}/{2}.jsp"/>
+	</definition>	
+
+	<definition name="/ad/pop/*/*" extends="adpopup-tiles">
+	  <put-attribute name="adpopup"   value="/WEB-INF/admin/{1}/{2}.jsp" />
+	 </definition>
+	 
+	 
+</tiles-definitions>  
+
+
+
+
+
+
+>>>>>>> parent of 89b8508... 멤버 css 수정 + main css,main jsp,slick 추가
      
