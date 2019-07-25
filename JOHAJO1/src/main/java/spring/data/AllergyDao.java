@@ -14,6 +14,12 @@ public class AllergyDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("allergySelect");
 	}
 	
+	public List<AllergyDto> getAnameonly()
+	{
+		return getSqlSession().selectList("allergyAnameonly");
+	}
+	
+	
 	public List<AllergyDto> getList(String aname)
 	{
 		return getSqlSession().selectList("allergyList",aname);

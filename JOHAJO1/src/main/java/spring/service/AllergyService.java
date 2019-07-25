@@ -18,6 +18,11 @@ public class AllergyService {
 		return dao.getData();
 	}
 	
+	public List<AllergyDto> getAnameonly()
+	{
+		return dao.getAnameonly();
+	}
+	
 	public List<AllergyDto> getList(String aname)
 	{
 		return dao.getList(aname);

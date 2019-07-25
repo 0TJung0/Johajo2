@@ -87,38 +87,47 @@
 	        $('#' + $(this).attr('aname')).fadeIn(); //활성화된 탭만 보이도록
 	    });
 	});
+	
+	$(function(){
+		$("#altabs li").click(function(){
+			var aname = $(this).attr("aname");
+			console.log(aname);
+		});
+	});
 	</script>
 	</head>
 	<body>
-		
 		<div id="aldiv">
 			<button type="button">관리</button>
-			<ul id="altabs">
-			    <li><a href="#" aname="11">전체</a></li>
-			    <li><a href="#" aname="1">난류</a></li>
-			    <li><a href="#" aname="2">우유</a></li>
-			    <li><a href="#" aname="3">대두</a></li>    
-			    <li><a href="#" aname="4">밀</a></li>    
-			    <li><a href="#" aname="5">돼지고기</a></li>    
-			    <li><a href="#" aname="6">소고기</a></li>    
-			    <li><a href="#" aname="7">닭고기</a></li>    
-			    <li><a href="#" aname="8">토마토</a></li>    
-			    <li><a href="#" aname="9">오징어</a></li>    
-			    <li><a href="#" aname="10">조개류</a></li>    
-			</ul>
+			<c:forEach var="a" items="${list}">
+				<ul id="altabs">
+				    <li><a href="#" aname="${a.aname}">${a.aname==1?전체}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==10?난류}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==11?우유}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==2?대두}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==3?밀}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==4?돼지고기}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==5?소고기}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==6?닭고기}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==7?전체}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==8?토마토}</a></li>
+				    <li><a href="#" aname="${a.aname}">${a.aname==9?조개류}</a></li>
+				</ul>	
+			</c:forEach>
+			
 			
 			<div id="alcontent"> 
 			    <div id="11">
-			        <c:forEach var="dto" items="${list11}">
+			        <c:forEach var="dto" items="${list}">
 			        	<table>
 			        		<tr>
-			        			<td>${dto.aname} ${dto.f}</td>
+			        			<td>${dto.aname} , ${dto.f}</td>
 			        		</tr>
 			        	</table>
 			        </c:forEach>
 			    </div>
 			    <div id="1">
-			        <c:forEach var="dto" items="${list1}">
+			        <c:forEach var="dto" items="${list}">
 			        	<table>
 			        		<tr>
 			        			<td>${dto.aname} ${dto.f}</td>

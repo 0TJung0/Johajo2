@@ -34,6 +34,15 @@ public class AllergyController {
 		model.setViewName("/menu/menuAllergy");
 		return model;
 	}*/
+	@RequestMapping("/allergyaname.do")
+	public ModelAndView anameonly()
+	{
+		ModelAndView model = new ModelAndView();
+		List<AllergyDto> list = service.getAnameonly();
+		model.addObject("list",list);
+		model.setViewName("/menu/menuAllergy");
+		return model;
+	}
 	
 	@RequestMapping("/menuallergy.do")
 	public ModelAndView list(@RequestParam(defaultValue="11") String aname)
