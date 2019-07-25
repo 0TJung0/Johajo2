@@ -17,7 +17,7 @@ public class singlebasketDao extends SqlSessionDaoSupport{
 		getSqlSession().insert("mBasketInsert",dto);
 	}
 	public int checkmbasket(singlebasketDto dto) {
-		return getSqlSession().insert("mBasketCheck",dto);
+		return getSqlSession().selectOne("mBasketCh",dto);
 	}
 	public void updatembasket(singlebasketDto dto) {
 		getSqlSession().update("mBasketupdate",dto);

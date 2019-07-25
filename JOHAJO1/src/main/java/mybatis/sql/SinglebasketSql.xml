@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="mBasketInsert" parameterType="singledto">
 		insert into singlebasket (idx,fidx,midx,today,restime) values(seq_singlebasket.nextval,#{fidx},#{midx},to_date(sysdate,'DD/MM/RR'),#{restime})
 	</insert>
-	<select id="mBasketCheck" resultType="int" parameterType="singledto">
-		select NVL(Max(s.count),0) from singlebasket s where midx=#{midx} and fidx=#{fidx} and residx=0 and
-		today=to_char(sysdate,'DD/MM/RR') and restime=to_char(#{restime})
+	<select id="mBasketCh" resultType="int" parameterType="singledto">
+		select NVL(Max(s.count),0) from singlebasket s where s.midx=#{midx} and s.fidx=#{fidx} and s.residx=0 and
+		s.today=to_char(sysdate,'DD/MM/RR') and s.restime=#{restime}
 	</select>
 	<update id="mBasketupdate" parameterType="singledto">
-		UPDATE singlebasket set count=count+1 where fidx=#{fidx} and midx=#{midx} and restime = #{restime} and residx=0 and today=to_date(sysdate,'DD/MM/RR')
+		UPDATE singlebasket set count=count+1 where fidx=#{fidx} and midx=#{midx} and restime = #{restime} and residx=0 and today=to_date(sysdate,'DD/MM/RR') and restable=#{restable}
 	</update>
 </mapper>

@@ -29,4 +29,5 @@
 	<select id="menuSelectKind" resultType="mndto">
 		select Distinct(kind) from food order by kind
 	</select>
+	
 </mapper>

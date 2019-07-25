@@ -299,10 +299,12 @@
          });
          
      });
+     //메뉴선택시 디비에 추가
      $(document).on('click','img.fimg',function() { 
     	 var fidx=$(this).attr("fidx");
     	 var fname=$(".hfidx").val();
     	 var restime=$(".htime").val();
+    	 var restable=$(".hsit").val();
     	 var s="";
     	 if(fname==null){
     		 s=fidx;
@@ -316,7 +318,7 @@
     	 $.ajax({
 	            type:'get',
 	            url:'nmbasketadd.do',
-	            data:{"se_nmname":se_nmname,"fidx":fidx,"restime":restime},
+	            data:{"se_nmname":se_nmname,"fidx":fidx,"restime":restime,"restable":restable},
 	            success:function(redata){
 	            }
     	 });
@@ -384,8 +386,6 @@
    $(document).on('click','.sidebar3',function() {
 	   $.ajax({
 	        url:'rescoursesel.do',
-	        type : "GET",
-	        data:{"nsid":sid},
 	        cache : false,
 	        success : function(res){
 	        var html = "";
@@ -394,6 +394,23 @@
 	       		html +="<th idx="+res[i].idx+">"+res[i].course_name+"</th>";
 	        	
 	        	}
+	        html +="</tr></table>";
+	        $("span#datatest123").html(html);
+	        }
+       });
+	});
+   $(document).on('click','.sidebar4',function() {
+	   $.ajax({
+	        url:'resbestsel.do',
+	        cache : false,
+	        success : function(res){
+	        var html = "";
+	        html +="<table><tr>";
+	        for(var i=0; i<res.length; i++){
+	       		html +="<th idx="+res[i].idx+">"+res[i].course_name+"</th>";
+	        	}
+	        html +="</tr></table>";
+	        $("span#datatest123").html(html);
 	        }
        });
 	});

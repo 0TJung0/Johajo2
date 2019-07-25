@@ -299,7 +299,8 @@ public class ReservationController {
 	}
    //장바구니에 추가하는 코드
    @RequestMapping(value="/nmbasketadd.do",method=RequestMethod.GET)
-   public ModelAndView addbasket(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,@RequestParam int fidx,@RequestParam String restime)throws Exception{
+   public ModelAndView addbasket(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
+		   @RequestParam String restable,@RequestParam int fidx,@RequestParam String restime)throws Exception{
 	   ModelAndView model = new ModelAndView();
 	   Map<String, Integer> map=new HashMap<String, Integer>();
 	   System.out.println("restime"+restime);
@@ -313,11 +314,12 @@ public class ReservationController {
 		   dto.setFidx(fidx);
 		   dto.setNmidx(se_n);
 		   dto.setRestime(restime);
-		   System.out.println(dto.getFidx());
-		   System.out.println(dto.getNmidx());
-		   System.out.println(dto.getRestime());
-		   System.out.println("nmserveicecheck"+nm_basket_service.insertCheck(dto));
-		   System.out.println("restime "+dto.getRestime());
+		   dto.setRestable(restable);
+		   //System.out.println(dto.getFidx());
+		   //System.out.println(dto.getNmidx());
+		   //System.out.println(dto.getRestime());
+		  // System.out.println("nmserveicecheck"+nm_basket_service.insertCheck(dto));
+		  // System.out.println("restime "+dto.getRestime());
 		   if(nm_basket_service.insertCheck(dto)<=0){
 			   nm_basket_service.insertnMemberBasket(dto);
 		   }else{
@@ -331,14 +333,15 @@ public class ReservationController {
 		   dto.setFidx(fidx);
 		   dto.setMidx(midx);
 		   dto.setRestime(restime);
+		   dto.setRestable(restable);
 		   //map.put("fidx",fidx);
 		   //map.put("midx",midx);
 		   //System.out.println("fidx"+fidx);
 		   //System.out.println("midx"+midx);
-		   System.out.println(dto.getFidx());
-		   System.out.println(dto.getMidx());
-		   System.out.println(dto.getRestime());
-		   System.out.println("mbasketcheck"+basket_service.checkmbasket(dto));
+		   //System.out.println(dto.getFidx());
+		   //System.out.println(dto.getMidx());
+		  // System.out.println(dto.getRestime());
+		   //System.out.println("mbasketcheck"+basket_service.checkmbasket(dto));
 		   if(basket_service.checkmbasket(dto)<=0) {
 			   basket_service.insertmbasket(dto);
 			   System.out.println("요기33");
@@ -381,10 +384,17 @@ public class ReservationController {
 	
 	
 	@RequestMapping(value="/rescoursesel.do",method=RequestMethod.GET)
-	 public @ResponseBody List<CourseDto> resfinsh(HttpSession session){	
+	 public @ResponseBody List<CourseDto> rescourselist(HttpSession session){	
 		List<CourseDto> list = new ArrayList<CourseDto>(); 
 		list=cou_service.resCourselist();
 		return list;
 		
 	 }
+	
+	@RequestMapping(value="resbestsel.do",method=RequestMethod.GET)
+	 public @ResponseBody List<FoodDto> resHotlist(HttpSession session){
+		List<FoodDto> list = new ArrayList<FoodDto>(); 
+		list=fservice.getBestfive();
+		return list;
+	}
 }

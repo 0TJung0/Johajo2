@@ -9,4 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="ReserOneFood" resultType="fooddto" parameterType="int">
 		select * from food where idx=#{idx}
 	</select>
+	<select id="ReserBestmenufive" resultType="fooddto">
+		<![CDATA[ 
+		SELECT * FROM (SELECT * FROM food m ORDER BY m.count DESC)
+		WHERE ROWNUM <= 5
+		]]>
+	</select>
 </mapper>

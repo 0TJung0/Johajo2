@@ -16,11 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from nm_basket where nmidx=#{nmidx} and fidx=#{fidx} and restime = #{restime} and residx=0
 	</select>
 	<update id="nmBasketupdate" parameterType="nmbadto">
-		UPDATE nm_basket set count=count+1 where fidx=#{fidx} and nmidx=#{nmidx} and restime = #{restime} and residx=0
+		UPDATE nm_basket set count=count+1 where fidx=#{fidx} and nmidx=#{nmidx} and restime = #{restime} and residx=0 and restable=#{restable}
 	</update>
 	<select id="nmBasketC" resultType="int" parameterType="int">
 		select NVL(Max(s.count),0) from nm_basket s where nmidx=#{nmidx} and fidx=#{fidx} and residx=0 and 
-		today=to_char(sysdate,'DD/MM/RR') and restime=to_char(#{restime})
+		today=to_char(sysdate,'DD/MM/RR') and restime=to_char(#{restime}) and restable=#{restable}
 	</select>
 	<select id="nmBasketlist" resultType="msdto" parameterType="int">
 		select n.idx as idx,f.fname as fname,f.price as price,n.count as count,n.today as today from food f 

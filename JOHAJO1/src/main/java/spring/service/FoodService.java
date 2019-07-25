@@ -18,8 +18,11 @@ public class FoodService {
 		return dao.getKindFood(kind);
 	}
 	public FoodDto getOneFood(int idx) {
-		System.out.println("여기");
+		//System.out.println("여기");
 		return dao.getOneFood(idx);
 		
+	}
+	public List<FoodDto> getBestfive(){
+		return dao.getBestfive();
 	}
 }

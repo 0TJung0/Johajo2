@@ -20,4 +20,9 @@ public class FoodDao extends SqlSessionDaoSupport {
 		FoodDto dto=getSqlSession().selectOne("ReserOneFood",idx);
 		return dto;
 	}
+	public List<FoodDto> getBestfive(){
+		List<FoodDto> list=new ArrayList<FoodDto>();
+		list=getSqlSession().selectList("ReserBestmenufive");
+		return list;
+	}
 }
