@@ -7,6 +7,14 @@ public class singlebasketDto {
 	private int count;
 	private String today;
 	private int residx;
+	private String restime;
+	
+	public String getRestime() {
+		return restime;
+	}
+	public void setRestime(String restime) {
+		this.restime = restime;
+	}
 	public int getIdx() {
 		return idx;
 	}

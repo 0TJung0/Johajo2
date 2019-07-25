@@ -19,7 +19,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="spring.data.NmBasketDto" alias="nmbadto"/>
 		<typeAlias type="spring.data.singlebasketDto" alias="singledto"/>
 		<typeAlias type="spring.data.ReservationDto" alias="resdto"/>
-		<typeAlias type="spring.data.nmSearchDto" alias="nmsdto"/>
 		<typeAlias type="spring.data.mSearchDto" alias="msdto"/>
 	</typeAliases>
 

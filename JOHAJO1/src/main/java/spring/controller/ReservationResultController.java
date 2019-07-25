@@ -20,7 +20,6 @@ import spring.data.FoodDto;
 import spring.data.NmBasketDto;
 import spring.data.ReservationDto;
 import spring.data.mSearchDto;
-import spring.data.nmSearchDto;
 import spring.service.FoodService;
 import spring.service.ReservationService;
 import spring.service.StoreService;
@@ -61,11 +60,11 @@ public class ReservationResultController {
 		   return model;
 	   }
 	@RequestMapping(value="/reservationfinnm.do",method=RequestMethod.GET)
-	 public @ResponseBody List<nmSearchDto> resfinsh(HttpSession session,@RequestParam String nsid){
+	 public @ResponseBody List<mSearchDto> resfinsh(HttpSession session,@RequestParam String nsid){
 		String s="nm_number"+nsid;
 		//System.out.println("여깈ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 		//System.out.println("nsid"+nsid);
-		List<nmSearchDto> list = new ArrayList<nmSearchDto>();
+		List<mSearchDto> list = new ArrayList<mSearchDto>();
 		Integer nmid=(Integer)session.getAttribute(nsid);
 		//System.out.println("여기2222222222"+nmid);
 		
@@ -80,6 +79,7 @@ public class ReservationResultController {
 	 public @ResponseBody List<mSearchDto> resfinsh1(HttpSession session){
 		List<mSearchDto> list = new ArrayList<mSearchDto>();
 		Integer mid=(Integer)session.getAttribute("log_idx");
+		System.out.println(mid);
 		list=mb_service.getbasketlist(mid);
 		return list;	 
 	}

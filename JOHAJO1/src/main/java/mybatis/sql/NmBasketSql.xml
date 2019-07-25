@@ -9,25 +9,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="nmBasketCount" resultType="int">
 		select count(nmidx) from nm_basket
 	</select>
-	<insert id="nmBasketInsert" parameterType="HashMap">
-		insert into nm_basket(idx,fidx,nmidx,today) values(seq_nmbasket.nextval,#{fidx},#{nmidx},to_date(sysdate,'DD/MM/RR'))
+	<insert id="nmBasketInsert" parameterType="nmbadto">
+		insert into nm_basket(idx,fidx,nmidx,today,restime) values(seq_nmbasket.nextval,#{fidx},#{nmidx},to_date(sysdate,'DD/MM/RR'),#{restime})
 	</insert>
-	<select id="nmBasketCheck" resultType="int" parameterType="HashMap">
-		select NVL(Max(count),'0') from nm_basket where nmidx=#{nmidx} and fidx=#{fidx}
+	<select id="nmBasketCheck" resultType="int" parameterType="nmbadto">
+		select count(*) from nm_basket where nmidx=#{nmidx} and fidx=#{fidx} and restime = #{restime} and residx=0
 	</select>
-	<update id="nmBasketupdate" parameterType="HashMap">
-		UPDATE nm_basket set count=count+1 where fidx=#{fidx} and nmidx=#{nmidx}
+	<update id="nmBasketupdate" parameterType="nmbadto">
+		UPDATE nm_basket set count=count+1 where fidx=#{fidx} and nmidx=#{nmidx} and restime = #{restime} and residx=0
 	</update>
 	<select id="nmBasketC" resultType="int" parameterType="int">
-		select NVL(count(*),0) from nm_basket where nmidx=#{nmidx}
+		select NVL(Max(s.count),0) from nm_basket s where nmidx=#{nmidx} and fidx=#{fidx} and residx=0 and 
+		today=to_char(sysdate,'DD/MM/RR') and restime=to_char(#{restime})
 	</select>
-	<select id="nmBasketlist" resultType="nmsdto" parameterType="int">
+	<select id="nmBasketlist" resultType="msdto" parameterType="int">
 		select n.idx as idx,f.fname as fname,f.price as price,n.count as count,n.today as today from food f 
 		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx}
 	</select>
 	<select id="nmBasketPrice" resultType="int" parameterType="int">
 		select SUM(f.price) from food f 
-		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx}
+		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx} and residx=0
 	</select>
 	
 </mapper>

@@ -2,28 +2,27 @@ package spring.data;
 
 public class mSearchDto {
 	private int idx;
-	private int fidx;
-	private int midx;
+	private String fname;
+	private int price;
 	private int count;
 	private String today;
-	
 	public int getIdx() {
 		return idx;
 	}
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public int getFidx() {
-		return fidx;
+	public String getFname() {
+		return fname;
 	}
-	public void setFidx(int fidx) {
-		this.fidx = fidx;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
-	public int getMidx() {
-		return midx;
+	public int getPrice() {
+		return price;
 	}
-	public void setMidx(int midx) {
-		this.midx = midx;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public int getCount() {
 		return count;
@@ -37,5 +36,6 @@ public class mSearchDto {
 	public void setToday(String today) {
 		this.today = today;
 	}
-
+	
+	
 }

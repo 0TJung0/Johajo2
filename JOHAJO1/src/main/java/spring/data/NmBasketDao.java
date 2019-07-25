@@ -15,20 +15,20 @@ public class NmBasketDao extends SqlSessionDaoSupport{
 	public int getnMembercount(){
 		return getSqlSession().selectOne("nmBasketCount");
 	}
-	public void nmemberInsert(Map<String, Integer> map){
-		getSqlSession().insert("nmBasketInsert",map);
+	public void nmemberInsert(NmBasketDto dto){
+		getSqlSession().insert("nmBasketInsert",dto);
 	}
-	public int getnmInsertCheck(Map<String, Integer> map){
-		return getSqlSession().selectOne("nmBasketCheck",map);
+	public int getnmInsertCheck(NmBasketDto dto){
+		return getSqlSession().selectOne("nmBasketCheck",dto);
 	}
-	public void nmemberUpdate(Map<String, Integer> map){
-		getSqlSession().insert("nmBasketupdate",map);
+	public void nmemberUpdate(NmBasketDto dto){
+		getSqlSession().insert("nmBasketupdate",dto);
 	}
 	
 	public int nmBasketCount(int nmidx){
 		return getSqlSession().selectOne("nmBasketC",nmidx);
 	}
-	public List<nmSearchDto> nmBasketlist(int nmidx){
+	public List<mSearchDto> nmBasketlist(int nmidx){
 		return getSqlSession().selectList("nmBasketlist",nmidx);
 	}
 	public int nmBasketPrice(int nmidx) {

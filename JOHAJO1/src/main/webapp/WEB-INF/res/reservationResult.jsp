@@ -26,11 +26,12 @@ $(function(){
 	str1+="<tr><th>예약좌석</th><th>"+sit+"</th></tr>";
 	str1+="</table>";
 	str1+="<div class='out3'></div>"
-	if(sid==null){
-		str1+="포인트 사용 <input type='text' size=5 class='point'><b>사용가능 포인트 : ${point}<b><Button type='button' class='usepoint'>포인트사용</button>";
-		str1+="<button type='button' class='resmfinbtn'>예약하기</button>"
+	if(check==1){
+		str1+="<b class='usecoupon'>사용쿠폰<b><button type='button' class='couponbtn'>쿠폰 사용하기</button>"
+		str1+="포인트 사용 <input type='text' size=5 class='point'><b>사용가능 포인트 : ${point}</b><Button type='button' class='usepoint'>포인트사용</button>";
+		str1+="<br><button type='button' class='resmfinbtn'>예약하기</button>"
 	}else{
-		str1+="핸드폰 번호  010-<input type='text' class='nmhp' placeholder='-없이 입력해주세요'><br>";
+		str1+="핸드폰 번호  010<input type='text' class='nmhp' placeholder='-없이 입력해주세요'><br>";
 		str1+="비밀번호 <input type='password' class='nmpass' placeholder='비밀번호를 입력해주세요'><br>";
 		str1+="<button type='button' class='resfinbtn'>예약하기</button>"
 	}
@@ -64,7 +65,7 @@ $(function(){
 	           success : function(res){
 	             var html = "";
 	               for(var i=0; i<res.length; i++){
-	                   html +="음식명"+ res[i].fname+" 가격="+res[i].price+"갯수"+res[i].count+"<br>";
+	                   html +="음식명 ="+ res[i].fname+" 가격="+res[i].price+"갯수="+res[i].count+"<br>";
 	               }
 	               $("div.out3").html(html);             
 	           }
@@ -77,10 +78,17 @@ $(function(){
 	           cache : false,
 	           success : function(res){
 	             var html = "";
+	             /* html+="<ul style='border:1px solid gray;'><tr>";
+	             html+="<li>음식명</li>";
+	             html+="<li>가 격</li>";
+	             html+="<li>갯수</li>";
+	             html+="<li>삭제</li></ul>"; 
+	             html+="<ul>";*/
 	               for(var i=0; i<res.length; i++){
-	                   html += res[i].fname+": price="+res[i].price+"갯수"+res[i].count+"<br>";
+	            	   html += res[i].fname+"</li><ul><li><input type='text' value="+res[i].count+" size=2></li><li class='price'>가격 : "+(res[i].price*res[i].count)+"</li><li><button type='button' idx="+res[i].idx+">삭제</button></li></ul>";
 	               }
-	               $(".out3").html(html);             
+	              // html+="</li>"
+	               $("div.out3").html(html);             
 	           }
 	       });
 	}

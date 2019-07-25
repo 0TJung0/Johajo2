@@ -130,6 +130,7 @@
 				required="required" placeholder="아이디">
 			<input type="password" name="pw" id="pw" autofocus="autofocus" 
 				required="required" placeholder="비밀번호 ">
+				<input type="hidden" name="path" value="${path}">
 			<button class="submit" type="submit">로그인</button>
 		</div>	
 		</form>	

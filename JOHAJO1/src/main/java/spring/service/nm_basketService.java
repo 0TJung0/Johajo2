@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import spring.data.NmBasketDao;
 import spring.data.NmBasketDto;
-import spring.data.nmSearchDto;
+import spring.data.mSearchDto;
 @Service
 public class nm_basketService {
 	@Autowired
@@ -21,19 +21,19 @@ public class nm_basketService {
 	public int getnMembercount(){
 		return dao.getnMembercount();
 	}
-	public void insertnMemberBasket(Map<String, Integer> map){
-		dao.nmemberInsert(map);
+	public void insertnMemberBasket(NmBasketDto dto){
+		dao.nmemberInsert(dto);
 	}
-	public int insertCheck(Map<String, Integer> map){
-		return dao.getnmInsertCheck(map);
+	public int insertCheck(NmBasketDto dto){
+		return dao.getnmInsertCheck(dto);
 	}
-	public void updatenMemberBasket(Map<String, Integer> map){
-		dao.nmemberUpdate(map);
+	public void updatenMemberBasket(NmBasketDto dto){
+		dao.nmemberUpdate(dto);
 	}
 	public int nmBasketCount(int nmidx){
 		return dao.nmBasketCount(nmidx);
 	}
-	public List<nmSearchDto> nmBasketList(int nmidx){
+	public List<mSearchDto> nmBasketList(int nmidx){
 		return dao.nmBasketlist(nmidx);
 	}
 	public int nmBasketPrice(int nmidx) {

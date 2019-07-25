@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring.data.FoodDto;
+import spring.data.NmBasketDto;
 import spring.data.ReservationDto;
 import spring.data.StoreDto;
 import spring.data.TableDto;
+import spring.data.singlebasketDto;
 import spring.service.FoodService;
 import spring.service.MemberService;
 import spring.service.StoreService;
@@ -210,11 +212,12 @@ public class ReservationController {
    public ModelAndView app5(HttpSession session,@RequestParam int hmonth,@RequestParam int hday,
 	   @RequestParam(value="hstore") String hstore,@RequestParam(value="htime") String htime,@RequestParam(value="hsit") String hsit,
 	   @RequestParam(required=false,defaultValue ="0")String se_nmname,@RequestParam(value="hcourse", required=false,defaultValue ="0") String hcourse){
-	   String mid=(String)session.getAttribute("log_idx");
+	   Integer mid=(Integer)session.getAttribute("log_idx");
 	   int check=mid!=null?1:2;
 	   ModelAndView model=new ModelAndView();
+	   System.out.println("check"+check);
 	   System.out.println("se_nmname"+se_nmname);
-	   model.addObject("se_name",se_nmname);
+	  
 	   model.addObject("check",check);
 	   model.addObject("hmonth",hmonth);
 	   model.addObject("hday",hday);
@@ -222,13 +225,14 @@ public class ReservationController {
 	   model.addObject("htime",htime);
 	   model.addObject("hsit",hsit);
 	   model.addObject("hcourse",hcourse);
-	   String id=(String) session.getAttribute("log_idx");
-	   if(id!=null){
+	   if(check==1){
 	   //System.out.println("idx="+id);
-	   int sid=Integer.parseInt(id);
-	   int point = mservice.usePoint(sid);
+	  // int midx=Integer.parseInt(mid);
+	   int point = mservice.usePoint(mid);
 	   //System.out.println("point="+point);
 	   model.addObject("point",point);
+	   }else {
+		   model.addObject("se_name",se_nmname);
 	   }
 	   model.setViewName("/res/reservationResult");
 	   return model;
@@ -290,35 +294,64 @@ public class ReservationController {
 	}
    //장바구니에 추가하는 코드
    @RequestMapping(value="/nmbasketadd.do",method=RequestMethod.GET)
-   @ResponseBody
-   public ModelAndView addbasket(HttpSession session,@RequestParam(required=false)String se_nmname,@RequestParam int fidx)throws Exception{
+   public ModelAndView addbasket(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,@RequestParam int fidx,@RequestParam String restime)throws Exception{
 	   ModelAndView model = new ModelAndView();
 	   Map<String, Integer> map=new HashMap<String, Integer>();
-	   if(se_nmname!=null){ 
+	   System.out.println("restime"+restime);
+	   //System.out.println("se_nmname"+se_nmname);
+	   if(!se_nmname.equals("A")){ 
 		   Integer se_n=(Integer)session.getAttribute(se_nmname);
-		   //System.out.println(se_n);
-		   //System.out.println(fidx);
-		   map.put("fidx",fidx);
+		   NmBasketDto dto=new NmBasketDto();
+		   /*map.put("fidx",fidx);
 		   map.put("nmidx",se_n);
-		   if(nm_basket_service.insertCheck(map)==0){
-			   nm_basket_service.insertnMemberBasket(map);
+		   map.put("restime", restime);*/
+		   dto.setFidx(fidx);
+		   dto.setNmidx(se_n);
+		   dto.setRestime(restime);
+		   System.out.println(dto.getFidx());
+		   System.out.println(dto.getNmidx());
+		   System.out.println(dto.getRestime());
+		   System.out.println("nmserveicecheck"+nm_basket_service.insertCheck(dto));
+		   System.out.println("restime "+dto.getRestime());
+		   if(nm_basket_service.insertCheck(dto)<=0){
+			   nm_basket_service.insertnMemberBasket(dto);
 		   }else{
-			   nm_basket_service.updatenMemberBasket(map);
+			   nm_basket_service.updatenMemberBasket(dto);
 		   }
 		   
 	   }else{
-		   Integer midx=(Integer)session.getAttribute("log_id");
+		   System.out.println("요기3");
+		   Integer midx=(Integer)session.getAttribute("log_idx");
+		   singlebasketDto dto=new singlebasketDto();
+		   dto.setFidx(fidx);
+		   dto.setMidx(midx);
+		   dto.setRestime(restime);
+		   //map.put("fidx",fidx);
+		   //map.put("midx",midx);
+		   //System.out.println("fidx"+fidx);
+		   //System.out.println("midx"+midx);
+		   System.out.println(dto.getFidx());
+		   System.out.println(dto.getMidx());
+		   System.out.println(dto.getRestime());
+		   System.out.println("mbasketcheck"+basket_service.checkmbasket(dto));
+		   if(basket_service.checkmbasket(dto)<=0) {
+			   basket_service.insertmbasket(dto);
+			   System.out.println("요기33");
+		   }else {
+			   basket_service.updatembasket(dto);
+			   System.out.println("요기333");
+		   }		   
 	   }
 	   model.setViewName("/res/reservationList");
 	   return model;
    }
  
 	//장바구니 추가 하면 갯수 보여줄라고해본
-	@RequestMapping(value="/basketcountcheck.do",method=RequestMethod.GET)
+	/*@RequestMapping(value="/basketcountcheck.do",method=RequestMethod.GET)
 	   public ModelAndView basketcountcheck(HttpSession session,@RequestParam(required=false)String se_nmname){
 		   ModelAndView model = new ModelAndView();
 		   int basketcount=0;
-		   if(se_nmname!=null){ 
+		   if(se_nmname!="null"){ 
 			   Integer se_n=(Integer)session.getAttribute(se_nmname);
 			   System.out.println(se_n);
 			   basketcount=nm_basket_service.nmBasketCount(se_n);
@@ -326,11 +359,11 @@ public class ReservationController {
 		   model.addObject("basketcount",basketcount);
 		   model.setViewName("/res/reservationList");
 		   return model;
-	   }
+	   }*/
 	@RequestMapping(value="/sitsession.do",method=RequestMethod.GET)
 	public ModelAndView sitsession(@RequestParam String sit,HttpSession session){
 		ModelAndView model = new ModelAndView();
-		String n=(String)session.getAttribute(sit);
+		Integer n=(Integer)session.getAttribute(sit);
 		int check=0;
 		if(n==null){
 			session.setAttribute(sit, 1);

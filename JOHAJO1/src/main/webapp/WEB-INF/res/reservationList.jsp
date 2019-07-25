@@ -164,10 +164,18 @@
         $(".hsit").val(sit);
         
     });
+    //달력클릭시
      $(document).on('click','li.day',function() { 
   	   var m=$(this).attr("month");
+  	   if(m<10){
+  		 m="0"+m;  
+  	   }
   	   var d=$(this).text();
+  	   if(d<10){
+  		   d="0"+d;
+  	   }
   	   var s=m+"/"+d;
+  	   //console.log(s);
   	   $(".hmonth").val(m);
   	   $(".hday").val(d);
   	   $(".seday").html(s);
@@ -177,6 +185,7 @@
        $(".selmenu").css("display","none");
   	   //console.log(m+"-"+d);
      });
+    //시간 클릭시
      $("a.selTime").click(function(){
   	   var n=$(this).attr("store");
    	   var t=$(this).attr("time");
@@ -237,7 +246,7 @@
      	 p1=$(".hprice").val();
      	 f1.split(",")
      });*/
-    
+    //메뉴 타이틀 선택
      $(".sidebar2 a").click(function(){
     	 
          var str="";
@@ -290,7 +299,8 @@
      });
      $(document).on('click','img.fimg',function() { 
     	 var fidx=$(this).attr("fidx");
-    	 var fname=$(".hfidx").val()
+    	 var fname=$(".hfidx").val();
+    	 var restime=$(".htime").val();
     	 var s="";
     	 if(fname==null){
     		 s=fidx;
@@ -304,13 +314,13 @@
     	 $.ajax({
 	            type:'get',
 	            url:'nmbasketadd.do',
-	            data:{"se_nmname":se_nmname,"fidx":fidx},
+	            data:{"se_nmname":se_nmname,"fidx":fidx,"restime":restime},
 	            success:function(redata){
 	            }
     	 });
-    	 basketCount(se_nmname);
+    	 //basketCount(se_nmname);
      });
-     function basketCount(se_nmname){
+     /* function basketCount(se_nmname){
     	 $.ajax({
 	            type:'get',
 	            url:'basketcountcheck.do',
@@ -319,7 +329,7 @@
 	            	$("resok").val("예약 "+redata);
 	            }
  	 	});
-     }
+     } */
      
      $(document).on('click','b.countdel',function() { 
     	var str="";
@@ -419,10 +429,10 @@
 										<tr>
 											<td>${s.count }</td>
 											<td><a class="storeName">${i.name }</a></td>
-											<td><a class='selTime' time='17:00' store="${i.name}">17:00</a>&nbsp;&nbsp;
-												<a class='selTime' time='18:00' store="${i.name}">18:00</a>&nbsp;&nbsp;
-												<a class='selTime' time='19:00' store="${i.name}">19:00</a>&nbsp;&nbsp; 
-												<a class='selTime' time='20:00' store="${i.name}">20:00</a>
+											<td><a class='selTime' time='5시' store="${i.name}">5시</a>&nbsp;&nbsp;
+												<a class='selTime' time='6시' store="${i.name}">6시</a>&nbsp;&nbsp;
+												<a class='selTime' time='7시' store="${i.name}">7시</a>&nbsp;&nbsp; 
+												<a class='selTime' time='8시' store="${i.name}">8시</a>
 											</td>
 											
 										</tr>

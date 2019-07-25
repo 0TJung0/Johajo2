@@ -94,7 +94,7 @@ public class MemberController {
 			HttpSession session,@RequestParam(required=false) String path){
 		
 		
-		
+		System.out.println("path"+path);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("password", pw);
@@ -123,7 +123,7 @@ public class MemberController {
     }else{
        
        session.setAttribute("log_res","false");
-       return "redirect:loginform.do";
+       return "redirect:loginform.do?path="+path;
     }
 		
 	}
