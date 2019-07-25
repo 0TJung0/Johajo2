@@ -38,3 +38,4 @@ public class CourseDao extends SqlSessionDaoSupport {
 	}
 	
 }
+

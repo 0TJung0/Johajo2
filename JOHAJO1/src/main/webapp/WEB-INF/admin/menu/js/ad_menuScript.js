@@ -5,7 +5,7 @@ function MenuList(n){
 	if(n==0)
 		return;
 	$.ajax({
-		type:'post',
+		type:'get',
 		data:{'kind':n},
 		url:'ad_MenuData.do',
 		success:function(redata){
@@ -22,8 +22,8 @@ function MenuList(n){
 				str+=idx+name+kind+"<br>";
 			});
 			$(data).html(str);
-		},error:function(){
-			alert("error");
+		},error:function(e){
+			alert("error 는"+e.getMessage);
 		}
 	});
 }

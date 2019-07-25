@@ -39,4 +39,9 @@ public class NoticeDao extends SqlSessionDaoSupport {
 	{
 		getSqlSession().delete("noticeDelete",idx);
 	}
+	
+	public List<NoticeDto> noticeShowList()
+	{
+		return getSqlSession().selectList("noticeShowList");
+	}
 }

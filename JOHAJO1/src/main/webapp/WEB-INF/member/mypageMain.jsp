@@ -165,7 +165,7 @@
 				<li>
 					<div class="point">
 						<b>보유 포인트</b>
-						<p>40,200 점${dto. }</p>
+						<p>40,200 점${dto.point }</p>
 						
 					</div>
 				</li>

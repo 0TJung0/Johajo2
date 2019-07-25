@@ -9,62 +9,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	ul li{
-		list-style: none;
-		float: left;
+	tr.notice_content{
+		display: none;
+	}
+	.ContentShow{
+		display: block;
+	}
+	tr.notice_title{
+		padding:0px;
+		width: 80%;
+		text-align: center;
+		cursor: pointer;
+		border-bottom: 0.5px solid gray;
+	}
+	table tr.notice_content{
+		background-color: #ffffff;
+		text-align: left;
+		border-bottom: 0.5px solid gray; 
+	}
+	div#notice_dispaly{
+		margin-left: 10%;
+		margin-top: 5%;
 	}
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("tr.notice_title").click(function(){
+			
+			if($(this).css("background-color")=="rgb(128, 128, 128)"){
+				$(this).css("background-color","#ffffff");
+			}
+			if($(this).css("background-color")=="#ffffff"){
+				$(this).css("background-color","gray");
+			}
+			var index=$(this).attr("title");
+			$("tr.notice_content").eq(index).toggle();
+		});
+	});
+</script>
 </head>
 <body>
-	<div class="l_div1" id="l_div1">
-		${totalCount}개의 글
-		<input type="text" name="search_notice" size="20"><button type="button" id="btn_search_notice">검색</button>
-		<table border="1">
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-			</tr>
-			<c:forEach var="dto" items="${list}">
-				<tr>
-					<td align="center">${dto.idx}</td>
-						
-					<td align="center">
-						<a href="noticelist_content.do?idx=${dto.idx}&pageNum=${currentPage}">${dto.title}</a>
+	<div id="notice_dispaly">
+		<table>
+			<c:forEach var="dto" items="${list }" varStatus="index">
+				<tr class="notice_title" title="${index.index }">
+					<td width="10%">${index.count }</td>
+					<td width="75%">${dto.title }</td>
+					<td>
+						<fmt:formatDate value="${dto.writeday}"/>
 					</td>
-					<td align="center">
-						<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
-					</td>
+				</tr>
+ 				<tr class="notice_content">
+					<td colspan="3" width="20%">${dto.contents }</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	<!-- 페이지번호 출력 -->
-		<div style="width: 600px; text-align: center; margin-left: 200px;">
-			<ul>
-				<c:if test="${startPage>1}">
-					<li>
-						<a href="noticelist.do?pageNum=${startPage-1}">◁</a>
-					</li>
-				</c:if>
-				
-				<c:forEach var="pp" begin="${startPage}" end="${endPage}">
-				<li>
-					<c:if test="${pp==currentPage}">
-						<a href="noticelist.do?pageNum=${pp}" style="color: tomato;">${pp}</a>
-					</c:if>
-					<c:if test="${pp!=currentPage}">
-						<a href="noticelist.do?pageNum=${pp}" >${pp}</a>
-					</c:if>
-				</li>
-				</c:forEach>
-				
-				<c:if test="${endPage<totalPage}">
-					<li>
-						<a href="noticelist.do?pageNum=${endPage+1}">▷</a>
-					</li>
-				</c:if>
-			</ul>
-		</div>
 </body>
 </html>

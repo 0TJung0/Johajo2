@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from store where idx=#{idx}
 	</select>
 	<select id="storeAllData" resultType="sdto">
-		select * from store
+		select * from store order by idx desc
 	</select>
 	<select id="storePagingList" parameterType="HashMap" resultType="sdto">
 	   <![CDATA[

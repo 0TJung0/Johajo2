@@ -5,9 +5,10 @@ import java.sql.Timestamp;
 public class FaqDto {
 	private int idx;
 	private String title;
-	private String selection;
 	private String contents;
-	private Timestamp writedate;
+	private int kind;
+	private Timestamp writeday;
+	private int hide;
 	
 	public int getIdx() {
 		return idx;
@@ -21,24 +22,29 @@ public class FaqDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSelection() {
-		return selection;
-	}
-	public void setSelection(String selection) {
-		this.selection = selection;
-	}
 	public String getContents() {
 		return contents;
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public Timestamp getWritedate() {
-		return writedate;
+	public int getKind() {
+		return kind;
 	}
-	public void setWritedate(Timestamp writedate) {
-		this.writedate = writedate;
+	public void setKind(int kind) {
+		this.kind = kind;
 	}
-	
+	public Timestamp getWriteday() {
+		return writeday;
+	}
+	public void setWriteday(Timestamp writeday) {
+		this.writeday = writeday;
+	}
+	public int getHide() {
+		return hide;
+	}
+	public void setHide(int hide) {
+		this.hide = hide;
+	}
 	
 }

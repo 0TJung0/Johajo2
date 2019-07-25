@@ -21,33 +21,28 @@ function ajax1(idx){
 					var serviceArray=service.split(',');
 					
 					str+="<table class='infostore'>";
+					str+="<caption><img src='image/like2.PNG' style='width:30px;' onclick='changeLike()'>&nbsp;&nbsp;&nbsp;"+name+"</caption>";
 					str+="<tr>";
-					str+="<td>점포명</td>";
-					str+="<td>"+name+"</td>";
-					str+="</tr>";
-					str+="<tr>";
-					str+="<td><img src='image/phone.PNG'>전화</td>";
-					str+="<td>"+phone+"</td>";
+					str+="<td style='width:150px;'><img src='image/phone.PNG'>&nbsp;&nbsp;&nbsp;전화</td>";
+					str+="<td style='width:500px;'>"+phone+"</td>";
+					str+="<td rowspan='4'><img src='./storeImg/"+photo+"'class='storeImage'></td>";
 					str+="</tr>";					
 					str+="<tr>";
-					str+="<td><img src='image/addr.PNG'>주소</td>";
+					str+="<td><img src='image/addr.PNG'>&nbsp;&nbsp;&nbsp;주소</td>";
 					str+="<td>"+addr+"</td>";
 					str+="</tr>";
 					str+="<tr>";
-					str+="<td><img src='image/open.PNG'>주소</td>";
+					str+="<td><img src='image/open.PNG'>&nbsp;&nbsp;&nbsp;영업시간</td>";
 					str+="<td>"+open+"</td>";
 					str+="</tr>";
 					str+="<tr>";
-					str+="<td><img src='image/service.PNG'>서비스</td>";
+					str+="<td><img src='image/service.PNG'>&nbsp;&nbsp;&nbsp;서비스</td>";
 					str+="<td>";
 					for(var i in serviceArray){
-						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>"+serviceArray[i];
+						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>"+serviceArray[i]+"&nbsp;&nbsp;";
 					}
 					str+="</td>";
 					str+="</tr>";	
-					str+="<tr>";
-					str+="<td><img src='./storeImg/"+photo+"'></td>";
-					str+="</tr>";
 					str+="</table>";
 					
 				});
@@ -84,34 +79,28 @@ function ajax2(idx){
 					var serviceArray=service.split(',');
 					
 					str+="<table class='infostore'>";
+					str+="<caption><img src='image/like.PNG' style='width:30px;'>&nbsp;&nbsp;&nbsp;"+name+"</caption>";
 					str+="<tr>";
-					str+="<td>점포명</td>";
-					str+="<td>"+name+"</td>";
-					str+="</tr>";
-					str+="<tr>";
-					str+="<td><img src='image/phone.PNG'>전화</td>";
-					str+="<td>"+phone+"</td>";
+					str+="<td style='width:150px;'><img src='image/phone.PNG'>&nbsp;&nbsp;&nbsp;전화</td>";
+					str+="<td style='width:500px;'>"+phone+"</td>";
+					str+="<td rowspan='4'><img src='./storeImg/"+photo+"'class='storeImage'></td>";
 					str+="</tr>";					
 					str+="<tr>";
-					str+="<td><img src='image/addr.PNG'>주소</td>";
+					str+="<td><img src='image/addr.PNG'>&nbsp;&nbsp;&nbsp;주소</td>";
 					str+="<td>"+addr+"</td>";
 					str+="</tr>";
 					str+="<tr>";
-					str+="<td><img src='image/open.PNG'>주소</td>";
+					str+="<td><img src='image/open.PNG'>&nbsp;&nbsp;&nbsp;영업시간</td>";
 					str+="<td>"+open+"</td>";
 					str+="</tr>";
 					str+="<tr>";
-					str+="<td><img src='image/service.PNG'>서비스</td>";
+					str+="<td><img src='image/service.PNG'>&nbsp;&nbsp;&nbsp;서비스</td>";
 					str+="<td>";
 					for(var i in serviceArray){
-						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>"+serviceArray[i];
+						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>"+serviceArray[i]+"&nbsp;&nbsp;";
 					}
 					str+="</td>";
 					str+="</tr>";	
-					str+="<tr>";
-					str+="<td><img src='./storeImg/"+photo+"'></td>";
-					str+="</tr>";
-					
 					str+="</table>";
 					
 				});
@@ -172,7 +161,7 @@ var map = new google.maps.Map(document.getElementById('storeMap1'), {
       if(marker)
       {
         marker.addListener('click', function() {
-          map.setZoom(18);
+          map.setZoom(14);
           map.setCenter(this.getPosition());
         });
         }
@@ -184,7 +173,7 @@ function map2(x,y,storName,addr1,phone1){
 	var Y_point = x; // Y 좌표
 	var X_point = y; // X 좌표
 
-	var zoomLevel=18; // 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
+	var zoomLevel=14; // 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
 	var markerTitle=storeName; // 현재 위치 마커에 마우스를 오버을때 나타나는 정보
 	var markerMaxWidth=500; // 마커를 클릭했을때 나타나는 말풍선의 최대 크기
 	
@@ -259,7 +248,7 @@ function map3(){
 	      if(marker)
 	      {
 	        marker.addListener('click', function() {
-	          map.setZoom(18);
+	          map.setZoom(14);
 	          map.setCenter(this.getPosition());
 	        });
 	        }

@@ -14,18 +14,33 @@ public class FaqService {
 	@Autowired
 	private FaqDao dao;
 	
-	public int getTotalCount()
+	public List<FaqDto> FaQList()
 	{
-		return dao.getTotalCount();
+		return dao.FaQList();
+	}
+	public List<FaqDto> FnQSelKind(int kind)
+	{
+		return dao.FnQSelKind(kind);
 	}
 	
-	public List<FaqDto> getList(int start, int end)
+	public FaqDto FaQGetData(int idx)
 	{
-		return dao.getList(start,end);
+		return dao.FaQGetData(idx);
 	}
-	
-	public FaqDto getData(int idx)
+	public void FaQDelete(int idx)
 	{
-		return dao.getData(idx);
+		dao.FaQDelete(idx);
+	}
+	public void FaQInsert(FaqDto dto)
+	{
+		dao.FaQInsert(dto);
+	}
+	public void FaQUpData(FaqDto dto)
+	{
+		dao.FaQUpData(dto);
+	}
+	public void FaQChangeState(int idx,int hide)
+	{
+		dao.FaQChangeState(idx, hide);
 	}
 }

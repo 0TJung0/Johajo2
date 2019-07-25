@@ -16,6 +16,7 @@
 <script type="text/javascript">
 	function menuView_list(){
 		var n=$("select").val();
+		alert(n);
 		MenuList(n);
 	}
 </script>

@@ -19,13 +19,16 @@
 		});
 	});
 	function close_Event(){
+		$("#updataform").submit();
+		alert("수정되었습니다.");
 		opener.parent.location='ad_StoreList.do';
 		window.close();
 	}
 </script>
 </head>
 <body>
-	<form action="storeUpdata.do" method="post" enctype="multipart/form-data">
+	<form action="storeUpdata.do" method="post" enctype="multipart/form-data"
+	id="updataform">
 		지점명:<input name="name" type="text" value="${dto.name }"><br>
 		x좌표:<input name="xpoint" type="text" value="${dto.xpoint }"><br>
 		y좌표:<input name="ypoint" type="text" value="${dto.ypoint }"><br>
@@ -35,7 +38,7 @@
 		서비스:<input name="service1" type="text" value="${dto.service }"><br>
 		사진:<input type="file" name="photo" value="${dto.photo }"><br>
  		<input type="hidden" value="${dto.idx }" name="idx">
-		<input type="submit" value="수정완료" onclick="close_Event()">
+		<input type="button" value="수정완료" onclick="close_Event()">
 		<input type="button" value="닫기" class="storeSubBtn">
 	</form>
 </body>

@@ -15,6 +15,17 @@
 
 </head>
 <body>
-admin_mainFORM 엌ㅋㅋㅋ
+	<form action="FaqInsert.do">
+		<select name="kind">
+			<option value="1">회원</option>
+			<option value="2">쿠폰</option>
+			<option value="3">예약</option>
+		</select>
+		공개:<input type="checkbox" name="hide" value="1"><br>
+		제목:<input type="text" size="100" name="title"><br>
+		내용:
+		<textarea rows="18" cols="100" name="contents"></textarea><br>	
+		<input type="submit" value="저장">
+	</form>	
 </body>
 </html>

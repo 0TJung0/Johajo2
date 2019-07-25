@@ -1,3 +1,4 @@
+
 package spring.data;
 
 public class singlebasketDto {

@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -17,5 +18,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="mBasketupdate" parameterType="singledto">
 		UPDATE singlebasket set count=count+1 where fidx=#{fidx} and midx=#{midx} and restime = #{restime} and residx=0 and today=to_date(sysdate,'DD/MM/RR')
 	</update>
-	
 </mapper>

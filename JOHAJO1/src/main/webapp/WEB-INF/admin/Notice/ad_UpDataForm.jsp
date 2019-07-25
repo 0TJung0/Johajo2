@@ -15,11 +15,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 <script type="text/javascript">
 	$(function(){
-		$("#noticeSub").click(function(){
+		$("#noticeUpDataSub").click(function(){
 			var inputText=oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
 			var a = $("#contents").val();
 								
-			$("#noticeInsertForm").submit(); 
+			$("#noticeUpDateForm").submit(); 
 		});
 	});
 	function goBack()
@@ -29,38 +29,47 @@
 </script>
 </head>
 <body>
-<form action="noticeInsert.do" id="noticeInsertForm" method="post"
+<form action="noticeUpData.do" id="noticeUpDateForm" method="post"
 enctype="multipart/form-data">
+<c:set var="dto" value="${dto }"/>
 <table border="1">
 	<tr>
 		<td>카테고리</td>
 		<td>
-			<input type="radio" name="topnotice" value="1">중요공지
-			<input type="radio" name="topnotice" value="2">서브공지
+			<input type="radio" name="topnotice" value="1"
+			<c:if test="${dto.topnotice==1 }">checked="checked"</c:if>
+			>중요공지
+			<input type="radio" name="topnotice" value="2"
+			<c:if test="${dto.topnotice==2 }">checked="checked"</c:if>
+			>서브공지
 		</td>
 	</tr>
 	<tr>
 		<td>비공개</td>
-		<td><input type="checkbox" name="hide" value=0></td>
+		<td><input type="checkbox" name="hide" value=0
+		<c:if test="${dto.hide==0 }">checked="checked"</c:if>>
+		<br></td>
 	</tr>
 	<tr>
 		<td>제목</td>
-		<td><input type="text" name="title" style="width: 800px;"></td>
+		<td><input type="text" name="title" style="width: 800px;" value="${dto.title }"></td>
 	</tr>
 	<tr>
 		<td>파일첨부</td>
 		<td>
-			<input type="file" name="photo" class="photo">
+			<a>사진</a> &nbsp; &nbsp; &nbsp; 
+			<a>파일</a>
 		</td>
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td style="width:800px;"><textarea id="contents" name="contents" rows="15" cols="180" style="width: 100%; min-width: 100%"></textarea></td>
+		<td style="width:800px;"><textarea id="contents" name="contents" rows="15" cols="180" style="width: 100%; min-width: 100%">${dto.contents }</textarea></td>
 	</tr>
 
 	<tr align="right">
 		<td colspan="2">
-			<input type="button" value="저장" id="noticeSub">
+			<input type="hidden" value="${dto.idx }" name="idx">
+			<input type="button" value="수정 완료" id="noticeUpDataSub">
 			<input type="button" value="취소" onclick="goBack()">
 		</td>
 	</tr>
