@@ -10,10 +10,11 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/member.css">
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 <style type="text/css">
-	div.content{
+	/* div.content{
 		position: relative;
 		background-color: #A4A4A4;
 		height: auto;
@@ -57,7 +58,7 @@
 	
 	div.useform>span>b,div.useform.u2 b{
 		color:orange;
-	}
+	} */
 </style>
 <script type="text/javascript">
 $(function(){
@@ -83,7 +84,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="content">
+<div class="idcheck_warp">
 	<form action="idCheck.pop" method="post">
 		<div class="idcheckForm">
 			<span>사용 할 아이디를 입력하세요</span>

@@ -1,0 +1,639 @@
+
+
+/* base */
+
+
+.mt100{margin-top:100px; }
+.mt30{margin-top:30px; }
+
+	span.logo{
+		width: 100%;
+		display: inline-block;
+		font-size: 57px;
+		text-align: center;
+	}
+	
+	
+	button.submit{
+		width: 100%;
+	    margin-top:10px;
+	    line-height: 46px;
+	    color: #fff;
+	    font-weight: bold;
+	    background-color: #000;
+	    border: 0;   
+	}
+	
+
+/****************************************************************************memberJoinForm1 */
+div.ch_list{position: relative;width: 495px;height: auto;margin: 60px auto 0;padding: 0 17px 10px;background-color: #e1e3e4;}
+div.ch_list ul{padding:0;}
+div.ch_list ul li{list-style: none;}
+div.ch_list ul li:first-child{line-height: 52px;}
+div.ch_list ul li span{font-size: 15px;font-weight: bold;}
+
+span.subejct{position: relative;font-size: 40px;text-align: center;display: block;}
+
+div.scrollHeight{margin: 5px 0 22px;height: 120px;background-color: #ffffff;}
+div.scrollBox{position: relative;overflow: auto; height: 100%;max-width: 100%;outline: 0;direction: ltr;}
+
+div.btnform{position: relative;width: 495px; margin: 0 auto;padding: 30px 0;text-align: center;}
+div.btnform div.btn{position: relative;width: 100px;margin:0 auto;padding: 7px 20px;border: 2px solid black;display: inline-block;}
+div.btnform div.btn a{color: #000000;font-weight: bold;}
+div.btnform div.btn2{background-color: #000000;}
+div.btnform div.btn2 a{color:#fff;background-color: #000000;}
+
+
+/****************************************************************************memberJoinForm2 */
+div.center{
+		position: relative;
+		width: 100%;
+		float: left;
+	}
+	
+	span.subejct{position: relative;font-size: 40px;text-align: center;display: block;}
+	
+	
+	div.joinform {
+		position: relative;
+		width: 495px;
+		height: auto;
+		margin: 60px auto 0;
+		padding: 0 17px 10px;
+		background-color: #e1e3e4;
+	}
+	
+	div.joinform div.field ul li{
+		list-style: none;
+		font-size: 15px;
+		margin-top: 10px;
+	}
+	
+	input[type="text"], input[type="password"] { 
+	height: auto; 
+	line-height: normal;  
+	padding: 0.3em .2em;
+	border-radius: 8px;
+    border: 0; }
+
+	select { 
+		width: 94px;
+	    padding: .2em .2em;
+	    font-family: inherit;
+	    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 99% 31%;
+	    border: 1px solid #999;
+	    border-radius: 6px;
+	    -webkit-appearance: none;
+    }
+
+	div.joinform div.field ul{
+		padding-left:10px;
+	}
+	div.joinform div.field ul li span{
+		display: inline-block;
+		width: 90px;
+	    margin-bottom: 5px;
+	    padding: 2px;
+	    text-align: center;
+	    
+	}
+
+	div.joinform span.bold{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	
+
+	
+	.btnlist {
+		text-align: center;
+	    position: relative;
+	    width: 500px;
+	    margin: 30px auto 50px;
+    	text-align: center;
+	
+	}
+
+
+	.btnlist div button.cancel,
+	.btnlist div button.submit{
+	    background-color: #fff;
+	    width: 100px;
+	    border: 1px solid;
+	    width: 100px;
+	    margin: 0 auto;
+	    padding: 7px 20px;
+	    border: 2px solid black;
+	    display: inline-block;
+	    border-radius: 7px;
+	    font-weight: bold;
+	    line-height: 26px;
+
+    }
+    
+    .btnlist div button.submit{
+    	background-color: #000;
+    	color: #fff;
+    }
+    
+
+
+/****************************************************************************joinSuccess*/
+
+	
+	div.content.join{
+		position: relative;
+	    width: 600px;
+	    margin: 30px auto 0;
+	    text-align: center;
+	    font-size: 17px;
+	    border: 1px solid #000;
+    	padding: 59px 0;
+	}
+	div.content span.p1{
+		display: inline-block;
+		margin-bottom: 20px;
+		
+	}
+	
+	div.content span.p1 b{
+		color:orange;
+	}
+	
+	div.mainBtn{
+		position: relative;
+		 width: 600px;
+		 margin: 30px auto 70px;
+		 text-align: center;
+		 padding:20px 0;
+		 background-color: #000000;
+		
+		
+	}
+	
+	div.mainBtn a{
+		font-size:15px;
+		color:#fff;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	
+	div.mainBtn a:hover{
+		color:#fff;
+		text-decoration: none;
+	}
+
+/**********************************************************************************memberLoginForm*/
+
+	
+	div.content.login{
+		position: relative;
+	    width: 380px;
+	    margin: 30px auto 0;
+	    padding: 63px 0;
+	    border: 0;
+	}
+	
+	span.top1{
+	    text-align: left;
+    	margin-left: 10px;
+    	line-height: 30px;
+    	font-size: 15px;
+	}
+	span.top2{
+		float: right;
+	}
+	span.top2 a{
+		color: #000000;
+		text-decoration: none;
+		font-size: 12px;
+	    margin-right: 7px;
+	    letter-spacing: -2px;
+	}
+	
+	div.loginform{
+		position: relative;
+		width: 100%;
+	}
+	
+	div.loginform input[type=text],
+	div.loginform input[type=password]{
+		width: 100%;
+		line-height: 40px;
+		padding-left:10px;
+	}
+	
+
+	
+
+/************************************************************************************mypageMain*/
+	div.logo{
+		position:relative;
+		font-size: 40px;
+		text-align: center;
+	    padding-top: 15px;	
+	}
+	div.myform{
+		position: relative;
+		width: 800px;
+		margin:0 auto 40px;
+		padding-bottom: 36px;
+		border: 1px solid;
+		background-color: #e1e3e4; 
+		
+	}
+	
+	div.myform div.field{
+		position: relative;	 
+		margin:0 auto;
+		background-color: #fff; 
+		margin-top:20px;
+	}
+	
+	div.myform div.field.f1{
+		position: relative;
+		width:300px;
+		text-align: center;
+		font-size: 20px;
+		height: 306px;
+	}
+	
+	div.myform div.field.f1 p{
+	   padding: 28px 20px 5px;
+       padding: 20px;
+    }
+    
+    div.myform div.field.f1 p span{
+    	color:#FE9A2E;
+    	font-weight: bold;
+    }
+    
+    div.myform div.field.f2{
+    	width: 650px;
+    	height: 110px;
+   
+    }
+    
+    
+    div.myform div.field.f2 ul{
+        float: left;
+        width: 100%;
+	    padding: 0;
+    }
+    
+    div.myform div.field.f2 ul li{
+    	float: left;
+    	width: 33.3%;
+    	height: 110px;
+    	padding: 16px 19px 0;
+    	list-style: none;
+    	border-left: 1px solid;
+    }
+    div.myform div.field.f2 ul li:first-child{
+    	border: 0;
+    }
+    
+    div.myform div.field.f2 ul li div{
+    	width: 100%;
+    }
+    
+    
+    div.myform div.field.f2 ul li div.point p{
+    	color: #FE9A2E;
+    	font-weight: bold;
+    	font-size: 32px;
+    }
+    
+    div.myform div.field.f2 ul li div.qna span{
+    	width: 50%;
+    	display: block;
+    	float: left;
+    	font-size: 15px;
+    	text-align: center;
+    }
+    
+    div.myform div.field.f2 ul li div.qna span b{
+    color: #FE9A2E;
+    	font-weight: bold;
+    	font-size: 26px;
+    }
+    
+    
+    div.myform div.field.f2 ul li div b{
+    	display:inline-block;
+    	margin-bottom: 10px;
+    	width: 100%;
+    	
+    }
+    
+    div.myform div.field.f2 ul li div b a{
+		color: #000;
+		text-decoration: none;
+		
+    }
+    
+    
+    div.field.f2.coupon{
+    	padding:16px 19px 0;
+    	height:auto;
+    	
+    }
+     div.myform div.field.f2.coupon b{
+     	margin-bottom: 10px;
+    	display: block;
+     }
+     
+     
+     
+     div.myform div.field.f2.coupon div>span{
+     	display: block;
+     	line-height: 25px;
+     	width: 50%;
+     	float: left;
+     }
+     
+     
+     
+     
+ 	div.myform img.micon{
+ 		max-width: 132px;
+    	margin-top: 37px;
+
+ 	}
+ 	
+ 	div.myform div.mbtn1{
+ 		position: relative;
+	    width: 150px;
+	    line-height: 30px;
+	    border: 1px solid gray;
+	    border-radius: 5px;
+	    font-size: 15px;
+	    margin: 0 auto;
+ 	}
+ 	
+ 	div.myform div.mbtn1 a{
+ 	    color: #8f8f8f;
+	    font-weight: 500;
+	    text-decoration: none;
+ 	}
+ 	div.myform div.mbtn1 a:hover{
+ 		color:#000;
+ 		font-weight: bold;
+ 	}
+ 	
+/************************************************************************************mypassForm*/
+
+	
+	div.content.pass{
+		position: relative;
+	    width: 380px;
+	    margin: 0 auto 0;
+	    padding:27px 0 60px;
+	    margin-bottom: 100px;
+	    text-align: center;
+	    border: 0;
+	}
+	
+	
+	div.content.pass p{
+		font-size:14px;
+	}
+	div.passform{
+		position: relative;
+	    text-align: center;
+	}
+	div.passform span{
+		width: 100%;
+		display: inline-block;
+		line-height: 36px;
+    	margin-bottom: 5px;
+    	text-align: center;
+	}
+	
+	div.passform span input#password{
+		width: 100%;
+		padding-left: 20px;
+		line-height: 40px;
+	}
+
+	
+/************************************************************************************myUpdateForm*/
+div.center{
+		position: relative;
+		width: 100%;
+		float: left;
+	}
+	
+	span.subejct{
+		position: relative;
+		font-size: 40px;
+		text-align: center;
+		display: block;
+		padding: 20px 0 15px;
+	}
+	
+	
+	div.joinform {
+		position: relative;
+		width: 495px;
+		height: auto;
+		margin: 60px auto 0;
+		padding: 0 17px 10px;
+		background-color: #e1e3e4;
+	}
+	
+	div.joinform div.field ul li{
+		list-style: none;
+		font-size: 15px;
+		margin-top: 10px;
+	}
+	
+	input[type="text"], input[type="password"] { 
+	height: auto; 
+	line-height: normal;  
+	padding: 0.3em .2em;
+	border-radius: 8px;
+    border: 0; }
+
+	select { 
+		width: 94px;
+	    padding: .2em .2em;
+	    font-family: inherit;
+	    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 99% 31%;
+	    border: 1px solid #999;
+	    border-radius: 6px;
+	    -webkit-appearance: none;
+    }
+
+	div.joinform div.field ul{
+		padding-left:10px;
+	}
+	div.joinform div.field ul li span{
+		display: inline-block;
+		width: 90px;
+	    margin-bottom: 5px;
+	    padding: 2px;
+	    text-align: center;
+	    
+	}
+
+	div.joinform span.bold{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	/* .btnlist {
+	    text-align: center;
+	    position: relative;
+	    width: 500px;
+		text-align: center;
+	} */
+/***************************************************************************selIdform*****selPwform*/
+
+
+	div.content.sel{
+	    position: relative;
+	    width: 397px;
+	    margin: 0 auto 0;
+	    padding: 63px 0;
+	    margin-bottom: 100px;
+	    /* background-color: #e5e5e5; */
+	}
+
+	div.content.sel div.selectform{
+		position: relative;
+	}
+	div.content.sel div.selectform span{
+		width: 100%;
+		display: inline-block;
+		line-height: 36px;
+    	margin-bottom: 5px;
+	}
+	
+	div.content.sel div.selectform span label{
+		margin-left: 5px;
+		width: 88px;
+		font-weight: bold;
+	}
+	
+	div.content.sel div.selectform span input#name,
+	div.content.sel div.selectform span input#id{
+		width: 277px;
+	}
+	
+	div.content.sel div.selectform span select#hp{
+	    width: 90px;
+    	height: 39px;
+	}
+	div.content.sel div.selectform span input#hp2,
+	div.content.sel div.selectform span input#hp3{
+		width: 81px;
+	}
+	
+	
+	 .selectform button.cancel,
+	 .selectform button.submit{
+		float:left;
+		width: 48%;
+	    margin-top:10px;
+	    margin-right: 3px;
+	    margin-left:4px;
+	    line-height: 46px;
+	    color: #fff;
+	    font-weight: bold;
+	    background-color: #000;
+	    border: 0;
+	    
+	}
+	
+	.selectform button.cancel{
+		 color: #000;
+	    font-weight: bold;
+	    background-color: #fff;
+	    border: 1px solid #000;
+	}
+	
+/***********************************************************selectIdResult********selectPwResult*/
+
+	div.selectform div.res{
+		position: relative;
+	    width: 100%;
+	    text-align: center;
+	    margin: 0 0 70px;
+	    background-color: #F2F2F2;
+    	padding: 45px 0 43px;
+
+
+	}
+	
+	div.selectform div.res p,
+	div.selectform div.res strong{
+		font-size: 14px;
+	}
+	div.selectform div.res p.p1{
+	    color: #FA5858;
+	    font-size: 20px;
+	    padding-top: 51px;
+	    margin-bottom: 0px;
+    }
+    div.selectform div.res strong.s2{
+		font-size: 12px;
+	    font-weight: bold;
+	    margin-bottom: 12px;
+	    display: inline-block;
+	    line-height: 38px;
+	    color: #848484;
+	}
+	
+/************************************************************************************idCheck*/
+	div.content_Idch{
+		position: relative;
+		background-color: #A4A4A4;
+		height: auto;
+		padding: 23px 0 ;
+	}
+	div.idcheckForm{
+		position: relative;
+	    width: 306px;
+	    height: 104px;
+	    margin: 9px auto 0;
+	    background-color: #fff;
+
+	}
+	div.idcheckForm>span{
+		    font-size: 15px;
+	    display: inline-block;
+	    text-align: center;
+	    width: 100%;
+	    padding: 34px 0 5px;
+	}
+	div.idcheckForm input[type=text]{
+		margin-left: 46px;
+	}
+	
+	div.useform{
+		position: relative;
+		text-align: center;
+	    padding-top: 31px;
+   		margin-bottom: 16px;
+   		color:#7e7e7e;
+	}
+	
+	
+	div.useform.u2{
+		margin-bottom:2px;
+	}
+	
+	div.useform button[type=button]{
+		color:black;
+	}
+	
+	div.useform>span>b,div.useform.u2 b{
+		color:orange;
+	}
+	
+/************************************************************************************mypageMain*/
+/************************************************************************************mypageMain*/
+/************************************************************************************mypageMain*/
+/************************************************************************************mypageMain*/
+
+ 	

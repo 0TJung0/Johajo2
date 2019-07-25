@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="memberInsert" parameterType="mdto">
 		insert into member values(seq_member.nextval, 
-		#{id},#{password},#{name},#{hp},#{email},#{gender},#{birth},sysdate)
+		#{id},#{password},#{name},#{hp},#{email},#{gender},#{birth},sysdate,0)
 	</insert>
 	<select id="memberIdCheck" parameterType="String" resultType="int">
 		select count(*) from member where id=#{id}

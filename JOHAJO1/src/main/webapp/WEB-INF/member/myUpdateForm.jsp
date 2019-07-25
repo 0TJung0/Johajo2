@@ -11,11 +11,9 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/member.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	
@@ -80,7 +78,7 @@ function joinCheck(){
 </script>
 <style type="text/css">
 
-	div.center{
+	/* div.center{
 		position: relative;
 		width: 100%;
 		float: left;
@@ -146,12 +144,11 @@ function joinCheck(){
     width: 500px;
     margin: 0 auto;
 	text-align: center;
-}
+} */
 
 </style>
 </head>
 <body>
-수정폼
 	<c:set var="dto" value="${dto}" />
 	<form name="mJoinForm" onsubmit="return joinCheck();" action="memberUpdate.do" method="post">
 	<input type="hidden" name="idx" value="${dto.getIdx()}"> 
@@ -220,13 +217,13 @@ function joinCheck(){
 					<input type="radio" name="gender" value="1" ${dto.getGender()==1?'checked':''}> 여자 
 					<input type="radio" name="gender" value="2" ${dto.getGender()==2?'checked':''}> 남자
 				</li>
-				<li>
+				<%--<li>
 					<span>생년월일 </span>
 					<input name="birth" class="birth" type="hidden"> 
 					<input name="birth2" class="birthselect" type="date" value="">
-				</li>
+				</li>--%>
 				
-				<%-- <li>
+				 <li>
 				
 				<c:if test="${dto.getBirth() != null}">
 					<span>생년월일 </span>
@@ -238,7 +235,7 @@ function joinCheck(){
 					<input name="birth" class="birth" type="hidden"> 
 					<input name="birth2" class="birthselect" type="date" value="">
 				</c:if>
-				</li> --%>
+				</li> 
 			</ul>
 		</div>
 		
@@ -248,8 +245,8 @@ function joinCheck(){
 	
 	<div class="btnlist">
 		<div class="">
-			<button type="button"  onclick="history.go(-1)">취소</button> 
-			<button type="submit">수정</button>
+			<button type="button" class="cancel" onclick="history.go(-2)">취소</button> 
+			<button type="submit" class="submit">수정</button>
 		</div>
 	</div>
 	</form>

@@ -10,11 +10,11 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" href="css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 <style type="text/css">
 
-	.mt100{
+	/* .mt100{
 		margin-top:100px; 
 	}
 	.mt30{
@@ -72,7 +72,7 @@
 	    background-color: #000;
 	    border: 0;
 	    
-	}
+	} */
 </style>
 <script type="text/javascript">
 </script>
@@ -109,7 +109,7 @@
 
 
 	<span class="logo mt100">Single Dinner</span>
-	<div class="content">
+	<div class="content login">
 		<form name="login" action="memberlogin.do" method="post">
 			
 			<span class="top1">

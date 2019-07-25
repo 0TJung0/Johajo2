@@ -11,11 +11,11 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" href="css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 <style type="text/css">
 
-	div.logo{
+/* 	div.logo{
 		position:relative;
 		
 		font-size: 40px;
@@ -114,7 +114,7 @@
  	}
  	div.mbtn1 a:hover{
  		color:#000;
- 	}
+ 	} */
  	
  	
 
@@ -145,9 +145,19 @@
 		</div>
 	
 		<div class=" field f1">
+			<c:choose>
+				<c:when test="${dto.gender == 1}">
+					<img src="image/women_icon.png" class="micon">
+				</c:when>
+				<c:when test="${dto.gender == 2}">
+					<img src="image/man_icon.png" class="micon">
+				</c:when>
+			 	<c:otherwise>
+			        <img src="image/chef_icon.png" class="micon">
+			    </c:otherwise>
+			</c:choose>
 			
-		
-			<img src="image/women_icon.png" class="micon">
+			
 			<c:set  var="name" value="${log_name}" />
 			<p>안녕하세요, <span>${name}</span>님 </p>
 			<div class="mbtn1"><a href="mypassfrom.do">회원정보 관리</a></div>
@@ -165,24 +175,24 @@
 				<li>
 					<div class="point">
 						<b>보유 포인트</b>
-						<p>40,200 점${dto. }</p>
+						<p>40,200 점${dto.point }</p>
 						
 					</div>
 				</li>
 				<li>
 					<div class="qna">
 						<b><a href="myqnaList.do?idx=${log_idx}">고객의 소리</a></b>
-						<span>답변 대기중 <b>0</b>건</span>
-						<span>답변 완료<b>0</b>건</span>
+						<span>대기중 <b>0</b></span>
+						<span>완료<b>0</b></span>
 					</div>
 				</li>
 				
 			</ul>
 		</div>
-		<div class="field f2">
+		<div class="field f2 coupon">
 			<b>보유 쿠폰</b>
-			<div><span>오픈 기념 30% 할인</span><span>2019-07-30</span></div>
-			<div><span>생일 기념 50% 할인</span><span>2019-07-30</span></div>
+			<div>오픈 기념 30% 할인 2019-07-30</div>
+			<div><b>생일 기념 50% 할인</b>2019-07-30</div>
 		</div>
 		<div class="clear"></div>
 	</div>
