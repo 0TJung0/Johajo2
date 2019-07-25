@@ -6,7 +6,7 @@ public class ReservationDto {
 	private int idx;
 	private int rem;
 	private String resdate;
-	private String store;
+	private int store;
 	private String restime;
 	private String restable;
 	private String f1;
@@ -15,8 +15,8 @@ public class ReservationDto {
 	private String coupon;
 	private String usepoint;
 	private int totalprice;
-	private String nm_name;
-	private int nm_ph;
+	private String nm_ph;
+	private String nm_pass;
 	public int getIdx() {
 		return idx;
 	}
@@ -35,22 +35,22 @@ public class ReservationDto {
 	public void setResdate(String resdate) {
 		this.resdate = resdate;
 	}
-	public String getNm_name() {
-		return nm_name;
+	public String getNm_pass() {
+		return nm_pass;
 	}
-	public void setNm_name(String nm_name) {
-		this.nm_name = nm_name;
+	public void setNm_pass(String nm_pass) {
+		this.nm_pass = nm_pass;
 	}
-	public int getNm_ph() {
+	public String getNm_ph() {
 		return nm_ph;
 	}
-	public void setNm_ph(int nm_ph) {
+	public void setNm_ph(String nm_ph) {
 		this.nm_ph = nm_ph;
 	}
-	public String getStore() {
+	public int getStore() {
 		return store;
 	}
-	public void setStore(String store) {
+	public void setStore(int store) {
 		this.store = store;
 	}
 	public String getRestime() {
@@ -101,6 +101,7 @@ public class ReservationDto {
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
 	}
+	
 	
 	
 }
