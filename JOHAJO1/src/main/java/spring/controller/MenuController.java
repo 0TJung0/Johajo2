@@ -1,6 +1,7 @@
 package spring.controller;
 
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -130,8 +131,26 @@ public class MenuController {
 	
 	/* 메뉴 삭제 */
 	@RequestMapping("/menudelete.do")
-	public String menudelete(@RequestParam int idx,@RequestParam int kind)
+	public String menudelete(@RequestParam int idx,@RequestParam int kind,HttpServletRequest request)
 	{
+		String path=request.getSession().getServletContext().getRealPath("/menuImg");
+		System.out.println(path);
+		
+		//이미지부터 지우기
+		String imgname=service.getDataIdx(idx).getImgname();
+		if(!imgname.equals("noimage"))
+		{
+			String []myImg=imgname.split(",");
+			for(String s:myImg)
+			{
+				//파일 객체로 생성
+				File f=new File(path + "\\" +s);
+				//존재할 경우 삭제
+				if(f.exists())
+					f.delete();
+			}
+		}
+		
 		service.deleteMenu(idx);
 		return "redirect:menusel.do?kind="+kind;
 	}
