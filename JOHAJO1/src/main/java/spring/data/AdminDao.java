@@ -1,12 +1,12 @@
 package spring.data;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sun.prism.paint.Stop;
 
 @Repository
 public class AdminDao extends SqlSessionDaoSupport {
@@ -42,5 +42,26 @@ public class AdminDao extends SqlSessionDaoSupport {
 	{
 		return getSqlSession().selectList("menuSelectKind");
 	}
+	
+	/*
+	 * notice ==========================================================================
+	 */
 
+	public List<NoticeDto> noticeList()
+	{
+		return getSqlSession().selectList("noticeList");
+	}
+	
+	public void noticeState(int idx, int hide)
+	{
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("idx", idx);
+		map.put("hide", hide);
+		getSqlSession().update("noticeState", map);
+	}
+	
+	public void noticeUpDate(NoticeDto dto)
+	{
+		getSqlSession().update("noticeUpDate", dto);
+	}
 }

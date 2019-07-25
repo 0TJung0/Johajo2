@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="memberResInsert">
 	
 	</insert>
-	<insert id="nmResInsert" parameterType="resdto">
-		insert into reservation (idx,rem,resdate,store,restime,restable,totalprice,fsingle,
-		nm_hp,nm_pass) values(seq_reservation.nextval,0,to_date(#{resdate},'DD/MM/RR'),
-		#{store},#{restime},#{restable},#{totalprice},#{fsingle},#{nm_ph},#{nm_pass})
+	<insert id="nmResInsert">
+		insert into value(idx,rem,resdate,store,restime,restable,f1,f2,coupon,usepoint,totalprice,fsingle,
+		nm_hp,nm_pass) values(seq_reservation.nextval,0,to_date(${resdate},'DD/MM/RR'),#{store},${restime},${restable},
+		${f1},${f2},${coupon},${usepoint},${totalprice},${fsingle},${nm_ph},password(${nm_pass}))
 	</insert>	
 </mapper>

@@ -22,12 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select NVL(count(*),0) from nm_basket where nmidx=#{nmidx}
 	</select>
 	<select id="nmBasketlist" resultType="nmsdto" parameterType="int">
-		select n.idx as idx,f.fname as fname,f.price as price,n.count as count,n.today as today from food f 
-		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx}
-	</select>
-	<select id="nmBasketPrice" resultType="int" parameterType="int">
-		select SUM(f.price) from food f 
-		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx}
+		select n.idx,f.fname,f.price,n.count,n.today from food f 
+		Inner JOIN nm_basket n on f.idx=n.fidx where n.nmidx=#{nmidx};
 	</select>
 	
 </mapper>

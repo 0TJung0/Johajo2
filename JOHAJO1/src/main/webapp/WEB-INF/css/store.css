@@ -1,28 +1,51 @@
 div.storlist{
 	width: 1200px;
 	position: relative;
-	left: 10%;
+	left: 12%;
+	font-size: 8pt;
 }
 
 #storeMap1 {
 	width:90%; 
-	height:600px; 
+	height:400px; 
 	clear:both;
 	margin-left: 5%;
 }
-
-.infostore{
-	
-	margin-left: 5px;
-	position:relative;
-	font-size: 22pt;
-	left: 10%;
-	
+.storeForm{
+	position: absolute;
+	right: 15%;
+	top:270px;
+	z-index: 1;
+	height: 55px;
+	font-size: 15px;
 }
+
+.selStore{
+	position: absolute;
+	right: 15%;
+	top: 305px;
+	z-index: 1;
+	cursor: pointer;
+	font-size: 15px;
+	height: 30px;
+}
+
 .selStore1{
 	display: none;
 }
+.infostore caption{
+	position:relative;
+	caption-side: top;
+	font-size: 20px;
+}
+.infostore tr td{
+	height: 15px;
+}
 
 .infostore img{
-	width: 30px;
+	width: 17px;
+}
+.infostore img.storeImage{
+	width: 200px;
+	margin-left: 5%;
 }

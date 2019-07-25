@@ -10,23 +10,36 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FaqDao extends SqlSessionDaoSupport {
 	
-	public int getTotalCount()
+	public List<FaqDto> FaQList()
 	{
-		int n=getSqlSession().selectOne("faqTotalCount");
-		return n;
+		return getSqlSession().selectList("FaQList");
 	}
 	
-	public List<FaqDto> getList(int start, int end)
+	public List<FaqDto> FnQSelKind(int kind)
 	{
-		Map<String, Integer> map=new HashMap<String, Integer>();
-		map.put("start", start);
-		map.put("end", end);
-		
-		return getSqlSession().selectList("faqPagingList",map);		
+		return getSqlSession().selectList("FnQSelKind",kind);
 	}
-	
-	public FaqDto getData(int num)
+	public FaqDto FaQGetData(int idx)
 	{
-		return getSqlSession().selectOne("faqSelectData",num);
+		return getSqlSession().selectOne("FaQGetData",idx);
+	}
+	public void FaQInsert(FaqDto dto)
+	{
+		getSqlSession().insert("FaQInsert", dto);
+	}
+	public void FaQDelete(int idx)
+	{
+		getSqlSession().delete("FaQDelete", idx);
+	}
+	public void FaQUpData(FaqDto dto)
+	{
+		getSqlSession().insert("FaQUpData", dto);
+	}
+	public void FaQChangeState(int idx,int hide)
+	{
+		Map<String,Integer> map=new HashMap<String, Integer>();	
+		map.put("idx", idx);
+		map.put("hide", hide);
+		getSqlSession().update("FaQChangeState", map);
 	}
 }

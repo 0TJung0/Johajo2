@@ -9,17 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import spring.data.FaqDto;
 import spring.data.MenuDto;
 import spring.data.NoticeDto;
 import spring.data.StoreDto;
 import spring.service.AdminService;
+import spring.service.FaqService;
 import spring.service.MenuService;
 import spring.service.NoticeService;
 import spring.service.StoreService;
@@ -34,6 +36,8 @@ public class AdminController {
 	private MenuService menu_service;
 	@Autowired
 	private NoticeService notice_service;
+	@Autowired
+	private FaqService faq_service;
 
 	@RequestMapping("/admain.do")
 	public String admain() {
@@ -140,7 +144,7 @@ public class AdminController {
 		
 		service.insertStore(dto);
 		
-		return " ";
+		return "/ad/pop/store/ad_StoreForm";
 	}
 	
 //store UPDATE 
@@ -163,9 +167,29 @@ public class AdminController {
 	public String so(@RequestParam String name,@RequestParam String xpoint,
 			@RequestParam String ypoint,@RequestParam String addr
 			,@RequestParam String phone,@RequestParam String ohours
-			,@RequestParam String service1,@RequestParam String img,
-			@RequestParam int idx)
+			,@RequestParam String service1,@RequestParam MultipartFile photo,
+			HttpServletRequest request,@RequestParam int idx)
 	{
+		
+		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
+		System.out.println(path);
+		String fileName=photo.getOriginalFilename();
+		System.out.println(fileName);
+		
+		String saveFile=path+fileName;
+		
+		try {	
+			photo.transferTo(new File(saveFile));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+		
 		StoreDto dto=new StoreDto();
 		dto.setAddr(addr);
 		dto.setName(name);
@@ -174,10 +198,11 @@ public class AdminController {
 		dto.setYpoint(ypoint);
 		dto.setOhours(ohours);
 		dto.setService(service1);
+		dto.setPhoto(fileName);
 		dto.setIdx(idx);
 		
 		service.upDataStore(dto);
-		return "/ad/pop/store/ad_StoreForm";
+		return "/ad/pop/store/ad_StoreUpData";
 	}
 	
 //store DELETE 
@@ -195,56 +220,30 @@ public class AdminController {
  */
 	
 	@RequestMapping("/ad_NoticeList.do")
-	public ModelAndView noticeList(@RequestParam(value="pageNum",defaultValue="1") int currentPage) 
+	public ModelAndView noticeLIst()
 	{
-		
 		ModelAndView model=new ModelAndView();
-	
-		int totalCount; //총 데이터 개수
-		totalCount=notice_service.getTotalCount();
 		
-		//페이징처리 복붙
-			//페이징처리에 필요한 변수들 선언
-			int totalPage; //총 페이지수
-			int startNum; //각페이지의시작번호
-			int endNum; //각페이지의끝번호
-			int startPage; //블럭의 시작페이지
-			int endPage; //블럭의 끝페이지
-			int no;//출력할 시작번호
-			int perPage=10;//한페이지당 보여질 글의갯수
-			int perBlock=5;//한블럭당 보여질 페이지의 갯수
-			
-			totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
-			
-			startPage=(currentPage-1)/perBlock*perBlock+1;
-			endPage=startPage+perBlock-1;
-			//마지막 블럭은 끝페이지가 총 페이지수와 같아야함
-			if(endPage>totalPage)
-				endPage=totalPage;
-	
-			startNum=(currentPage-1)*perPage+1;
-			endNum=startNum+perPage-1;
-			//마지막 페이지의 글번호 체크하기
-			if(endNum>totalCount)
-				endNum=totalCount;
-			
-			no=totalCount-(currentPage-1)*perPage;	
-			
-			//전체 데이터 가져오기
-			List<NoticeDto> list=notice_service.getList(startNum, endNum);
-			
-			model.addObject("list", list);
-			model.addObject("currentPage", currentPage);
-			model.addObject("startPage", startPage);
-			model.addObject("endPage", endPage);
-			model.addObject("no", no);
-			model.addObject("totalPage", totalPage);
+		List<NoticeDto> nlist=service.noticeList();
+		List<FaqDto> flist=faq_service.FaQList();
 		
-		
-		model.addObject("totalCount",totalCount);
-		
+		model.addObject("nlist",nlist);
+		model.addObject("flist",flist);
 		model.setViewName("/ad/Notice/ad_NoticeList");
+		
 		return model;
+	}
+	
+//notice changeState=========================================================================================
+	@RequestMapping("/changeNoticeState.do")
+	public String noticeState(@RequestParam int idx)
+	{
+		NoticeDto dto=notice_service.getData(idx);
+		if(dto.getHide()==1)
+			service.noticeState(idx, 0);
+		else
+			service.noticeState(idx, 1);
+		return "redirect:ad_NoticeList.do";
 	}
 	
 //notice INSERT==================================================================================
@@ -255,30 +254,49 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping("/noticeInsert.do")
+	@RequestMapping(value="/noticeInsert.do",method=RequestMethod.POST)
 	public String insertNotice(
-			@RequestParam String title,@RequestParam String contents,
-			@RequestParam String selection, @RequestParam(value="hide",defaultValue="1") int hide,
-			@RequestParam(value="image_name",defaultValue="noimage") String image_name,
-			@RequestParam(value="file_name",defaultValue="nofile") String file_name 
+			@RequestParam String title,
+			@RequestParam String contents,
+			@RequestParam String topnotice, 
+			@RequestParam int hide,
+			@RequestParam(value="photo",defaultValue="noimage") MultipartFile photo,
+			@RequestParam HttpServletRequest request
 			)
 	{
+		
 		System.out.println("컨트롤러 진입");
+		
+		   	  String path=request.getSession().getServletContext().getRealPath("/noticeImage/");
+		      System.out.println(path);
+		      String fileName=photo.getOriginalFilename();
+		      System.out.println(fileName);
+		      
+		      String saveFile=path+fileName;
+		      
+		      try {   
+		         photo.transferTo(new File(saveFile));
+		      } catch (IllegalStateException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      } catch (IOException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      }
+		   
 		System.out.println(title);
 		System.out.println(contents);
 		System.out.println(hide);
-		System.out.println(selection);
-		System.out.println(image_name);
-		System.out.println(file_name);
+		System.out.println(topnotice);
+		System.out.println(fileName);
 		
 	
 		NoticeDto dto=new NoticeDto();
 		dto.setTitle(title);
 		dto.setContents(contents);
-		dto.setSelecrtion(selection);
+		dto.setTopnotice(topnotice);
 		dto.setHide(hide);
-		dto.setFile_name(file_name);
-		dto.setImage_name(image_name);
+		dto.setPhoto(fileName);
 		
 		notice_service.insertNotice(dto);
 		return "redirect:ad_NoticeList.do";
@@ -287,10 +305,91 @@ public class AdminController {
 //notice DELETE=================================================================================
 	
 	@RequestMapping("/noticedelete.do")
-	public String noticeDelete(@RequestParam int idx, @RequestParam int pageNum) 
+	public String noticeDelete(@RequestParam int idx) 
 	{
 		notice_service.deleteNotice(idx);
-		return "redirect:ad_NoticeList.do?pageNum="+pageNum;
+		return "redirect:ad_NoticeList.do";
+	}
+//NOTICE UPDATE======================================================================================================
+	@RequestMapping("/noticeUpdataForm.do")
+	public ModelAndView noticeUpdataForm(@RequestParam int idx)
+	{
+		ModelAndView model=new ModelAndView();
+		
+		NoticeDto dto=notice_service.getData(idx);
+		
+		model.addObject("dto",dto);
+		model.setViewName("/ad/Notice/ad_UpDataForm");
+		
+		return model;
+	}
+	@RequestMapping("/noticeUpData.do")
+	public String noticeUpDate(@RequestParam int idx,
+			@RequestParam String title,@RequestParam String contents,
+			@RequestParam(value="topnotice",defaultValue="2") String topnotice, @RequestParam(value="hide",defaultValue="1") int hide,
+			@RequestParam(value="photo",defaultValue="photo") String photo
+			)
+	{
+		NoticeDto dto=notice_service.getData(idx);
+		
+		dto.setTitle(title);
+		dto.setContents(contents);
+		dto.setTopnotice(topnotice);
+		dto.setHide(hide);
+		dto.setPhoto(photo);
+			
+		service.noticeUpDate(dto);
+		
+		return "redirect:ad_NoticeList.do";
+		
+	}
+	
+/*
+ * FaQ ******************************************************************************
+ */
+	@RequestMapping("/FaQChangeState.do")
+	public String FaQchangeState(int idx,int hide)
+	{
+		if(hide==0)
+			faq_service.FaQChangeState(idx, 1);
+		else
+			faq_service.FaQChangeState(idx, 0);
+		return "redirect:ad_NoticeList.do";
+	}
+	@RequestMapping("/FaQInsertForm.do")
+	public String FaQInsertForm()
+	{
+		return "/ad/Notice/ad_FaQInsertForm";
+	}
+	@RequestMapping("/FaqInsert.do")
+	public String FaQInsert(@ModelAttribute FaqDto dto,@RequestParam(value="hide",defaultValue="0")int hide)
+	{
+		faq_service.FaQInsert(dto);
+		return "redirect:ad_NoticeList.do";
+	}
+	@RequestMapping("/FaQDelete.do")
+	public String FaQDelete(@RequestParam int idx)
+	{
+		
+		faq_service.FaQDelete(idx);
+		return "redirect:ad_NoticeList.do";
+	}
+	@RequestMapping("/FaQUpdataForm.do")
+	public ModelAndView FaQUpdataForm(@RequestParam int idx)
+	{
+		ModelAndView model=new ModelAndView();
+		
+		FaqDto dto=faq_service.FaQGetData(idx);
+
+		model.addObject("dto",dto);
+		model.setViewName("/ad/Notice/ad_FaQUpDataForm");
+		return model;
+	}
+	@RequestMapping("/FaqUpData.do")
+	public String FaQUpdata(@ModelAttribute FaqDto dto)
+	{
+		faq_service.FaQUpData(dto);
+		return "redirect:ad_NoticeList.do";
 	}
 	
 /*

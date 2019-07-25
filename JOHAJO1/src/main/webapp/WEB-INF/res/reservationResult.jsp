@@ -13,8 +13,7 @@ $(function(){
 	var time=$(".htime").val();
 	var sit=$(".hsit").val();
 	var course=$(".hcourse").val();
-	var sid=$(".se_name").val();
-	console.log(sid);
+	var sid=$(".session_id").val();
 	var check=$(".check").val();
 	
 	
@@ -28,34 +27,28 @@ $(function(){
 	str1+="<div class='out3'></div>"
 	if(sid==null){
 		str1+="포인트 사용 <input type='text' size=5 class='point'><b>사용가능 포인트 : ${point}<b><Button type='button' class='usepoint'>포인트사용</button>";
-		str1+="<button type='button' class='resmfinbtn'>예약하기</button>"
 	}else{
-		str1+="핸드폰 번호  010-<input type='text' class='nmhp' placeholder='-없이 입력해주세요'><br>";
-		str1+="비밀번호 <input type='password' class='nmpass' placeholder='비밀번호를 입력해주세요'><br>";
-		str1+="<button type='button' class='resfinbtn'>예약하기</button>"
+		str1+="이름<input type='text' class='nmname'><br>";
+		str1+="핸드폰 번호 <input type='text' class='nmhp' placeholder='-없이 입력해주세요'><br>";
 	}
-	
-	
+	str1+="<button type='button' class='resfinbtn'>예약하기</button>"
+	$(document).on('keyup','input.nmhp',function() { 
+		var s=$(this).val();
+		var sp=s.split();
+		var str;
+		var len=split.length();
+		if(isNaN(parseInt(sp[len]))){
+			for(i=0;i<len-1;i++){
+				str+=sp[i];	
+				console.log(str);
+			}
+		}
+		$(this).val(str);
+	});
 	$(document).on('click','button.resfinbtn',function() { 
-		  var hp=$(".nmhp").val();
-		  var pass=$(".nmpass").val();
-		  $.ajax({
-	           url : "resfinsh.do",
-	           type : "GET",
-	           data:{"pass":pass,"hp":hp,"month":month,"day":day,"store":store,"time":time,"sit":sit,"course":course,"sid":sid},
-	           cache : false,
-	           success : function(res){
-	             var html = "";
-	              html+="예약이 완료되었습니다.";
-	              $("div.out3").html(html);  
-	            }
-	                   
-	      });
-	  });
-	
-	
+		
+	});
 	function nmlist(sid){
-		var sid=$(".se_name").val();
 		  $.ajax({
 	           url : "reservationfinnm.do",
 	           type : "GET",
@@ -64,7 +57,7 @@ $(function(){
 	           success : function(res){
 	             var html = "";
 	               for(var i=0; i<res.length; i++){
-	                   html +="음식명"+ res[i].fname+" 가격="+res[i].price+"갯수"+res[i].count+"<br>";
+	                   html += res[i].fname+": price="+res[i].price+"갯수"+res[i].count+"<br>";
 	               }
 	               $("div.out3").html(html);             
 	           }
@@ -89,7 +82,7 @@ $(function(){
 	if(check==1){
 		mlist();
 	}else{
-		nmlist();
+		nmlist(sid);
 	}
 	
 	$(document).on('click','Button.usepoint',function() { 
@@ -117,27 +110,11 @@ $(function(){
 <input type="hidden" value="${htime }" class="htime">
 <input type="hidden" value="${hsit }" class="hsit">
 <input type="hidden" value="${hcourse }" class="hcourse">
-<input type="hidden" value="${se_name }" class="se_name">
+<input type="hidden" value="${session_id }" class="session_id">
 <input type="hidden" value="${check }" class="check">
 
 <div class="out1"></div>
 <div class="out2"></div>
 
 </body>
-<script type="text/javascript">
-	$(".nmhp").keyup(function() { 
-		var s=$(this).val();
-		var sp=s.split();
-		console.log("sp"+sp[1]);
-		var str;
-		var len=split.length();
-		if(isNaN(parseInt(sp[len]))){
-			for(i=0;i<len-1;i++){
-				str+=sp[i];	
-				console.log(str);
-			}
-		}
-		$(this).val(str);
-	});
-</script>
 </html>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import spring.data.NmBasketDao;
 import spring.data.NmBasketDto;
-import spring.data.nmSearchDto;
 @Service
 public class nm_basketService {
 	@Autowired
@@ -33,10 +32,7 @@ public class nm_basketService {
 	public int nmBasketCount(int nmidx){
 		return dao.nmBasketCount(nmidx);
 	}
-	public List<nmSearchDto> nmBasketList(int nmidx){
+	public List<NmBasketDto> nmBasketList(int nmidx){
 		return dao.nmBasketlist(nmidx);
-	}
-	public int nmBasketPrice(int nmidx) {
-		return dao.nmBasketPrice(nmidx);
 	}
 }

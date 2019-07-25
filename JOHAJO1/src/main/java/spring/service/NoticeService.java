@@ -35,4 +35,9 @@ public class NoticeService {
 	{
 		dao.deleteNotice(idx);
 	}
+	
+	public List<NoticeDto> noticeShowList()
+	{
+		return dao.noticeShowList();
+	}
 }

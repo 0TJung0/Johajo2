@@ -28,10 +28,7 @@ public class NmBasketDao extends SqlSessionDaoSupport{
 	public int nmBasketCount(int nmidx){
 		return getSqlSession().selectOne("nmBasketC",nmidx);
 	}
-	public List<nmSearchDto> nmBasketlist(int nmidx){
+	public List<NmBasketDto> nmBasketlist(int nmidx){
 		return getSqlSession().selectList("nmBasketlist",nmidx);
-	}
-	public int nmBasketPrice(int nmidx) {
-		return getSqlSession().selectOne("nmBasketPrice",nmidx);
 	}
 }

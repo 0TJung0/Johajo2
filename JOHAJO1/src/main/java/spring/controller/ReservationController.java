@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tiles.request.Request;
-import org.hamcrest.core.IsNull;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -211,10 +210,10 @@ public class ReservationController {
 	   @RequestParam(value="hstore") String hstore,@RequestParam(value="htime") String htime,@RequestParam(value="hsit") String hsit,
 	   @RequestParam(required=false,defaultValue ="0")String se_nmname,@RequestParam(value="hcourse", required=false,defaultValue ="0") String hcourse){
 	   String mid=(String)session.getAttribute("log_idx");
-	   int check=mid!=null?1:2;
+	   String nmidx=(String)session.getAttribute("log_idx");
+	   int check=mid!=null?1:nmidx!=null?2:0;
 	   ModelAndView model=new ModelAndView();
-	   System.out.println("se_nmname"+se_nmname);
-	   model.addObject("se_name",se_nmname);
+	   
 	   model.addObject("check",check);
 	   model.addObject("hmonth",hmonth);
 	   model.addObject("hday",hday);

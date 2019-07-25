@@ -5,16 +5,33 @@
 		select count(*) from notice
 	</select>
 	<select id="noticePagingList" resultType="ndto" parameterType="HashMap">
-		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from notice order by selection asc,idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
+		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from notice order by topnotice asc,idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
 	</select>
 	<select id="noticeSelectData" parameterType="int" resultType="ndto">
 		select * from notice where idx=#{idx}
 	</select>
 	<insert id="noticeInsert" parameterType="ndto">
-		insert into notice values(seq_notice.nextval,#{selecrtion},#{title},#{contents},
-		#{image_name},#{file_name},sysdate,#{hide})
+		insert into notice values(seq_notice.nextval,#{topnotice},#{title},#{contents},
+		#{photo},sysdate,#{hide})
 	</insert>
 	<delete id="noticeDelete" parameterType="int">
 		delete from notice where idx=#{idx}	
 	</delete>
+	
+	<select id="noticeShowList" resultType="ndto">
+		select * from notice where hide=1 order by topnotice, idx desc
+	</select>
+	
+  <!-- admin -->
+	<select id="noticeList" resultType="ndto">
+		select * from notice order by idx desc
+	</select>
+	
+	<update id="noticeState" parameterType="HashMap">
+		update notice set hide=#{hide} where idx=#{idx}
+	</update>
+	
+	<update id="noticeUpDate" parameterType="ndto">
+		update notice set title=#{title},contents=#{contents},topnotice=#{topnotice},hide=#{hide},writeday=sysdate,photo=#{photo} where idx=#{idx}
+	</update>
 </mapper>

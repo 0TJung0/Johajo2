@@ -10,7 +10,7 @@
 			<fname>${dto.fname }</fname>
 			<kind>${dto.kind }</kind>
 			<calorie>${dto.calorie }</calorie>
-			<img>${dto.img }</img
+			<imgname>${dto.imgname }</imgname>
 			<count>${dto.count }</count>
 			<price>${dto.price }</price>
 		</data>

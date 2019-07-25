@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="faq">
-	<select id="faqTotalCount" resultType="int">
-		select count(*) from question where selection=2
+	<select id="FaQList" resultType="fdto">
+		select * from fnq order by idx desc
 	</select>
-	<select id="faqPagingList" resultType="fdto" parameterType="HashMap">
-		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from question where selection=2 order by idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
+	<select id="FnQSelKind" resultType="fdto" parameterType="int">
+		select * from fnq where kind=#{kind} and hide=1 order by idx desc
 	</select>
-	<select id="faqSelectData" parameterType="int" resultType="fdto">
-		select * from question where selection=4 and idx=#{idx}
+	<insert id="FaQInsert" parameterType="fdto">
+		insert into fnq values(SEQ_FNQ.NEXTVAL,#{kind},#{title},#{contents},sysdate,#{hide})
+	</insert>
+	<delete id="FaQDelete" parameterType="int">
+		delete from fnq where idx=#{idx}
+	</delete>
+	<select id="FaQGetData" parameterType="int" resultType="fdto">
+		select * from fnq where idx=#{idx}
 	</select>
+	<update id="FaQUpData" parameterType="fdto">
+		update fnq set title=#{title},contents=#{contents},writeday=sysdate,hide=#{hide} where idx=#{idx}
+	</update>
+	<update id="FaQChangeState" parameterType="Hashmap">
+		update fnq set hide=#{hide} where idx=${idx}
+	</update>
 </mapper>

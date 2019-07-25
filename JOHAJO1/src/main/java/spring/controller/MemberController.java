@@ -133,7 +133,6 @@ public class MemberController {
 	public String userLogout(HttpSession session) {
 		session.removeAttribute("loginok");
 		session.removeAttribute("log_idx");
-		session.removeAttribute("log_id");
 		
 		return "redirect:main.do";
 	}

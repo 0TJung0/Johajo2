@@ -20,15 +20,16 @@
 		});
 	});
 	function close_Event(){
-		var myform=new FormData($("#myform"));
-		self.close();
-		$.ajax({
-			type:"post",
-			url:"storeInsert.do",
-			data:myform
-		});
+		$("form#myform").submit();
+		if(confirm("더 추가하시겠습니까?")){
+		}else{
+			load_Event();			
+		}
+	}
+	function load_Event(){
 		opener.parent.location='ad_StoreList.do';
-	} 
+		window.close();
+	}
 </script>
 </head>
 <body>
@@ -42,7 +43,7 @@
 		영업시간:<input name="ohours" type="text"class="insert_ohours"><br>
 		서비스:<input name="service1" type="text"class="insert_service1"><br>	
 		사진:<input type="file" name="photo" class="insert_photo">
-		<input type="submit" value="저장" onclick="close_Event()">
+		<input type="button" value="저장" onclick="close_Event()">
 		<input type="button" value="닫기" class="storeSubBtn">
 	</form>
 </body>
