@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tiles.request.Request;
-import org.hamcrest.core.IsNull;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,7 +65,7 @@ public class ReservationController {
       List<FoodDto> list2=new ArrayList<FoodDto>();
       
 	  
-   //예약페이지   
+   //�삁�빟�럹�씠吏�   
    @RequestMapping("/reslist.do")
    public ModelAndView ReservationList(HttpSession session,@RequestParam(required=false) String se_name)throws Exception {
 	   ModelAndView model = new ModelAndView();
@@ -96,7 +95,7 @@ public class ReservationController {
       model.setViewName("/res/reservationList");
       return model;
    }
-   //달력
+   //�떖�젰
    @RequestMapping(value="/reslist2.do",method=RequestMethod.GET)
    public ModelAndView ReservationList2(HttpServletRequest req,@RequestParam int month)throws Exception {
 	   Calendar cal=Calendar.getInstance();
@@ -115,8 +114,8 @@ public class ReservationController {
 	   int lastmonth=cal.get(Calendar.MONTH);
 	   int lastmday=cal.get(Calendar.DATE);
 	   
-	   //System.out.println("마지막달"+cal.get(Calendar.MONTH));
-	   //System.out.println("마지막날"+cal.get(Calendar.DATE));
+	   //System.out.println("留덉�留됰떖"+cal.get(Calendar.MONTH));
+	   //System.out.println("留덉�留됰궇"+cal.get(Calendar.DATE));
 	   int mon=month;
 	   
 	   System.out.println(year2);
@@ -154,7 +153,7 @@ public class ReservationController {
       return model;
       
    }
-   //메뉴 가져오는
+   //硫붾돱 媛��졇�삤�뒗
    @RequestMapping(value="/resAppetizer.do",method=RequestMethod.GET)
    public ModelAndView app(@RequestParam int kind)
    {
@@ -164,13 +163,13 @@ public class ReservationController {
       list=fservice.getKindFood(kind);
       model.addObject("list",list);
       model.setViewName("/res/resApp");
-      //System.out.println("데이터 2");
+      //System.out.println("�뜲�씠�꽣 2");
       return model;
    }
    @RequestMapping("/resAppetizer2.do")
    public ModelAndView addlist2(@RequestParam int idx,@RequestParam String name,HttpServletRequest req)throws Exception
    {
-	  System.out.println("이곳1");
+	  System.out.println("�씠怨�1");
       ModelAndView model=new ModelAndView();
       FoodDto dto=new FoodDto();
       dto=fservice.getOneFood(idx);
@@ -178,7 +177,7 @@ public class ReservationController {
       
       //if(count==1){
     	 // model.addObject("count", count+1);
-    	  //System.out.println("이곳3");
+    	  //System.out.println("�씠怨�3");
       list2.add(dto);
       //}
       model.addObject("list",list2);
@@ -212,7 +211,7 @@ public class ReservationController {
 	   
 	   return model;
    }
-   //다음 예약창으로 넘기기
+   //�떎�쓬 �삁�빟李쎌쑝濡� �꽆湲곌린
    @RequestMapping("/resAppetizer5.do")
    public ModelAndView app5(HttpSession session,@RequestParam int hmonth,@RequestParam int hday,
 	   @RequestParam(value="hstore") String hstore,@RequestParam(value="htime") String htime,@RequestParam(value="hsit") String hsit,
@@ -246,7 +245,7 @@ public class ReservationController {
 	   
    }
   
-   //지점출력
+   //吏��젏異쒕젰
    @RequestMapping("/reservation2.do")
    public ModelAndView tableshow(@RequestParam String store,@RequestParam String time,HttpSession session){
 	   String se_name=store+time;
@@ -254,7 +253,7 @@ public class ReservationController {
 	   ModelAndView model=new ModelAndView();
 	   List<TableDto> list=new ArrayList<TableDto>();
 	   int idx=service.getDataName(store);
-	   //System.out.println("지점idx :"+idx);
+	   //System.out.println("吏��젏idx :"+idx);
 	   list=tservice.getList(idx);
 //	   for(TableDto dto:list){
 //		   System.out.println(dto.getTbname());
@@ -263,7 +262,7 @@ public class ReservationController {
 	   model.setViewName("/res/resTablelo");
 	   return model;
    }
-   //장바구니 추가
+   //�옣諛붽뎄�땲 異붽�
 //   @RequestMapping("/basketadd.do")
 //	   public ModelAndView basket(@RequestParam int fidx,HttpServletRequest session)throws Exception{
 //		   ModelAndView model = new ModelAndView();
@@ -273,7 +272,7 @@ public class ReservationController {
 //		   }
 //		   return model;
 //	   }
-   //로그인 안하고 예약한다는 사람
+   //濡쒓렇�씤 �븞�븯怨� �삁�빟�븳�떎�뒗 �궗�엺
    @RequestMapping(value="/nomember.do",method=RequestMethod.GET)
    public String nomember(HttpSession session)throws Exception{
 	   //System.out.println("nmember");
@@ -297,7 +296,7 @@ public class ReservationController {
 	   session.setAttribute(se_name,nm_number );
 	   return "redirect:/reslist.do?se_name="+se_name;
 	}
-   //장바구니에 추가하는 코드
+   //�옣諛붽뎄�땲�뿉 異붽��븯�뒗 肄붾뱶
    @RequestMapping(value="/nmbasketadd.do",method=RequestMethod.GET)
    public ModelAndView addbasket(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
 		   @RequestParam String restable,@RequestParam int fidx,@RequestParam String restime)throws Exception{
@@ -327,7 +326,7 @@ public class ReservationController {
 		   }
 		   
 	   }else{
-		   System.out.println("요기3");
+		   System.out.println("�슂湲�3");
 		   Integer midx=(Integer)session.getAttribute("log_idx");
 		   singlebasketDto dto=new singlebasketDto();
 		   dto.setFidx(fidx);
@@ -344,17 +343,17 @@ public class ReservationController {
 		   //System.out.println("mbasketcheck"+basket_service.checkmbasket(dto));
 		   if(basket_service.checkmbasket(dto)<=0) {
 			   basket_service.insertmbasket(dto);
-			   System.out.println("요기33");
+			   System.out.println("�슂湲�33");
 		   }else {
 			   basket_service.updatembasket(dto);
-			   System.out.println("요기333");
+			   System.out.println("�슂湲�333");
 		   }		   
 	   }
 	   model.setViewName("/res/reservationList");
 	   return model;
    }
  
-	//장바구니 추가 하면 갯수 보여줄라고해본
+	//�옣諛붽뎄�땲 異붽� �븯硫� 媛��닔 蹂댁뿬以꾨씪怨좏빐蹂�
 	/*@RequestMapping(value="/basketcountcheck.do",method=RequestMethod.GET)
 	   public ModelAndView basketcountcheck(HttpSession session,@RequestParam(required=false)String se_nmname){
 		   ModelAndView model = new ModelAndView();

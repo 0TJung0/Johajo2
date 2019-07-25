@@ -44,7 +44,7 @@
 	<body>
 		<ul class="tab" id="tab">
 		    <li class="e_li">진행중인 이벤트</li>
-		    <li class="e_li">당첨자 발표</li>	
+		    <li class="e_li">마감</li>	
 		</ul>
 		<div class="tab_con" id="tab_con">
     		<div>
@@ -94,7 +94,10 @@
 			</ul>
 		</div>
     		</div>
-    		<div>
+    
+    
+   			<!-- 마감 이벤트 -->
+    			<div>
 			    
 		    		<div class="e_div" id="e_div2">
 		    			<table border="1">
@@ -113,6 +116,7 @@
 		    			</table>
 		    		</div>
 		   		</div>	
+	
 		</div>
 		    	
 		
