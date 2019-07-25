@@ -135,8 +135,9 @@ function previewImage(targetObj, previewId) {
 				<td><input type="text" name="price"></td>
 			</tr>
 			<tr>
+			<!-- 원산지는 육류 , 해양생물 외에는 표기하지 않아도 됩니다. -->
 				<th>원산지</th>
-				<td><input type="text" name="origin"></td>
+				<td><input type="text" name="origin" value="미표시"></td>
 			</tr>
 			
 			<tr>
