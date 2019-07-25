@@ -8,93 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" href="css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-<style type="text/css">
 
-	.mt100{
-		margin-top:100px; 
-	}
-	.mt30{
-		margin-top:30px; 
-	}
-	span.logo{
-		font-size: 57px;
-		text-align: center;
-		display: inline-block;
-		width: 100%;
-	}
-	
-	div.content{
-		position: relative;
-	    width: 380px;
-	    margin: 0 auto 0;
-	    padding: 63px 0;
-	    margin-bottom: 100px;
-	}
-
-	div.selectform{
-		position: relative;
-	}
-	
-	div.selectform div.res{
-		position: relative;
-	    width: 100%;
-	    text-align: center;
-	    margin: 0 0 70px;
-	    background-color: #F2F2F2;
-    	padding: 45px 0 43px;
-
-
-	}
-	
-	div.selectform div.res p,
-	div.selectform div.res strong{
-		font-size: 14px;
-	}
-	div.selectform div.res p.p1{
-	    color: #FA5858;
-	    font-size: 20px;
-	    padding-top: 51px;
-	    margin-bottom: 0px;
-    }
-    div.selectform div.res strong.s2{
-		font-size: 12px;
-	    font-weight: bold;
-	    margin-bottom: 12px;
-	    display: inline-block;
-	    line-height: 38px;
-	    color: #848484;
-	}
-	
-	button.cancel,
-	button.submit{
-		float:left;
-		width: 48%;
-	    margin-top:10px;
-	    margin-right: 3px;
-	    margin-left:2px;
-	    line-height: 46px;
-	    color: #fff;
-	    font-weight: bold;
-	    background-color: #000;
-	    border: 0;
-	    
-	}
-	
-	button.cancel{
-		 color: #000;
-	    font-weight: bold;
-	    background-color: #fff;
-	    border: 1px solid #000;
-	}
-</style>
 </head>
 <body>
 <span class="logo mt100">아이디 찾기</span>
-	<div class="content">
+	<div class="content sel">
 		
 		<div class="selectform">
 			<c:if test="${findId.equals('')}">

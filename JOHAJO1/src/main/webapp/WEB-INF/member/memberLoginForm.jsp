@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -11,70 +10,9 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" href="css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-<style type="text/css">
 
-	.mt100{
-		margin-top:100px; 
-	}
-	.mt30{
-		margin-top:30px; 
-	}
-	span.logo{
-		font-size: 57px;
-		text-align: center;
-		display: inline-block;
-		width: 100%;
-	}
-	
-	div.content{
-		position: relative;
-	    width: 380px;
-	    margin: 30px auto 0;
-	    padding: 63px 0;
-	}
-	
-	span.top1{
-	    text-align: left;
-    	margin-left: 10px;
-    	line-height: 30px;
-    	font-size: 15px;
-	}
-	span.top2{
-		float: right;
-	}
-	span.top2 a{
-		color: #000000;
-		text-decoration: none;
-		font-size: 12px;
-	    margin-right: 7px;
-	    letter-spacing: -2px;
-	}
-	
-	div.loginform{
-		position: relative;
-		width: 100%;
-	}
-	
-	div.loginform input[type=text],
-	div.loginform input[type=password]{
-		width: 100%;
-		line-height: 40px;
-		padding-left:10px;
-	}
-	
-	button.submit{
-		width: 100%;
-	    margin-top:10px;
-	    line-height: 46px;
-	    color: #fff;
-	    font-weight: bold;
-	    background-color: #000;
-	    border: 0;
-	    
-	}
-</style>
 <script type="text/javascript">
 </script>
 </head>
@@ -110,7 +48,7 @@
 
 
 	<span class="logo mt100">Single Dinner</span>
-	<div class="content">
+	<div class="content login">
 		<form name="login" action="memberlogin.do" method="post">
 			
 			<span class="top1">
@@ -131,7 +69,6 @@
 				required="required" placeholder="아이디">
 			<input type="password" name="pw" id="pw" autofocus="autofocus" 
 				required="required" placeholder="비밀번호 ">
-				<input type="hidden" name="path" value="${path}">
 			<button class="submit" type="submit">로그인</button>
 		</div>	
 		</form>	
@@ -139,5 +76,4 @@
 
 
 </body>
-
 </html>

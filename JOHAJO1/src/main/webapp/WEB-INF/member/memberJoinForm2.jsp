@@ -9,11 +9,9 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/member.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	/* $(document).on("click","button.idch", function(){
@@ -83,7 +81,7 @@ function joinCheck(){
 </script>
 <style type="text/css">
 
-	div.center{
+	/* div.center{
 		position: relative;
 		width: 100%;
 		float: left;
@@ -149,7 +147,7 @@ function joinCheck(){
     width: 500px;
     margin: 0 auto;
 	text-align: center;
-}
+} */
 
 </style>
 </head>
@@ -208,17 +206,16 @@ function joinCheck(){
 		<div class="field">
 			<span class="bold">추가정보</span>
 			<ul>
-				
 				<li>
-				<span>성별</span>
-				<input type="radio" name="gender" value="1" checked="checked"> 여자 <input
-					type="radio" name="gender" value="2"> 남자</li>
-			
-				
+					<span>성별</span>
+					<input type="radio" name="gender" value="1" checked="checked"> 여자 
+					<input type="radio" name="gender" value="2"> 남자
+				</li>
 				<li>
-				<span>생년월일</span>
-				<input name="birth" class="birth" type="hidden"> <input
-					name="birth2" class="birthselect" type="date"></li>
+					<span>생년월일</span>
+					<input name="birth" class="birth" type="hidden"> 
+					<input name="birth2" class="birthselect" type="date">
+				</li>
 			</ul>
 		</div>
 		
@@ -228,8 +225,8 @@ function joinCheck(){
 	
 	<div class="btnlist">
 		<div class="">
-			<button type="button">취소</button> 
-			<button type="submit">등록</button>
+			<button type="button" class="cancel">취소</button> 
+			<button type="submit" class="submit">등록</button>
 		</div>
 	</div>
 	</form>

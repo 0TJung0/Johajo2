@@ -23,9 +23,6 @@
 		<div id="main" class="main">
 			<tiles:insertAttribute name="main"/>
 		</div>
-		<div id="bottom" class="bottom">
-			<tiles:insertAttribute name="bottom"/>
-		</div>
 	</div>
 
 </body>

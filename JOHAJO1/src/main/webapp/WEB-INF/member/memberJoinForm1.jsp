@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -11,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" href="css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 <script type="text/javascript">
 $(function(){
@@ -52,7 +51,7 @@ $(function(){
 	
 </script>
 <style type="text/css">
-	div.ch_list{position: relative;width: 495px;height: auto;margin: 60px auto 0;padding: 0 17px 10px;background-color: #e1e3e4;}
+/* 	div.ch_list{position: relative;width: 495px;height: auto;margin: 60px auto 0;padding: 0 17px 10px;background-color: #e1e3e4;}
 	div.ch_list ul{padding:0;}
 	div.ch_list ul li{list-style: none;}
 	div.ch_list ul li:first-child{line-height: 52px;}
@@ -67,7 +66,7 @@ $(function(){
 	div.btnform div.btn{position: relative;width: 100px;margin:0 auto;padding: 7px 20px;border: 2px solid black;display: inline-block;}
 	div.btnform div.btn a{color: #000000;font-weight: bold;}
 	div.btnform div.btn2{background-color: #000000;}
-	div.btnform div.btn2 a{color:#fff;background-color: #000000;}
+	div.btnform div.btn2 a{color:#fff;background-color: #000000;} */
 </style>
 </head>
 <body>
