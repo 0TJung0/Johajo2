@@ -135,9 +135,11 @@ $(function() {
 			<tr>
 				<th>이미지</th>
 				<td>
-				<img name="imgname" src="./image/${dto.imgname}">
+				<img src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}">
+				<br>
+				<input type="text" value="${dto.imgname}" readonly="readonly">
 				<div id="imgname_second"></div>
-				<input id="ex_file" type="file" onchange="previewImage(this, 'imgname_second');"></td>
+				<input id="ex_file" type="file" onchange="previewImage(this, 'imgname_second');" name="upfile"></td>
 			</tr>
 			<tr>
 				<th>가격</th>

@@ -69,9 +69,6 @@ public class MenuController {
 	@PostMapping("/menuwrite.do")
 	public String readmenuData(@ModelAttribute MenuDto dto,HttpServletRequest request)
 	{
-	
-		
-		
 		//이미지 업로드 경로
 		String path=request.getSession().getServletContext().getRealPath("/menuImg");
 		System.out.println(path);
@@ -107,8 +104,26 @@ public class MenuController {
 		return model;
 	}
 	@PostMapping("/menuupdate.do")
-	public String menuupdate(@ModelAttribute MenuDto dto,@RequestParam int kind)
+	public String menuupdate(@ModelAttribute MenuDto dto,@RequestParam int kind,HttpServletRequest request)
 	{
+		//이미지 업로드 경로
+		String path=request.getSession().getServletContext().getRealPath("/menuImg");
+		System.out.println(path);
+		
+		//path경로에 이미지 저장
+		SpringFileWriter fileWriter=new SpringFileWriter();
+		String imgname = "";
+		//파일명
+		MultipartFile mf=dto.getUpfile();
+		System.out.println("파일명 : "+mf.getOriginalFilename());
+		imgname += mf.getOriginalFilename();
+		//이미지 저장 메소드 호출
+		fileWriter.writeFile(mf, path, mf.getOriginalFilename());
+		
+		//dto에 이미지 이름저장
+		dto.setImgname(imgname);
+		
+		//dto 수정내용 저장
 		service.updateMenu(dto);
 		return "redirect:menusel.do?kind="+kind;
 	}
