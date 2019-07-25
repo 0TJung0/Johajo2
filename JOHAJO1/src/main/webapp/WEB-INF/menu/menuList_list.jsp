@@ -39,7 +39,7 @@ $(function(){
 
 	<div id="menu_list">
 		<c:forEach var="dto" items="${list}" >	
-				<div class="menulist_list" >
+				<div class="menulist_list"  >
 					<ul>
 						<li><img class="menulist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
 						
