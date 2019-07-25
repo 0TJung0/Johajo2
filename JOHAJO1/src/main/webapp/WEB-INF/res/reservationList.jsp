@@ -380,7 +380,7 @@
    });
    //코스 클릭시
    
-   $(document).on('click','.sidebar3',function() { 
+   $(document).on('click','.sidebar3',function() {
 	   $.ajax({
 	        url:'rescoursesel.do',
 	        type : "GET",
@@ -395,8 +395,7 @@
 	        	}
 	        }
        });
-   }
-   
+	});
 });
 </script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
