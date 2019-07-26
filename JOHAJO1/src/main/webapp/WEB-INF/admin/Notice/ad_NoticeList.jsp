@@ -170,6 +170,57 @@
 	</div>
 </div>
 <div id="Adevent_List">
+	<table border="1">
+		<caption>진행중인 이벤트</caption>
+		<tr>
+			<th>제목</th>
+			<th>작성일</th>
+			<th>시작일</th>
+			<th>종료일</th>
+		</tr>
+		<c:forEach var="adto" items="${alist }">
+			<tr>
+				<td>${adto.title }</td>
+				<td>${adto.writedate}</td>
+				<td>${adto.startday }</td>
+				<td>${adto.endday }</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<table border="1">
+		<caption>마감된 이벤트</caption>
+		<tr>
+			<th>제목</th>
+			<th>작성일</th>
+			<th>시작일</th>
+			<th>종료일</th>
+		</tr>
+		<c:forEach var="undto" items="${unlist }">
+			<tr>
+				<td>${undto.title }</td>
+				<td>${undto.writedate}</td>
+				<td>${undto.startday }</td>
+				<td>${undto.endday }</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<table border="1">
+		<caption>준비중 이벤트</caption>
+		<tr>
+			<th>제목</th>
+			<th>작성일</th>
+			<th>시작일</th>
+			<th>종료일</th>
+		</tr>
+		<c:forEach var="redto" items="${relist }">
+			<tr>
+				<td>${redto.title }</td>
+				<td>${redto.writedate}</td>
+				<td>${redto.startday }</td>
+				<td>${redto.endday }</td>
+			</tr>
+		</c:forEach>
+	</table>
 </div>
 </body>
 </html>

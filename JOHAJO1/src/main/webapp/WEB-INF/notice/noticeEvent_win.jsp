@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,24 +21,21 @@
 	<body>
 		<ul class="tab" id="tab">
 		    <li class="e_li"><a href="noticeevent.do">진행중인 이벤트</a></li>
-		    <li class="e_li" id="e_li"><a href="event_lotto.do">당첨자 발표</a></li>	
+		    <li class="e_li" id="e_li"><a href="event_lotto.do">마감된 이벤트</a></li>	
 		</ul>
 		<div  class="tab_con" id="tab_con">
     		<div class="e_div" id="e_div3">
-    			<table border="1">
-    				<tr>
-    					<th>번호</th>
-    					<th>이벤트 명</th>
-    					<th>이벤트 기간</th>
-    					<th>당첨자 발표일</th>
-    				</tr>
-    				<tr>
-    					<td>1</td>
-    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
-    					<td>2019.06.29 ~ 2019.07.04</td>
-    					<td>2019.07.08</td>
-    				</tr>
-    			</table>
+    		<c:forEach var="undto" items="${list }">
+				<table border="1">
+					<tr>
+						<td align="center"><img id="event_img"
+							src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg">
+						</td>
+						<td align="center">${undto.title}</td>
+						<td align="center"><fmt:formatDate value="${undto.endday}"/></td>
+					</tr>
+				</table>
+				</c:forEach>
     		</div>
    		</div>	
 	</body>

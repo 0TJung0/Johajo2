@@ -14,13 +14,25 @@
 	<script type="text/javascript">
 	$(function(){
 		$("#tab>#e_li").addClass('on');
+		
+		$(".EventBtn1").click(function(){
+			var mid=$("#midhidden").val();
+			
+			if(mid=="nologin"){
+				if(confirm("로그인 하시겠습니까?")){
+					location.href="loginform.do";								
+				}
+			}else{
+				alert("쿠폰이 지급되었습니다.");
+			}		
+		});
 	});
 	</script>
 	</head>
 	<body>
 		<ul class="ectab" id="ectab">
 		    <li class="ece_li" id="ece_li"><a href="noticeevent.do">진행중인 이벤트</a></li>
-		    <li class="ece_li"><a href="event_win.do">당첨자 발표</a></li>	
+		    <li class="ece_li"><a href="event_win.do">마감된 이벤트</a></li>	
 		</ul>
 		<div class="ectab_con" id="ectab_con">
 		   <table style="width: 900px;">
@@ -34,7 +46,10 @@
 			</tr>
 			<tr height="400">
 				<td valign="top">
-					<span>${dto.content}</span>
+					<span>${dto.content}</span><br>
+					<span><img src="./image/bo.png"></span>
+					<button type="button" class="EventBtn1">쿠폰 받기</button>
+					<input type="hidden" value="${mid }" id="midhidden">
 				</td>
 			</tr>
 		</table>
