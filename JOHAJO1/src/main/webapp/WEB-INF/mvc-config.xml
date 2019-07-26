@@ -17,7 +17,9 @@
 	<mvc:resources location="/WEB-INF/admin/menu/js/" mapping="/admin/menu/js/**"/>
 	<mvc:resources location="/WEB-INF/admin/store/js/" mapping="/admin/store/js/**"/>
 	<mvc:resources location="/smartEditor/" mapping="/smartEditor/**"/>
-
+	<mvc:resources location="/WEB-INF/slick/" mapping="/slick/**"/>
+	<!-- <mvc:resources location="/WEB-INF/slick-1.8.1/slick/" mapping="/slick/**"/>
+	 -->
 	<context:annotation-config/>
 	<context:component-scan base-package="spring.*.*,spring.*"/>
 
