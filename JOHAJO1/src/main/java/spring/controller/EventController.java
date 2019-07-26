@@ -7,23 +7,31 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.data.CouponDto;
 import spring.data.EventDto;
+import spring.service.CouponService;
 import spring.service.EventService;
 
 @Controller
 public class EventController {
 	@Autowired
 	public EventService service;
+	@Autowired
+	private CouponService coupon_service;
 	
 	//공지사항
 	@RequestMapping("/noticeevent.do")
-	public ModelAndView list(){
+	public ModelAndView list(HttpSession session){
 		ModelAndView model=new ModelAndView();
 
+		String mid=(String)session.getAttribute("log_id");
+		
+		
 		List<EventDto> alist=service.AbleList();
 		List<EventDto> unlist=service.EndList();
 		
@@ -40,12 +48,18 @@ public class EventController {
 		EventDto dto=service.getData(idx);
 		dto.setContent(dto.getContent().replace("\n","<br>"));
 		
-		
 		String mid=(String)session.getAttribute("log_id");
-		if(mid != null)
+		if(mid != null) {
+			int m_idx=(Integer)session.getAttribute("log_idx");
+			int ck1=coupon_service.getCouponId(m_idx, idx);
+			model.addAttribute("ck1",ck1);
 			model.addAttribute("mid", mid);
-		else
+			
+		}
+		else {
 			model.addAttribute("mid", "nologin");
+			model.addAttribute("ck1", 0);
+		}
 		
 				  
 		model.addAttribute("dto",dto);
@@ -70,4 +84,24 @@ public class EventController {
 		return "/notice/noticeEvent_lotto";
 	}
 	
+	
+	/*
+	 *  coupon controllor===============================================================
+	 */
+	@RequestMapping("/insertCoupon.do")
+	public String couponInsert(@RequestParam String mnd,
+			@RequestParam int idx,@RequestParam String title,@RequestParam int dis,
+			@RequestParam int valid,HttpSession session)
+	{
+		int m_idx=(Integer)session.getAttribute("log_idx");		
+	
+		CouponDto dto=new CouponDto();
+			dto.setEvent_f(idx);
+			dto.setCoupon_name(title);
+			dto.setDiscount(dis);
+			dto.setMember_f(m_idx);
+			dto.setAdd_day(valid);
+		coupon_service.InsertCoupon(dto);				
+		return "redirect:noticeEvent_content.do?idx="+idx;
+	}
 }

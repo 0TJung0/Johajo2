@@ -57,10 +57,10 @@
 								src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg"
 								onclick="location.href='noticeEvent_content.do?idx=${adto.idx}">
 							</td>
-							<td align="center"><a
-								href="noticeEvent_content.do?idx=${adto.idx}">${adto.title}</a>
+							<td align="center"><a href="noticeEvent_content.do?idx=${adto.idx}">${adto.title} ◎</a>
 							</td>
-							<td align="center"><fmt:formatDate value="${adto.writedate}"/></td>
+							<td align="center">${adto.startday } ~ ${adto.endday }
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -68,7 +68,7 @@
 		</div>
 		
 		<!-- 마감 이벤트 -->
-		
+
 		<div>
 			<div class="e_div" id="e_div2">
 				<c:forEach var="undto" items="${unlist }">

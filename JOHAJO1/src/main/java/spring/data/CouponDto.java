@@ -1,25 +1,24 @@
 package spring.data;
 
-
-
-
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 
 public class CouponDto {
 	private int idx;
 	private String coupon_name;
 	private int discount;
-	private String validity;
 	private int member_f;
 	private int event_f;
 	private int use;
+	private Timestamp startday;
+	private Timestamp endday;
+	private int add_day;
 	
-	
-	
+	public int getAdd_day() {
+		return add_day;
+	}
+	public void setAdd_day(int add_day) {
+		this.add_day = add_day;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -38,18 +37,6 @@ public class CouponDto {
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
-	public String getValidity() {
-		return validity;
-	}
-	public void setValidity(String validity) {
-		this.validity = validity;
-	}
-	public int getUse() {
-		return use;
-	}
-	public void setUse(int use) {
-		this.use = use;
-	}
 	public int getMember_f() {
 		return member_f;
 	}
@@ -62,12 +49,24 @@ public class CouponDto {
 	public void setEvent_f(int event_f) {
 		this.event_f = event_f;
 	}
-	
-	
-	
-	
-	
-	
+	public int getUse() {
+		return use;
+	}
+	public void setUse(int use) {
+		this.use = use;
+	}
+	public Timestamp getStartday() {
+		return startday;
+	}
+	public void setStartday(Timestamp startday) {
+		this.startday = startday;
+	}
+	public Timestamp getEndday() {
+		return endday;
+	}
+	public void setEndday(Timestamp endday) {
+		this.endday = endday;
+	}
 	
 	
 }
