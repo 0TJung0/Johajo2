@@ -10,7 +10,6 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/notice.css"/>
-	
 	<script type="text/javascript">
 	$(function(){
 		$("#tab>#e_li").addClass('on');

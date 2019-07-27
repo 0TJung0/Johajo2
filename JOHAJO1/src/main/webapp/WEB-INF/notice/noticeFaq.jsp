@@ -8,8 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/notice.css">
 <style>
-	ul li.main_nvb{
+/* 	 ul li.main_nvb{
 		list-style: none;
 		float: left;
 		margin-left: 10%;
@@ -33,7 +34,7 @@
 	div#FaQ_dispaly{
 		margin-left: 10%;
 		margin-top: 5%;
-	}
+	}  */
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -58,7 +59,8 @@
 					count=s.find("count").text();
 								
 					str+="<tr class='FaQ_title' title='"+index+"' onclick='showContent("+index+")'}>";
-					str+="<td>"+count+"</td>";
+					/* str+="<td>"+count+"</td>"; */
+					str+="<td><b>Q&nbsp;.</b></td>";
 					str+="<td>"+title+"</td>";
 					str+="<td>"+writeday+"</td>";
 					str+="</tr>";
@@ -80,20 +82,33 @@
 </script>
 </head>
 <body>
-	<div>
-		<ul>
-			<li class="main_nvb" onclick="showData(1)">
-				<p >회원가입/탈퇴</p>
-			</li>
-			<li class="main_nvb" onclick="showData(2)">
-				<p >쿠폰</p>
-			</li>
-			<li class="main_nvb" onclick="showData(3)">
-				<p >예약</p>
-			</li>
-		</ul>	
-	</div>
-	<div id="FaQ_dispaly">
+
+	<div id="notice_dispaly">
+		<span class="logo mt100">FAQ</span>
+		<span class="icon map5-1"></span>
+		
+		<div class="faqCategory">
+			<ul>
+				<li class="main_nvb" onclick="showData(3)">
+					<p >예약</p>
+				</li>
+				<li class="main_nvb" onclick="showData(2)">
+					<p >쿠폰</p>
+				</li>
+				<li class="main_nvb" onclick="showData(1)">
+					<p >회원가입/탈퇴</p>
+				</li>
+			</ul>	
+		</div>
+		
+		
+		<div id="FaQ_dispaly">
+		</div>
+		
+		
+		<div class="noticebtn1">
+			<a href="#">LOAD MORE</a>
+		</div>
 	</div>
 </body>
 </html>
