@@ -33,4 +33,18 @@ public class EventDao extends SqlSessionDaoSupport {
 	public List<EventDto> getAllData(){
 		return getSqlSession().selectList("eventAllData");	
 	}
+	
+	public List<EventDto> AbleList()
+	{
+		return getSqlSession().selectList("eventAble");
+	}
+	
+	public List<EventDto> EndList()
+	{
+		return getSqlSession().selectList("eventEnd");
+	}
+	public List<EventDto> StartList()
+	{
+		return getSqlSession().selectList("eventStart");
+	}
 }
