@@ -48,10 +48,13 @@
 	<select id="rescourselist" parameterType="String" resultType="cdto">
 		select * from course 
 	</select>
+
 	<delete id="courseDelete" parameterType="int">
 		delete from course where idx=#{idx}
 	</delete>
-	<select id="rescourselist" parameterType="String" resultType="cdto">
-		select * from course 
+
+	<select id="rescourseOne" parameterType="int" resultType="cdto">
+		select * from course where idx=#{idx}
+
 	</select>
 </mapper>

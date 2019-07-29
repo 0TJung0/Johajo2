@@ -29,10 +29,21 @@ public class NmBasketDao extends SqlSessionDaoSupport{
 	public int nmBasketCount(int nmidx){
 		return getSqlSession().selectOne("nmBasketC",nmidx);
 	}
-	public List<mSearchDto> nmBasketlist(int nmidx){
-		return getSqlSession().selectList("nmBasketlist",nmidx);
+	public List<mSearchDto> nmBasketlist(NmBasketDto dto){
+		return getSqlSession().selectList("nmBasketlist",dto);
 	}
 	public int nmBasketPrice(int nmidx) {
 		return getSqlSession().selectOne("nmBasketPrice",nmidx);
 	}
+	public void nmemberdelBasket(NmBasketDto dto) {
+		getSqlSession().update("nmBasketdelupdate",dto);
+	}
+	public int nmBasketcountcheck(NmBasketDto dto) {
+		return getSqlSession().selectOne("nmBasketcountcheck",dto);
+	}
+	public void nmBasketdelete(NmBasketDto dto) {
+		getSqlSession().delete("nmBasketdelete",dto);
+	}
+	
+	
 }

@@ -11,13 +11,10 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-
 </head>
-<body> 
-
-	
+<body>
 <c:out value="${mupdate}" />
 <c:if test="${mupdate =='true'}">
 <script type="text/javascript">
@@ -64,16 +61,17 @@
 				</li>
 				<li>
 					<div class="point">
+					<fmt:formatNumber var="point" value="${qdto.point}" pattern="#,###" />
 						<b>보유 포인트</b>
-						<p>40,200 점${dto.point }</p>
+						<p>${point}점</p>
 						
 					</div>
 				</li>
 				<li>
 					<div class="qna">
 						<b><a href="myqnaList.do?idx=${log_idx}">고객의 소리</a></b>
-						<span>대기중 <b>0</b></span>
-						<span>완료<b>0</b></span>
+						<span>대기중 <b>${qdto.finish}</b></span>
+						<span>완료<b>${qdto.stand}</b></span>
 					</div>
 				</li>
 				
@@ -81,8 +79,18 @@
 		</div>
 		<div class="field f2 coupon">
 			<b>보유 쿠폰</b>
-			<div>오픈 기념 30% 할인 2019-07-30</div>
-			<div><b>생일 기념 50% 할인</b>2019-07-30</div>
+			<c:forEach var="cdto" items="${clist}">
+				
+				<fmt:formatDate var="startday" value="${cdto.startday}" pattern="yyyy-MM-dd" />
+				<fmt:formatDate var="endday" value="${cdto.endday}" pattern="yyyy-MM-dd" />
+
+				<div>
+					<span>${cdto.cname}</span>
+					<span>${startday} ~ ${endday}</span>
+				</div>
+			</c:forEach>
+			<!-- <div>오픈 기념 30% 할인 2019-07-30</div>
+			<div><b>생일 기념 50% 할인</b>2019-07-30</div> -->
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -128,17 +128,16 @@ public class QnaController {
 	
 	@RequestMapping(value = "/myqnaInsert.do", method = RequestMethod.POST)
 	public String myqnaInsert(@ModelAttribute QnaDto dto, HttpServletResponse response) {
-
+		System.out.println("문의 등록하기11");
 		int fid = dto.getMem_f();
 		
 		int max = service.qnaMaxIdx();
 		max +=1;
-		
+		System.out.println("문의 등록하기22");
 		dto.setIdx(max);
-		dto.setGrp(max);
 		
 		service.myqnaInsert(dto);
-
+		System.out.println("문의 등록하기33");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out;
 		try {
@@ -151,6 +150,7 @@ public class QnaController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("문의 등록하기에러");
 		}
 		return "redirect:myqnaList.do?idx=" + fid;
 	}

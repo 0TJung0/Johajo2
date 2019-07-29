@@ -52,10 +52,14 @@ public class CourseDao extends SqlSessionDaoSupport {
 	public List<CourseDto> rescourselist() {
 		return getSqlSession().selectList("rescourselist");
 	}
-	
+
 	public void courseDelete(int idx)
 	{
 		getSqlSession().delete("courseDelete",idx);
 	}
-	
+
+	public CourseDto rescourseOne(int idx) {
+		return getSqlSession().selectOne("rescourseOne",idx);
+	}
 }
+

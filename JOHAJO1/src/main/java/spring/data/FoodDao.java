@@ -25,4 +25,7 @@ public class FoodDao extends SqlSessionDaoSupport {
 		list=getSqlSession().selectList("ReserBestmenufive");
 		return list;
 	}
+	public int getFoodIdx(String fname) {
+		return getSqlSession().selectOne("getFoodIdx",fname);
+	}
 }

@@ -64,4 +64,8 @@ public class CourseService {
 	{
 		dao.courseDelete(idx);
 	}
+
+	public CourseDto resCourseOne(int idx) {
+		return dao.rescourseOne(idx);
+	}
 }

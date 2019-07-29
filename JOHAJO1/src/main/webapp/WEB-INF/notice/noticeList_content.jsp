@@ -7,6 +7,7 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/notice.css">
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	</head>
 	<body>
@@ -26,7 +27,7 @@
 			</tr>
 		</table>
 		<div>
-			<button type="button" onclick="location.href='noticelist.do?pageNum=${pageNum}'">목록</button>
+			<button onclick="location.href='ad_NoticeList.do'">목록</button>
 		</div>
 	</body>
 </html>

@@ -9,11 +9,9 @@ public class ReservationDto {
 	private int store;
 	private String restime;
 	private String restable;
-	private String f1;
-	private String f2;
 	private int fsingle;//단품
-	private String coupon;
-	private String usepoint;
+	private int coupon;
+	private int usepoint;
 	private int totalprice;
 	private String nm_ph;
 	private String nm_pass;
@@ -29,7 +27,7 @@ public class ReservationDto {
 	public void setRem(int rem) {
 		this.rem = rem;
 	}
-	public String getResdate() {
+	public String month() {
 		return resdate;
 	}
 	public void setResdate(String resdate) {
@@ -65,34 +63,25 @@ public class ReservationDto {
 	public void setRestable(String restable) {
 		this.restable = restable;
 	}
-	public String getF1() {
-		return f1;
+	public String getResdate() {
+		return resdate;
 	}
-	public void setF1(String f1) {
-		this.f1 = f1;
-	}
-	public String getF2() {
-		return f2;
-	}
-	public void setF2(String f2) {
-		this.f2 = f2;
-	} 
 	public int getFsingle() {
 		return fsingle;
 	}
 	public void setFsingle(int fsingle) {
 		this.fsingle = fsingle;
 	}
-	public String getCoupon() {
+	public int getCoupon() {
 		return coupon;
 	}
-	public void setCoupon(String coupon) {
+	public void setCoupon(int coupon) {
 		this.coupon = coupon;
 	}
-	public String getUsepoint() {
+	public int getUsepoint() {
 		return usepoint;
 	}
-	public void setUsepoint(String usepoint) {
+	public void setUsepoint(int usepoint) {
 		this.usepoint = usepoint;
 	}
 	public int getTotalprice() {

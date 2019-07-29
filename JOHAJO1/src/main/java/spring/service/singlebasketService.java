@@ -15,8 +15,8 @@ import spring.data.mSearchDto;
 public class singlebasketService {
 	@Autowired
 	private singlebasketDao dao;
-	public List<mSearchDto> getbasketlist(int midx){
-		return dao.getbasketlist(midx);
+	public List<mSearchDto> getbasketlist(singlebasketDto sdto){
+		return dao.getbasketlist(sdto);
 	}
 	public void insertmbasket(singlebasketDto dto) {
 		dao.Insertmbasket(dto);
@@ -26,5 +26,11 @@ public class singlebasketService {
 	}
 	public void updatembasket(singlebasketDto dto) {
 		dao.updatembasket(dto);
+	}
+	public void mBasketaddupdate(singlebasketDto dto) {
+		dao.mBasketaddupdate(dto);
+	}
+	public void mBasketResfin(singlebasketDto dto) {
+		dao.mBasketResfin(dto);
 	}
 }

@@ -14,4 +14,19 @@ public class ReservationService {
 	public void InsertnmRes(ReservationDto dto) {
 		dao.InsertRes(dto);
 	}
+	public void InsertResmember(ReservationDto dto) {
+		dao.InsertResmember(dto);
+	}
+	public void InsertResusecoupon(ReservationDto dto) {
+		dao.InsertResusecoupon(dto);
+	}
+	public void InsertResusepoint(ReservationDto dto) {
+		dao.InsertResusepoint(dto);
+	}
+	public void InsertResuseall(ReservationDto dto) {
+		dao.InsertResuseall(dto);
+	}
+	public int getMaxidx(int midx) {
+		return dao.getMaxidx(midx);
+	}
 }

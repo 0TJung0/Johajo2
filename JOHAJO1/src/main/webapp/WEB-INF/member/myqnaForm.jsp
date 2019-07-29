@@ -10,37 +10,52 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/mypage_qna.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+$(function() {
+    $('#content').keyup(function (e){
+        var content = $(this).val();
+        $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+        $('#counter').html(content.length + '/500');
+    });
+    $('#content').keyup();
+});
+
+</script>
 </head>
 <body>
-   <form action="myqnaInsert.do" method="post">
-   <input type="hidden" name="anw" value="0">
-   <input type="hidden" name="mem_f" value="${log_idx}">
-   <input type="hidden" name="p_idx" value="${p_idx}" />
-   
-   <div>
-	   <ul>
-		   <li>
-		   	<span>문의 유형</span><br>
-		   	<input type="radio" name="selection" value="1" checked="checked"> 예약관련 <br>
-		   	<input type="radio" name="selection" value="2"> 취소/환불<br>
-		   	<input type="radio" name="selection" value="3"> 할인쿠폰/포인트<br>
-		   	<input type="radio" name="selection" value="4"> 메뉴관련<br>
-		   	<input type="radio" name="selection" value="5"> 회원정보 관련<br>
-		   </li>
-		   <li>
-		   	<span>제목</span>
-		   	<input type="text" name="title" id="title">
-		   </li>
-		   <li>
-		   	<span>내용</span>
-		   	<textarea rows="5" cols="70" name="content"></textarea>
-		   </li>
-	   </ul>
+   <div class="content_qna">
+	   <form action="myqnaInsert.do" method="post">
+	   <input type="hidden" name="anw" value="0">
+	   <input type="hidden" name="mem_f" value="${log_idx}">
+	   <input type="hidden" name="p_idx" value="${p_idx}" />
+	   <div class="qnaform">
+		   <div class="category">
+		   	<span>문의 유형</span>
+		   	<select name="selection">
+		   		<option value="1" selected="selected">예약</option>
+		   		<option value="2">취소/환불</option>
+		   		<option value="3">할인쿠폰/포인트</option>
+		   		<option value="4">메뉴관련</option>
+		   		<option value="5">회원정보</option>
+			</select>
+		   </div>
+		  <div>
+		   	<input type="text" name="title" id="title" placeholder="제목" maxlength="40" autofocus="autofocus" required="required">
+		  </div> 	
+		  <div>
+		   	<textarea name="content" id="content" maxlength="500" placeholder="500자 이내로 입력해주세요" 
+		   	autofocus="autofocus" required="required" style="height:180px;"></textarea>
+		   	<span id="counter">###</span>
+		  </div>
+		  <div class="btn">
+		   <button type="button" class="cancel" onclick="location.href='myqnaList.do?idx=${log_idx}'">취소</button>
+		   <button type="submit" class="btnwrite">문의하기</button>
+	   	  </div>
+	   </div>
+	   
+	   </form>
    </div>
-   <button type="button" onclick="location.href='myqnaList.do?idx=${log_idx}'">취소</button>
-   <button type="submit">문의하기</button>
-   </form>
 </body>
 </html>

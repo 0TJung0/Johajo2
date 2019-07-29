@@ -1,5 +1,6 @@
 package spring.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,25 @@ public class MemberService {
 		return dao.usePoint(idx);
 	}
 
+	public List<MemberDto> MemberCouponSelect(int midx) {
+		// TODO Auto-generated method stub
+		return dao.MemberCouponSelect(midx);
+	}
+
+	public MemberDto MemberQnaCountSelect(int midx) {
+		// TODO Auto-generated method stub
+		return dao.MemberQnaCountSelect(midx);
+	}
+
+	public List<MemberDto> memberTotalSelect() {
+		// TODO Auto-generated method stub
+		return dao.memberTotalSelect();
+	}
+
+
+	public List<MemberDto> memberList()
+	{
+		return dao.memberList();
+	}
 
 }

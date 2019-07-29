@@ -15,4 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE ROWNUM <= 5
 		]]>
 	</select>
+	<select id="getFoodIdx" parameterType="String" resultType="int">
+		select idx from food where fname=#{fname}	
+	</select>
 </mapper>

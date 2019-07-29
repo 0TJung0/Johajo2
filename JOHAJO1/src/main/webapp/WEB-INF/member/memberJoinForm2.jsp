@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/member.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -161,8 +161,8 @@ function joinCheck(){
 			<ul>
 				<li>
 					<span>아이디</span> 
-					<input type="text" name="id" class="id" readonly="readonly" required="required">
-					<button type="button"  onclick="javascriprt:idch();" required="required">아이디입력</button>
+					<input type="text" name="id" class="id" readonly="readonly" required="required" placeholder="입력 버튼 클릭해주세요">
+					<button type="button" class="btnid" onclick="javascriprt:idch();" required="required" >아이디입력</button>
 				</li>
 				<li>
 					<span>비밀번호 </span>
