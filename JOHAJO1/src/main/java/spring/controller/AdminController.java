@@ -2,6 +2,7 @@ package spring.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.data.CouponDto;
 import spring.data.EventDto;
 import spring.data.FaqDto;
+import spring.data.MemberDto;
 import spring.data.MenuDto;
 import spring.data.NoticeDto;
 import spring.data.StoreDto;
 import spring.service.AdminService;
+import spring.service.CouponService;
 import spring.service.EventService;
 import spring.service.FaqService;
+import spring.service.MemberService;
 import spring.service.MenuService;
 import spring.service.NoticeService;
 import spring.service.StoreService;
@@ -41,6 +46,10 @@ public class AdminController {
 	private FaqService faq_service;
 	@Autowired
 	private EventService event_service;
+	@Autowired
+	private MemberService member_service;
+	@Autowired
+	private CouponService coupon_service;
 
 	@RequestMapping("/admain.do")
 	public String admain() {
@@ -232,13 +241,27 @@ public class AdminController {
 		List<EventDto> alist=event_service.AbleList();
 		List<EventDto> unlist=event_service.EndList();
 		List<EventDto> relist=event_service.StartList();
+		List<MemberDto> mlist=member_service.memberList();
 		
 		model.addObject("nlist",nlist);
 		model.addObject("flist",flist);
 		model.addObject("alist",alist);
 		model.addObject("unlist",unlist);
 		model.addObject("relist",relist);
+		model.addObject("mlist",mlist);
 		model.setViewName("/ad/Notice/ad_NoticeList");
+		
+		return model;
+	}
+	@RequestMapping("/ad_noticeContent.do")
+	public ModelAndView noticeContent(@RequestParam int idx)
+	{
+		ModelAndView model=new ModelAndView();
+		
+		NoticeDto dto=notice_service.getData(idx);
+		
+		model.addObject("dto",dto);
+		model.setViewName("/ad/Notice/ad_noticeContent");
 		
 		return model;
 	}
@@ -267,9 +290,9 @@ public class AdminController {
 	public String insertNotice(
 			@RequestParam String title,
 			@RequestParam String contents,
-			@RequestParam String topnotice, 
-			@RequestParam int hide,
-			@RequestParam(value="photo",defaultValue="noimage") MultipartFile photo,
+			@RequestParam(value="topnotice",defaultValue="2") String topnotice, 
+			@RequestParam(value="hide",defaultValue="0") int hide,
+			@RequestParam(value="photo",defaultValue="/noimage.png") MultipartFile photo,
 			HttpServletRequest request
 			)
 	{
@@ -279,8 +302,11 @@ public class AdminController {
 		   	  String path=request.getSession().getServletContext().getRealPath("/noticeImg/");
 		      System.out.println(path);
 		      String fileName="/"+photo.getOriginalFilename();
-		      System.out.println(fileName);
-		      
+		      if(fileName.equals("/")) {
+		    	  System.out.println("들어오냐");
+		    	  fileName="noimage.png";
+		      }
+		      System.out.println("뭐냐 진짜:"+fileName);
 		      String saveFile=path+fileName;
 		      
 		      try {   
@@ -355,7 +381,22 @@ public class AdminController {
 	
 /*
  * FaQ ******************************************************************************
- */
+ */	
+	@RequestMapping("/ad_FaQContent.do")
+	public ModelAndView FaQContent(@RequestParam int idx)
+	{
+		ModelAndView model=new ModelAndView();
+		
+		FaqDto dto=faq_service.FaQGetData(idx);
+		
+		model.addObject("dto",dto);
+		model.setViewName("/ad/Notice/ad_FaQContent");
+		
+		return model;
+	}
+	
+	
+	
 	@RequestMapping("/FaQChangeState.do")
 	public String FaQchangeState(int idx,int hide)
 	{
@@ -401,6 +442,137 @@ public class AdminController {
 		return "redirect:ad_NoticeList.do";
 	}
 	
+/*
+ *  event ******************************************************************************
+ */
+	@RequestMapping("/ad_eventContent.do")
+	public ModelAndView EventContent(@RequestParam int idx)
+	{
+		ModelAndView model=new ModelAndView();
+		
+		EventDto dto=event_service.getData(idx);
+		
+		model.addObject("dto",dto);
+		model.setViewName("/ad/Notice/ad_EventContent");
+		
+		return model;
+	}
+	@RequestMapping("/insertCouponMember.do")
+	public String EventCouponInsert(@RequestParam int mem_idx,@RequestParam int eve_idx)
+	{
+		int ch=coupon_service.getCouponId(mem_idx, eve_idx);
+		if(ch==0) {
+			EventDto edto=event_service.getData(eve_idx);
+			CouponDto cdto=new CouponDto();
+			cdto.setCoupon_name(edto.getTitle());
+			cdto.setEvent_f(eve_idx);
+			cdto.setMember_f(mem_idx);
+			cdto.setDiscount(edto.getDiscount_rate());
+			cdto.setAdd_day(edto.getValidity_month());
+			coupon_service.InsertCoupon(cdto);
+		}else {
+			
+		}
+		return "redirect:ad_NoticeList.do";
+	}
+	
+// eventInsert============================================================================
+
+	@RequestMapping("/EventInsertForm.do")
+	public String insertEventForm()
+	{
+		return "/ad/Notice/ad_EventInserForm";
+	}
+	@RequestMapping("/EventInsert.do")
+	public String insertEvent(@RequestParam String title,
+			@RequestParam String con, @RequestParam Date startday,
+			@RequestParam Date endday, @RequestParam int discount_rate,
+			@RequestParam int validity_month,
+			@RequestParam(value="title_img",defaultValue="/noimage.png") MultipartFile title_img,
+			@RequestParam(value="main_img",defaultValue="/noimage.png") MultipartFile main_img,
+			HttpServletRequest request)
+	{
+		
+		  String path=request.getSession().getServletContext().getRealPath("/eventImg/");
+	      System.out.println(path);
+	      String fileName1="/"+title_img.getOriginalFilename();
+	      String fileName2="/"+main_img.getOriginalFilename();
+	      if(fileName1.equals("/")) {
+	    	  System.out.println("들어오냐");
+	    	  fileName1="noimage.png";
+	      }
+	      if(fileName2.equals("/")) {
+	    	  fileName2="noimage.png";
+	      }
+	      String saveFile1=path+fileName1;
+	      String saveFile2=path+fileName2;
+	      try {   
+	         title_img.transferTo(new File(saveFile1));
+	         main_img.transferTo(new File(saveFile2));
+	      } catch (IllegalStateException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	   
+		
+		EventDto dto=new EventDto();
+		dto.setTitle(title);
+		dto.setCon(con);
+		dto.setStartday(startday);
+		dto.setEndday(endday);
+		dto.setDiscount_rate(discount_rate);
+		dto.setValidity_month(validity_month);
+		dto.setMain_img(fileName2);
+		dto.setTitle_img(fileName1);
+		
+		event_service.insertEvent(dto);
+		return "redirect:ad_NoticeList.do";
+	}
+	
+// eventUPDATE=============================================================================
+	
+	@RequestMapping("/updateEventForm.do")
+	public ModelAndView updateEventForm(@RequestParam int idx)
+	{
+		ModelAndView model=new ModelAndView();
+		
+		EventDto dto=event_service.getData(idx);
+		
+		model.addObject("dto",dto);
+		model.setViewName("/ad/Notice/ad_EventUpDataForm");
+		return model;
+	}
+	@RequestMapping("/EventUpData.do")
+	public String updateEvent(@RequestParam String title,
+			@RequestParam String con, @RequestParam Date startday,
+			@RequestParam Date endday, @RequestParam int discount_rate,
+			@RequestParam int validity_month,@RequestParam int idx)
+	{
+		EventDto dto=event_service.getData(idx);
+		dto.setTitle(title);
+		dto.setCon(con);
+		dto.setStartday(startday);
+		dto.setEndday(endday);
+		dto.setTitle_img("noimage.png");
+		dto.setMain_img("noimage.png");
+		dto.setValidity_month(validity_month);
+		dto.setDiscount_rate(discount_rate);
+		dto.setIdx(idx);
+		
+		event_service.updateEvent(dto);
+		return "redirect:ad_NoticeList.do";
+	}
+	
+// eventDELETE=========================================================================
+	@RequestMapping("/deleteEvent.do")
+	public String deleteEvent(@RequestParam int idx) 
+	{
+		event_service.deleteEvent(idx);
+		return "redirect:ad_NoticeList.do";
+	}
 /*
  * member ************************************************************************
  */

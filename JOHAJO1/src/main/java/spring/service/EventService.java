@@ -46,5 +46,16 @@ public class EventService {
 	{
 		return dao.StartList();
 	}
-	
+	public void deleteEvent(int idx)
+	{
+		dao.deleteEvent(idx);
+	}
+	public void insertEvent(EventDto dto)
+	{
+		dao.insertEvent(dto);
+	}
+	public void updateEvent(EventDto dto)
+	{
+		dao.updateEvent(dto);
+	}
 }

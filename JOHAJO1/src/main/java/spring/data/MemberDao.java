@@ -1,5 +1,6 @@
 package spring.data;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -54,5 +55,8 @@ public class MemberDao  extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("userPointFind",idx);
 	}
 
-
+	public List<MemberDto> memberList()
+	{
+		return getSqlSession().selectList("memberList");
+	}
 }

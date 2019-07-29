@@ -51,7 +51,7 @@
 			</tr>
 			<tr height="400">
 				<td valign="top">
-					<span>${dto.content}</span><br>
+					<span>${dto.con}</span><br>
 					<span><img src="./image/bo.png"></span>
 					<button type="button" class="EventBtn1">쿠폰 받기</button>
 					<form method="post" action="insertCoupon.do" id="hi_e">

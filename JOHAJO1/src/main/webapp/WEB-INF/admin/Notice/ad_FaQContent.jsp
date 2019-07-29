@@ -22,12 +22,12 @@
 			</tr>
 			<tr height="400">
 				<td valign="top">
-					<span>${dto.contents}</span>
+					<span><pre>${dto.contents}</pre></span>
 				</td>
 			</tr>
 		</table>
 		<div>
-			<button onclick="location.href='ad_NoticeList.do'">목록</button>
+			<button type="button" onclick="location.href='ad_NoticeList.do'">목록</button>
 		</div>
 	</body>
 </html>

@@ -15,6 +15,21 @@
 
 </head>
 <body>
-adasd
+	<form action="EventUpData.do">
+	<c:set var="dto" value="${dto }"/>
+		제목:<input type="text" size="100" name="title" value="${dto.title }"><br>
+		내용:
+		<textarea rows="18" cols="100" name="con">${dto.con }</textarea><br>	
+		시작일:
+		<input type="date" name="startday" value="${dto.startday }">
+		종료일:
+		<input type="date" name="endday" value="${dto.endday }">
+		할인률:
+		<input type="number" name="discount_rate" value="${dto.discount_rate }">
+		쿠폰 사용 기간:
+		<input type="number" name="validity_month" value="${dto.validity_month }">
+		<input type="hidden" name="idx" value="${dto.idx }">
+		<input type="submit" value="저장">
+	</form>	
 </body>
 </html>

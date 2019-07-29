@@ -46,7 +46,7 @@ public class EventController {
 	{	
 		//데이터 가져오기
 		EventDto dto=service.getData(idx);
-		dto.setContent(dto.getContent().replace("\n","<br>"));
+		dto.setCon(dto.getCon().replace("\n","<br>"));
 		
 		String mid=(String)session.getAttribute("log_id");
 		if(mid != null) {

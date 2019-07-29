@@ -47,5 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select point from member where idx=#{idx}
 	</select>
 	
+	<select id="memberList" resultType="mdto">
+		select * from member
+	</select>
 	
 </mapper>
