@@ -35,6 +35,7 @@
 	</script>
 	</head>
 	<body>
+	
 	<div id="notice_dispaly">
 		<span class="logo mt100">EVENT</span> <span class="icon map5-1"></span>
 
@@ -44,38 +45,39 @@
 				<li class="e_li"><a href="event_win.do">마감된 이벤트</a></li>
 			</ul>
 		</div>
-
-		<div class="ectab_con" id="ectab_con">
-		   <table style="width: 900px;">
-			<tr>
-				<th>
-					&nbsp;${dto.title}
-					<span style="margin-left: 500px; color: lightgray;">
-						<fmt:formatDate value="${dto.writedate}" pattern="yyyy-MM-dd"/>
-					</span>
-				</th>
-			</tr>
-			<tr height="400">
-				<td valign="top">
-					<span>${dto.con}</span><br>
-					<span><img src="./image/bo.png"></span>
-					<button type="button" class="EventBtn1">쿠폰 받기</button>
-					<form method="post" action="insertCoupon.do" id="hi_e">
-					<input type="hidden" value="${mid }" name="mnd" id="midhidden">
-					<input type="hidden" value="${dto.title }" name="title" id="hi_Etitle">
-					<input type="hidden" value="${dto.idx }" name="idx" id="hi_Eidx">
-					<input type="hidden" value="${dto.discount_rate }" name="dis" id="hi_Edis">
-					<input type="hidden" value="${dto.validity_month}" name="valid" id="hi_Eval">	
-					</form>
-					<input type="hidden" value="${ck1}" id="h1_ck1">
-				</td>
-			</tr>
-		</table>
-		</div>
-		<div>
-			<button type="button" onclick="location.href='noticeevent.do?pageNum=${pageNum}'">목록</button>
 		
+		
+		<div class="event_content" id="event_content">
+		<div class="event_close">
+			<a href="noticeevent.do?pageNum=${pageNum}"><img src="./image/close.JPG" class="closebtn"></a>
 		</div>
+			
+			<div class="centent1">
+				<span class="subject">${dto.title}</span>
+				<span>
+					<fmt:formatDate var="start" value="${dto.startday}" pattern="yyyy.MM.dd"/>
+					<fmt:formatDate var="end" value="${dto.endday}" pattern="yyyy.MM.dd"/>
+					${start} ~ ${end}
+				</span>
+			</div>
+			
+			<div class="centent2">
+			
+			 	<span>${dto.con}</span><br>
+				<span><img src="./image/bo.png"></span>
+				<button type="button" class="EventBtn1">쿠폰 받기</button>
+				<form  id="hi_e" action="insertCoupon.do" method="post" >
+				<input type="hidden" value="${mid }" name="mnd" id="midhidden">
+				<input type="hidden" value="${dto.title }" name="title" id="hi_Etitle">
+				<input type="hidden" value="${dto.idx }" name="idx" id="hi_Eidx">
+				<input type="hidden" value="${dto.discount_rate }" name="dis" id="hi_Edis">
+				<input type="hidden" value="${dto.validity_month}" name="valid" id="hi_Eval">	
+				</form>
+				<input type="hidden" value="${ck1}" id="h1_ck1">
+			</div>
+		</div>
+		
+		
 	</div>
 </body>
 </html>
