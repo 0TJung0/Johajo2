@@ -38,9 +38,14 @@ div.scrollHeight{margin: 5px 0 22px;height: 120px;background-color: #ffffff;}
 div.scrollBox{position: relative;overflow: auto; height: 100%;max-width: 100%;outline: 0;direction: ltr;}
 
 div.btnform{position: relative;width: 495px; margin: 0 auto;padding: 30px 0;text-align: center;}
-div.btnform div.btn{position: relative;width: 100px;margin:0 auto;padding: 7px 20px;border: 2px solid black;display: inline-block;}
-div.btnform div.btn a{color: #000000;font-weight: bold;}
+div.btnform div.btn{position: relative;width: 100px;margin:0 auto;border: 2px solid black;display: inline-block;}
+div.btnform div.btn a{color: #000000;font-weight: bold;
+	width: 72px;
+    height: 22px;
+    display: block;
+    text-decoration: none;}
 div.btnform div.btn2{background-color: #000000;}
+
 div.btnform div.btn2 a{color:#fff;background-color: #000000;}
 
 
@@ -62,11 +67,25 @@ div.center{
 		padding: 0 17px 10px;
 		background-color: #e1e3e4;
 	}
+	div.joinform div.field{
+		margin-bottom: 20px;
+	}
+	
 	
 	div.joinform div.field ul li{
 		list-style: none;
 		font-size: 15px;
 		margin-top: 10px;
+	}
+	
+	div.joinform div.field ul li button.btnid{
+	    width: 97px;
+	    line-height: 30px;
+	    margin-left: 10px;
+	    border-radius: 3px;
+	    border: 0;
+	    background-color: #000;
+	    color: #fff;
 	}
 	
 	input[type="text"], input[type="password"] { 
@@ -338,6 +357,14 @@ div.center{
     	height:auto;
     	
     }
+    
+   div.field.coupon div{
+        position: relative;
+	    width: 100%;
+	    float: left;
+	    text-align: center;
+	    font-size: 14px;
+    }
      div.myform div.field.f2.coupon b{
      	margin-bottom: 10px;
     	display: block;
@@ -448,7 +475,10 @@ div.center{
 		margin-top: 10px;
 	}
 	
-	input[type="text"], input[type="password"] { 
+	input[type="text"], 
+	input[type="password"],
+	input[type="email"],
+	input[type="date"]{ 
 	height: auto; 
 	line-height: normal;  
 	padding: 0.3em .2em;
@@ -518,6 +548,7 @@ div.center{
 	div.content.sel div.selectform span input#name,
 	div.content.sel div.selectform span input#id{
 		width: 277px;
+		height: 40px;
 	}
 	
 	div.content.sel div.selectform span select#hp{
@@ -527,6 +558,7 @@ div.center{
 	div.content.sel div.selectform span input#hp2,
 	div.content.sel div.selectform span input#hp3{
 		width: 81px;
+		height: 39px;
 	}
 	
 	
@@ -591,12 +623,26 @@ div.center{
 		height: auto;
 		padding: 23px 0 ;
 	}
+	
+	
+
+//idcheck popup
+
+	div.idcheck_warp{
+		position: relative;
+	    width: 100%;
+	    padding: 27px 30px;
+	    background-color: #ddd;
+	
+	}
+	
 	div.idcheckForm{
 		position: relative;
-	    width: 306px;
+	    width: 100%;
 	    height: 104px;
-	    margin: 9px auto 0;
+	    /* margin: 9px auto 0; */
 	    background-color: #fff;
+	    border-radius: 4px;
 
 	}
 	div.idcheckForm>span{
@@ -630,10 +676,4 @@ div.center{
 	div.useform>span>b,div.useform.u2 b{
 		color:orange;
 	}
-	
-/************************************************************************************mypageMain*/
-/************************************************************************************mypageMain*/
-/************************************************************************************mypageMain*/
-/************************************************************************************mypageMain*/
-
  	

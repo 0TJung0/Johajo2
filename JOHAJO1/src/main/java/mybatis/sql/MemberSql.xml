@@ -3,6 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
+
+	<select id="memberTotalSelect"  resultType="mdto">
+		select * from member
+	</select>
+	
 	<select id="memberTotalCount" resultType="int">
 		select count(*) from member
 	</select>
@@ -39,21 +44,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="userinfoUpdate" parameterType="mdto">
 		update member set password=#{password}, name=#{name}, hp=#{hp},
-		email=#{email}, gender=#{gender}, birth=#{birth}
+		email=#{email}, gender=#{gender}
+		<choose>
+	        <when test='#{birth} == null'>
+	            <![CDATA[
+	                ,birth=TO_DATE(#{birth},'yyyy-MM-dd')
+	            ]]>
+	        </when>
+ 		</choose>
+		
 		where idx=#{idx}
 	</update>
 	
 	<select id="userPointFind"  parameterType="int" resultType="int">
 		select point from member where idx=#{idx}
 	</select>
-	<update id="userinfoUpdate" parameterType="mdto">
-		update member set password=#{password}, name=#{name}, hp=#{hp},
-		email=#{email}, gender=#{gender}, birth=#{birth}
-		where idx=#{idx}
-	</update>
-	<update id="userinfoUpdate" parameterType="mdto">
-		update member set password=#{password}, name=#{name}, hp=#{hp},
-		email=#{email}, gender=#{gender}, birth=#{birth}
-		where idx=#{idx}
-	</update>
+	
+	<select id="userCouponSelect"  parameterType="int" resultType="mdto">
+		select c.idx as cidx, c.coupon_name as cname, c.startday as startday,c.endday as endday
+		from coupon c, member m
+		where c.member_f = m.idx and use = 0 and m.idx=#{idx} 
+	</select>
+	
+	<select id="userQnaCountSelect" parameterType="int" resultType="mdto">
+		select count(case when anw=0 then 1 end) as finish,
+		count(case when anw=1 then 1 end) as stand
+		from qna  where mem_f=#{idx}
+	</select>
+	
 </mapper>

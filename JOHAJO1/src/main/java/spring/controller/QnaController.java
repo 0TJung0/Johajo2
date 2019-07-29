@@ -135,7 +135,6 @@ public class QnaController {
 		max +=1;
 		System.out.println("문의 등록하기22");
 		dto.setIdx(max);
-		dto.setGrp(max);
 		
 		service.myqnaInsert(dto);
 		System.out.println("문의 등록하기33");

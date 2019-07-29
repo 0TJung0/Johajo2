@@ -1,5 +1,9 @@
 package spring.data;
 
+import java.sql.Date;
+
+import com.sun.jmx.snmp.Timestamp;
+
 public class MemberDto {
 	private int idx;
 	private String id;
@@ -16,9 +20,20 @@ public class MemberDto {
 	private String year;
 	private String month;
 	private String day;
-	
 	private String joindate;
+	private int point;
 	
+	
+	//coupon data
+	private int cidx;
+	private String cname;
+	private Date startday;
+	private Date endday;
+	
+	
+	//qna  anwer count
+	private int finish;
+	private int stand;
 	
 	public int getIdx() {
 		return idx;
@@ -109,6 +124,50 @@ public class MemberDto {
 	}
 	public void setJoindate(String joindate) {
 		this.joindate = joindate;
+	}
+	public int getCidx() {
+		return cidx;
+	}
+	public void setCidx(int cidx) {
+		this.cidx = cidx;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	
+	public int getFinish() {
+		return finish;
+	}
+	public void setFinish(int finish) {
+		this.finish = finish;
+	}
+	public int getStand() {
+		return stand;
+	}
+	public void setStand(int stand) {
+		this.stand = stand;
+	}
+	
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public Date getStartday() {
+		return startday;
+	}
+	public void setStartday(Date startday) {
+		this.startday = startday;
+	}
+	public Date getEndday() {
+		return endday;
+	}
+	public void setEndday(Date endday) {
+		this.endday = endday;
 	}
 	
 	
