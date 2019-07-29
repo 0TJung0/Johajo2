@@ -4,17 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-
-
-
-
-
 
 import spring.data.AllergyDto;
 import spring.data.MenuDto;
@@ -97,6 +92,18 @@ public class AllergyController {
 		model.addObject("dto",dto);
 		
 		model.setViewName("/menu/allergyUpdateform");
+		return model;
+	}
+	
+	//수정 foodSelect 읽어오기
+	@PostMapping("/foodselect.do")
+	public ModelAndView foodselect(@RequestParam int f)
+	{
+		ModelAndView model = new ModelAndView();
+		List<AllergyDto> list = service.foodSelect(f);
+		model.addObject("list",list);
+		
+		model.setViewName("/menu/foodData");
 		return model;
 	}
 	

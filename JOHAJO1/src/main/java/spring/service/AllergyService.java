@@ -81,8 +81,8 @@ public class AllergyService {
 		dao.deleteAllergy(idx);
 	}
 
-	public List<AllergyDto> foodSelect()
+	public List<AllergyDto> foodSelect(int f)
 	{
-		return dao.foodSelect();
+		return dao.foodSelect(f);
 	}
 }
