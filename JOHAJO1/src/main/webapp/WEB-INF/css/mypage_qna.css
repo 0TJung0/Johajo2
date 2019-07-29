@@ -1,0 +1,229 @@
+/*********************************************list page***/
+
+	div.qnalist{
+		position: relative;
+	    width: 800px;
+	    margin: 40px auto;
+	    padding: 59px 0 40px;
+	    background-color: #e1e3e4;
+
+	}
+	
+	div.qnalist .center{
+		width: 520px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+	
+	 div.qnalist div{
+        position: relative;
+	    width: 100%;
+    }
+
+
+
+	div.qnalist button{
+ 		
+	    width: 100px;
+	    display: block;
+	    border: 1px solid #000;
+	    line-height: 30px;
+	    background-color: #fff;
+	    font-size: 14px;
+	    font-weight: bold;
+	    
+	}
+	
+
+	
+	div.qnalist button.btnwrite{
+		width: 200px;
+	    line-height: 46px;
+	    text-align: center;
+	    margin: 0 auto 20px;
+	}
+	
+	/* div.qnalist button.btnwrite:hover */
+	div.qnalist button:hover{
+		background-color: #000;
+		color: #fff;
+	}
+	
+	
+	div.qnalist button.delbtn:hover,
+	div.qnalist button.anwdel:hover{
+		background-color: #ff5050eb;
+		border: 1px solid #fff;
+	}
+	
+	
+	div.qnalist .paging{
+		float: left;
+	}
+	
+	div.qnalist .pagination>li>a, 
+	div.qnalist .pagination>li>span{
+		color: #000;
+	}
+	
+	
+	div.qdata{
+		position: relative;
+		float:left;
+		width: 500px;
+		margin:0 auto 20px;
+		padding: 15px 20px;
+		border: 1px solid gray;
+		background-color: #fff;
+		
+	}
+	
+	
+	div.qdata div{
+		margin-bottom: 10px;
+	}
+	div.qdata div.title span{
+		font-size: 15px; 
+	}
+	
+	div.qdata div.title span:nth-child(1){
+		font-weight: bold;
+		margin-right: 5px;
+	}
+	
+	div.qdata div.title span:nth-child(3){
+	    width: 93px;
+    	float: right;
+    	font-size: 14px;
+    }
+    
+    div.qdata div.content{
+    	padding:20px 0 8px;
+    }
+    
+    div.qdata div.answer textarea{
+    	resize: none;
+    }
+    div.qdata button{
+    	float: right;
+    } 
+    
+    div.qdata div.answer{
+    	clear: both;
+    }
+    
+    div.qdata button,
+    div.qdata div.answer button{
+     	margin-left: 10px;
+     	margin-bottom: 5px;
+     }
+     
+     
+      div.qdata div.state{
+        text-align: center;
+	    color: #fff;
+	    font-weight: bold;
+	    width: 100px;
+	    margin: 0 auto 10px;
+	    background-color: #747473;
+	    border-radius: 7px;
+	    line-height: 30px;
+	    font-size: 12px;
+     }
+     
+     div.qdata div.state.ok{
+         background-color: orange;
+     }
+
+/***********************************************form page***/
+
+	 .content_qna{
+		width: 800px;
+	    border: 1px solid;
+	    margin: 40px auto 80px;
+	    padding: 40px 0 20px;
+	    background-color: #e1e3e4;
+	 }
+	 
+	 div.qnaform{
+	 	position: relative;
+	    width: 520px;
+	    margin: 0 auto;
+	 }
+	 div.qnaform div{
+	 	position: relative;
+	 	width: 100%;
+	 	margin-bottom: 11px;
+	 }
+	 
+	 div.qnaform div.category span{
+	 	display: block;
+	 	float: left;
+	 	line-height: 33px;
+	    margin: 0 21px;
+	    font-size: 14px;
+	    font-weight: bold;
+	 	
+	 }
+	 
+	 
+	  div.qnaform div input,
+	  div.qnaform div textarea{
+	  	width: 100%;
+	  	border: 0;
+	  	
+	  
+	  }
+	  
+	   div.qnaform div select{
+	   		height: 33px;
+	   		width: 80%;
+	   		padding: 5px 10px;
+	   }
+	    div.qnaform div input{
+	    	line-height: 30px;
+	    	padding: 5px 10px;
+	    }
+	    
+	    div.qnaform div textarea{
+	    	padding: 20px 6px;
+    		height: 183px;
+    		resize: none;
+	    }
+	    
+	     div.qnaform span#counter{
+	     	display: inline-block;
+	     	float: right;
+	     	font-size: 16px;
+	     }
+	     
+	     div.qnaform div.btn button{
+	     	width: 100px;
+		    border: 1px solid #000;
+		    line-height: 35px;
+		    background-color: #fff;
+		    font-size: 14px;
+		    margin:0 10px;
+	     }
+	     div.qnaform div.btn button.btnwrite{
+			background-color: #000;
+			color: #fff;
+		}
+		div.qnaform div.btn button.cancel:hover,
+		div.qnaform div.btn button.btnwrite:hover{
+			font-weight: bold;
+		}
+		/* div.qnaform div.btn button.cancel:hover{
+			background-color: #000;
+			color: #fff; 
+			
+		}
+		
+		div.qnaform div.btn button.btnwrite:hover {
+			background-color: #fff;
+			color: #000;
+		}
+		*/
+		
+		
+	
