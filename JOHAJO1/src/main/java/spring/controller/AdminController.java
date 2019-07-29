@@ -3,7 +3,6 @@ package spring.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -118,7 +117,7 @@ public class AdminController {
 	{
 
 		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
-		System.out.println(path);
+		System.out.println("path="+path);
 		String fileName=photo.getOriginalFilename();
 		System.out.println(fileName);
 		
@@ -176,7 +175,7 @@ public class AdminController {
 	{
 		
 		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
-		System.out.println(path);
+		System.out.println("path="+path);
 		String fileName=photo.getOriginalFilename();
 		System.out.println(fileName);
 		
@@ -271,15 +270,15 @@ public class AdminController {
 			@RequestParam String topnotice, 
 			@RequestParam int hide,
 			@RequestParam(value="photo",defaultValue="noimage") MultipartFile photo,
-			@RequestParam HttpServletRequest request
+			HttpServletRequest request
 			)
 	{
 		
 		System.out.println("컨트롤러 진입");
 		
-		   	  String path=request.getSession().getServletContext().getRealPath("/noticeImage/");
+		   	  String path=request.getSession().getServletContext().getRealPath("/noticeImg/");
 		      System.out.println(path);
-		      String fileName=photo.getOriginalFilename();
+		      String fileName="/"+photo.getOriginalFilename();
 		      System.out.println(fileName);
 		      
 		      String saveFile=path+fileName;
