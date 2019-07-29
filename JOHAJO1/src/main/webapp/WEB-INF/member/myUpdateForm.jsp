@@ -32,10 +32,6 @@ $(function(){
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));
 	    $(this).val($(this).val().substring(0,4));
 	});
-
-
-	
-
 });
 
 
@@ -75,77 +71,6 @@ function joinCheck(){
 }
 
 </script>
-<style type="text/css">
-
-	/* div.center{
-		position: relative;
-		width: 100%;
-		float: left;
-	}
-	
-	span.subejct{position: relative;font-size: 40px;text-align: center;display: block;}
-	
-	
-	div.joinform {
-		position: relative;
-		width: 495px;
-		height: auto;
-		margin: 60px auto 0;
-		padding: 0 17px 10px;
-		background-color: #e1e3e4;
-	}
-	
-	div.joinform div.field ul li{
-		list-style: none;
-		font-size: 15px;
-		margin-top: 10px;
-	}
-	
-	input[type="text"], input[type="password"] { 
-	height: auto; 
-	line-height: normal;  
-	padding: 0.3em .2em;
-	border-radius: 8px;
-    border: 0; }
-
-	select { 
-		width: 94px;
-	    padding: .2em .2em;
-	    font-family: inherit;
-	    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 99% 31%;
-	    border: 1px solid #999;
-	    border-radius: 6px;
-	    -webkit-appearance: none;
-    }
-
-	div.joinform div.field ul{
-		padding-left:10px;
-	}
-	div.joinform div.field ul li span{
-		display: inline-block;
-		width: 90px;
-	    margin-bottom: 5px;
-	    padding: 2px;
-	    text-align: center;
-	    
-	}
-
-	div.joinform span.bold{
-		font-size: 15px;
-		font-weight: bold;
-	}
-	
-
-	
-.btnlist {
-	    text-align: center;
-    position: relative;
-    width: 500px;
-    margin: 0 auto;
-	text-align: center;
-} */
-
-</style>
 </head>
 <body>
 	<c:set var="dto" value="${dto}" />
@@ -216,24 +141,19 @@ function joinCheck(){
 					<input type="radio" name="gender" value="1" ${dto.getGender()==1?'checked':''}> 여자 
 					<input type="radio" name="gender" value="2" ${dto.getGender()==2?'checked':''}> 남자
 				</li>
-				<%--<li>
-					<span>생년월일 </span>
-					<input name="birth" class="birth" type="hidden"> 
-					<input name="birth2" class="birthselect" type="date" value="">
-				</li>--%>
-				
+
 				 <li>
-				
-				<c:if test="${dto.getBirth() != null}">
-					<span>생년월일 </span>
-					${dto.getBirth().substring(0,11)}
-					* 최초 등록 후 변경 불가 합니다.
-				</c:if>
-				<c:if test="${dto.getBirth() == null}">
-					<span>생년월일 </span>
-					<input name="birth" class="birth" type="hidden"> 
-					<input name="birth2" class="birthselect" type="date" value="">
-				</c:if>
+					<c:if test="${dto.getBirth() != null}">
+					<input name="birth" class="birth" type="hidden" value="${dto.getBirth()}"> 
+						<span>생년월일 </span>
+						${dto.getBirth().substring(0,11)}
+						* 최초 등록 후 변경 불가 합니다.
+					</c:if>
+					<c:if test="${dto.getBirth() == null}">
+						<span>생년월일 </span>
+						<input name="birth" class="birth" type="hidden"> 
+						<input name="birth2" class="birthselect" type="date" value="">
+					</c:if>
 				</li> 
 			</ul>
 		</div>
@@ -244,7 +164,7 @@ function joinCheck(){
 	
 	<div class="btnlist">
 		<div class="">
-			<button type="button" class="cancel" onclick="history.go(-2)">취소</button> 
+			<button type="button" class="cancel" onclick="location.href='mypageform.do'">취소</button> 
 			<button type="submit" class="submit">수정</button>
 		</div>
 	</div>

@@ -10,9 +10,7 @@ public class QnaDto {
 	private String content;
 	private int mem_f; //글쓴idx
 	private Timestamp writeday;
-	private int grp;
-	private int stp;
-	private int lv;
+
 	
 	private String content2;
 	private Timestamp anwday;
@@ -61,24 +59,7 @@ public class QnaDto {
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
 	}
-	public int getGrp() {
-		return grp;
-	}
-	public void setGrp(int grp) {
-		this.grp = grp;
-	}
-	public int getStp() {
-		return stp;
-	}
-	public void setStp(int stp) {
-		this.stp = stp;
-	}
-	public int getLv() {
-		return lv;
-	}
-	public void setLv(int lv) {
-		this.lv = lv;
-	}
+	
 	public String getContent2() {
 		return content2;
 	}

@@ -1,5 +1,6 @@
 package spring.data;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -52,6 +53,21 @@ public class MemberDao  extends SqlSessionDaoSupport{
 		// TODO Auto-generated method stub
 		
 		return getSqlSession().selectOne("userPointFind",idx);
+	}
+
+	public List<MemberDto> MemberCouponSelect(Integer midx) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("userCouponSelect",midx);
+	}
+
+	public MemberDto MemberQnaCountSelect(int midx) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("userQnaCountSelect",midx);
+	}
+
+	public List<MemberDto> memberTotalSelect() {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("getSqlSession");
 	}
 
 

@@ -1,17 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link type="text/css" rel="stylesheet"
-	href="<%= request.getContextPath() %>/css/notice.css" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/notice.css"/>
 <script type="text/javascript">
 	$(function () {	
 		tab('#tab',0);	
@@ -40,134 +38,119 @@
 	        con.eq(i).children().show();
 	    });
 	}
-	</script>
+</script>
 </head>
 <body>
-<<<<<<< HEAD
-	<ul class="tab" id="tab">
-		<li class="e_li">진행중인 이벤트</li>
-		<li class="e_li">마감된 이벤트</li>
-	</ul>
-	<div class="tab_con" id="tab_con">
-		<div>
-			<c:forEach var="adto" items="${alist}">
-				<div class="e_div">
-					<table>
-						<tr>
-							<td align="center"><img id="event_img"
-								src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg"
-								onclick="location.href='noticeEvent_content.do?idx=${adto.idx}">
-							</td>
-							<td align="center"><a href="noticeEvent_content.do?idx=${adto.idx}">${adto.title} ◎</a>
-							</td>
-							<td align="center">${adto.startday } ~ ${adto.endday }
-							</td>
-						</tr>
-					</table>
-				</div>
-			</c:forEach>
-=======
-
-
+		
 	<div id="notice_dispaly">
 		<span class="logo mt100">EVENT</span> <span class="icon map5-1"></span>
 
 		<div class="eventTab">
 			<ul class="tab" id="tab">
 				<li class="e_li">진행중인 이벤트</li>
-				<li class="e_li">마감</li>
+				<li class="e_li">마감된 이벤트</li>
 			</ul>
->>>>>>> refs/heads/bang1
 		</div>
-<<<<<<< HEAD
 		
-		<!-- 마감 이벤트 -->
-
-		<div>
-			<div class="e_div" id="e_div2">
-				<c:forEach var="undto" items="${unlist }">
-				<table border="1">
-					<tr>
-						<td align="center"><img id="event_img"
-							src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg">
-						</td>
-						<td align="center">${undto.title}</td>
-						<td align="center"><fmt:formatDate value="${undto.endday}"/></td>
-					</tr>
-				</table>
-				</c:forEach>
-			</div>
-		</div>
-=======
-
+		
 		<div class="tab_con" id="tab_con">
-			<div>
-				<c:forEach var="dto" items="${list}">
-					<div class="e_div">
-						<table>
-							<tr>
-								<td align="center"><img id="event_img"
-									src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg"
-									onclick="location.href='noticeEvent_content.do?idx=${dto.idx}&pageNum=${currentPage}'">
-								</td>
-								<td align="center"><a
-									href="noticeEvent_content.do?idx=${dto.idx}&pageNum=${currentPage}">${dto.title}</a>
-								</td>
-								<td align="center"><fmt:formatDate value="${dto.writedate}"
-										pattern="yyyy-MM-dd" /></td>
-							</tr>
-						</table>
-					</div>
+    		<div>
+    			<c:forEach var="dto" items="${alist}">
+		    		<div class="e_div">
+		    			<div class="e_data">
+			    			<ul>
+			    				<li><img id="event_img" src="http://www.aitwb.org/upload/centers_img/no-image-available.jpg" onclick="location.href='noticeEvent_content.do?idx=${dto.idx}&pageNum=${currentPage}'"></li>
+			    				<li>
+			    					<div class="e_title">
+			    						<span>${dto.title}</span>
+			    						<span class="date"><fmt:formatDate value="${dto.writedate}" pattern="yyyy-MM-dd"/></span>
+			    						<%-- <span class="click"><a href="noticeEvent_content.do?idx=${dto.idx}&pageNum=${currentPage}">자세히보기</a></span> --%>
+			    						<span class="click"><a href="noticeEvent_content.do?idx=${dto.idx}&pageNum=1">자세히보기</a></span>
+			    						
+			    					</div>
+			    					
+			    				</li>
+			    				
+			    			</ul>
+		    			</div>
+		    		</div>	
 				</c:forEach>
 				
-				
-				<!-- 페이지번호 출력 -->
-				<div style="width: 600px; text-align: center; margin-left: 200px;">
-					<ul>
-						<c:if test="${startPage>1}">
-							<li><a href="list.do?pageNum=${startPage-1}">◁</a></li>
+				<!--페이징  -->
+				<div class="paging text-center">
+					<ul class="pagination">
+						<c:if test="${startPage > 1 }">
+							<li><a href="myqnaList.do?pageNum=${startPage-1}&idx=${log_idx}">◀</a></li>
 						</c:if>
-
 						<c:forEach var="pp" begin="${startPage}" end="${endPage}">
-							<li><c:if test="${pp==currentPage}">
-									<a href="list.do?pageNum=${pp}" style="color: tomato;">${pp}</a>
-								</c:if> <c:if test="${pp!=currentPage}">
-									<a href="list.do?pageNum=${pp}">${pp}</a>
-								</c:if></li>
+							<c:if test="${pp==currentPage }">
+								<li><a href="myqnaList.do?pageNum=${pp}&idx=${log_idx}" style="color:red;">${pp}</a></li>
+							</c:if>
+							<c:if test="${pp!=currentPage }">
+								<li><a href="myqnaList.do?pageNum=${pp}&idx=${log_idx}">${pp}</a></li>
+							</c:if>
 						</c:forEach>
-
-						<c:if test="${endPage<totalPage}">
-							<li><a href="list.do?pageNum=${endPage+1}">▷</a></li>
+						<c:if test="${endPage<totalPage }">
+							<li><a href="myqnaList.do?pageNum=${endPage+1}&idx=${log_idx}">▶</a></li>
 						</c:if>
 					</ul>
 				</div>
-			</div>
-
-
-			<!-- 마감 이벤트 -->
-			<div>
-
-				<div class="e_div" id="e_div2">
-					<table border="1">
-						<tr>
-							<th>번호</th>
-							<th>이벤트 명</th>
-							<th>이벤트 기간</th>
-							<th>당첨자 발표일</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
-							<td>2019.06.29 ~ 2019.07.04</td>
-							<td>2019.07.08</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
+				
+    		</div>
+    
+    
+  			<!-- 마감 이벤트 -->
+   			<!-- <div>
+	    		<div class="e_div" id="e_div2">
+	    			<table border="1">
+	    				<tr>
+	    					<th>번호</th>
+	    					<th>이벤트 명</th>
+	    					<th>이벤트 기간</th>
+	    					<th>당첨자 발표일</th>
+	    				</tr>
+	    				<tr>
+	    					<td>1</td>
+	    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
+	    					<td>2019.06.29 ~ 2019.07.04</td>
+	    					<td>2019.07.08</td>
+	    				</tr>
+	    				<tr>
+	    					<td>1</td>
+	    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
+	    					<td>2019.06.29 ~ 2019.07.04</td>
+	    					<td>2019.07.08</td>
+	    				</tr>
+	    				<tr>
+	    					<td>1</td>
+	    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
+	    					<td>2019.06.29 ~ 2019.07.04</td>
+	    					<td>2019.07.08</td>
+	    				</tr>
+	    				<tr>
+	    					<td>1</td>
+	    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
+	    					<td>2019.06.29 ~ 2019.07.04</td>
+	    					<td>2019.07.08</td>
+	    				</tr>
+	    				<tr>
+	    					<td>1</td>
+	    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
+	    					<td>2019.06.29 ~ 2019.07.04</td>
+	    					<td>2019.07.08</td>
+	    				</tr>
+	    				<tr>
+	    					<td>1</td>
+	    					<td><a href="event_lotto.do">STEAK ACADEMY</a></td>
+	    					<td>2019.06.29 ~ 2019.07.04</td>
+	    					<td>2019.07.08</td>
+	    				</tr>
+	    				
+	    			</table>
+	    		</div>
+	   		</div> -->	
 		</div>
-
->>>>>>> refs/heads/bang1
+		    	
 	</div>
 </body>
 </html>

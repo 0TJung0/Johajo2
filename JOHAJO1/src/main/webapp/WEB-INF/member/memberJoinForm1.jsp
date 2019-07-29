@@ -264,7 +264,7 @@ $(function(){
 		</ul>
 	</div>
 	<div class="btnform">
-		<div class="btn "><a href="location.href='main.do'">취소</a></div>
+		<div class="btn "><a href="main.do">취소</a></div>
 		<div class="btn btn2"><a href="javascript:checkfn()">동의</a></div>
 	</div>
 	

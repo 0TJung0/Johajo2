@@ -4,6 +4,7 @@ package spring.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import spring.data.MemberDto;
 import spring.service.MemberService;
 
@@ -95,7 +95,7 @@ public class MemberController {
 			HttpSession session,@RequestParam(required=false) String path){
 		
 		
-		System.out.println("path"+path);
+		//System.out.println("path"+path);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("password", pw);
@@ -118,7 +118,7 @@ public class MemberController {
             	if(path!=null){
                  	return "redirect:"+path;
                 }else{
-                return "/member/memberLoginOk";
+                return "redirect:main.do";
                 }
              }
     }else{
@@ -246,9 +246,11 @@ public class MemberController {
 	//mygage 이동
 	@RequestMapping("/mypageform.do")
 	public String myPageForm(HttpSession session,
-			HttpServletResponse response) {
+			HttpServletResponse response,Model model) {
 		
 		Integer midx = (Integer)session.getAttribute("log_idx");
+		
+		//login check
 		if(midx == null) {
 			System.out.println("로그인해주세요");
 			response.setContentType("text/html;charset=utf-8");
@@ -265,8 +267,25 @@ public class MemberController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
 			return null;
 		}
+		
+		
+		//예약 데이터 출력
+		//point
+		int point = service.usePoint(midx);
+				
+		//쿠폰 출력
+		List<MemberDto> clist = service.MemberCouponSelect(midx);
+		//qna count
+		MemberDto qdto = service.MemberQnaCountSelect(midx);
+		qdto.setPoint(point);
+		
+		model.addAttribute("clist",clist);
+		model.addAttribute("qdto",qdto);
+		
 		
 		return "/member/mypageMain";
 	}
@@ -321,6 +340,18 @@ public class MemberController {
 		map.put("idx", String.valueOf(dto.getIdx()));
 		map.put("password", nowpass);
 		
+		System.out.println("idx : "+dto.getIdx());
+		System.out.println("pss :"+dto.getPassword());
+		System.out.println("name : "+dto.getName());
+		System.out.println("hp : "+dto.getHp());
+		System.out.println("mail : "+dto.getEmail());
+		System.out.println("gender : "+dto.getGender());
+		System.out.println("birth : "+dto.getBirth());
+		
+		
+		
+		
+		
 		int cnt = service.getUserCheckCount(map);
 		if(cnt == 1) {
 			dto.setHp(dto.getHp1()+"-"+dto.getHp2()+"-"+dto.getHp3());
@@ -329,6 +360,8 @@ public class MemberController {
 				//System.out.println("새비번 사용한다"+newpass.length());
 				dto.setPassword(newpass);
 				service.memberUpdate(dto);
+				
+				
 				
 				session.setAttribute("mupdate","true");
 				session.removeAttribute("loginok");
@@ -343,7 +376,7 @@ public class MemberController {
 				dto.setPassword(nowpass);
 				service.memberUpdate(dto);
 				session.setAttribute("mupdate","true");
-				return  "/member/mypageMain";
+				return  "redirect:mypageform.do";
 			}
 			
 		}else {

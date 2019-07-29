@@ -2,11 +2,12 @@
  /* top */
  /*main menu*/
  	img.logo{
+	 	position: absolute;
 		float: left;
-	    width: 156px;
-	    height: 151px;
-	    /* padding-bottom: 22px; */
+	    width: 138px;
+	    height: 132px;
 	    margin-left: 20px;
+    
 	}
 	div.topMenu{
 		position: relative;
@@ -18,8 +19,7 @@
 	}
 	div.mainMenu{
 	    position: relative;
-	    width: 920px;
-	    /* margin: 0 auto; */
+	    width: 100%;
 	    float: left;
 	}
 	div.mainMenu>ul{
@@ -63,19 +63,19 @@
 	}
 	
 	div.mainMenu ul.sub.s1{
-		padding-left:299px;
+		padding-left:477px;
 	}
 	
 	div.mainMenu ul.sub.s2{
-		padding-left:401px;
+		padding-left:581px;
 	}
 	
 	div.mainMenu ul.sub.s3{
-		padding-left:564px;
+		padding-left:745px;
 	}
 	
 	div.mainMenu ul.sub.s4{
-		padding-left:557px;
+		padding-left:733px;
 	}
 	
 	
@@ -195,6 +195,12 @@
 	.eventTab ul li,
 	.selectTab ul li{
 		list-style: none;
+	}
+	
+	
+	.eventTab section.regular div a img{
+		width: 207px;
+		height: 207px;
 	}
 	.selectTab{
 		position: relative;
