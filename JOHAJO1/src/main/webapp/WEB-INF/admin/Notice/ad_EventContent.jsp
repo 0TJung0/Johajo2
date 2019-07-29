@@ -16,18 +16,19 @@
 				<th>
 					&nbsp;${dto.title}
 					<span style="margin-left: 500px; color: lightgray;">
-						<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
+						<fmt:formatDate value="${dto.writedate}" pattern="yyyy-MM-dd"/>
 					</span>
 				</th>
 			</tr>
 			<tr height="400">
 				<td valign="top">
-					<span>${dto.contents}</span>
+					<span>${dto.con}</span>
+					
 				</td>
 			</tr>
 		</table>
 		<div>
-			<button onclick="location.href='ad_NoticeList.do'">목록</button>
+			<button type="button" onclick="location.href='ad_NoticeList.do'">목록</button>
 		</div>
 	</body>
 </html>

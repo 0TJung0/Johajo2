@@ -39,6 +39,13 @@
 		var offset = $("div#"+move).offset();
 		$('html,body').animate({scrollTop:(offset.top-$(window).height()*0.15)},400);
 	}
+	function insertCoupon()
+	{
+		var mem_idx=$(".selectId").val();
+		var eve_idx=$(".selectEvent").val();
+		location.href='insertCouponMember.do?mem_idx='+mem_idx+"&eve_idx="+eve_idx;
+		alert(mem_idx+","+eve_idx);
+	}
 </script>
 </head>
 <body>
@@ -62,7 +69,7 @@
 				<c:if test="${ndto.hide==1}">
 				<tr>
 					<td align="center">
-						<a href="noticelist_content.do?idx=${ndto.idx}">${ndto.title}</a>
+						<a href="ad_noticeContent.do?idx=${ndto.idx}">${ndto.title}</a>
 					</td>
 					<td align="center">
 						<fmt:formatDate value="${ndto.writeday}" pattern="yyyy-MM-dd"/>
@@ -89,7 +96,7 @@
 				<c:if test="${ndto.hide==0}">
 				<tr>	
 					<td align="center">
-						<a href="noticelist_content.do?idx=${ndto.idx}">${ndto.title}</a>
+						<a href="ad_noticeContent.do?idx=${ndto.idx}">${ndto.title}</a>
 					</td>
 					<td align="center">
 						<fmt:formatDate value="${ndto.writeday}" pattern="yyyy-MM-dd"/>
@@ -125,7 +132,7 @@
 						<c:if test="${fdto.kind==2}">쿠폰</c:if>
 						<c:if test="${fdto.kind==3}">예약</c:if>
 					</td>
-					<td>${fdto.title}</td>
+					<td><a href="ad_FaQContent.do?idx=${fdto.idx }">${fdto.title}</a></td>
 					<td>
 						<fmt:formatDate value="${fdto.writeday }" pattern="yyyy-MM-dd"/>
 					</td>
@@ -154,7 +161,7 @@
 						<c:if test="${fdto.kind==2}">쿠폰</c:if>
 						<c:if test="${fdto.kind==3}">예약</c:if>
 					</td>
-					<td>${fdto.title}</td>
+					<td><a href="ad_FaQContent.do?idx=${fdto.idx }">${fdto.title}</a></td>
 					<td>
 					<fmt:formatDate value="${fdto.writeday }" pattern="yyyy-MM-dd"/>
 					</td>
@@ -170,6 +177,18 @@
 	</div>
 </div>
 <div id="Adevent_List">
+	<button onclick="location.href='EventInsertForm.do'">이벤트 추가</button>
+	<button onclick="insertCoupon()" class="couponBtn">쿠폰 지급</button>
+	<select class="selectId">
+		<c:forEach var="mlist" items="${mlist }">
+			<option value="${mlist.idx }">${mlist.name },${mlist.id}</option>
+		</c:forEach>
+	</select>
+	<select class="selectEvent">
+		<c:forEach var="adto" items="${alist }">
+			<option value="${adto.idx }">${adto.title }</option>
+		</c:forEach>
+	</select>
 	<table border="1">
 		<caption>진행중인 이벤트</caption>
 		<tr>
@@ -177,13 +196,18 @@
 			<th>작성일</th>
 			<th>시작일</th>
 			<th>종료일</th>
+			<th>관리</th>
 		</tr>
 		<c:forEach var="adto" items="${alist }">
 			<tr>
-				<td>${adto.title }</td>
+				<td><a href="ad_eventContent.do?idx=${adto.idx }">${adto.title }</a></td>
 				<td>${adto.writedate}</td>
 				<td>${adto.startday }</td>
 				<td>${adto.endday }</td>
+				<td>
+					<button onclick="location.href='deleteEvent.do?idx=${adto.idx}'">삭제</button>
+					<button onclick="location.href='updateEventForm.do?idx=${adto.idx}'">수정</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -194,13 +218,18 @@
 			<th>작성일</th>
 			<th>시작일</th>
 			<th>종료일</th>
+			<th>관리</th>
 		</tr>
 		<c:forEach var="undto" items="${unlist }">
 			<tr>
-				<td>${undto.title }</td>
+				<td><a href="ad_eventContent.do?idx=${undto.idx }">${undto.title }</a></td>
 				<td>${undto.writedate}</td>
 				<td>${undto.startday }</td>
 				<td>${undto.endday }</td>
+				<td>
+					<button onclick="location.href='deleteEvent.do?idx=${undto.idx}'">삭제</button>
+					<button onclick="location.href='updateEventForm.do?idx=${undto.idx}'">수정</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -211,13 +240,18 @@
 			<th>작성일</th>
 			<th>시작일</th>
 			<th>종료일</th>
+			<th>관리</th>
 		</tr>
 		<c:forEach var="redto" items="${relist }">
 			<tr>
-				<td>${redto.title }</td>
+				<td><a href="ad_eventContent.do?idx=${redto.idx }">${redto.title }</a></td>
 				<td>${redto.writedate}</td>
 				<td>${redto.startday }</td>
 				<td>${redto.endday }</td>
+				<td>
+				<button onclick="location.href='deleteEvent.do?idx=${redto.idx}'">삭제</button>
+				<button onclick="location.href='updateEventForm.do?idx=${redto.idx}'">수정</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -30,6 +30,7 @@ $(function(){
 <body>
 <%
 	String loginok   = (String)session.getAttribute("loginok");		
+	String log_id   = (String)session.getAttribute("log_id");
 %>
 <c:set var="root" value="<%=request.getContextPath() %>"></c:set>
 	<div class="topMenu">
@@ -47,6 +48,9 @@ $(function(){
 				 </c:if>
 				 
 				 <a href="#">CUSTOMER</a>
+				 <c:if test="${log_id =='manager'}">
+				 	<a href="admain.do">MANAGER</a>
+				 </c:if>
 			</span>
 		</div>	
 		<div class="mainMenu">

@@ -74,4 +74,9 @@ public class MemberService {
 	}
 
 
+	public List<MemberDto> memberList()
+	{
+		return dao.memberList();
+	}
+
 }

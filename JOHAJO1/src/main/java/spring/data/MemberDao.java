@@ -70,5 +70,9 @@ public class MemberDao  extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("getSqlSession");
 	}
 
+	public List<MemberDto> memberList()
+	{
+		return getSqlSession().selectList("memberList");
+	}
 
 }

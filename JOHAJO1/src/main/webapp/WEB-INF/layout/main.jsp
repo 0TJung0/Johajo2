@@ -182,9 +182,9 @@
 	<c:set var="eventArr" value="etc1.jpg,etc1.jpg,etc1.jpg,etc1.jpg,etc1.jpg"  />
 	<div class="eventTab">
 	   <section class="regular slider">
-	    <c:forEach var="evt" items="${eventArr}" varStatus="i">
+	    <c:forEach var="evt" items="${elist}" varStatus="i">
 	    	<div>
-	          <a href="#"><img src="image/${evt}"></a>
+	          <a href="#">${evt.title }<img src="./eventImg/${evt.title_img }"></a>
 	    	</div>
 		</c:forEach>
 	  </section>

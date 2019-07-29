@@ -40,19 +40,21 @@
 	}
 </script>
 </head>
+
 <body>
-		
+
 	<div id="notice_dispaly">
 		<span class="logo mt100">EVENT</span> <span class="icon map5-1"></span>
 
 		<div class="eventTab">
 			<ul class="tab" id="tab">
 				<li class="e_li">진행중인 이벤트</li>
+
 				<li class="e_li">마감된 이벤트</li>
 			</ul>
 		</div>
 		
-		
+
 		<div class="tab_con" id="tab_con">
     		<div>
     			<c:forEach var="dto" items="${alist}">
@@ -150,7 +152,6 @@
 	    		</div>
 	   		</div> -->	
 		</div>
-		    	
 	</div>
 </body>
 </html>

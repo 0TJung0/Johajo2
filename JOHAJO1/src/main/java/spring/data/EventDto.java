@@ -1,13 +1,12 @@
 package spring.data;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class EventDto {
 	
 	private int idx;
 	private String title;
-	private String content;
+	private String con;
 	private String title_img;
 	private String main_img;
 	private Date writedate;
@@ -28,11 +27,11 @@ public class EventDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
+	public String getCon() {
+		return con;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setCon(String con) {
+		this.con = con;
 	}
 	public String getTitle_img() {
 		return title_img;

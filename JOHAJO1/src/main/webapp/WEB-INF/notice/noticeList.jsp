@@ -21,7 +21,9 @@
 			var index=$(this).attr("title");
 			$("tr.notice_content").eq(index).toggle();
 		});
+		
 	});
+
 	
 	
 </script>
@@ -32,6 +34,7 @@
 	<span class="icon map5-1"></span>
 		<table>
 			<c:forEach var="dto" items="${list }" varStatus="index">
+			<input type="hidden" value="${dto.topnotice }" class="hi_topnotice">
 				<tr class="notice_title" title="${index.index }">
 					<td width="10%">${index.count }</td>
 					<td width="70%">${dto.title }</td>
@@ -41,7 +44,9 @@
 					
 				</tr>
  				<tr class="notice_content">
-					<td colspan="3" width="20%">${dto.contents }</td>
+					<td colspan="3" width="20%">${dto.contents }
+					<img src="./noticeImg/${dto.photo }">
+					</td>
 				</tr>
 				
 					

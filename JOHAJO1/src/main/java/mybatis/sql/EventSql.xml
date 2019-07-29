@@ -22,5 +22,13 @@
 	<select id="eventStart" resultType="edto">
 		<![CDATA[select * from event where to_char(startday,'yyyymmdd')>to_char(sysdate,'yyyymmdd')]]>
 	</select>
-	
+	<delete id="eventDelete" parameterType="int">
+		delete from event where idx=#{idx}
+	</delete>
+	<insert id="eventInsert" parameterType="edto">
+		insert into event values(SEQ_EVENT.NEXTVAL,#{title},#{con},#{title_img},#{main_img},sysdate,#{startday},#{endday},0,#{discount_rate},#{validity_month})
+	</insert>
+	<update id="eventUpdate" parameterType="edto">
+		update event set title=#{title},con=#{con},title_img=#{title_img},main_img=#{main_img},writedate=sysdate,startday=#{startday},endday=#{endday},discount_rate=#{discount_rate},validity_month=#{validity_month} where idx=#{idx}
+	</update>
 </mapper>

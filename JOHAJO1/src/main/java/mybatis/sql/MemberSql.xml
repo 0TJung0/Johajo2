@@ -65,11 +65,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from coupon c, member m
 		where c.member_f = m.idx and use = 0 and m.idx=#{idx} 
 	</select>
-	
+
 	<select id="userQnaCountSelect" parameterType="int" resultType="mdto">
 		select count(case when anw=0 then 1 end) as finish,
 		count(case when anw=1 then 1 end) as stand
 		from qna  where mem_f=#{idx}
+	</select>	
+
+	<select id="memberList" resultType="mdto">
+		select * from member
 	</select>
 	
 </mapper>

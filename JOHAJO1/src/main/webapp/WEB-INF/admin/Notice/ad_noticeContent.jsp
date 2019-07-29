@@ -23,6 +23,9 @@
 			<tr height="400">
 				<td valign="top">
 					<span>${dto.contents}</span>
+					<c:if test="${dto.photo!='noimage' }">
+						<img src="./noticeImg/${dto.photo }">
+					</c:if>
 				</td>
 			</tr>
 		</table>
