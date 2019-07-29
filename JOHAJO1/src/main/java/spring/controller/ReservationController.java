@@ -77,12 +77,12 @@ public class ReservationController {
 		  model.addObject("se_name",se_name);
 	  }
 	  String mid=(String)session.getAttribute("log_id");
-	  System.out.println("no_memeber"+nmid);
-	  System.out.println("mid"+mid);
+	  //System.out.println("no_memeber"+nmid);
+	  //System.out.println("mid"+mid);
 	 
 	  if(nmid==null&&mid==null){
-		  System.out.println("no_memeber"+nmid);
-		  System.out.println("mid"+mid);
+		  //System.out.println("no_memeber"+nmid);
+		  //System.out.println("mid"+mid);
 		  check=0;
 	  }
 	  //System.out.println("check"+check);
@@ -119,7 +119,7 @@ public class ReservationController {
 	   //System.out.println("마지막날"+cal.get(Calendar.DATE));
 	   int mon=month;
 	   
-	   System.out.println(year2);
+	   //System.out.println(year2);
 	   ModelAndView model = new ModelAndView();
 	  //month++;
       if(mon<0){
@@ -146,7 +146,7 @@ public class ReservationController {
       model.addObject("currentMonth",currentMonth+1);
       model.addObject("currentyear",year);
       model.addObject("year",year2);
-      model.addObject("today",today);
+      model.addObject("today",today+1);
       model.addObject("lastday",lastday);
       model.addObject("month",mon+1);
       model.addObject("week",week);
@@ -170,7 +170,7 @@ public class ReservationController {
    @RequestMapping("/resAppetizer2.do")
    public ModelAndView addlist2(@RequestParam int idx,@RequestParam String name,HttpServletRequest req)throws Exception
    {
-	  System.out.println("이곳1");
+	  //System.out.println("이곳1");
       ModelAndView model=new ModelAndView();
       FoodDto dto=new FoodDto();
       dto=fservice.getOneFood(idx);
@@ -220,8 +220,8 @@ public class ReservationController {
 	   Integer mid=(Integer)session.getAttribute("log_idx");
 	   int check=mid!=null?1:2;
 	   ModelAndView model=new ModelAndView();
-	   System.out.println("check"+check);
-	   System.out.println("se_nmname"+se_nmname);
+	   //System.out.println("check"+check);
+	   //System.out.println("se_nmname"+se_nmname);
 	  
 	   model.addObject("check",check);
 	   model.addObject("hmonth",hmonth);
@@ -300,54 +300,43 @@ public class ReservationController {
    //장바구니에 추가하는 코드
    @RequestMapping(value="/nmbasketadd.do",method=RequestMethod.GET)
    public ModelAndView addbasket(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
-		   @RequestParam String restable,@RequestParam int fidx,@RequestParam String restime)throws Exception{
+		    String restable, int fidx, String restime,String resstore)throws Exception{
 	   ModelAndView model = new ModelAndView();
 	   Map<String, Integer> map=new HashMap<String, Integer>();
-	   System.out.println("restime"+restime);
-	   //System.out.println("se_nmname"+se_nmname);
+	   //System.out.println("restime"+restime);
 	   if(!se_nmname.equals("A")){ 
 		   Integer se_n=(Integer)session.getAttribute(se_nmname);
 		   NmBasketDto dto=new NmBasketDto();
-		   /*map.put("fidx",fidx);
-		   map.put("nmidx",se_n);
-		   map.put("restime", restime);*/
 		   dto.setFidx(fidx);
 		   dto.setNmidx(se_n);
 		   dto.setRestime(restime);
 		   dto.setRestable(restable);
-		   //System.out.println(dto.getFidx());
-		   //System.out.println(dto.getNmidx());
-		   //System.out.println(dto.getRestime());
-		  // System.out.println("nmserveicecheck"+nm_basket_service.insertCheck(dto));
-		  // System.out.println("restime "+dto.getRestime());
+		   dto.setResstore(resstore);
+		   //System.out.println("stroe dto"+dto.getRestable());
 		   if(nm_basket_service.insertCheck(dto)<=0){
+			   System.out.println("stro1");
 			   nm_basket_service.insertnMemberBasket(dto);
 		   }else{
+			   System.out.println("stro2");
 			   nm_basket_service.updatenMemberBasket(dto);
 		   }
 		   
 	   }else{
-		   System.out.println("요기3");
+		   //System.out.println("요기3");
 		   Integer midx=(Integer)session.getAttribute("log_idx");
 		   singlebasketDto dto=new singlebasketDto();
 		   dto.setFidx(fidx);
 		   dto.setMidx(midx);
 		   dto.setRestime(restime);
 		   dto.setRestable(restable);
-		   //map.put("fidx",fidx);
-		   //map.put("midx",midx);
-		   //System.out.println("fidx"+fidx);
-		   //System.out.println("midx"+midx);
-		   //System.out.println(dto.getFidx());
-		   //System.out.println(dto.getMidx());
-		  // System.out.println(dto.getRestime());
-		   //System.out.println("mbasketcheck"+basket_service.checkmbasket(dto));
+		   dto.setResstore(resstore);
+		   //System.out.println("stroe dto"+dto.getRestable());
 		   if(basket_service.checkmbasket(dto)<=0) {
 			   basket_service.insertmbasket(dto);
-			   System.out.println("요기33");
+			   System.out.println("stro3");
 		   }else {
 			   basket_service.updatembasket(dto);
-			   System.out.println("요기333");
+			   System.out.println("stro4");
 		   }		   
 	   }
 	   model.setViewName("/res/reservationList");
@@ -382,19 +371,157 @@ public class ReservationController {
 		return model;
 	}
 	
-	
-	@RequestMapping(value="/rescoursesel.do",method=RequestMethod.GET)
+	//코스 리스트 출력
+	@RequestMapping(value="/rescoursesellist.do",method=RequestMethod.GET)
 	 public @ResponseBody List<CourseDto> rescourselist(HttpSession session){	
 		List<CourseDto> list = new ArrayList<CourseDto>(); 
 		list=cou_service.resCourselist();
 		return list;
 		
 	 }
-	
-	@RequestMapping(value="resbestsel.do",method=RequestMethod.GET)
+	//베스트 메뉴 탭 선택시
+	@RequestMapping(value="/resbestsel.do",method=RequestMethod.GET)
 	 public @ResponseBody List<FoodDto> resHotlist(HttpSession session){
 		List<FoodDto> list = new ArrayList<FoodDto>(); 
 		list=fservice.getBestfive();
 		return list;
+	}
+	//장바구니에 있는 선택한 메뉴 출력 
+	@RequestMapping(value="/ressellist.do",method=RequestMethod.GET)
+	 public @ResponseBody List<mSearchDto> ressellist(HttpSession session,@RequestParam(required=false,defaultValue="A") String se_nmname,
+			 @RequestParam String restable,@RequestParam String restime,@RequestParam String resstore)throws Exception{
+		List<mSearchDto> list=new ArrayList<mSearchDto>();
+		
+		if(se_nmname.equals("A")) {
+			singlebasketDto sdto=new singlebasketDto();
+			int midx=(Integer)session.getAttribute("log_idx");
+			sdto.setMidx(midx);
+			sdto.setRestime(restime);
+			sdto.setRestable(restable);
+			sdto.setResstore(resstore);
+			list=basket_service.getbasketlist(sdto);
+		}else {
+			NmBasketDto nmdto=new NmBasketDto();
+			int nmidx=(Integer)session.getAttribute(se_nmname);
+			nmdto.setNmidx(nmidx);
+			nmdto.setRestable(restable);
+			nmdto.setRestime(restime);
+			nmdto.setResstore(resstore);
+			list=nm_basket_service.nmBasketList(nmdto);
+		}
+		
+		
+		return list;
+	}
+	//코스 메뉴선택시
+	@RequestMapping(value="/rescoursesel.do",method=RequestMethod.GET)
+	public void rescoursesel(HttpSession session,@RequestParam int idx,@RequestParam(defaultValue="A",required=false)String se_nmname,
+			   @RequestParam String restable,@RequestParam String restime,@RequestParam String resstore)throws Exception{
+		CourseDto cdto=new CourseDto();
+		cdto=cou_service.resCourseOne(idx);
+		int[] nidx= {cdto.getAppe_p(),cdto.getSoup_p(),cdto.getMain_p(),cdto.getSide_p(),cdto.getDes_p(),cdto.getDrink_p()};
+		for(int s:nidx) {
+		if(!se_nmname.equals("A")){ 
+			   Integer se_n=(Integer)session.getAttribute(se_nmname);
+			   NmBasketDto nmdto=new NmBasketDto();
+			   nmdto.setFidx(s);
+			   nmdto.setNmidx(se_n);
+			   nmdto.setRestime(restime);
+			   nmdto.setRestable(restable);
+			   nmdto.setResstore(resstore);
+			   if(nm_basket_service.insertCheck(nmdto)<=0){
+				   nm_basket_service.insertnMemberBasket(nmdto);
+			   }else{
+				   nm_basket_service.updatenMemberBasket(nmdto);
+			   }
+			   
+		   }else{
+			   System.out.println("요기3");
+			   Integer midx=(Integer)session.getAttribute("log_idx");
+			   singlebasketDto mdto=new singlebasketDto();
+			   mdto.setFidx(s);
+			   mdto.setMidx(midx);
+			   mdto.setRestime(restime);
+			   mdto.setRestable(restable);
+			   mdto.setResstore(resstore);
+			   if(basket_service.checkmbasket(mdto)<=0) {
+				   basket_service.insertmbasket(mdto);
+			   }else {
+				   basket_service.updatembasket(mdto);
+			   }		 
+		   }
+		}
+	}
+	//장바구니 db에서 count낮추기 0되면 삭제
+	
+	@RequestMapping(value="/countdel.do",method=RequestMethod.GET)
+	@ResponseBody
+	public void countdel(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
+		    String restable, String fname, String restime,String resstore) {
+		System.out.println("fname"+fname);
+		int fidx=fservice.getFoodIdx(fname);
+		System.out.println("fidx"+fidx);
+		if(se_nmname!="A") {
+			NmBasketDto dto = new NmBasketDto();
+			//ReservationDto dto = new ReservationDto()
+			int nmidx=(Integer) session.getAttribute(se_nmname);
+			dto.setNmidx(nmidx);
+			dto.setFidx(fidx);
+			dto.setRestable(restable);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			System.out.println(dto.getNmidx());
+			System.out.println(dto.getFidx());
+			System.out.println(dto.getRestable());
+			System.out.println(dto.getResstore());
+			System.out.println(dto.getRestime());
+			int count=nm_basket_service.nmBasketcountcheck(dto);
+			System.out.println(count);
+			if(count>1) {
+				nm_basket_service.updatendelBasket(dto);
+			}else {
+				nm_basket_service.nmBasketDelete(dto);
+			}
+		}else {
+			singlebasketDto dto=new singlebasketDto();
+			int midx=(Integer) session.getAttribute("log_idx");
+			dto.setMidx(midx);
+			dto.setFidx(fidx);
+			dto.setRestable(restable);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			basket_service.mBasketaddupdate(dto);
+		}
+		
+	}
+	//장바구니 카운트 올려주는
+	@RequestMapping(value="/countadd.do",method=RequestMethod.GET)
+	@ResponseBody
+	public void countadd(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
+		    String restable, String fname, String restime,String resstore){
+		int fidx=fservice.getFoodIdx(fname);
+		if(se_nmname.equals("A")) {
+			
+			singlebasketDto dto=new singlebasketDto();
+			int midx=(Integer) session.getAttribute("log_idx");
+			dto.setMidx(midx);
+			dto.setFidx(fidx);
+			dto.setRestable(restable);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			basket_service.mBasketaddupdate(dto);
+		}else {
+			NmBasketDto dto = new NmBasketDto();
+			
+			int nmidx=(Integer) session.getAttribute(se_nmname);
+			dto.setNmidx(nmidx);
+			dto.setFidx(fidx);
+			dto.setRestable(restable);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			nm_basket_service.updatenMemberBasket(dto);
+			
+		}
+		
 	}
 }

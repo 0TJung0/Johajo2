@@ -29,5 +29,7 @@
 	<select id="rescourselist" parameterType="String" resultType="cdto">
 		select * from course 
 	</select>
-
+	<select id="rescourseOne" parameterType="int" resultType="cdto">
+		select * from course where idx=#{idx}
+	</select>
 </mapper>

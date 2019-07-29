@@ -2,6 +2,7 @@ package spring.service;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,13 @@ public class CouponService {
 		// TODO Auto-generated method stub
 		return dao.getDataCount(map);
 	}
-
-	
+	public int getCouponCheck(int idx) {
+		return dao.couponlistcheck(idx);
+	}
+	public List<CouponDto> getCouponlist(int idx){
+		return dao.couponlist(idx);
+	}
+	public int getCoupondiscount(int idx) {
+		return dao.getcouponediscount(idx);
+	}
 }

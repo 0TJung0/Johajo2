@@ -8,4 +8,17 @@
 		insert into coupon(idx,coupon_name,discount,member_f,event_f,use,validity) values
 		(seq_coupon.nextval,#{coupon_name},#{discount},${member_f},${event_f},0,to_date('${validity}','DD/MM/RR'))
 	</insert>
+	<select id="couponlistcheck" parameterType="int" resultType="int">
+		<![CDATA[
+		select count(*) from coupon where member_f=#{idx} and endday<=to_date(sysdate,'DD/MM/RR')
+		]]>
+	</select>
+	<select id="couponlist" parameterType="int" resultType="coudto">
+		<![CDATA[
+		select * from coupon where member_f=#{idx} and endday<=to_date(sysdate,'DD/MM/RR')
+		]]>
+	</select>
+	<select id="couponegetdiscount" parameterType="int" resultType="int">
+		select discount from coupon where idx=#{idx}
+	</select>
 </mapper>

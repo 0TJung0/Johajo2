@@ -4,9 +4,24 @@ package spring.data;
 public class mSearchDto {
 	private int idx;
 	private String fname;
+	private String imgname;
 	private int price;
 	private int count;
 	private String today;
+	
+	
+	public String getImgname() {
+		return imgname;
+	}
+	public void setImgname(String imgname) {
+		this.imgname = imgname;
+	}
+	public String getImg_name() {
+		return imgname;
+	}
+	public void setImg_name(String imgname) {
+		this.imgname = imgname;
+	}
 	public int getIdx() {
 		return idx;
 	}

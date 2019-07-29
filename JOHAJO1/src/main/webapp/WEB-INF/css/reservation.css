@@ -8,6 +8,23 @@ tr td a:HOVER{
 	color:blue;
 	cursor: pointer;
 }
+/* .resselect{
+	display: none;
+} */
+b#countb:hover{
+	display: block;
+}
+#countbtn{
+	display: none;
+}
+
+.page-content-wrapper{
+	position: relative;
+	float: left;
+}
+.sidebar1{
+	position: relative;
+}
 .selmenu{
 	display: none;
 }

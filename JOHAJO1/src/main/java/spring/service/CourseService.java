@@ -42,4 +42,7 @@ public class CourseService {
 	public List<CourseDto> resCourselist(){
 		return dao.rescourselist();
 	}
+	public CourseDto resCourseOne(int idx) {
+		return dao.rescourseOne(idx);
+	}
 }

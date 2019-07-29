@@ -10,8 +10,15 @@ public class singlebasketDto {
 	private int residx;
 	private String restime;
 	private String restable;
+	private String resstore;
 	
 	
+	public String getResstore() {
+		return resstore;
+	}
+	public void setResstore(String resstore) {
+		this.resstore = resstore;
+	}
 	public String getRestable() {
 		return restable;
 	}

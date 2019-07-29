@@ -25,4 +25,7 @@ public class FoodService {
 	public List<FoodDto> getBestfive(){
 		return dao.getBestfive();
 	}
+	public int getFoodIdx(String fname) {
+		return dao.getFoodIdx(fname);
+	}
 }

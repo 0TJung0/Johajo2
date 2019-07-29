@@ -27,95 +27,164 @@ $(function(){
 	str1+="<tr><th>예약좌석</th><th>"+sit+"</th></tr>";
 	str1+="</table>";
 	str1+="<div class='out3'></div>"
+	str1+="총 가격<b class='price'></b><br>"
 	if(check==1){
-		str1+="<b class='usecoupon'>사용쿠폰<b><button type='button' class='couponbtn'>쿠폰 사용하기</button>"
-		str1+="포인트 사용 <input type='text' size=5 class='point'><b>사용가능 포인트 : ${point}</b><Button type='button' class='usepoint'>포인트사용</button>";
-		str1+="<br><button type='button' class='resmfinbtn'>예약하기</button>"
+		str1+="<b class='usecoupon'>사용쿠폰<b><button type='button' class='couponbtn' onclick='coupongetlist()'>쿠폰 사용하기</button><div class='coupon'></div><br>"
+		str1+="포인트 사용 <input type='text' size=5 class='point'>사용가능 포인트 : <b class='havapoint'>${point}<b><Button type='button' class='usepoint'>포인트사용</button><br>";
+		str1+="결제금액<b class='resprice'></b>"
+		str1+="<br><button type='button' class='resfinbtn'>예약하기</button>"
 	}else{
 		str1+="핸드폰 번호  010<input type='text' class='nmhp' placeholder='-없이 입력해주세요'><br>";
 		str1+="비밀번호 <input type='password' class='nmpass' placeholder='비밀번호를 입력해주세요'><br>";
-		str1+="<button type='button' class='resfinbtn'>예약하기</button>"
+		str1+="결제금액<b class='resprice'></b>"
+		str1+="<br><button type='button' class='resfinbtn'>예약하기</button>"
 	}
 	
 	
 	$(document).on('click','button.resfinbtn',function() { 
+		  var usecouponidx=$(".couponeidx").val();
+		  var usepoint=$(".usepoint").val();
 		  var hp=$(".nmhp").val();
 		  var pass=$(".nmpass").val();
+		  var totalprice=$("b.resprice").text();
+		 
 		  $.ajax({
 	           url : "resfinsh.do",
 	           type : "GET",
-	           data:{"pass":pass,"hp":hp,"month":month,"day":day,"store":store,"time":time,"sit":sit,"course":course,"sid":sid},
+	           data:{"pass":pass,"hp":hp,"month":month,"day":day,"store":store,"totalprice":totalprice,
+	        	   "time":time,"sit":sit,"sid":sid,"usepoint":usepoint,"usecouponidx":usecouponidx},
 	           cache : false,
 	           success : function(res){
 	             var html = "";
 	              html+="예약이 완료되었습니다.";
-	              $("div.out3").html(html);  
-	            }
+	              $("div.finout").html(html);  
+	            },error : function( jqXHR, textStatus, errorThrown ) {
+	            	alert( jqXHR.status );
+		        }
 	                   
 	      });
 	  });
-	
-	
-	function nmlist(sid){
-		var sid=$(".se_name").val();
-		  $.ajax({
-	           url : "reservationfinnm.do",
-	           type : "GET",
-	           data:{"nsid":sid},
-	           cache : false,
-	           success : function(res){
-	             var html = "";
-	               for(var i=0; i<res.length; i++){
-	                   html +="음식명 ="+ res[i].fname+" 가격="+res[i].price+"갯수="+res[i].count+"<br>";
-	               }
-	               $("div.out3").html(html);             
-	           }
-	       });
-	}
-	function mlist(){
-		  $.ajax({
-	           url : "reservationfinm.do",
-	           type : "GET",
-	           cache : false,
-	           success : function(res){
-	             var html = "";
-	             /* html+="<ul style='border:1px solid gray;'><tr>";
-	             html+="<li>음식명</li>";
-	             html+="<li>가 격</li>";
-	             html+="<li>갯수</li>";
-	             html+="<li>삭제</li></ul>"; 
-	             html+="<ul>";*/
-	               for(var i=0; i<res.length; i++){
-	            	   html += res[i].fname+"</li><ul><li><input type='text' value="+res[i].count+" size=2></li><li class='price'>가격 : "+(res[i].price*res[i].count)+"</li><li><button type='button' idx="+res[i].idx+">삭제</button></li></ul>";
-	               }
-	              // html+="</li>"
-	               $("div.out3").html(html);             
-	           }
-	       });
-	}
 	$(".out1").html(str1);
-	console.log("check"+check);
-	if(check==1){
-		mlist();
-	}else{
-		nmlist();
-	}
-	
-	$(document).on('click','Button.usepoint',function() { 
-		var use=$(".point").val();
-		var p=price-use;
-		var str="<b>총 결제금액은"+p+"원 입니다</b>";
-		$("div.out2").html(str);
+	list();
+	$(document).on('keyup','.nmhp',function() { 
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
-	/* var checkUnload = true;
-    $(window).on("beforeunload", function(){
-        if(checkUnload){
-        	
-        	return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
-        }
-    }); */
+	
+	$(document).on('keyup','.point',function() { 
+		var price=$("b.resprice").text();
+		var thisprice=$(this).val();
+		var havapoint=$("b.havapoint").text();
+		//console.log("현재 포인트"+havapoint);
+		//console.log("사용 포인트"+thisprice);
+		//console.log("음식가격)"+price);
+		if(havapoint<thisprice){
+			alert("포인트가 부족합니다");
+			$(this).val(0);
+		}else if(thisprice>price){
+			alert("주문금액보다 높게 사용하실수 없습니다");
+			$(this).val(0);
+		}
+	});
+	$(document).on('click','Button.usepoint',function() { 
+		var price=$("b.resprice").text();
+		var use=$(".point").val();
+		console.log(use);
+		var p=price-use;
+		//var str="<b>총 결제금액은"+p+"원 입니다</b>";
+		$("b.resprice").html(p);
+		$(".usepoint").val(p);
+	});
+	
 
 });
+function list(){
+	var store=$(".hstore").val();
+	var time=$(".htime").val();
+	var sit=$(".hsit").val();
+	var sid=$(".se_name").val();
+	console.log("sid"+sid);
+	console.log(sit);
+	console.log(time);
+	console.log(store);
+	
+	  $.ajax({
+           url : "reservationlist.do",
+           type : "GET",
+           async:false,
+           data:{"se_nmname":sid,"sit":sit,"time":time,"store":store},
+           cache : false,
+           success : function(res){
+             var html = "";
+             var price=0;
+               for(var i=0; i<res.length; i++){
+            	   html += res[i].fname+"<b> 수량:"+res[i].count+"</b> 가격 : "+(res[i].price*res[i].count)+"<button type='button' idx="+res[i].idx+">삭제</button><br>";
+               	   price=price+(res[i].price*res[i].count);
+               }
+              // html+="</li>"
+               $("div.out3").html(html); 
+               $("b.price").html(price);
+               $("b.resprice").html(price);
+           }
+       });
+}
+
+function coupongetlist(){
+	$.ajax({
+           url : "coupongetlistcheck.do",
+           type : "GET",
+           success : function(res){
+        	   html="";
+        	   if(res>1){
+        		   html+="<select class='couponuse'>"
+        		   $.ajax({
+        	           url : "coupongetlist.do",
+        	           type : "GET",
+        	           async:false,
+        	           cache : false,
+        	           success : function(res){
+        	        	   for(var i=0; i<res.length; i++){
+        	        	   html+="<option value='"+res[i].idx+"'";
+        	        	   html+=">"+res[i].coupon_name;
+        	        	   html+="</option>";
+        	           }
+        	           }
+        			});
+        		    	html+="</select>"
+        		    	html+="<button type='button' onclick='couponuse()'>적용하기</button>";
+        		    	$("div.coupon").html(html);
+        	   }else{
+        		   html+="<b>사용 가능한 쿠폰이 없습니다</b>";
+        		   $("div.coupon").html(html);
+        	   }
+           }
+	});
+	
+}
+function couponuse(){
+	var couponeidx=$("select.couponuse").val();
+	var sprice=$("b.price").text();
+	var price=parseInt(sprice);
+	 $(".couponeidx").val(couponeidx);
+	var s=0;
+	$.ajax({
+        url : "coupongetdiscount.do",
+        type : "GET",
+        data:{"couponeidx":couponeidx},
+        async:false,
+        cache : false,
+        success : function(res){
+        	var v=0.00;
+        	v=res/100;
+        	s=0;
+        	s=price-(price*v);
+        	console.log(res);
+        	console.log(v);
+        	console.log(s);
+        	$("b.resprice").html(s); 
+        }
+       
+	});
+}
 </script>
 </head>
 <body>
@@ -128,26 +197,15 @@ $(function(){
 <input type="hidden" value="${hcourse }" class="hcourse">
 <input type="hidden" value="${se_name }" class="se_name">
 <input type="hidden" value="${check }" class="check">
-
-<div class="out1"></div>
-<div class="out2"></div>
-
+<input type="hidden" value="" class="usepoint">
+<input type="hidden" value="" class="couponeidx">
+<div class="finout">
+	<div class="out1"></div>
+	<div class="out2"></div>
+</div>
 </body>
 <script type="text/javascript">
-	$(".nmhp").keyup(function() { 
-		var s=$(this).val();
-		var sp=s.split();
-		console.log("sp"+sp[1]);
-		var str;
-		var len=split.length();
-		if(isNaN(parseInt(sp[len]))){
-			for(i=0;i<len-1;i++){
-				str+=sp[i];	
-				console.log(str);
-			}
-		}
-		$(this).val(str);
-	});
+	
 </script>
 
 </html>
