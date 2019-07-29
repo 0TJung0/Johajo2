@@ -7,28 +7,21 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<style type="text/css">
-		.list2_img{
-			width:200px;
-		}
-		.list2_div{
-			margin-left : 80px;
-			margin-top : 100px;
-		}
-	</style>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 	</head>
 	<body>
 		<div class="list2_div">
 			<img class="list2_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${list2.imgname}">
-			<br>
-			메뉴 ${list2.fname}<br>
-			칼로리 ${list2.calorie}<br>
-			가격 ${list2.price}<br>
+			<br><br>
+			&nbsp;<b class="list2fname">${list2.fname}</b><br>
+			&nbsp;<b class="list2content">${list2.calorie}kcal</b><br>
+			&nbsp;<b class="list2content">${list2.price}원</b><br>
 			<c:if test="${list2.origin != '미표시'}">
-				원산지 ${list2.origin}
+				&nbsp;<b class="list2origin">${list2.origin}</b>
 			</c:if>
 			<br>
-			<button onclick="self.close()">닫기</button>
+			<button onclick="self.close()" class="list2btn">닫기</button>	
 		</div>
 	</body>
 </html>

@@ -8,11 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<style type="text/css">
-	th,td{
-		border: 1px solid gray;
-	}
-</style>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+
 <script type="text/javascript">
 
 
@@ -62,7 +59,7 @@
 </head>
 <body>
 	<form action="coursewrite.do" method="post">
-		<table>
+		<table class="cwformtable">
 			<tr>
 				<th>appetizer</th>
 				<td>

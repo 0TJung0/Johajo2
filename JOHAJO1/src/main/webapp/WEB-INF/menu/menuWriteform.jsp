@@ -8,14 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<style type="text/css">
-	th,td{
-		border: 1px solid gray;
-	}
-	#imgname_second>img{
-		max-width: 200px;
-	}
-</style>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script type="text/javascript">
 //input file 이미지 미리보기 함수
 function previewImage(targetObj, previewId) {
@@ -101,7 +94,7 @@ function previewImage(targetObj, previewId) {
 </head>
 <body>
 	<form action="menuwrite.do" method="post" enctype="multipart/form-data">
-		<table>
+		<table class="menuwformtable">
 			<tr>
 				<th>종류</th>
 				<td>

@@ -8,11 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<style type="text/css">
-	th,td{
-		border: 1px solid gray;
-	}
-</style>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script type="text/javascript">
 $(function(){
 	//수정 전 메뉴명 셀렉트박스에 뜨게
@@ -66,7 +62,7 @@ $(function(){
 </head>
 <body>
 	<form action="courseupdate.do" method="post">
-		<table>
+		<table class="cuformtable">
 			<tr>
 				<th>appetizer</th>
 				<td>

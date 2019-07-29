@@ -49,4 +49,6 @@ public class MenuService {
 	{
 		dao.menuDelete(idx);
 	}
+	
+	
 }

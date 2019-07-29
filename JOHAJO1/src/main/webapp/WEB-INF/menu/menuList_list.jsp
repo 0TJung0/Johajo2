@@ -7,28 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	.menulist_list{
-		border: 1px solid lightgray;
-		width:100%;
-	}
-	.menulist_list li{
-		display: inline-block;
-	}
-	.menulist_img{
-		width: 300px;
-	}
-	.menu_fname{
-		font-size: 1.25em;
-	}
-</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script type="text/javascript">
 $(function(){
 	$(".menulist_img").click(function(){
 		var idx = $(this).attr("idx");
 		console.log(idx);
 		
-		window.open('http://localhost:9000/SpringTilesMybatis/menuselpop.do?idx='+idx, 'menulistPop', 'width=350, height=500, left=700, top=100,resizable=no', '_blank');
+		window.open('http://localhost:9000/SpringTilesMybatis/menuselpop.do?idx='+idx, 'menulistPop', 'width=500, height=650, left=700, top=50,resizable=no,', '_blank');
 	});
 	
 });

@@ -8,10 +8,38 @@
 		select distinct aname from allergy order by aname asc
 	</select>
 	<select id="allergyList" parameterType="String" resultType="adto">
-		select f.fname as aname,f.kind as f from allergy a INNER JOIN food f on a.f=f.idx where a.aname=#{aname} order by f.idx
+		select f.fname as aname,a.f from allergy a INNER JOIN food f on a.f=f.idx where a.aname=#{aname} order by f.idx
 	</select>
 	<select id="allergyAname" parameterType="String" resultType="adto">
 		select * from allergy where aname = #{aname}
 	</select>
+	<select id="allergyDataF" parameterType="int" resultType="adto">
+		select * from allergy where idx = #{idx}
+	</select>
+	<select id="menuDataIdx" parameterType="int" resultType="mndto">
+		select * from food where idx = #{idx}
+	</select>
+	<select id="allergyTotalList" resultType="adto"> 
+		select a.idx,f.fname fname,a.aname,a.f,f.kind as kind from allergy a INNER JOIN food f on a.f=f.idx order by a.aname
+	</select>
+	<select id="allergyTotaltap" resultType="adto">
+		select distinct a.f,f.fname fname,f.kind from allergy a INNER JOIN food f on a.f=f.idx order by a.f
+	</select>
+	<select id="allergylist2" resultType="adto">
+		select distinct a.f,a.aname,f.fname fname,f.kind from allergy a INNER JOIN food f on a.f=f.idx order by f.kind
+	</select>
 	
+	<!-- 관리자용 -->
+	<select id="allergymlist" resultType="mndto">
+		select idx,fname from food
+	</select>
+	<insert id="allergyInsert" parameterType="adto">
+		insert into allergy values (seq_allergy.nextval,#{aname},#{f})
+	</insert>
+	<update id="allergyUpdate" parameterType="adto">
+		update allergy set aname=#{aname} where idx=#{idx}
+	</update>
+	<delete id="allergyDelete" parameterType="int">
+		delete from allergy where idx = #{idx}
+	</delete>
 </mapper>

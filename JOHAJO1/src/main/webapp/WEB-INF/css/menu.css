@@ -14,7 +14,7 @@
 	
 
 /* menuList_sel.jsp */
-	.menu_list{
+	#menu_list{
 		position:relative;
 		float:left;
 		border:1px solid lightgray;
@@ -22,7 +22,7 @@
 		height: 100%;
 		
 	}
-	.menu_left{
+	#menu_left{
 		position:relative;
 		float:left;
 		border:0px solid gray;
@@ -30,14 +30,14 @@
 		height: 100%;
 		
 	}
-		.menu_mmain{
+		#menu_mmain{
 			position:relative;
 			float:left;
 			border:1px solid lightgray;
 			width: 100%;
 			height: 400px;
 		}
-	.menu_left2{
+	#menu_left2{
 		position:relative;
 		float:left;
 		border:0px solid gray;
@@ -45,21 +45,21 @@
 		height: 100%;
 		top:60%
 	}
-		.menu_soup{
+		#menu_soup{
 			position:relative;
 			float:left;
 			border:1px solid lightgray;
 			width: 50%;
 			height: 400px;
 		}
-		.menu_dess{
+		#menu_dess{
 			position:relative;
 			float:left;
 			border:1px solid lightgray;
 			width: 50%;
 			height: 400px;
 		}
-	.menu_right{
+	#menu_right{
 		position:relative;
 		float:left;
 		border:0px solid gray;
@@ -67,14 +67,14 @@
 		height: 100%;
 		
 	}
-		.menu_appe{
+		#menu_appe{
 			position:relative;
 			float:left;
 			border:1px solid lightgray;
 			width: 100%;
 			height: 400px;
 		}
-	.menu_right2{
+	#menu_right2{
 		position:relative;
 		float:left;
 		border:0px solid gray;
@@ -83,14 +83,14 @@
 		top:40%
 		
 	}
-		.menu_side{
+		#menu_side{
 			position:relative;
 			float:left;
 			border:1px solid lightgray;
 			width: 55%;
 			height: 400px;
 			}
-		.menu_drink{
+		#menu_drink{
 			position:relative;
 			float:left;
 			border:1px solid lightgray;
@@ -98,6 +98,42 @@
 			height: 400px;
 	
 		}
+		
+	/*------------------------*/
+	.menumore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin: 0 auto;
+	    top: 18%;
+	    display: none;
+	    
+	}
+	
+	.menubtn1{
+		background: none;
+		border: 2px solid black;
+	    padding: 4px 16px;
+		font-weight: bold;
+		font-size: 20px;
+		text-align: center;
+		
+		margin-left:40%;
+		margin-top:15%;
+	}
+	.menubtn{
+		background: none;
+		border: 2px solid black;
+	    padding: 4px 16px;
+		font-weight: bold;
+		font-size: 20px;
+		text-align: center;
+		
+		margin-left:28%;
+		margin-top:30%;
+	}
 		
 		
 		
@@ -108,4 +144,156 @@
 	top:0; left: 0;
 	width: 100%;
 	height: 100%;
+	}
+	
+	/* --------------------------------------------------- */
+	/* menuList_list.jsp */
+	
+	.menulist_list{
+		border: 1px solid lightgray;
+		width:100%;
+	}
+	.menulist_list li{
+		display: inline-block;
+	}
+	.menulist_img{
+		width: 300px;
+	}
+	.menu_fname{
+		font-size: 1.25em;
+	}
+	
+	/* -------------------------------------------------- */
+	/* menuList_list2 */
+	
+	.list2_img{
+		width:100%;
+		padding-top: 5%;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+	.list2_div{
+		margin-left : 80px;
+		margin-right: 80px;
+		margin-top : 100px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+	}
+	.list2btn{
+		padding:8px;
+		padding-left:12px;
+		padding-right:12px;
+		margin-left:20px;
+		margin-bottom:20px;
+		background-color: #F5F5F5;
+		border: 2px solid gray;
+		text-align: center;
+		color: #686868;
+	}
+	.list2fname{
+		padding-left: 15%;
+		font-size: 1.4em;	
+		line-height: 50px;
+		color: #686868;
+	}
+	.list2content{
+		padding-left: 70%;
+		line-height: 30px;
+		font-size: 0.8em;
+		color: #686868;
+	}
+	.list2origin{
+		padding-left: 60%;
+		line-height: 30px;
+		font-size: 0.8em;
+		color: #686868;
+	}
+	
+	/* ------------------------------------------------------------------ */
+	/* menuCourse */
+	.course{
+		border: 1px solid blue;
+		margin-left: 150px;
+		margin-right: 150px;
+		background-color: #F5F5F5;
+		position: relative;
+		height: 700px;
+	}
+
+	.course_list li.on {
+		background: #ff6600;
+		color: #fff;
+	}
+
+	.course_menu{
+		border: 1px solid green;
+		position: relative;
+		width: 80%;
+		float: left;
+		left: 10%;
+		top:10%;
+	}
+	
+	.course_select{
+		border: 1px solid red;
+		width: 7%;
+		height: 120px;    
+		position: relative;
+		float: left;
+		top:10%;
+	}
+	.course_select .course_list{
+		/* display: none; */
+		padding: 0;
+		
+	}
+	.course_select .course_list li{
+		list-style:none;
+		height: 40px; line-height: 40px;
+		color: #666; text-indent: 22px;
+		width : 100%;
+		background: rgba(35,35,35,0.8);
+		position: relative;
+	}
+	
+	.course_select .course_list li:hover{
+		background: #ff6600;
+		color: #fff;
+	}
+	
+	/* ------------------------------------------------------ */
+	/* menuUpdateform */
+	.menuuformtable th,.menuuformtable td{
+		border: 1px solid gray;
+	}
+	#imgname_second>img{
+		max-width: 200px;
+	}
+	
+	/* ------------------------------------------------------ */
+	/* menuWriteform */
+	.menuwformtable th,.menuwformtable td{
+		border: 1px solid gray;
+	}
+	#imgname_second>img{
+		max-width: 200px;
+	}
+	
+	/* ------------------------------------------------------ */
+	/* courseList */
+	.clisttable th,.clisttable td{
+		border:1px solid gray;
+		padding:10px;
+	}
+	
+	/* ------------------------------------------------------ */
+	/* courseUpdateform */
+	.cuformtable th,.cuformtable td{
+		border: 1px solid gray;
+	}
+	
+	/* ------------------------------------------------------ */
+	/* courseWriteform */
+	.cwformtable th,.cwformtable td{
+		border: 1px solid gray;
 	}
