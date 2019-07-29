@@ -19,7 +19,7 @@
 		insert into food values (seq_food.nextval,#{fname},#{kind},#{calorie},#{imgname},0,#{price},#{origin})	
 	</insert>
 	<update id="menuUpdate" parameterType="mndto">
-		update food set fname=#{fname},kind=#{kind},calorie=#{calorie},price=#{price},origin=#{origin} where idx=#{idx}
+		update food set fname=#{fname},kind=#{kind},calorie=#{calorie},imgname=#{imgname},price=#{price},origin=#{origin} where idx=#{idx}
 	</update>
 	<delete id="menuDelete" parameterType="int">
 		delete from food where idx = #{idx} 
@@ -29,5 +29,4 @@
 	<select id="menuSelectKind" resultType="mndto">
 		select Distinct(kind) from food order by kind
 	</select>
-	
 </mapper>

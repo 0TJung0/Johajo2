@@ -8,14 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<style type="text/css">
-	th,td{
-		border: 1px solid gray;
-	}
-	#imgname_second>img{
-		max-width: 200px;
-	}
-</style>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script>
 // input file 이미지 미리보기 함수
 function previewImage(targetObj, previewId) {
@@ -97,7 +90,6 @@ function previewImage(targetObj, previewId) {
         }
     }
 }
-
 $(function() {
 	$("option").each(function(index, item) {
 		var kind = '${dto.kind}';
@@ -109,8 +101,8 @@ $(function() {
 </script>
 </head>
 <body>
-	<form action="menuupdate.do" method="post">
-		<table>
+	<form action="menuupdate.do" method="post" enctype="multipart/form-data">
+		<table class="menuuformtable">
 			<tr>
 				<th>종류</th>
 				<td>
@@ -135,9 +127,11 @@ $(function() {
 			<tr>
 				<th>이미지</th>
 				<td>
-				<img name="imgname" src="./image/${dto.imgname}">
+				<img src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}">
+				<br>
+				<input type="text" value="${dto.imgname}" readonly="readonly">
 				<div id="imgname_second"></div>
-				<input id="ex_file" type="file" onchange="previewImage(this, 'imgname_second');"></td>
+				<input id="ex_file" type="file" onchange="previewImage(this, 'imgname_second');" name="upfile"></td>
 			</tr>
 			<tr>
 				<th>가격</th>

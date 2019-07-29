@@ -1,5 +1,7 @@
 package spring.data;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MenuDto {
 	private int idx;
 	private String fname;
@@ -10,6 +12,7 @@ public class MenuDto {
 	private int price;
 	private String origin;
 	private int show;
+	private MultipartFile upfile;
 	
 	public int getIdx() {
 		return idx;
@@ -64,6 +67,12 @@ public class MenuDto {
 	}
 	public void setShow(int show) {
 		this.show = show;
+	}
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
 	}
 	
 	

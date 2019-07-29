@@ -23,6 +23,7 @@ public class MenuService {
 	{
 		return dao.getDataSel(kind);
 	}
+	
 	public MenuDto getDataIdx(int idx)
 	{
 		return dao.getDataIdx(idx);
@@ -48,4 +49,6 @@ public class MenuService {
 	{
 		dao.menuDelete(idx);
 	}
+	
+	
 }

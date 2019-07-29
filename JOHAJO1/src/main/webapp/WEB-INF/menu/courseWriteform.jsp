@@ -8,90 +8,118 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<style type="text/css">
-	th,td{
-		border: 1px solid gray;
-	}
-</style>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+
+<script type="text/javascript">
+	$(function(){
+		
+		$("#appe").change(function(){
+			var s = $("select option:selected").attr('price');
+			console.log(s);
+			
+		});
+		
+		/* var appe = ""; var soup = ""; var main = "";
+		var side = ""; var des = ""; var drink = "";
+		
+		
+		$(".appe").change(function(){
+			n = $(this).attr("selected","selected");
+			appe = $(n).attr('price');
+			console.log(appe);
+		}); */
+		/* 
+		$(".soup").change(function(){
+			soup = $("select option:selected").attr('price');
+			console.log(soup+"soup");
+		});
+		$(".main").change(function(){
+			main = $("select option:selected").attr('price');
+			console.log(main+"main");
+		}); 
+		$(".side").change(function(){
+			side = $("select option:selected").attr('price');
+			console.log(side+"side");
+		});
+		$(".des").change(function(){
+			des = $("select option:selected").attr('price');
+			console.log(des+"des");
+		});
+		$(".drink").change(function(){
+			drink = $("select option:selected").attr('price');
+			console.log(drink+"drink");
+		}); */
+	});
+	
+	
+</script>
 </head>
 <body>
 	<form action="coursewrite.do" method="post">
-		<table>
+		<table class="cwformtable">
 			<tr>
 				<th>appetizer</th>
 				<td>
-				<select name="appe">
-					<option value="23">컬리플라워를 곁들인 구운 브로콜리</option>
-					<option value="24">카프레제 바질 샐러드</option>
-					<option value="25">갈릭코타 홀 토마토</option>
-					<option value="26">시저 샐러드</option>
-					<option value="27">치킨텐더 샐러드</option>
-				</select>
+					<select name="appe" >
+						<c:forEach var="dto" items="${list1}">
+							<option class="appe" id="appe" value="${dto.idx}" price="${dto.price}" >${dto.fname},${dto.price}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>soup</th>
 				<td>
-				<select name="soup">
-					<option value="28">단호박 스프</option>
-					<option value="29">양송이 스프</option>
-					<option value="30">브로콜리 스프</option>
-					<option value="31">콘크림 스프</option>
-				</select>
+					<select name="soup" >
+						<c:forEach var="dto" items="${list2}">
+							<option class="soup" id="soup" value="${dto.idx}" price="${dto.price}">${dto.fname},${dto.price}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>main</th>
 				<td>
-				<select name="main">
-					<option value="32">스파이시 씨푸드 알리오 올리오</option>
-					<option value="33">토마토 소고기 파스타</option>
-					<option value="34">모짜렐라 크림 파스타</option>
-					<option value="35">빠네 크리미 어니언 파스타</option>
-					<option value="36">뉴욕 스트립 스테이크</option>
-					<option value="37">얌스톤 안심 스테이크</option>
-					<option value="38">클래식 채끝 스테이크</option>
-				</select>
+					<select name="main" >
+						<c:forEach var="dto" items="${list3}">
+							<option class="main" value="${dto.idx}" price="${dto.price}">${dto.fname},${dto.price}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>side</th>
 				<td>
-				<select name="side">
-					<option value="39">감자튀김</option>
-					<option value="40">구운 통감자</option>
-					<option value="41">더운 야채모듬</option>
-					<option value="42">치킨 핑거</option>
-					<option value="43">비프 퀘사디아</option>
-				</select>
+					<select name="side" >
+						<c:forEach var="dto" items="${list4}">
+							<option class="side" value="${dto.idx}" price="${dto.price}">${dto.fname},${dto.price}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>dessert</th>
 				<td>
-				<select name="des">
-					<option value="44">아포가토</option>
-					<option value="45">당근케이크</option>
-					<option value="46">밀크 크레이프</option>
-					<option value="47">녹차 아이스크림</option>
-				</select>
+					<select name="des" >
+						<c:forEach var="dto" items="${list5}">
+							<option class="des" value="${dto.idx}" price="${dto.price}">${dto.fname},${dto.price}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>drink</th>
 				<td>
-				<select name="drink">
-					<option value="48">미네랄 워터</option>
-					<option value="49">코카콜라</option>
-					<option value="50">오렌지 에이드</option>
-					<option value="51">커피</option>
-					<option value="52">스텔라 아르투아</option>
-				</select>
+					<select name="drink" >
+						<c:forEach var="dto" items="${list6}">
+							<option class="drink" value="${dto.idx}" price="${dto.price}">${dto.fname},${dto.price}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>tot_pri</th>
-				<td><input type="text" name=tot_pri></td>
+				<td><input type="text" name=tot_pri ></td>
 			</tr>
 			<tr>
 			    <th>course_name</th>

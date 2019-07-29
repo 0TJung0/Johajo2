@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="course">
+	<select id="courseSelect" resultType="cdto">
+		select c.idx,a.fname as appe,s.fname as soup,m.fname as main,si.fname as side,de.fname as des,
+		 dr.fname as drink,c.tot_pri,c.course_name,c.show
+         from course c INNER JOIN food a on c.appe=a.idx INNER JOIN food s 
+		 on c.soup=s.idx INNER JOIN food m on c.main=m.idx INNER JOIN food si on 
+		 c.side=si.idx INNER JOIN food de on c.des=de.idx INNER JOIN food dr on c.drink=dr.idx order by course_name
+	</select>
 	<select id="courseSelectList" parameterType="String" resultType="cdto">
 		select * from course where course_name = #{course_name}
 	</select>
@@ -13,10 +20,22 @@
 	<!-- updatecourse select -->
 	<select id="courseformList" parameterType="int" resultType="cdto">
 		select c.idx,c.show,c.course_name,c.appe,c.soup,c.main,c.side,c.des,c.drink,
-		a.price as appe_p,s.price as soup_p,si.price as side_p,m.price as main_p,de.price as des_p,dr.price as drink_p,c.tot_pri
-		from course c INNER JOIN food a on c.appe=a.idx INNER JOIN food s on c.soup=s.idx INNER JOIN 
-		food m on c.main=m.idx INNER JOIN food si on c.side=si.idx INNER JOIN food de on c.des=de.idx INNER JOIN 
-		food dr on c.drink=dr.idx where c.idx=#{idx}
+		a.fname as appe_n,s.fname as soup_n,m.fname as main_n,si.fname as side_n,de.fname as des_n,dr.fname as drink_n,
+		a.price as appe_p,s.price as soup,si.price as side_p,m.price as main_p,de.price as des_p,dr.price as drink_p,c.tot_pri
+		from course c INNER JOIN
+		food a on c.appe=a.idx INNER JOIN
+		food s on c.soup=s.idx INNER JOIN
+		food m on c.main=m.idx INNER JOIN
+		food si on c.side=si.idx INNER JOIN
+		food de on c.des=de.idx INNER JOIN
+		food dr on c.drink=dr.idx 
+		where c.idx=#{idx}
+	</select>
+	<select id="courseKindList" parameterType="int" resultType="fooddto">
+		select * from food where kind=#{kind}
+	</select>
+	<select id="courseKindList2" parameterType="int" resultType="fooddto">
+		select * from food where kind=#{kind}
 	</select>
 	
 	<!-- insert, update, delete  -->
@@ -29,5 +48,10 @@
 	<select id="rescourselist" parameterType="String" resultType="cdto">
 		select * from course 
 	</select>
-
+	<delete id="courseDelete" parameterType="int">
+		delete from course where idx=#{idx}
+	</delete>
+	<select id="rescourselist" parameterType="String" resultType="cdto">
+		select * from course 
+	</select>
 </mapper>
