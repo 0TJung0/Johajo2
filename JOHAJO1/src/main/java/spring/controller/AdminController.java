@@ -3,7 +3,6 @@ package spring.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import spring.data.EventDto;
 import spring.data.FaqDto;
 import spring.data.MenuDto;
 import spring.data.NoticeDto;
 import spring.data.StoreDto;
 import spring.service.AdminService;
+import spring.service.EventService;
 import spring.service.FaqService;
 import spring.service.MenuService;
 import spring.service.NoticeService;
@@ -38,6 +39,8 @@ public class AdminController {
 	private NoticeService notice_service;
 	@Autowired
 	private FaqService faq_service;
+	@Autowired
+	private EventService event_service;
 
 	@RequestMapping("/admain.do")
 	public String admain() {
@@ -114,7 +117,7 @@ public class AdminController {
 	{
 
 		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
-		System.out.println(path);
+		System.out.println("path="+path);
 		String fileName=photo.getOriginalFilename();
 		System.out.println(fileName);
 		
@@ -172,7 +175,7 @@ public class AdminController {
 	{
 		
 		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
-		System.out.println(path);
+		System.out.println("path="+path);
 		String fileName=photo.getOriginalFilename();
 		System.out.println(fileName);
 		
@@ -226,9 +229,15 @@ public class AdminController {
 		
 		List<NoticeDto> nlist=service.noticeList();
 		List<FaqDto> flist=faq_service.FaQList();
+		List<EventDto> alist=event_service.AbleList();
+		List<EventDto> unlist=event_service.EndList();
+		List<EventDto> relist=event_service.StartList();
 		
 		model.addObject("nlist",nlist);
 		model.addObject("flist",flist);
+		model.addObject("alist",alist);
+		model.addObject("unlist",unlist);
+		model.addObject("relist",relist);
 		model.setViewName("/ad/Notice/ad_NoticeList");
 		
 		return model;
@@ -261,15 +270,15 @@ public class AdminController {
 			@RequestParam String topnotice, 
 			@RequestParam int hide,
 			@RequestParam(value="photo",defaultValue="noimage") MultipartFile photo,
-			@RequestParam HttpServletRequest request
+			HttpServletRequest request
 			)
 	{
 		
 		System.out.println("컨트롤러 진입");
 		
-		   	  String path=request.getSession().getServletContext().getRealPath("/noticeImage/");
+		   	  String path=request.getSession().getServletContext().getRealPath("/noticeImg/");
 		      System.out.println(path);
-		      String fileName=photo.getOriginalFilename();
+		      String fileName="/"+photo.getOriginalFilename();
 		      System.out.println(fileName);
 		      
 		      String saveFile=path+fileName;

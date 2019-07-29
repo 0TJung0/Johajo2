@@ -4,9 +4,9 @@
 	<select id="couponSelectCount" parameterType="HashMap" resultType="int">
 		select count(*) from coupon where member_f=#{member_f} and event_f=#{event_f}
 	</select>
-	<insert id="eventInsertCoupon" parameterType="coudto">
-		insert into coupon(idx,coupon_name,discount,member_f,event_f,use,validity) values
-		(seq_coupon.nextval,#{coupon_name},#{discount},${member_f},${event_f},0,to_date('${validity}','DD/MM/RR'))
+	<insert id="InsertCoupon" parameterType="coudto">
+		insert into coupon values(SEQ_COUPON.NEXTVAL,#{coupon_name},#{discount},#{member_f},#{event_f}
+		,0,sysdate,sysdate+#{add_day},#{add_day})
 	</insert>
 	<select id="couponlistcheck" parameterType="int" resultType="int">
 		<![CDATA[
@@ -20,5 +20,12 @@
 	</select>
 	<select id="couponegetdiscount" parameterType="int" resultType="int">
 		select discount from coupon where idx=#{idx}
+	</select>
+	<select id="selCoupon" parameterType="int" resultType="coudto">
+		select * from coupon where idx=#{idx}
+	</select>
+	
+	<select id="selCouponId" parameterType="HashMap" resultType="int">
+		select count(*) from coupon where member_f=#{member_f} and event_f=#{event_f}
 	</select>
 </mapper>

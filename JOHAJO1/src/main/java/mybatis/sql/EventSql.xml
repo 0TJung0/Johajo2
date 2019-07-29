@@ -13,4 +13,14 @@
 	<select id="eventAllData" resultType="edto">
 		select * from event
 	</select>
+	<select id="eventAble" resultType="edto">
+		select * from event where to_char(sysdate,'yyyymmdd') between to_char(startday,'yyyymmdd') and to_char(endday,'yyyymmdd')
+	</select>
+	<select id="eventEnd" resultType="edto">
+		<![CDATA[select * from event where to_char(endday,'yyyymmdd')<to_char(sysdate,'yyyymmdd')]]>
+	</select>
+	<select id="eventStart" resultType="edto">
+		<![CDATA[select * from event where to_char(startday,'yyyymmdd')>to_char(sysdate,'yyyymmdd')]]>
+	</select>
+	
 </mapper>

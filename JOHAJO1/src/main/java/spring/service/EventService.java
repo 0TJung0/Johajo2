@@ -31,4 +31,20 @@ public class EventService {
 	public List<EventDto> getAllData(){
 		return dao.getAllData();
 	}
+	
+	public List<EventDto> AbleList()
+	{
+		return dao.AbleList();
+	}
+	
+	public List<EventDto> EndList()
+	{
+		return dao.EndList();
+	}
+	
+	public List<EventDto> StartList()
+	{
+		return dao.StartList();
+	}
+	
 }

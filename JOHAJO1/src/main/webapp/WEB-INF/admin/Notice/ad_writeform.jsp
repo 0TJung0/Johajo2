@@ -50,7 +50,7 @@ enctype="multipart/form-data">
 	<tr>
 		<td>파일첨부</td>
 		<td>
-			<input type="file" name="photo" class="photo">
+			<input type="file" id="photo" name="photo" class="photo">
 		</td>
 	</tr>
 	<tr>
