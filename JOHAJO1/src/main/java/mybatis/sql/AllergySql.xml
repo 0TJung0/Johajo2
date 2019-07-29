@@ -42,4 +42,8 @@
 	<delete id="allergyDelete" parameterType="int">
 		delete from allergy where idx = #{idx}
 	</delete>
+	
+	<select id="allergyFoodSelect" parameterType="int" resultType="adto">
+		select * from allergy where f=#{f}
+	</select>
 </mapper>

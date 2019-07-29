@@ -55,6 +55,11 @@ public class AllergyDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("allergylist2");
 	}
 	
+	public List<AllergyDto> foodSelect()
+	{
+		return getSqlSession().selectList("allergyFoodSelect");
+	}
+	
 	/* 관리자용 */
 	public List<MenuDto> getMenulist()
 	{

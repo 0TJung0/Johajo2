@@ -13,7 +13,7 @@
 	$(function(){
 			$(".menusel").mouseover(function(){
 				$(this).find('.menumore').show();
-				$(this).fadeTo('slow',0.5);
+				$(this).fadeTo('fast');
 			}).mouseout(function(){
 				$(this).find('.menumore').hide();
 				$(this).fadeTo('fast',1);

@@ -29,10 +29,10 @@
 					<th>알레르기 ${dto.idx}</th>
 					<td>
 						<c:forEach var="dto" items="${alist}">
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							<input type="radio" name="aname" value="${dto.aname}">${allergyn},${dto.aname}
+							<c:set var="allergy" value="${dto.aname}"></c:set>
+							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
+							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
+								<input type="checkbox" name="aname" value="${dto.aname}">${allergyn},${dto.aname}
 						</c:forEach>
 					</td>
 				</tr>

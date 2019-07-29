@@ -104,6 +104,7 @@
 	<body>
 		<div id="aldiv">
 			<button type="button" onclick="location.href='allergylist.do'">관리</button>
+			<button type="button" onclick="location.href='allergyadd.do'">추가</button>
 			
 			<ul id="altabs">
 				<li><a href="#" aname="1">전체</a></li>

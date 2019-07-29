@@ -58,6 +58,8 @@ public class AllergyService {
 	{
 		return dao.getAList();
 	}
+	
+	
 	/* 관리자용 */
 	public List<MenuDto> getMenulist()
 	{
@@ -77,5 +79,10 @@ public class AllergyService {
 	public void deleteAllergy(int idx)
 	{
 		dao.deleteAllergy(idx);
+	}
+
+	public List<AllergyDto> foodSelect()
+	{
+		return dao.foodSelect();
 	}
 }
