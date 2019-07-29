@@ -57,7 +57,7 @@
 			top: 0;
 			right: -.5em;  
 			bottom: 0;
-			width: 1em;
+			width: 1em; 
 			color : black;
 		}
 		#altabs #current a{
