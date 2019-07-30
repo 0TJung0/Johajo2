@@ -272,20 +272,22 @@ public class MemberController {
 			return null;
 		}
 		
-		
+		//qna count
+		MemberDto qdto = service.MemberQnaCountSelect(midx);
 		//예약 데이터 출력
+		MemberDto rdto = service.memberReservationSelect(midx);
+		
 		//point
 		int point = service.usePoint(midx);
 				
 		//쿠폰 출력
 		List<MemberDto> clist = service.MemberCouponSelect(midx);
-		//qna count
-		MemberDto qdto = service.MemberQnaCountSelect(midx);
+		
 		qdto.setPoint(point);
 		
 		model.addAttribute("clist",clist);
 		model.addAttribute("qdto",qdto);
-		
+		model.addAttribute("rdto",rdto);
 		
 		return "/member/mypageMain";
 	}

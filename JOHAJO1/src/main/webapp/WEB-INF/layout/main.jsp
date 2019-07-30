@@ -204,7 +204,7 @@
 						<div class="more">
 							<img src="image/m-icon_brand.png" class="icon">
 							<p>BREAD</p>
-							<span class="btn"><a href="#">자세히보기</a></span>
+							<span class="btn"><a href="menusel.do?kind=1">자세히보기</a></span>
 						</div>
 					</div>
 				</div>
@@ -222,7 +222,7 @@
 						<div class="more">
 							<img src="image/m-icon_starter.png" class="icon">
 							<p>STARTER</p>
-							<span class="btn"><a href="#">자세히보기</a></span>
+							<span class="btn"><a href="menusel.do?kind=3">자세히보기</a></span>
 						</div>
 					</div>
 				</div>
@@ -236,7 +236,7 @@
 						<div class="more">
 							<img src="image/m-icon_pasta.png" class="icon">
 							<p>PASTA</p>
-							<span class="btn"><a href="#">자세히보기</a></span>
+							<span class="btn"><a href="menusel.do?kind=4">자세히보기</a></span>
 						</div>
 					</div>
 				</div>
@@ -250,7 +250,7 @@
 						<div class="more">
 							<img src="image/m-icon_pizza.png" class="icon">
 							<p>PIZZA</p>
-							<span class="btn"><a href="#">자세히보기</a></span>
+							<span class="btn"><a href="menusel.do?kind=5">자세히보기</a></span>
 						</div>
 					</div>
 				</div>
@@ -264,7 +264,7 @@
 						<div class="more">
 							<img src="image/m-icon_ricerisotto.png" class="icon">
 							<p>RICE & RISOTTO</p>
-							<span class="btn"><a href="#">자세히보기</a></span>
+							<span class="btn"><a href=" menusel.do?kind=2">자세히보기</a></span>
 						</div>
 					</div>
 				</div>
@@ -278,7 +278,7 @@
 						<div class="more">
 							<img src="image/m-icon_steak.png" class="icon">
 							<p>STEAK</p>
-							<span class="btn"><a href="#">자세히보기</a></span>
+							<span class="btn"><a href="menusel.do?kind=5">자세히보기</a></span>
 						</div>
 					</div>
 				</div>
@@ -293,10 +293,10 @@
 					<li>
 						<div class="msub">
 							<ul>
-								<li><a href="#">MENU</a></li>
-								<li><a href="#">메뉴</a></li>
-								<li><a href="#">코스</a></li>
-								<li><a href="#">알레르기</a></li>
+								<li><a href="menulist.do">MENU</a></li>
+								<li><a href="menulist.do">메뉴</a></li>
+								<li><a href="menucourse.do">코스</a></li>
+								<li><a href="menuallergy.do">알레르기</a></li>
 							</ul>
 						</div>
 						
@@ -304,26 +304,26 @@
 					<li>
 						<div class="msub">
 							<ul>
-								<li><a href="#">STORE</a></li>
-								<li><a href="#">매장안내</a></li>
+								<li><a href="storelist.do">STORE</a></li>
+								<li><a href="storelist.do">매장안내</a></li>
 							</ul>
 						</div>
 					</li>
 					<li>
 						<div class="msub">
 							<ul>
-								<li><a href="#">RESERVATION</a></li>
-								<li><a href="#">예약</a></li>
+								<li><a href="reslist.do">RESERVATION</a></li>
+								<li><a href="reslist.do">예약</a></li>
 							</ul>
 						</div>
 					</li>
 					<li>
 						<div class="msub">
 							<ul>
-								<li><a href="#">NOTICE</a></li>
-								<li><a href="#">공지사항</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="#">이벤트</a></li>
+								<li><a href="noticelist.do">NOTICE</a></li>
+								<li><a href="noticelist.do">공지사항</a></li>
+								<li><a href="noticefaq.do">FAQ</a></li>
+								<li><a href="noticeevent.do">이벤트</a></li>
 							</ul>
 						</div>
 					</li>

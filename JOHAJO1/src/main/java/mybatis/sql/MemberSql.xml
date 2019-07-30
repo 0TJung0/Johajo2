@@ -76,4 +76,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member
 	</select>
 	
+	<select id="memberReservationSelect" parameterType="int" resultType="mdto">
+		select r.idx as ridx, s.name as sname, r.resdate rdate,r.restime as rtime  
+		from reservation r, store s
+		where r.store = s.idx and rownum =1  and r.rem=#{idx}
+		order by r.idx desc
+	</select>
 </mapper>

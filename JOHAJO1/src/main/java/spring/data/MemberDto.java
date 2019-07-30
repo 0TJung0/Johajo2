@@ -35,6 +35,14 @@ public class MemberDto {
 	private int finish;
 	private int stand;
 	
+	
+	//mypage reservation 
+	private int ridx;
+	private String sname;
+	private Date rdate;
+	private String rtime;
+	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -169,6 +177,31 @@ public class MemberDto {
 	public void setEndday(Date endday) {
 		this.endday = endday;
 	}
+	public int getRidx() {
+		return ridx;
+	}
+	public void setRidx(int ridx) {
+		this.ridx = ridx;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public Date getRdate() {
+		return rdate;
+	}
+	public void setRdate(Date rdate) {
+		this.rdate = rdate;
+	}
+	public String getRtime() {
+		return rtime;
+	}
+	public void setRtime(String rtime) {
+		this.rtime = rtime;
+	}
+	
 	
 	
 }

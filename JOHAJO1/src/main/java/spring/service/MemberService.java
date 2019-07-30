@@ -79,4 +79,9 @@ public class MemberService {
 		return dao.memberList();
 	}
 
+	public MemberDto memberReservationSelect(Integer midx) {
+		// TODO Auto-generated method stub
+		return dao.memberReservationSelect(midx);
+	}
+
 }

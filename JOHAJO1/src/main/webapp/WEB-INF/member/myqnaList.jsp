@@ -67,7 +67,7 @@ $(function(){
 				});
 				$(fm).empty();       //기존 내용 지움
 				$(fm).append(str);
-				
+				$(fm).parents(".qdata").next().remveClass("no").addClass("ok");
             },error: function(xhr, status, error){
                 alert(status);
             }
