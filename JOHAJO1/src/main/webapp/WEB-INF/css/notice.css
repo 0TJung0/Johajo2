@@ -377,6 +377,12 @@
 	    display: block;
 	    text-align: center;
     }
+      div.event_content div.centent2 span img{
+	    width:600px;
+	    margin-left:100px;
+	    display: block;
+	    text-align: center;
+    }
     
     
     div.event_content div.centent2 button{

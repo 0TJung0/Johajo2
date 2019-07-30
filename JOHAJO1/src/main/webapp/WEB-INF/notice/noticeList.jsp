@@ -74,7 +74,9 @@
 				</tr>
  				<tr class="notice_content">
 					<td colspan="3" width="20%">${dto.contents }
+					<c:if test="${dto.photo!='noimage.png' }">
 					<img src="./noticeImg/${dto.photo }">
+					</c:if>					
 					</td>
 				</tr>		
 			</c:forEach>
