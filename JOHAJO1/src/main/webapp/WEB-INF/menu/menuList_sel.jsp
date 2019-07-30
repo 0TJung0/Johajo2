@@ -31,7 +31,7 @@
 								<c:if test="${mkindnum==3}">
 									<img src="./image/main.jpg" id="main_img" title="main">
 									<div class="menumore">
-										<input type="button" value="상세보기" onclick="location.href='main.do'" class="menubtn1">
+										<input type="button" value="상세보기" onclick="location.href='mmain.do'" class="menubtn1">
 									</div>
 								</c:if>
 						</c:forEach>
