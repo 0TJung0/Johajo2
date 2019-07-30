@@ -33,6 +33,9 @@ div.storlist{
 .selStore1{
 	display: none;
 }
+table.infostore{
+	margin-left: 95px;
+}
 .infostore caption{
 	position:relative;
 	caption-side: top;
@@ -40,12 +43,62 @@ div.storlist{
 }
 .infostore tr td{
 	height: 15px;
+	line-height: 50px;
+	font-size: 9pt;
+	font-family: 'Open Sans', 'sans-serif', 'Arial';
+	font-weight: 800;
 }
 
 .infostore img{
 	width: 17px;
 }
-.infostore img.storeImage{
-	width: 200px;
+div.storeImg{
 	margin-left: 5%;
+	margin: 40px auto 0px 60px;
+	background-color: #ddd;
+	width: 1000px;
+	padding: 0px;
+	overflow: auto;
+}
+div.storeImg img{
+	margin-top:30px;
+	margin-left: 25%;
+	margin-bottom: 25px;
+	width: 350px;
+}
+div.storeImg span{
+	font-size:10pt;
+	font-family: 'Open Sans', 'sans-serif', 'Arial';
+	margin-right: 30px;
+	margin-top: 15px;
+	padding: 0px;
+	font-weight: 800;
+	margin-left: 20px;
+}
+ul.listStore li{
+	list-style: none;
+	float: left;
+	margin-right: 30px;
+	text-decoration: none;
+	width: 150px;
+	margin-top: 15px;
+	margin-bottom:15px;
+	padding: 0px;
+	font-weight: 800;
+	font-size:10pt;
+	font-family: 'Open Sans', 'sans-serif', 'Arial';
+	color: #fff;
+	cursor: pointer;
+}
+div.listStore{
+	margin-left: 5%;
+	background-color: #a8a9ad;
+	width: 1000px;
+	padding: 0px;
+	overflow: auto;
+	margin: 0px auto 0px 60px;
+}
+ul.listStore li.cap{
+	width: 800px;
+	cursor: default;
 }

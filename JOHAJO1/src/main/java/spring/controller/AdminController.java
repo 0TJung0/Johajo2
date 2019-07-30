@@ -127,7 +127,7 @@ public class AdminController {
 
 		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
 		System.out.println("path="+path);
-		String fileName=photo.getOriginalFilename();
+		String fileName="/"+photo.getOriginalFilename();
 		System.out.println(fileName);
 		
 		String saveFile=path+fileName;
@@ -185,7 +185,7 @@ public class AdminController {
 		
 		String path=request.getSession().getServletContext().getRealPath("/storeImg/");
 		System.out.println("path="+path);
-		String fileName=photo.getOriginalFilename();
+		String fileName="/"+photo.getOriginalFilename();
 		System.out.println(fileName);
 		
 		String saveFile=path+fileName;
