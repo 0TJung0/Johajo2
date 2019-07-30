@@ -2,8 +2,11 @@ package spring.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +25,7 @@ import spring.data.FaqDto;
 import spring.data.MemberDto;
 import spring.data.MenuDto;
 import spring.data.NoticeDto;
+import spring.data.QnaDto;
 import spring.data.StoreDto;
 import spring.service.AdminService;
 import spring.service.CouponService;
@@ -50,7 +54,10 @@ public class AdminController {
 	private MemberService member_service;
 	@Autowired
 	private CouponService coupon_service;
-
+	
+	
+	
+	
 	@RequestMapping("/admain.do")
 	public String admain() {
 		return "admain.tiles";
@@ -576,9 +583,88 @@ public class AdminController {
 /*
  * member ************************************************************************
  */
+	
+/*
+ * memberList ************************************************************************
+ */
+
 	@RequestMapping("/ad_MemberList.do")
-	public String memberList() {
-		return "re/ad/member/ad_MemberList";
+	public ModelAndView memberList(
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage 
+			) {
+		
+		int totalCount;
+		totalCount = member_service.memberTotalCount();
+		
+		
+		int totalPage; 		//총페이지수
+		int startNum; 		//각페이지의 시작번호
+		int endNum; 		//각 페이지의 끝번호
+		int startPage; 		//블럭의 시작 페이지 
+		int endPage; 		//블럭의  끝페에지 
+		int no; 				//출력 시작번호
+		int perPage = 10; 		//한페이지당 보여질 글의 갯수
+		int perBlock = 5;		//한 블럭당 보여질 페이지의 갯수
+		
+		totalPage = totalCount/perPage+(totalCount%perPage >0 ?1:0);
+		
+	
+		if(currentPage > totalPage)
+			currentPage = totalPage;
+		
+		//각 블럭의 시작페이지와 끝페이지를 구한다.
+		startPage = (currentPage-1)/perBlock*perBlock+1;
+		endPage = startPage + perBlock-1;
+		
+		//현재 페이지가 총페이지수보다 크면 안된다.
+		if(endPage > totalPage)
+			endPage = totalPage;
+		
+		//각페이지의 시작번화 끝번호를 구한다. 
+		//perPage 가 5일 경우 
+		//ex)1페이지 : 시작 1, 끝 15
+		//   3     :   11    15
+		startNum = (currentPage-1)*perPage+1;
+		endNum = startNum+perPage-1;
+		
+		//마지막 페이지 글 번호 체크하기 
+		if(endNum > totalCount)
+			endNum = totalCount;
+	
+		//각페이지마다 출력할 시작 번호
+		//총갯수가 30일 경우 1페이지는 30,2페이지는 25....
+		no = totalCount - ((currentPage-1)*perPage);
+		
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start",startNum);
+		map.put("end",endNum);
+		
+		List<MemberDto> mlist = member_service.memberTotalSelect(map);
+		ModelAndView model = new ModelAndView();
+		
+		
+		model.addObject("currentPage", currentPage);
+		model.addObject("startPage", startPage);
+		model.addObject("endPage", endPage);
+		model.addObject("no", no);
+		model.addObject("totalPage", totalPage);
+		model.addObject("mlist",mlist);
+		model.setViewName("/ad/member/ad_MemberList");
+		
+		return model;
+	}
+
+/*
+ * memberDelet************************************************************************
+ */
+	@RequestMapping("/memberDelete.do")
+	public String MemberDelete(
+			@RequestParam int idx, 
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum ) {
+		member_service.memberDelete(idx);
+		
+		return "redirect:ad_MemberList.do?pageNum="+pageNum;
 	}
 /*
  * Q&A ************************************************************************

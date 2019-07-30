@@ -4,13 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
 
-	<select id="memberTotalSelect"  resultType="mdto">
-		select * from member
-	</select>
 	
-	<select id="memberTotalCount" resultType="int">
-		select count(*) from member
-	</select>
 	<insert id="memberInsert" parameterType="mdto">
 		insert into member values(seq_member.nextval, 
 		#{id},#{password},#{name},#{hp},#{email},#{gender},#{birth},sysdate,0)
@@ -82,4 +76,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r.store = s.idx and rownum =1  and r.rem=#{idx}
 		order by r.idx desc
 	</select>
+	
+	
+	
+	<select id="memberTotalSelect" parameterType="HashMap" resultType="mdto">
+		<![CDATA[
+		  select  a.* from (select ROWNUM as RNUM,B.* from 
+			(select * from  member where idx !=40  order by idx desc)b )a 
+		  where a.RNUM >= #{start} 
+		  and a.RNUM <= #{end}
+		  
+		]]>
+	</select>
+	<select id="memberTotalCount" resultType="int">
+		select count(*) from member where idx !=40
+	</select>
+	
+	
+	<delete id="memberDelete" parameterType="int">
+		delete from member where idx=#{idx}
+	</delete>
+	
 </mapper>

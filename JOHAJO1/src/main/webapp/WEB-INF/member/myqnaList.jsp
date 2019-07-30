@@ -194,13 +194,17 @@ $(function(){
 </script>
 </head>
 <body>
-    총: <c:out value="${totalCount}" />
-    
+<%--     총: <c:out value="${totalCount}" />
+     --%>
     <div class="qnalist">
     	<button type="button" class="btnwrite" onclick="location.href='myqnaForm.do'">문의하기</button>
 		
 		<div class="center">
 		
+		<%-- <div class="selectTab">
+			<a href="myqnaList.do?pageNum=${startPage}&idx=${log_idx}&anw=1"><div>답변완료</div></a>
+			<a href="myqnaList.do?pageNum=${startPage}&idx=${log_idx}&anw=0"><div>답변대기</div></a>
+		</div> --%>
 		<c:forEach var="dto" items="${list}">
 		    <c:if test="${dto.anw==0}">
 		    	<c:set var="state" value="답변대기" />

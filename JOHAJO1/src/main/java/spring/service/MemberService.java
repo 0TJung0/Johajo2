@@ -68,12 +68,6 @@ public class MemberService {
 		return dao.MemberQnaCountSelect(midx);
 	}
 
-	public List<MemberDto> memberTotalSelect() {
-		// TODO Auto-generated method stub
-		return dao.memberTotalSelect();
-	}
-
-
 	public List<MemberDto> memberList()
 	{
 		return dao.memberList();
@@ -82,6 +76,22 @@ public class MemberService {
 	public MemberDto memberReservationSelect(Integer midx) {
 		// TODO Auto-generated method stub
 		return dao.memberReservationSelect(midx);
+	}
+
+	
+	//admin - member controlle
+	public int memberTotalCount() {
+		// TODO Auto-generated method stub
+		return dao.memberTotalCount();
+	}
+	public List<MemberDto> memberTotalSelect(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return dao.memberTotalSelect(map);
+	}
+
+	public void memberDelete(int idx) {
+		// TODO Auto-generated method stub
+		dao.memberDelete(idx);
 	}
 
 }
