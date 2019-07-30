@@ -38,7 +38,7 @@ public class MenuController {
 		return model;
 	}
 	
-	/* kind별 메뉴리스트 */
+	/* kind별 메뉴리스트 ----------------------------------------------------------- */
 	@RequestMapping(value={"/appetizer.do"},method={RequestMethod.GET})
 	public ModelAndView Appetizer(@RequestParam(defaultValue="1") int kind)
 	{
@@ -59,7 +59,7 @@ public class MenuController {
 		return model;
 	}
 	
-	@RequestMapping(value={"/main.do"},method={RequestMethod.GET})
+	@RequestMapping(value={"/mmain.do"},method={RequestMethod.GET})
 	public ModelAndView Main(@RequestParam(defaultValue="3") int kind)
 	{
 		ModelAndView model = new ModelAndView();
@@ -100,9 +100,7 @@ public class MenuController {
 	}
 	
 	
-	
-	
-	/* 메뉴 이미지 클릭하면 상세보기 창 열리도록 */
+	/* 메뉴 이미지 클릭하면 상세보기 창 열리도록 ---------------------------------------------- */
 	@RequestMapping(value={"/menuselpop.do"},method={RequestMethod.GET})
 	public ModelAndView MenuSelectIdx(@RequestParam int idx)
 	{
@@ -114,7 +112,7 @@ public class MenuController {
 		return model;
 	}
 	
-	/* 메뉴 추가 */
+	/* 메뉴 추가 ------------------------------------------------------------------ */
 	@RequestMapping("/menuinsert.do")
 	public String menuForm()
 	{
@@ -147,7 +145,7 @@ public class MenuController {
 	}
 	
 	
-	/* 메뉴 수정 */
+	/* 메뉴 수정 ------------------------------------------------------------------ */
 	@RequestMapping("/menuupdateform.do")
 	public ModelAndView menuupdateForm(@RequestParam int idx)
 	{
@@ -186,7 +184,7 @@ public class MenuController {
 		return "redirect:menusel.do?kind="+kind;
 	}
 	
-	/* 메뉴 삭제 */
+	/* 메뉴 삭제 ----------------------------------------------------------------------- */
 	@RequestMapping("/menudelete.do")
 	public String menudelete(@RequestParam int idx,@RequestParam int kind,HttpServletRequest request)
 	{
