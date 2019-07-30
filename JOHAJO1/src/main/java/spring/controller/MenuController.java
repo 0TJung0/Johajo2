@@ -38,18 +38,69 @@ public class MenuController {
 		return model;
 	}
 	
-	/* kind선택한 종류별로 메뉴 출력 */
-	@RequestMapping(value={"/menusel.do"},method={RequestMethod.GET})
-	public ModelAndView MenuSelect(@RequestParam(defaultValue="1") int kind)
+	/* kind별 메뉴리스트 */
+	@RequestMapping(value={"/appetizer.do"},method={RequestMethod.GET})
+	public ModelAndView Appetizer(@RequestParam(defaultValue="1") int kind)
 	{
 		ModelAndView model = new ModelAndView();
 		List<MenuDto> list=service.getDataSel(kind);
 		model.addObject("list",list);
-		List<MenuDto> konly = service.getKindonly();
-		model.addObject("konly",konly);
-		model.setViewName("/menu/menuList_list");
+		model.setViewName("/menu/menuAppe");
 		return model;
 	}
+	
+	@RequestMapping(value={"/soup.do"},method={RequestMethod.GET})
+	public ModelAndView Soup(@RequestParam(defaultValue="2") int kind)
+	{
+		ModelAndView model = new ModelAndView();
+		List<MenuDto> list=service.getDataSel(kind);
+		model.addObject("list",list);
+		model.setViewName("/menu/menuSoup");
+		return model;
+	}
+	
+	@RequestMapping(value={"/main.do"},method={RequestMethod.GET})
+	public ModelAndView Main(@RequestParam(defaultValue="3") int kind)
+	{
+		ModelAndView model = new ModelAndView();
+		List<MenuDto> list=service.getDataSel(kind);
+		model.addObject("list",list);
+		model.setViewName("/menu/menuMain");
+		return model;
+	}
+	
+	@RequestMapping(value={"/side.do"},method={RequestMethod.GET})
+	public ModelAndView Side(@RequestParam(defaultValue="4") int kind)
+	{
+		ModelAndView model = new ModelAndView();
+		List<MenuDto> list=service.getDataSel(kind);
+		model.addObject("list",list);
+		model.setViewName("/menu/menuSide");
+		return model;
+	}
+	
+	@RequestMapping(value={"/dessert.do"},method={RequestMethod.GET})
+	public ModelAndView Dessert(@RequestParam(defaultValue="5") int kind)
+	{
+		ModelAndView model = new ModelAndView();
+		List<MenuDto> list=service.getDataSel(kind);
+		model.addObject("list",list);
+		model.setViewName("/menu/menuDessert");
+		return model;
+	}
+	
+	@RequestMapping(value={"/drink.do"},method={RequestMethod.GET})
+	public ModelAndView Drink(@RequestParam(defaultValue="6") int kind)
+	{
+		ModelAndView model = new ModelAndView();
+		List<MenuDto> list=service.getDataSel(kind);
+		model.addObject("list",list);
+		model.setViewName("/menu/menuDrink");
+		return model;
+	}
+	
+	
+	
 	
 	/* 메뉴 이미지 클릭하면 상세보기 창 열리도록 */
 	@RequestMapping(value={"/menuselpop.do"},method={RequestMethod.GET})

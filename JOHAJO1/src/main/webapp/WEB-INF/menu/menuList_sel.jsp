@@ -31,7 +31,7 @@
 								<c:if test="${mkindnum==3}">
 									<img src="./image/main.jpg" id="main_img" title="main">
 									<div class="menumore">
-										<input type="button" value="상세보기" onclick="location.href='menusel.do?kind=${mkindnum}'" class="menubtn1">
+										<input type="button" value="상세보기" onclick="location.href='main.do'" class="menubtn1">
 									</div>
 								</c:if>
 						</c:forEach>
@@ -45,7 +45,7 @@
 									<c:if test="${mkindnum==2}">
 										<img src="./image/soup.jpg" id="soup_img" title="soup">
 										<div class="menumore">
-											<input type="button" value="상세보기" onclick="location.href='menusel.do?kind=${mkindnum}'" class="menubtn1">
+											<input type="button" value="상세보기" onclick="location.href='soup.do'" class="menubtn1">
 										</div>
 									</c:if>
 							</c:forEach>
@@ -56,7 +56,7 @@
 									<c:if test="${mkindnum==5}">
 										<img src="./image/des.jpg" id="dess_img" title="dessert">
 										<div class="menumore">
-											<input type="button" value="상세보기" onclick="location.href='menusel.do?kind=${mkindnum}'" class="menubtn1">
+											<input type="button" value="상세보기" onclick="location.href='dessert.do'" class="menubtn1">
 										</div>
 									</c:if>
 							</c:forEach>
@@ -72,7 +72,7 @@
 								<c:if test="${mkindnum==1}">
 									<img src="./image/appe.jpg"  id="appe_img" title="appetizer">
 									<div class="menumore">
-										<input type="button" value="상세보기" onclick="location.href='menusel.do?kind=${mkindnum}'" class="menubtn1">
+										<input type="button" value="상세보기" onclick="location.href='appetizer.do'" class="menubtn1">
 									</div>
 								</c:if>
 						</c:forEach>
@@ -85,7 +85,7 @@
 										<c:if test="${mkindnum==4}">
 											<img src="./image/side.jpg" id="side_img" title="side dish">
 											<div class="menumore">
-												<input type="button" value="상세보기" onclick="location.href='menusel.do?kind=${mkindnum}'" class="menubtn1">
+												<input type="button" value="상세보기" onclick="location.href='side.do'" class="menubtn1">
 											</div>
 										</c:if>
 								</c:forEach>
@@ -96,7 +96,7 @@
 										<c:if test="${mkindnum==6}">
 											<img src="./image/drink.jpg" id="drink_img" title="drink">
 											<div class="menumore">
-												<input type="button" value="상세보기" onclick="location.href='menusel.do?kind=${mkindnum}'" class="menubtn1">
+												<input type="button" value="상세보기" onclick="location.href='drink.do'" class="menubtn1">
 											</div>
 										</c:if>
 								</c:forEach>
