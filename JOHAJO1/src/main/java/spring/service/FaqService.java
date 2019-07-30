@@ -43,4 +43,12 @@ public class FaqService {
 	{
 		dao.FaQChangeState(idx, hide);
 	}
+	public int totalCount()
+	{
+		return dao.totalCount();
+	}
+	public int kindCount(int kind)
+	{
+		return dao.kindCount(kind);
+	}
 }

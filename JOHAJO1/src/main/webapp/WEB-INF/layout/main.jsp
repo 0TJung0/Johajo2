@@ -184,7 +184,7 @@
 	   <section class="regular slider">
 	    <c:forEach var="evt" items="${elist}" varStatus="i">
 	    	<div>
-	          <a href="#">${evt.title }<img src="./eventImg/${evt.title_img }"></a>
+	          <a href="noticeEvent_content.do?idx=${evt.idx}&pageNum=1">${evt.title }<img src="./eventImg/${evt.title_img }"></a>
 	    	</div>
 		</c:forEach>
 	  </section>

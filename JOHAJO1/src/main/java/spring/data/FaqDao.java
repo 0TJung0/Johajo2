@@ -42,4 +42,12 @@ public class FaqDao extends SqlSessionDaoSupport {
 		map.put("hide", hide);
 		getSqlSession().update("FaQChangeState", map);
 	}
+	public int totalCount()
+	{
+		return getSqlSession().selectOne("totalCount");
+	}
+	public int kindCount(int kind)
+	{
+		return getSqlSession().selectOne("kindCount",kind);
+	}
 }
