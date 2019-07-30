@@ -18,14 +18,17 @@
 			});
 			$("input").each(function(index,item){
 				var aname = '${dto.aname}';
-				console.log(aname);
 				if(aname==$(item).val()){
 					$(item).attr("checked","checked");
 				}
 			});
 			/* ---------------------------------------------- */
 			
-			$(document).on("change","select.alupdate",function(){
+			$(".alupdate").change(function(){
+				var f = $(this).val();
+				
+				$(".alcb").prop('checked',false);
+				
 				$.ajax({
 					type:"post",
 					url:"foodselect.do",
@@ -35,12 +38,17 @@
 						$(redata).find("data").each(function(){
 							var s = $(this);
 							aname = s.find("aname").text();
+							//input태그에 aname값이 체크되도록
+							$('input:checkbox[name="aname"]').each(function() {
+							     if(this.value == aname){ //값 비교
+							            this.checked = true; //checked 처리
+							      }
+							 });
 						});
-						$(".alcb").val(aname);
 					},
 					statusCode:{
 						404:function(){
-							alert("해당 파일을 찾을수 없어요!!");
+							alert("해당 파일을 찾을수 없습니다");
 						},
 						500:function(){
 							alert("서버 코드 오류");
@@ -59,7 +67,7 @@
 					<td>
 						<select class="alupdate">
 							<c:forEach var="dto" items="${list}">
-								<option value="${dto.f}">${dto.fname},${dto.f}
+								<option value="${dto.f}" >${dto.fname},${dto.f}
 							</c:forEach>
 						</select>
 					</td>
