@@ -122,7 +122,8 @@ $(function(){
 					con=s.find("con").text();
 					   str ="<form name='answerform' id='answerform'>"
 						   +"<input type='hidden' name='idx' value='"+idx+"'>"
-						   +"<textarea rows='5' cols='45' name='content2'>"+con+"</textarea>"
+						   +"<textarea  name='content2' class='content2' rows='5' cols='45'  maxlength='500' resize='none'>"+con+"</textarea>"
+						   +"<span id='counter'></span>"
 						   +"<button type='button' class='anwok'>수정</button>"
 						   +"</form>";
 						
