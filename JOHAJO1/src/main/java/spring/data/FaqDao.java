@@ -14,6 +14,10 @@ public class FaqDao extends SqlSessionDaoSupport {
 	{
 		return getSqlSession().selectList("FaQList");
 	}
+	public List<FaqDto> AllFaQList()
+	{
+		return getSqlSession().selectList("AllFaQList");
+	}
 	
 	public List<FaqDto> FnQSelKind(int kind)
 	{

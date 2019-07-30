@@ -43,7 +43,7 @@
 					str+="<td>"+writeday+"</td>";
 					str+="</tr>";
 					str+="<tr class='FaQ_content'>";
-					str+="<td colspan='3'><pre>"+contents+"</pre></td>";
+					str+="<td colspan='3'"+contents+"</td>";
 					str+="</tr>";
 				});
 					str+="</table>";
@@ -62,6 +62,7 @@
 	
 	function listmore()
 	{
+		totalCount=$(".hi_kindcount").val();
 		var lc=[];
 		num=num+5;
 		if(num>=totalCount){

@@ -244,7 +244,7 @@ public class AdminController {
 		ModelAndView model=new ModelAndView();
 		
 		List<NoticeDto> nlist=service.noticeList();
-		List<FaqDto> flist=faq_service.FaQList();
+		List<FaqDto> flist=faq_service.AllFaQList();
 		List<EventDto> alist=event_service.AbleList();
 		List<EventDto> unlist=event_service.EndList();
 		List<EventDto> relist=event_service.StartList();
@@ -310,10 +310,8 @@ public class AdminController {
 		      System.out.println(path);
 		      String fileName="/"+photo.getOriginalFilename();
 		      if(fileName.equals("/")) {
-		    	  System.out.println("들어오냐");
 		    	  fileName="noimage.png";
 		      }
-		      System.out.println("뭐냐 진짜:"+fileName);
 		      String saveFile=path+fileName;
 		      
 		      try {   
@@ -369,16 +367,34 @@ public class AdminController {
 	public String noticeUpDate(@RequestParam int idx,
 			@RequestParam String title,@RequestParam String contents,
 			@RequestParam(value="topnotice",defaultValue="2") String topnotice, @RequestParam(value="hide",defaultValue="1") int hide,
-			@RequestParam(value="photo",defaultValue="photo") String photo
-			)
+			@RequestParam(value="photo",defaultValue="/noimage.png") MultipartFile photo,
+			HttpServletRequest request)
 	{
 		NoticeDto dto=notice_service.getData(idx);
 		
+	   	  String path=request.getSession().getServletContext().getRealPath("/noticeImg/");
+	      System.out.println(path);
+	      String fileName="/"+photo.getOriginalFilename();
+	      if(fileName.equals("/")) {
+	    	  fileName="noimage.png";
+	      }
+	      String saveFile=path+fileName;
+	      
+	      try {   
+	         photo.transferTo(new File(saveFile));
+	      } catch (IllegalStateException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
 		dto.setTitle(title);
 		dto.setContents(contents);
 		dto.setTopnotice(topnotice);
 		dto.setHide(hide);
-		dto.setPhoto(photo);
+		dto.setPhoto(fileName);
 			
 		service.noticeUpDate(dto);
 		
@@ -413,6 +429,7 @@ public class AdminController {
 			faq_service.FaQChangeState(idx, 0);
 		return "redirect:ad_NoticeList.do";
 	}
+	
 	@RequestMapping("/FaQInsertForm.do")
 	public String FaQInsertForm()
 	{

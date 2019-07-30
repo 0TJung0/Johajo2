@@ -26,9 +26,9 @@
 		var total=$(".noticeTotal").val();
 		var lc=[];
 		for(i=0;i<total;i++){
-			lc[i]=$(".listCount").eq(i).text();
+			lc[i]=$(".notice_title").eq(i).attr("title");
 		
-			if(lc[i]>num){
+			if(lc[i]>=num){
 				$("tr.notice_title").eq(i).hide();
 				$("tr.notice_content").eq(i).hide();
 			}
@@ -48,9 +48,9 @@
 			$("div.noticebtn1").hide();
 		}
 		for(i=0;i<total;i++){
-			lc[i]=$(".listCount").eq(i).text();
+			lc[i]=$(".notice_title").eq(i).attr("title");
 			
-			if(lc[i]<=num){
+			if(lc[i]<num){
 				$("tr.notice_title").eq(i).slideDown(5000);
 			}
 			
@@ -66,7 +66,7 @@
 			<c:forEach var="dto" items="${list }" varStatus="index">
 			<input type="hidden" value="${dto.topnotice }" class="hi_topnotice">
 				<tr class="notice_title" title="${index.index }">
-					<td width="10%" class="listCount">${index.count }</td>
+					<td width="10%" class="listCount">${ShowtotalCount-index.index }</td>
 					<td width="70%">${dto.title }</td>
 					<td>
 						<fmt:formatDate value="${dto.writeday}"/>

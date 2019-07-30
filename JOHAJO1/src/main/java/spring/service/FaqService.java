@@ -18,6 +18,10 @@ public class FaqService {
 	{
 		return dao.FaQList();
 	}
+	public List<FaqDto> AllFaQList()
+	{
+		return dao.AllFaQList();
+	}
 	public List<FaqDto> FnQSelKind(int kind)
 	{
 		return dao.FnQSelKind(kind);

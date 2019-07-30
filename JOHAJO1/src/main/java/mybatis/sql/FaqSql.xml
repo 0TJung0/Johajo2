@@ -10,6 +10,9 @@
 	<select id="FaQList" resultType="fdto">
 		select * from fnq where hide=1 order by idx desc
 	</select>
+	<select id="AllFaQList" resultType="fdto">
+		select * from fnq order by idx desc
+	</select>
 	<select id="FnQSelKind" resultType="fdto" parameterType="int">
 		select * from fnq where kind=#{kind} and hide=1 order by idx desc
 	</select>
