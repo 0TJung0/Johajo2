@@ -75,4 +75,9 @@ public class MemberDao  extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("memberList");
 	}
 
+	public MemberDto memberReservationSelect(Integer midx) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("memberReservationSelect", midx);
+	}
+
 }

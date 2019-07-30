@@ -11,9 +11,88 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/member.css">
-<link rel="stylesheet" href="../../css/member.css">
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+<style type="text/css">
+/* 	div.idcheck_warp{
+		position: relative;
+	    width: 100%;
+	    height: 232px;
+	    padding: 13px;
+	    margin: 0 auto;
+	    background-color: #ddd;
+	    border-radius: 3px;
+	}
+	
+	div.idcheckForm{
+		position: relative;
+	    width: 100%;
+	    height: 104px;
+	    border-radius: 4px;
+
+	}
+	div.idcheckForm>span{
+		font-size: 15px;
+	    display: inline-block;
+	    text-align: center;
+	    width: 100%;
+	    padding: 20px 0;
+
+	}
+	div.idcheckForm input[type=text]{
+		margin: 0 10px 0 50px;
+    	line-height: 30px;
+	}
+	
+	div.result div.useform button.use,
+	div.idcheckForm .chbtn{
+		cursor: pointer;
+	    border: 0;
+	    background-color: #000;
+	    color: #fff;
+	    padding: 4px 12px;
+	    border-radius: 3px;
+	    line-height: 30px;
+
+	}
+	
+	div.result{
+		position: relative;
+	    width: 100%;
+	    padding: 25px;
+	}
+	div.result div.useform{
+	
+	    position: relative;
+    	margin: 0 auto;
+    	text-align: center;
+	}
+	
+	
+	div.result div.useform span{
+	    display: inline-block;
+	    width: 100%;
+	    margin-bottom: 9px;
+	    font-size: 16px;
+    }
+	div.result div.useform span b{
+		color:orange;
+		font-size: 17px;
+	}
+	
+	div.result div.useform button.use:hover{
+		background-color: orange;
+		color: #fff;
+		font-weight: bold;
+	}
+	
+	div.result div.useform.u2{
+		line-height: 25px;
+		margin-top: 9px;
+	}
+ 	 */
+
+</style>
 <script type="text/javascript">
 $(function(){
 	var id= $("#id").val().length;
@@ -43,7 +122,7 @@ $(function(){
 		<div class="idcheckForm">
 			<span>사용 할 아이디를 입력하세요</span>
 			<input type="text" name="id" id="id" size="16" value="${id}" required="required" autofocus="autofocus">
-			<input type="submit" value="중복체크">
+			<input type="submit" value="중복체크" class="chbtn">
 			
 		</div>
 	</form>

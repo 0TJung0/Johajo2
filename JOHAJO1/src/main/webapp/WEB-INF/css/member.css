@@ -316,6 +316,25 @@ div.center{
     	width: 100%;
     }
     
+    div.res>a{
+    	color: #000;
+    }
+    div.res a div span{
+		display: inline-block;
+		width: 100%;   
+		 	
+    }
+    div.res a div span:nth-child(1){
+    	font-weight: bold;
+    }
+    div.res a div span:nth-child(2){
+    	margin-top: 5px;
+    	font-size: 16px;
+    }
+     div.res a div span b{
+     	color: orange;
+     }
+    
     
     div.myform div.field.f2 ul li div.point p{
     	color: #FE9A2E;
@@ -332,13 +351,14 @@ div.center{
     }
     
     div.myform div.field.f2 ul li div.qna span b{
-    color: #FE9A2E;
+    	color: #FE9A2E;
     	font-weight: bold;
     	font-size: 26px;
+    	display: inherit;
     }
     
     
-    div.myform div.field.f2 ul li div b{
+    div.myform div.field.f2 ul li div b.caterory{
     	display:inline-block;
     	margin-bottom: 10px;
     	width: 100%;
@@ -626,54 +646,82 @@ div.center{
 	
 	
 
-//idcheck popup
+/*idcheck popup */
 
 	div.idcheck_warp{
 		position: relative;
 	    width: 100%;
-	    padding: 27px 30px;
+	    height: 232px;
+	    padding: 13px;
+	    margin: 0 auto;
 	    background-color: #ddd;
-	
+	    border-radius: 3px;
 	}
 	
 	div.idcheckForm{
 		position: relative;
 	    width: 100%;
 	    height: 104px;
-	    /* margin: 9px auto 0; */
-	    background-color: #fff;
 	    border-radius: 4px;
 
 	}
 	div.idcheckForm>span{
-		    font-size: 15px;
+		font-size: 15px;
 	    display: inline-block;
 	    text-align: center;
 	    width: 100%;
-	    padding: 34px 0 5px;
+	    padding: 20px 0;
+
 	}
 	div.idcheckForm input[type=text]{
-		margin-left: 46px;
+		margin: 0 10px 0 50px;
+    	line-height: 30px;
 	}
 	
-	div.useform{
+	div.result div.useform button.use,
+	div.idcheckForm .chbtn{
+		cursor: pointer;
+	    border: 0;
+	    background-color: #000;
+	    color: #fff;
+	    padding: 4px 12px;
+	    border-radius: 3px;
+	    line-height: 30px;
+
+	}
+	
+	div.result{
 		position: relative;
-		text-align: center;
-	    padding-top: 31px;
-   		margin-bottom: 16px;
-   		color:#7e7e7e;
+	    width: 100%;
+	    padding: 25px;
+	}
+	div.result div.useform{
+	
+	    position: relative;
+    	margin: 0 auto;
+    	text-align: center;
 	}
 	
 	
-	div.useform.u2{
-		margin-bottom:2px;
-	}
-	
-	div.useform button[type=button]{
-		color:black;
-	}
-	
-	div.useform>span>b,div.useform.u2 b{
+	div.result div.useform span{
+	    display: inline-block;
+	    width: 100%;
+	    margin-bottom: 9px;
+	    font-size: 16px;
+    }
+	div.result div.useform span b{
 		color:orange;
+		font-size: 17px;
+	}
+	
+	div.result div.useform button.use:hover{
+		background-color: orange;
+		color: #fff;
+		font-weight: bold;
+	}
+	
+	div.result div.useform.u2{
+		line-height: 25px;
+		margin-top: 9px;
 	}
  	

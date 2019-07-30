@@ -54,22 +54,26 @@
 			<ul>
 				<li>
 					<div class="res">
-						<b>예약 현황</b>
-						<div><span>[강남점]</span><span>나만을 위한 특별한 코스 A</span><span>2019-07-21</span></div>
-						
+						<b class="caterory">예약 현황</b>
+						<a href="#">
+							<div>
+								<span>[${rdto.sname}]</span>
+								<span>${rdto.rdate} <b>${rdto.rtime}</b></span>
+							</div>
+						</a>
 					</div>
 				</li>
 				<li>
 					<div class="point">
 					<fmt:formatNumber var="point" value="${qdto.point}" pattern="#,###" />
-						<b>보유 포인트</b>
+						<b class="caterory">보유 포인트</b>
 						<p>${point}점</p>
 						
 					</div>
 				</li>
 				<li>
 					<div class="qna">
-						<b><a href="myqnaList.do?idx=${log_idx}">고객의 소리</a></b>
+						<b class="caterory"><a href="myqnaList.do?idx=${log_idx}">고객의 소리</a></b>
 						<span>대기중 <b>${qdto.finish}</b></span>
 						<span>완료<b>${qdto.stand}</b></span>
 					</div>
@@ -79,6 +83,10 @@
 		</div>
 		<div class="field f2 coupon">
 			<b>보유 쿠폰</b>
+			<c:if test="${clist.size() == 0 }">
+				보유중인 쿠폰이 없습니다.
+			</c:if>
+			<c:if test="${clist.size() > 0 }">
 			<c:forEach var="cdto" items="${clist}">
 				
 				<fmt:formatDate var="startday" value="${cdto.startday}" pattern="yyyy-MM-dd" />
@@ -89,8 +97,8 @@
 					<span>${startday} ~ ${endday}</span>
 				</div>
 			</c:forEach>
-			<!-- <div>오픈 기념 30% 할인 2019-07-30</div>
-			<div><b>생일 기념 50% 할인</b>2019-07-30</div> -->
+			</c:if>
+			
 		</div>
 		<div class="clear"></div>
 	</div>
