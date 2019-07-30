@@ -84,7 +84,7 @@
 		<div class="field f2 coupon">
 			<b>보유 쿠폰</b>
 			<c:if test="${clist.size() == 0 }">
-				보유중인 쿠폰이 없습니다.
+				<p>보유중인 쿠폰이 없습니다.</p>
 			</c:if>
 			<c:if test="${clist.size() > 0 }">
 			<c:forEach var="cdto" items="${clist}">

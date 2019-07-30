@@ -318,6 +318,7 @@ div.center{
     
     div.res>a{
     	color: #000;
+    	display: block;
     }
     div.res a div span{
 		display: inline-block;
