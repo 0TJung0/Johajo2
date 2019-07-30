@@ -34,7 +34,7 @@
 				$(this).css({
 					"background-color" : "#fff",
 					"color" : "#231f20"
-				});
+				}); 
 			}).mouseleave(function(){
 				$(this).css({
 					"background-color": "#231f20",
