@@ -149,19 +149,7 @@
 	/* --------------------------------------------------- */
 	/* menuList_list.jsp */
 	
-	.menulist_list{
-		border: 1px solid lightgray;
-		width:100%;
-	}
-	.menulist_list li{
-		display: inline-block;
-	}
-	.menulist_img{
-		width: 300px;
-	}
-	.menu_fname{
-		font-size: 1.25em;
-	}
+	
 	
 	/* -------------------------------------------------- */
 	/* menuList_list2 */

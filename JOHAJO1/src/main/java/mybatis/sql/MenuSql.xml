@@ -13,6 +13,9 @@
 	<select id="menuSelectTwo" resultType="mndto" parameterType="HashMap">
 		select * from food where kind = #{kind} and idx = #{idx}
 	</select>
+	<select id="menuKindonly" resultType="mndto">
+		select distinct kind from food order by kind asc
+	</select>
 	
 	<!-- insert, update, delete  -->
 	<insert id="menuInsert" parameterType="mndto">

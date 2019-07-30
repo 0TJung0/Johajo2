@@ -29,6 +29,11 @@ public class MenuService {
 		return dao.getDataIdx(idx);
 	}
 	
+	public List<MenuDto> getKindonly()
+	{
+		return dao.getKindonly();
+	}
+	
 	public List<MenuDto> getDataList(int kind, int idx)
 	{
 		return dao.getDataList(kind, idx);

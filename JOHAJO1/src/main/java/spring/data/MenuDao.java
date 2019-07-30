@@ -27,6 +27,11 @@ public class MenuDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectOne("menuSelectIdx",idx);
 	}
 	
+	public List<MenuDto> getKindonly()
+	{
+		return getSqlSession().selectList("menuKindonly");
+	}
+	
 	public List<MenuDto> getDataList(int kind, int idx)
 	{
 		Map<String, Integer> map=new HashMap<String, Integer>();

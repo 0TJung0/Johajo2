@@ -32,7 +32,8 @@ public class MenuController {
 		ModelAndView model=new ModelAndView();
 		List<MenuDto> list=service.getData();
 		model.addObject("list",list);
-		
+		List<MenuDto> konly = service.getKindonly();
+		model.addObject("konly",konly);
 		model.setViewName("/menu/menuList_sel");
 		return model;
 	}
@@ -44,6 +45,8 @@ public class MenuController {
 		ModelAndView model = new ModelAndView();
 		List<MenuDto> list=service.getDataSel(kind);
 		model.addObject("list",list);
+		List<MenuDto> konly = service.getKindonly();
+		model.addObject("konly",konly);
 		model.setViewName("/menu/menuList_list");
 		return model;
 	}
