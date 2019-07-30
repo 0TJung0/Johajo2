@@ -8,17 +8,40 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'>
 	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+	<style type="text/css">
+		a{font-family: Nanum Gothic;}
+	</style>
 	<script type="text/javascript">
 	$(function(){
-			$(".menusel").mouseover(function(){
+			$(".menusel").mouseenter(function(){
+				$(this).css({
+					"transform":"scale(1.1)",
+					"transition":"transform 1s",
+					"opacity":"0.8"
+					});
 				$(this).find('.menumore').show();
-				$(this).fadeTo('fast');
-			}).mouseout(function(){
+			}).mouseleave(function(){
+				$(this).css({
+					"transform":"scale(1)",
+					"transition":"transform 1s",
+					"opacity":"1"
+					});
 				$(this).find('.menumore').hide();
-				$(this).fadeTo('fast',1);
 			});
-		})
+			$(".menubtn1").mouseenter(function(){
+				$(this).css({
+					"background-color" : "#fff",
+					"color" : "#231f20"
+				});
+			}).mouseleave(function(){
+				$(this).css({
+					"background-color": "#231f20",
+		    		"color": "#fff"
+				});
+			});
+		}) 
 	</script>
 	</head>
 	<body>
@@ -31,7 +54,7 @@
 								<c:if test="${mkindnum==3}">
 									<img src="./image/main.jpg" id="main_img" title="main">
 									<div class="menumore">
-										<input type="button" value="상세보기" onclick="location.href='mmain.do'" class="menubtn1">
+										<a class="menubtn1" href='mmain.do' target="_self" id="btnmain"><b>상세보기</b></a>
 									</div>
 								</c:if>
 						</c:forEach>
@@ -45,7 +68,7 @@
 									<c:if test="${mkindnum==2}">
 										<img src="./image/soup.jpg" id="soup_img" title="soup">
 										<div class="menumore">
-											<input type="button" value="상세보기" onclick="location.href='soup.do'" class="menubtn1">
+											<a class="menubtn1" href='soup.do' target="_self" id="btnsoup"><b>상세보기</b></a>
 										</div>
 									</c:if>
 							</c:forEach>
@@ -56,7 +79,7 @@
 									<c:if test="${mkindnum==5}">
 										<img src="./image/des.jpg" id="dess_img" title="dessert">
 										<div class="menumore">
-											<input type="button" value="상세보기" onclick="location.href='dessert.do'" class="menubtn1">
+											<a class="menubtn1" href='dessert.do' target="_self" id="btndes"><b>상세보기</b></a>
 										</div>
 									</c:if>
 							</c:forEach>
@@ -72,7 +95,7 @@
 								<c:if test="${mkindnum==1}">
 									<img src="./image/appe.jpg"  id="appe_img" title="appetizer">
 									<div class="menumore">
-										<input type="button" value="상세보기" onclick="location.href='appetizer.do'" class="menubtn1">
+										<a class="menubtn1" href='appetizer.do' target="_self" id="btnappe"><b>상세보기</b></a>
 									</div>
 								</c:if>
 						</c:forEach>
@@ -85,7 +108,7 @@
 										<c:if test="${mkindnum==4}">
 											<img src="./image/side.jpg" id="side_img" title="side dish">
 											<div class="menumore">
-												<input type="button" value="상세보기" onclick="location.href='side.do'" class="menubtn1">
+												<a class="menubtn1" href='side.do' target="_self" id="btnside"><b>상세보기</b></a>
 											</div>
 										</c:if>
 								</c:forEach>
@@ -96,7 +119,7 @@
 										<c:if test="${mkindnum==6}">
 											<img src="./image/drink.jpg" id="drink_img" title="drink">
 											<div class="menumore">
-												<input type="button" value="상세보기" onclick="location.href='drink.do'" class="menubtn1">
+												<a class="menubtn1" href='drink.do' target="_self" id="btndrink"><b>상세보기</b></a>
 											</div>
 										</c:if>
 								</c:forEach>
