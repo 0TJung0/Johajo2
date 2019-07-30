@@ -7,52 +7,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script><%-- 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'>
+<%-- 
 <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/> --%>
 <script type="text/javascript">
 $(function(){
-	$(".mlist").hide();
-	//console.log($(location).attr('search'));
-	var se = $(location).attr('search');
-	//console.log(se.charAt(6));
-	var kind = se.charAt(6);
-	
-	if(kind==1){
-		$("#mlist1").show();
-	}else if(kind==2){
-		$("#mlist2").show();
-	}else if(kind==3){
-		$("#mlist3").show();
-	}else if(kind==4){
-		$("#mlist4").show();
-	}else if(kind==5){
-		$("#mlist5").show();
-	}else{
-		$("#mlist6").show();
-	}
-	
-	
-	$(".menulist_img").click(function(){
+	$(".sidebtn1").click(function(){
 		var idx = $(this).attr("idx");
 		console.log(idx);
 		
 		window.open('http://localhost:9000/SpringTilesMybatis/menuselpop.do?idx='+idx, 'menulistPop', 'width=500, height=650, left=700, top=50,resizable=no,', '_blank');
 	});
 	
+	$(".sidelist_list").mouseenter(function(){
+		$(this).css("opacity","0.8");
+		$(this).find('.sidemore').show();
+	}).mouseleave(function(){
+		$(this).css("opacity","1");
+		$(this).find('.sidemore').hide();
+	});
+	$(".sidebtn1").mouseenter(function(){
+		$(this).css({
+			"background-color" : "#fff",
+			"color" : "#231f20",
+    		"text-decoration":"none"
+		}); 
+	}).mouseleave(function(){
+		$(this).css({
+			"background-color": "#414141",
+    		"color": "#fff",
+    		"text-decoration":"none"
+		});
+	});
 });
 </script>
 <style type="text/css">
-	.menu_list{
+	a,b{font-family: Nanum Gothic;}
+	.side_list{
 		background-color: #F5F5F5;
 		padding-left: 100px;
         padding-right: 100px;
         overflow: hidden;
 	}
-	.menu_list2{
+	.sidelist2{
 		height: 250px;
 		display: block;
 	}
-	.menulist_list{
+	.sidelist_list{
 		background-color:white;
 		margin-left:10px;
 		margin-right:10px;
@@ -64,45 +66,73 @@ $(function(){
 		height: 100%;
 	}
 	
-	.menulist_list ul{
+	.sidelist_list ul{
 		padding-left:0px;
 		list-style: none;
 	}
-	.menulist_img{
+	.sidelist_img{
 		display: block;
 		width: 100%;
 	}
-	.menu_fname{
+	.side_fname{
 		margin-top:25px;
 		font-size: 1em;
 		text-align: center;
 		z-index: 2;
 	}
-	.mlist{
+	.sidelist1{
 		font-size: 350%;
 		text-align: center;
 		padding : 100px;
 	}
+	.sidemore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
+	}
+	.sidebtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.sidebtn1:link, a.sidebtn1:visited{
+    color: #fff;
+    text-decoration: none;
+	}
 </style>
 </head>
 <body>
-	<div class="menu_list">
-		<c:forEach var="dto" items="${konly}">
-			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-			<c:set var="mkind" value="${mkindnum==1?'APPETIZER':mkindnum==2?'SOUP':mkindnum==3?'MAIN':mkindnum==4?'SIDE':mkindnum==5?'DESSERT':'DRINK'}"/>
-			<c:set var="mimg" value="${mkindnum==1?'appe.png':mkindnum==2?'soup.png':mkindnum==3?'main.png':mkindnum==4?'side.png':mkindnum==5?'des.png':'drink.png'}"/>
-				<div class="mlist" id="mlist${dto.kind}" >
-					<b>${mkind}</b><br>
-					<img src="image/${mimg}">
-				</div>	  
-		</c:forEach>
-		<div class="menu_list2">
+	<div class="side_list">
+		<div class="sidelist1" id="sidelist1" > 
+			<b>SIDE</b><br>
+			<img src="image/side.png">
+		</div>
+		<div class="sidelist2">
 			<c:forEach var="dto" items="${list}" >	
-				<div class="menulist_list" id="menulist${dto.idx}">
+				<div class="sidelist_list" id="sidelist${dto.idx}">
+					<div class="sidemore">
+						<a class="sidebtn1" idx="${dto.idx}"><b>상세보기</b></a>
+					</div>
 					<ul>
-						<li><img class="menulist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
+						<li><img class="sidelist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
 						
-						<li class="menu_fname">&nbsp;&nbsp;&nbsp;<b>${dto.fname},${dto.idx}</b></li>
+						<li class="side_fname">&nbsp;&nbsp;&nbsp;<b>${dto.fname},${dto.idx}</b></li>
 						<%-- 
 						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
 						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li> --%>
