@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  
 		  select  a.* from (select ROWNUM as RNUM,B.* from 
 			(select * from  qna where mem_f=#{idx} order by idx desc)b )a 
-		where a.RNUM >= #{start} 
+		  where a.RNUM >= #{start} 
 		  and a.RNUM <= #{end}
 		  
 		]]>

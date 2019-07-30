@@ -7,15 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="./smartEditor/js/service/HuskyEZCreator.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$("#FaQUpDataSub").click(function(){
+		var inputText=oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
+		var a = $("#contents").val();
+							
+		$("#FaQUpDateForm").submit(); 
+	});
+});
+</script>
 
 </head>
 <body>
-	<form action="FaqUpData.do">
+	<form action="FaqUpData.do"  id="FaQUpDateForm" method="post"
+enctype="multipart/form-data">
 	<c:set var="dto" value="${dto }"/>
 		<select name="kind">
 			<option value="1" 
@@ -32,9 +44,20 @@
 		<c:if test="${dto.hide==0 }">checked="checked"</c:if>><br>
 		제목:<input type="text" size="100" name="title" value="${dto.title }"><br>
 		내용:
-		<textarea rows="18" cols="100" name="contents">${dto.contents }</textarea><br>	
+		<textarea rows="18" cols="100" name="contents" id="contents">${dto.contents }</textarea><br>	
 		<input type="hidden" name="idx"value="${dto.idx }">
-		<input type="submit" value="저장">
+		<input type="button" value="수정 완료" id="FaQUpDataSub">
 	</form>	
 </body>
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef:oEditors,
+	elPlaceHolder:"contents",
+	sSkinURI:"./smartEditor/SmartEditor2Skin.html",
+	fCreator:"createSEditor2"
+});
+
+
+</script>
 </html>

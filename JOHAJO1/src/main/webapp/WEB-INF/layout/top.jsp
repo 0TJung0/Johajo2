@@ -57,6 +57,12 @@ $(function(){
 		
 			<ul>
 				<li>
+					<li><span><a href="brand.do">BRAND</a></span>
+						<ul class="sub s5">
+							<li><a href="brand.do">제작자 소개</a></li>
+						</ul>
+					</li> 
+				<li>
 					<span><a href="menulist.do">MENU</a></span>
 					<ul class="sub s1">
 						<li><a href="menulist.do">메뉴</a></li>
@@ -84,14 +90,7 @@ $(function(){
 						<li><a href="noticeevent.do">이벤트</a></li>
 					</ul>
 				</li>
-				<!-- <li><span><a href="#">BRAND</a></span>
-					<ul class="sub">
-						<li><a href="#">소개1</a></li>
-						<li><a href="#">소개2</a></li>
-						<li><a href="#">소개3</a></li>
-						<li><a href="#">소개4</a></li>
-					</ul>
-				</li> -->
+				
 			</ul>
 		</div>
 		

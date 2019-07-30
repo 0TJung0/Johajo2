@@ -1,4 +1,5 @@
 function ajax1(idx){
+	var im="";
 	var str="";
 	var data=$("div.storlist");
 	$.ajax({
@@ -25,7 +26,6 @@ function ajax1(idx){
 					str+="<tr>";
 					str+="<td style='width:150px;'><img src='image/phone.PNG'>&nbsp;&nbsp;&nbsp;전화</td>";
 					str+="<td style='width:500px;'>"+phone+"</td>";
-					str+="<td rowspan='4'><img src='./storeImg/"+photo+"'class='storeImage'></td>";
 					str+="</tr>";					
 					str+="<tr>";
 					str+="<td><img src='image/addr.PNG'>&nbsp;&nbsp;&nbsp;주소</td>";
@@ -39,14 +39,17 @@ function ajax1(idx){
 					str+="<td><img src='image/service.PNG'>&nbsp;&nbsp;&nbsp;서비스</td>";
 					str+="<td>";
 					for(var i in serviceArray){
-						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>"+serviceArray[i]+"&nbsp;&nbsp;";
+						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>&nbsp;"+serviceArray[i]+"&nbsp;&nbsp;";
 					}
 					str+="</td>";
 					str+="</tr>";	
 					str+="</table>";
+					im +="<span>STORE IMAGE<img src='./storeImg/"+photo+"'></span>";
 					
 				});
 			$(data).html(str);
+			$("div.storeImg").html(im);
+			$("div.listStore").show();
 		},
 		error:function(){
 			alert("error");
@@ -58,6 +61,7 @@ function ajax1(idx){
 function ajax2(idx){
 
 	var str="";
+	var im="";
 	var data=$("div.storlist");
 	$.ajax({
 		type:'get',
@@ -83,7 +87,6 @@ function ajax2(idx){
 					str+="<tr>";
 					str+="<td style='width:150px;'><img src='image/phone.PNG'>&nbsp;&nbsp;&nbsp;전화</td>";
 					str+="<td style='width:500px;'>"+phone+"</td>";
-					str+="<td rowspan='4'><img src='./storeImg/"+photo+"'class='storeImage'></td>";
 					str+="</tr>";					
 					str+="<tr>";
 					str+="<td><img src='image/addr.PNG'>&nbsp;&nbsp;&nbsp;주소</td>";
@@ -97,11 +100,12 @@ function ajax2(idx){
 					str+="<td><img src='image/service.PNG'>&nbsp;&nbsp;&nbsp;서비스</td>";
 					str+="<td>";
 					for(var i in serviceArray){
-						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>"+serviceArray[i]+"&nbsp;&nbsp;";
+						str+="<img src='image/"+serviceArray[i]+".PNG' width='40'>&nbsp;"+serviceArray[i]+"&nbsp;&nbsp;";
 					}
 					str+="</td>";
 					str+="</tr>";	
 					str+="</table>";
+					im +="<span>STORE IMAGE<img src='./storeImg/"+photo+"'></span>";
 					
 				});
 			x=xpoint;
@@ -110,6 +114,8 @@ function ajax2(idx){
 			addr1=addr;
 			phone1=phone;
 			$(data).html(str);
+			$("div.storeImg").html(im);
+			$("div.listStore").show();
 			map2(x,y,storeName,addr1,phone1);
 		},
 		error:function(){

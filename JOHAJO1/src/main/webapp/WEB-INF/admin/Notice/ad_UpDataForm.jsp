@@ -36,35 +36,31 @@ enctype="multipart/form-data">
 	<tr>
 		<td>카테고리</td>
 		<td>
-			<input type="radio" name="topnotice" value="1"
-			<c:if test="${dto.topnotice==1 }">checked="checked"</c:if>
-			>중요공지
-			<input type="radio" name="topnotice" value="2"
-			<c:if test="${dto.topnotice==2 }">checked="checked"</c:if>
-			>서브공지
+			<input type="radio" name="topnotice" value="1">중요공지
+			<input type="radio" name="topnotice" value="2">서브공지
 		</td>
 	</tr>
 	<tr>
-		<td>비공개</td>
-		<td><input type="checkbox" name="hide" value=0
-		<c:if test="${dto.hide==0 }">checked="checked"</c:if>>
-		<br></td>
+		<td>공개</td>
+		<td><input type="checkbox" name="hide" value=1></td>
 	</tr>
 	<tr>
 		<td>제목</td>
-		<td><input type="text" name="title" style="width: 800px;" value="${dto.title }"></td>
+		<td><input type="text" name="title" style="width: 800px;" autofocus="autofocus" value="${dto.title }"></td>
 	</tr>
 	<tr>
 		<td>파일첨부</td>
-		<td>
-			<a>사진</a> &nbsp; &nbsp; &nbsp; 
-			<a>파일</a>
+		<td><div id="imgname_second"></div>
+            <input id="ex_file" type="file" onchange="previewImage(this, 'imgname_second');" name="photo">
 		</td>
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td style="width:800px;"><textarea id="contents" name="contents" rows="15" cols="180" style="width: 100%; min-width: 100%">${dto.contents }</textarea></td>
+		<td style="width:800px;"><textarea id="contents" name="contents" rows="15" cols="180" style="width: 100%; min-width: 100%">
+		${dto.contents }</textarea>
+		</td>
 	</tr>
+
 
 	<tr align="right">
 		<td colspan="2">

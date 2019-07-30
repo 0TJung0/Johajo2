@@ -40,4 +40,8 @@ public class NoticeService {
 	{
 		return dao.noticeShowList();
 	}
+	public int noticleShowTotal()
+	{
+		return dao.noticeShowTotal();
+	}
 }

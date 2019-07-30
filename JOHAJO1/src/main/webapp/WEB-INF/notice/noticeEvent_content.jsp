@@ -42,7 +42,7 @@
 		<div class="eventTab">
 			<ul class="tab" id="tab">
 				<li class="e_li"><a href="noticeevent.do">진행중인 이벤트</a></li>
-				<li class="e_li"><a href="event_win.do">마감된 이벤트</a></li>
+				<li class="e_li"><a href="EventEnd.do">마감된 이벤트</a></li>
 			</ul>
 		</div>
 		
@@ -64,7 +64,7 @@
 			<div class="centent2">
 			
 			 	<span>${dto.con}</span><br>
-				<span><img src="./image/bo.png"></span>
+				<span><img src="./eventImg${dto.main_img }"></span>
 				<button type="button" class="EventBtn1">쿠폰 받기</button>
 				<form  id="hi_e" action="insertCoupon.do" method="post" >
 				<input type="hidden" value="${mid }" name="mnd" id="midhidden">

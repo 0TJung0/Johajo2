@@ -99,6 +99,8 @@
     
     div.qdata div.content{
     	padding:20px 0 8px;
+    	overflow: auto;
+    	max-height: 200px;
     }
     
     div.qdata div.answer textarea{

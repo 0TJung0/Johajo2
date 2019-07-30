@@ -29,7 +29,9 @@
 	    padding: 80px 0 90px;
 	    background-color: #ddd;
 	} 
-	
+	div#tab_con{
+		overflow: auto;
+	}
 	div#notice_dispaly table{
 		position: relative;
 		width: 800px;
@@ -99,6 +101,7 @@
 	
 	div.noticebtn1 a:hover {
 		background-color: #231f20;
+		cursor: pointer;
 	}
 	
 	
@@ -122,7 +125,7 @@
 	
 	div.faqCategory ul li{
 		float: left;
-	    width: 33.3%;
+	    width: 25%;
 	    text-align: center;
 	    list-style: none;
 	    line-height: 35px;
@@ -231,9 +234,7 @@
 	div.e_div:nth-child(even){
 		background-color: #9e9e9e;
 	}
-	
 	div.e_div:nth-child(odd){
-		
 		background-color: #000;
 	}
 	div.e_div .e_data{
@@ -293,7 +294,31 @@
 		background-color: #000;
 		color: #fff;
 	}
+
+	div.EventMoreBtn1{
+	    width: 800px;
+	    height: 47px;
+	    margin:40px auto 30px;
+		
+	}
 	
+	div.EventMoreBtn1 a{
+	    display: block;
+	    text-align: center;
+	    color: #fff;
+	    font-family: 'Open Sans', 'sans-serif', 'Arial';
+	    font-weight: 800;
+	    background-color: #a8a9ad;
+	    line-height: 40px;
+	    margin: 20px 0;
+	    text-decoration: none;
+
+	}
+	
+	div.EventMoreBtn1 a:hover {
+		background-color: #231f20;
+		cursor: pointer;
+	}
 /***********************************************************************EVENT VIEW ****/
 	
 	
@@ -349,6 +374,12 @@
     }
     
      div.event_content div.centent2 span{
+	    display: block;
+	    text-align: center;
+    }
+      div.event_content div.centent2 span img{
+	    width:600px;
+	    margin-left:100px;
 	    display: block;
 	    text-align: center;
     }

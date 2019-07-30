@@ -4,6 +4,9 @@
 	<select id="noticeTotalCount" resultType="int">
 		select count(*) from notice
 	</select>
+	<select id="noticeShowToTal" resultType="int">
+		select count(*) from notice where hide=1
+	</select>
 	<select id="noticePagingList" resultType="ndto" parameterType="HashMap">
 		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from notice order by topnotice asc,idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
 	</select>

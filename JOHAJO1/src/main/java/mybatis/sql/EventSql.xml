@@ -31,4 +31,13 @@
 	<update id="eventUpdate" parameterType="edto">
 		update event set title=#{title},con=#{con},title_img=#{title_img},main_img=#{main_img},writedate=sysdate,startday=#{startday},endday=#{endday},discount_rate=#{discount_rate},validity_month=#{validity_month} where idx=#{idx}
 	</update>
+	<select id="eventPagingEndList" resultType="Enddto" parameterType="HashMap">
+		<![CDATA[select a.* from (select ROWNUM as RNUM,b.* from (select * from unevent order by idx desc)b )a where a.RNUM>=#{start} and a.RNUM<=#{end}]]>
+	</select>
+	<select id="EndeventTotalCount" resultType="int">
+		select count(*) from unevent
+	</select>
+	<select id="EventShowTotalCount" resultType="int">
+		select count(*) from event where to_char(sysdate,'yyyymmdd') between to_char(startday,'yyyymmdd') and to_char(endday,'yyyymmdd')
+	</select>
 </mapper>

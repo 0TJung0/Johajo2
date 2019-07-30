@@ -67,7 +67,7 @@ $(function(){
 				});
 				$(fm).empty();       //기존 내용 지움
 				$(fm).append(str);
-				
+				$(fm).parents(".qdata").next().remveClass("no").addClass("ok");
             },error: function(xhr, status, error){
                 alert(status);
             }
@@ -122,7 +122,8 @@ $(function(){
 					con=s.find("con").text();
 					   str ="<form name='answerform' id='answerform'>"
 						   +"<input type='hidden' name='idx' value='"+idx+"'>"
-						   +"<textarea rows='5' cols='45' name='content2'>"+con+"</textarea>"
+						   +"<textarea  name='content2' class='content2' rows='5' cols='45'  maxlength='500' resize='none'>"+con+"</textarea>"
+						   +"<span id='counter'></span>"
 						   +"<button type='button' class='anwok'>수정</button>"
 						   +"</form>";
 						
@@ -193,13 +194,17 @@ $(function(){
 </script>
 </head>
 <body>
-    총: <c:out value="${totalCount}" />
-    
+<%--     총: <c:out value="${totalCount}" />
+     --%>
     <div class="qnalist">
     	<button type="button" class="btnwrite" onclick="location.href='myqnaForm.do'">문의하기</button>
 		
 		<div class="center">
 		
+		<%-- <div class="selectTab">
+			<a href="myqnaList.do?pageNum=${startPage}&idx=${log_idx}&anw=1"><div>답변완료</div></a>
+			<a href="myqnaList.do?pageNum=${startPage}&idx=${log_idx}&anw=0"><div>답변대기</div></a>
+		</div> --%>
 		<c:forEach var="dto" items="${list}">
 		    <c:if test="${dto.anw==0}">
 		    	<c:set var="state" value="답변대기" />

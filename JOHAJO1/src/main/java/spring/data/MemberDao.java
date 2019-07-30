@@ -65,14 +65,31 @@ public class MemberDao  extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("userQnaCountSelect",midx);
 	}
 
-	public List<MemberDto> memberTotalSelect() {
-		// TODO Auto-generated method stub
-		return getSqlSession().selectList("getSqlSession");
-	}
+	
 
 	public List<MemberDto> memberList()
 	{
 		return getSqlSession().selectList("memberList");
+	}
+
+	public MemberDto memberReservationSelect(Integer midx) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("memberReservationSelect", midx);
+	}
+
+	public int memberTotalCount() {
+		// TODO Auto-generated method stub
+		return  getSqlSession().selectOne("memberTotalCount");
+	}
+	
+	public List<MemberDto> memberTotalSelect(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("memberTotalSelect",map);
+	}
+
+	public void memberDelete(int idx) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("memberDelete",idx);
 	}
 
 }

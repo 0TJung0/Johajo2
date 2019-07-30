@@ -4,8 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <faq>
+	<c:set var="KindCount" value="${KindCount }"/>
 	<c:forEach var="dto" items="${list}" varStatus="index">	
 		<data>
+			<KindCount>${KindCount}</KindCount>
 			<index>${index.index }</index>
 			<count>${index.count }</count>
 			<idx>${dto.idx}</idx>

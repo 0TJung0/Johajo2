@@ -21,11 +21,14 @@ public class NoticeController {
 	@RequestMapping("/noticelist.do")
 	public ModelAndView noticeList()
 	{
+		int ShowtotalCount; //총 데이터 개수
+		ShowtotalCount=service.noticleShowTotal();
 		ModelAndView model=new ModelAndView();
-		
+	
 		List<NoticeDto> list=service.noticeShowList();
 		
-		model.addObject("list",list);
+		model.addObject("list", list);
+		model.addObject("ShowtotalCount",ShowtotalCount);
 		model.setViewName("/notice/noticeList");
 		return model;
 	}

@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="spring.data.singlebasketDto" alias="singledto"/>
 		<typeAlias type="spring.data.ReservationDto" alias="resdto"/>
 		<typeAlias type="spring.data.mSearchDto" alias="msdto"/>
+		<typeAlias type="spring.data.EndEventDto" alias="Enddto"/>
 	</typeAliases>
 
 	<mappers>

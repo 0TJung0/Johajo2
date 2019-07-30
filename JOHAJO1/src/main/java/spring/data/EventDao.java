@@ -15,6 +15,11 @@ public class EventDao extends SqlSessionDaoSupport {
 		int n=getSqlSession().selectOne("eventTotalCount");
 		return n;
 	}
+	public int getEndTotalCount()
+	{
+		int n=getSqlSession().selectOne("EndeventTotalCount");
+		return n;
+	}
 	
 	public List<EventDto> getList(int start, int end)
 	{
@@ -25,6 +30,14 @@ public class EventDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("eventPagingList",map);		
 	}
 	
+	public List<EndEventDto> getEndList(int start, int end)
+	{
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		
+		return getSqlSession().selectList("eventPagingEndList",map);		
+	}
 	public EventDto getData(int idx)
 	{
 		return getSqlSession().selectOne("eventSelectData",idx);
@@ -58,5 +71,9 @@ public class EventDao extends SqlSessionDaoSupport {
 	public void updateEvent(EventDto dto)
 	{
 		getSqlSession().insert("eventUpdate", dto);
+	}
+	public int EventShowCount()
+	{
+		return getSqlSession().selectOne("EventShowTotalCount");
 	}
 }
