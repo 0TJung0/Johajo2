@@ -114,13 +114,16 @@ public class MenuController {
 		//path경로에 이미지 저장
 		SpringFileWriter fileWriter=new SpringFileWriter();
 		String imgname = "";
+		
 		//파일명
 		MultipartFile mf=dto.getUpfile();
 		System.out.println("파일명 : "+mf.getOriginalFilename());
-		imgname += mf.getOriginalFilename();
-		//이미지 저장 메소드 호출
-		fileWriter.writeFile(mf, path, mf.getOriginalFilename());
 		
+		if(mf.getOriginalFilename().length()>0) {
+			imgname += mf.getOriginalFilename();
+			//이미지 저장 메소드 호출
+			fileWriter.writeFile(mf, path, mf.getOriginalFilename());
+		}
 		//dto에 이미지 이름저장
 		dto.setImgname(imgname);
 		

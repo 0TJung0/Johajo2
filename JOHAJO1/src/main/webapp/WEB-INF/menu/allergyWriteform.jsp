@@ -16,7 +16,7 @@
 				<tr>
 					<th>메뉴명</th>
 					<td>
-						<select name="f">
+						<select name="f" class="alwrite">
 							<c:forEach var="f" items="${mlist}">
 								<option value="${f.idx}">${f.fname}
 							</c:forEach>
@@ -30,13 +30,13 @@
 						<c:set var="allergy" value="${a.aname}"></c:set>
 						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
 						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							<input type="radio" name="aname" value="${allergy}">${allergyn}
+							<input type="radio" class="writechk" name="aname" value="${allergy}">${allergyn}
 						</c:forEach>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="저장">
+						<input type="submit" value="저장" id="insertal">
 					</td>
 				</tr>
 			</table>

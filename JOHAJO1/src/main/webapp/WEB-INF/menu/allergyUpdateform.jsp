@@ -10,8 +10,9 @@
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$("option").each(function(index,item){
-				var f = '${dto.f}';
+			$(".alupop").each(function(index,item){
+				var f = '${mdto.idx}';
+				console.log(f);
 				if(f==$(item).val()){
 					$(item).attr("selected","selected");
 				}
@@ -26,7 +27,6 @@
 			
 			$(".alupdate").change(function(){
 				var f = $(this).val();
-				
 				$(".alcb").prop('checked',false);
 				
 				$.ajax({
@@ -63,11 +63,11 @@
 		<form action="allergyupdate.do" method="post">
 			<table class="awformtable">
 				<tr>
-					<th>메뉴명,${dto.f }</th>
+					<th>메뉴명,${mdto.idx}</th>
 					<td>
 						<select class="alupdate">
 							<c:forEach var="dto" items="${list}">
-								<option value="${dto.f}" >${dto.fname},${dto.f}
+								<option value="${dto.f}" class="alupop">${dto.fname}
 							</c:forEach>
 						</select>
 					</td>
@@ -85,7 +85,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="hidden" name="idx" value="${dto.idx}">
+						<input type="hidden" name="idx" value="${dto.f}">
 						<input type="submit" value="수정">
 						<input type="button" value="취소" onclick="history.back()">
 					</td>

@@ -89,14 +89,14 @@
 	        $("#alcontent div").hide(); //모든 내용 숨기기
 	        $("#altabs li").attr("id",""); 
 	        $(this).parent().attr("id","current"); 
-	        $('#' + $(this).attr('aname')).fadeIn(); //활성화된 탭만 보이도록
+	        $('#' + $(this).attr('kind')).fadeIn(); //활성화된 탭만 보이도록
 	    });
 	});
 	
 	$(function(){
 		$("#altabs li").click(function(){
-			var aname = $(this).attr("aname");
-			console.log(aname);
+			var kind = $(this).attr("aname");
+			console.log(kind);
 		});
 	});
 	</script>
@@ -107,12 +107,10 @@
 			<button type="button" onclick="location.href='allergyadd.do'">추가</button>
 			
 			<ul id="altabs">
-				<li><a href="#" aname="1">전체</a></li>
-				<c:forEach var="a" items="${alist}">
-					<c:set var="allergy" value="${a.aname}"></c:set>
-					<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-					:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-					    <li><a href="#" aname="${allergy}">${allergyn}</a></li>
+				<c:forEach var="dto" items="${kind}">
+					<c:set var="mkindnum" value="${dto.kind}"></c:set>
+					<c:set var="mkind" value="${mkindnum==1?'APPETIZER':mkindnum==2?'SOUP':mkindnum==3?'MAIN':mkindnum==4?'SIDE':mkindnum==5?'DESSERT':'DRINK'}"/>
+					    <li><a href="#" kind="${mkindnum}">${mkind}</a></li>
 				</c:forEach>
 			</ul>
 			
@@ -121,62 +119,12 @@
 			    <div id="1">
 		        	<table class="menuatable">
 		        		<tr>
-							<th>종류</th>
 							<th>메뉴</th>
 						</tr>
-		        	
 		        		<c:forEach var="dto" items="${total}">
 		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-		        			<tr>
-			        			<td>${mkind}</td>
-								<td>${dto.fname}</td>
-		        			</tr>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="10">
-			        <table class="menuatable">
-		        		<tr>
-							<th>종류</th>
-							<th>메뉴</th>
-						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==10}">
+		        			<c:if test="${mkindnum==1}">
 								<tr>
-									<td>${mkind}</td>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="11">
-			        <table class="menuatable">
-		        		<tr>
-							<th>종류</th>
-							<th>메뉴</th>
-						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==11}">
-								<tr>
-									<td>${mkind}</td>
 									<td>${dto.fname}</td>
 								</tr>	
 							</c:if>
@@ -186,21 +134,12 @@
 			    <div id="2">
 			       	<table class="menuatable">
 		        		<tr>
-							<th>종류</th>
 							<th>메뉴</th>
 						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
+		        		<c:forEach var="dto" items="${total}">
 		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==2}">
+		        			<c:if test="${mkindnum==2}">
 								<tr>
-									<td>${mkind}</td>
 									<td>${dto.fname}</td>
 								</tr>	
 							</c:if>
@@ -210,21 +149,12 @@
 			    <div id="3">
 			       <table class="menuatable">
 		        		<tr>
-							<th>종류</th>
 							<th>메뉴</th>
 						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
+		        		<c:forEach var="dto" items="${total}">
 		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==3}">
+		        			<c:if test="${mkindnum==3}">
 								<tr>
-									<td>${mkind}</td>
 									<td>${dto.fname}</td>
 								</tr>	
 							</c:if>
@@ -234,21 +164,12 @@
 			    <div id="4">
 			        <table class="menuatable">
 		        		<tr>
-							<th>종류</th>
 							<th>메뉴</th>
 						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
+		        		<c:forEach var="dto" items="${total}">
 		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==4}">
+		        			<c:if test="${mkindnum==4}">
 								<tr>
-									<td>${mkind}</td>
 									<td>${dto.fname}</td>
 								</tr>	
 							</c:if>
@@ -258,21 +179,12 @@
 			    <div id="5">
 			        <table class="menuatable">
 		        		<tr>
-							<th>종류</th>
 							<th>메뉴</th>
 						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
+		        		<c:forEach var="dto" items="${total}">
 		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==5}">
+		        			<c:if test="${mkindnum==5}">
 								<tr>
-									<td>${mkind}</td>
 									<td>${dto.fname}</td>
 								</tr>	
 							</c:if>
@@ -280,95 +192,14 @@
 		        	</table>
 			    </div>
 			    <div id="6">
-			       <table class="menuatable">
+			      <table class="menuatable">
 		        		<tr>
-							<th>종류</th>
 							<th>메뉴</th>
 						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
+		        		<c:forEach var="dto" items="${total}">
 		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==6}">
+		        			<c:if test="${mkindnum==6}">
 								<tr>
-									<td>${mkind}</td>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="7">
-			        <table class="menuatable">
-		        		<tr>
-							<th>종류</th>
-							<th>메뉴</th>
-						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==7}">
-								<tr>
-									<td>${mkind}</td>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="8">
-			        <table class="menuatable">
-		        		<tr>
-							<th>종류</th>
-							<th>메뉴</th>
-						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==8}">
-								<tr>
-									<td>${mkind}</td>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="9">
-			        <table class="menuatable">
-		        		<tr>
-							<th>종류</th>
-							<th>메뉴</th>
-						</tr>
-		        	
-		        		<c:forEach var="dto" items="${list}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-							<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-							
-							<c:set var="allergy" value="${dto.aname}"></c:set>
-							<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-							
-							<c:if test="${allergy==9}">
-								<tr>
-									<td>${mkind}</td>
 									<td>${dto.fname}</td>
 								</tr>	
 							</c:if>

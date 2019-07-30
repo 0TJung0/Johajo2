@@ -8,6 +8,7 @@ public class MenuDto {
 	private int kind;
 	private int calorie;
 	private String imgname;
+	private String originimg;
 	private int count;
 	private int price;
 	private String origin;
@@ -43,6 +44,12 @@ public class MenuDto {
 	}
 	public void setImgname(String imgname) {
 		this.imgname = imgname;
+	}
+	public String getOriginimg() {
+		return originimg;
+	}
+	public void setOriginimg(String originimg) {
+		this.originimg = originimg;
 	}
 	public int getCount() {
 		return count;

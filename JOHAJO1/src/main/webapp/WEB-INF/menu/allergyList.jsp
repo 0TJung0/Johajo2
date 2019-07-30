@@ -17,7 +17,7 @@
 			padding : 5px;
 		}
 	
-		#aldiv{
+		#allistdiv{
 			margin-top: 10px;
 			margin-left:50px;
 			margin-right: 50px;
@@ -25,33 +25,33 @@
 		
 		/* ------------------------------------------------- */
 		
-		#altabs{
+		#allisttabs{
 			overflow: hidden;
 			width: 100%;
 			margin: 0;
 			padding: 0;
 			list-style: none;
 		}
-		#altabs li{
+		#allisttabs li{
 			float: left;
  		 	margin: 0 .1em 0 0;
  		 	border: 1px solid lightgray;
 		}
-		#altabs a{
+		#allisttabs a{
 			position: relative;
 			padding: .2em 1em;
 			float: left;
 			text-decoration: none;
 		}
-		#altabs a:hover,#altabs a:focus{
+		#allisttabs a:hover,#allisttabs a:focus{
 		  	color : black;
 		  	text-decoration: none;
 		}
-		#altabs a:focus{
+		#allisttabs a:focus{
 		    outline: 0;
 		    color : black;
 		}
-		#altabs a:visited{
+		#allisttabs a:visited{
 			content:'';
 			position:absolute;
 			z-index: 1;
@@ -61,7 +61,7 @@
 			width: 1em;
 			color : black;
 		}
-		#altabs #current a{
+		#allisttabs #current a{
 		  z-index: 3;
 		  background: lightgray;
 		  color : tomato;
@@ -69,7 +69,7 @@
 		
 		/* ------------------------------------------------- */
 		
-		#alcontent{
+		#allistcontent{
 			background: #fff;
 		    padding: 2em;
 		    height: 
@@ -79,26 +79,26 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		//모든 내용 숨김
-		$("#alcontent div").hide();
+		$("#allistcontent div").hide();
 
 		//첫 탭만 활성화
-		$("#altabs li:first").attr("id","current");
+		$("#allisttabs li:first").attr("id","current");
 		//첫번째 탭 내용만 보이도록
-		$("#alcontent div:first").fadeIn();
+		$("#allistcontent div:first").fadeIn();
 	    
-	    $('#altabs a').click(function(e) {
+	    $('#allisttabs a').click(function(e) {
 	        e.preventDefault();        
-	        $("#alcontent div").hide(); //모든 내용 숨기기
-	        $("#altabs li").attr("id",""); 
+	        $("#allistcontent div").hide(); //모든 내용 숨기기
+	        $("#allisttabs li").attr("id",""); 
 	        $(this).parent().attr("id","current"); 
-	        $('#' + $(this).attr('aname')).fadeIn(); //활성화된 탭만 보이도록
+	        $('#' + $(this).attr('kind')).fadeIn(); //활성화된 탭만 보이도록
 	    });
 	});
 	
 	$(function(){
-		$("#altabs li").click(function(){
-			var aname = $(this).attr("aname");
-			console.log(aname);
+		$("#allisttabs li").click(function(){
+			var kind = $(this).attr("kind");
+			console.log(kind);
 		});
 	});
 	
@@ -133,78 +133,36 @@
 	</script>
 	</head>
 	<body>
-		<div id="aldiv">
+		<div id="allistdiv">
 			
 			<button type="button" id="btndel" >알러지 삭제</button>
 		
-			<ul id="altabs">
-				<c:forEach var="a" items="${alist}">
-					<c:set var="allergy" value="${a.aname}"></c:set>
-					<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-					:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-					    <li><a href="#" aname="${allergy}">${allergyn}</a></li>
+			<ul id="allisttabs">
+				<c:forEach var="dto" items="${kind}">
+					<c:set var="mkindnum" value="${dto.kind}"></c:set>
+					<c:set var="mkind" value="${mkindnum==1?'APPETIZER':mkindnum==2?'SOUP':mkindnum==3?'MAIN':mkindnum==4?'SIDE':mkindnum==5?'DESSERT':'DRINK'}"/>
+					    <li><a href="#" kind="${mkindnum}">${mkind}</a></li>
 				</c:forEach>
 			</ul>
 			
-			<div id="alcontent"> 
-			    <div id="10">
+			<div id="allistcontent"> 
+			    <div id="1">
 			        <table class="clisttable">
 						<tr>
 							<th></th>
-							<th>종류</th>
-							<th>idx</th>
 							<th>메뉴</th>
 							<th></th>
 						</tr>
 									
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${total}">
 						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
 						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==10}">
+							<c:if test="${mkindnum==1}">
 								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
+									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
-									</td>
-								</tr>	
-							</c:if>
-						</c:forEach>
-					</table>
-			    </div>
-			    <div id="11">
-			        <table class="clisttable">
-						<tr>
-							<th></th>
-							<th>종류</th>
-							<th>idx</th>
-							<th>메뉴</th>
-							<th></th>
-						</tr>
-									
-						<c:forEach var="dto" items="${list}">
-						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==11}">
-								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
-									<td>${dto.fname}</td>
-									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -212,31 +170,22 @@
 					</table>
 			    </div>
 			    <div id="2">
-			       	<table class="clisttable">
+			       <table class="clisttable">
 						<tr>
 							<th></th>
-							<th>종류</th>
-							<th>idx</th>
 							<th>메뉴</th>
 							<th></th>
 						</tr>
 									
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${total}">
 						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
 						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==2}">
+							<c:if test="${mkindnum==2}">
 								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
+									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -247,28 +196,19 @@
 			        <table class="clisttable">
 						<tr>
 							<th></th>
-							<th>종류</th>
-							<th>idx</th>
 							<th>메뉴</th>
 							<th></th>
 						</tr>
 									
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${total}">
 						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
 						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==3}">
+							<c:if test="${mkindnum==3}">
 								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
+									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -279,28 +219,19 @@
 			        <table class="clisttable">
 						<tr>
 							<th></th>
-							<th>종류</th>
-							<th>idx</th>
 							<th>메뉴</th>
 							<th></th>
 						</tr>
 									
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${total}">
 						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
 						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==4}">
+							<c:if test="${mkindnum==4}">
 								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
+									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -308,31 +239,22 @@
 					</table>
 			    </div>
 			    <div id="5">
-			        <table class="clisttable">
+			       <table class="clisttable">
 						<tr>
 							<th></th>
-							<th>종류</th>
-							<th>idx</th>
 							<th>메뉴</th>
 							<th></th>
 						</tr>
 									
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${total}">
 						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
 						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==5}">
+							<c:if test="${mkindnum==5}">
 								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
+									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -343,124 +265,19 @@
 			        <table class="clisttable">
 						<tr>
 							<th></th>
-							<th>종류</th>
-							<th>idx</th>
 							<th>메뉴</th>
 							<th></th>
 						</tr>
 									
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${total}">
 						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
 						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==6}">
+							<c:if test="${mkindnum==6}">
 								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
+									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
-									</td>
-								</tr>	
-							</c:if>
-						</c:forEach>
-					</table>
-			    </div>
-			    <div id="7">
-			       <table class="clisttable">
-						<tr>
-							<th></th>
-							<th>종류</th>
-							<th>idx</th>
-							<th>메뉴</th>
-							<th></th>
-						</tr>
-									
-						<c:forEach var="dto" items="${list}">
-						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==7}">
-								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
-									<td>${dto.fname}</td>
-									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
-									</td>
-								</tr>	
-							</c:if>
-						</c:forEach>
-					</table>
-			    </div>
-			    <div id="8">
-			        <table class="clisttable">
-						<tr>
-							<th></th>
-							<th>종류</th>
-							<th>idx</th>
-							<th>메뉴</th>
-							<th></th>
-						</tr>
-									
-						<c:forEach var="dto" items="${list}">
-						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==8}">
-								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
-									<td>${dto.fname}</td>
-									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
-									</td>
-								</tr>	
-							</c:if>
-						</c:forEach>
-					</table>
-			    </div>
-			    <div id="9">
-			        <table class="clisttable">
-						<tr>
-							<th></th>
-							<th>종류</th>
-							<th>idx</th>
-							<th>메뉴</th>
-							<th></th>
-						</tr>
-									
-						<c:forEach var="dto" items="${list}">
-						<c:set var="mkindnum" value="${dto.kind}"></c:set>
-						<c:set var="mkind" value="${mkindnum==1?'에피타이져':mkindnum==2?'수프':mkindnum==3?'메인요리':mkindnum==4?'사이드메뉴':mkindnum==5?'디저트':'음료'}"></c:set>
-						
-						<c:set var="allergy" value="${dto.aname}"></c:set>
-						<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
-						:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류'}"></c:set>
-						
-							<c:if test="${allergy==9}">
-								<tr>
-									<td><input type="checkbox" class="delchk" idx="${dto.idx}"></td>
-									<td>${mkind}</td>
-									<td>${dto.f}</td>
-									<td>${dto.fname}</td>
-									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.idx}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
 									</td>
 								</tr>	
 							</c:if>

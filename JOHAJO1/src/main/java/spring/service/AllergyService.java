@@ -24,6 +24,11 @@ public class AllergyService {
 		return dao.getAnameonly();
 	}
 	
+	public List<MenuDto> getKindonly()
+	{
+		return dao.getKindonly();
+	}
+	
 	public List<AllergyDto> getList(String aname)
 	{
 		return dao.getList(aname);
@@ -76,9 +81,9 @@ public class AllergyService {
 		dao.updateAllergy(dto);
 	}
 	
-	public void deleteAllergy(int idx)
+	public void deleteAllergy(int f)
 	{
-		dao.deleteAllergy(idx);
+		dao.deleteAllergy(f);
 	}
 
 	public List<AllergyDto> foodSelect(int f)

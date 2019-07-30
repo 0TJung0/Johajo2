@@ -7,6 +7,9 @@
 	<select id="allergyAnameonly" resultType="adto">
 		select distinct aname from allergy order by aname asc
 	</select>
+	<select id="foodKindonly" resultType="mndto">
+		select distinct kind from food order by kind asc
+	</select>
 	<select id="allergyList" parameterType="String" resultType="adto">
 		select f.fname as aname,a.f from allergy a INNER JOIN food f on a.f=f.idx where a.aname=#{aname} order by f.idx
 	</select>
@@ -40,7 +43,7 @@
 		update allergy set aname=#{aname} where idx=#{idx}
 	</update>
 	<delete id="allergyDelete" parameterType="int">
-		delete from allergy where idx = #{idx}
+		delete from allergy where f = #{f}
 	</delete>
 	
 	<select id="allergyFoodSelect" parameterType="int" resultType="adto">

@@ -19,6 +19,11 @@ public class AllergyDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("allergyAnameonly");
 	}
 	
+	public List<MenuDto> getKindonly()
+	{
+		return getSqlSession().selectList("foodKindonly");
+	}
+	
 	
 	public List<AllergyDto> getList(String aname)
 	{
@@ -76,8 +81,8 @@ public class AllergyDao extends SqlSessionDaoSupport {
 		getSqlSession().update("allergyUpdate",dto);
 	}
 	
-	public void deleteAllergy(int idx)
+	public void deleteAllergy(int f)
 	{
-		getSqlSession().delete("allergyDelete",idx);
+		getSqlSession().delete("allergyDelete",f);
 	}
 }

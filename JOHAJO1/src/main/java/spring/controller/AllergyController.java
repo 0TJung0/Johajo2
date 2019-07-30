@@ -28,6 +28,9 @@ public class AllergyController {
 		ModelAndView model = new ModelAndView();
 		List<AllergyDto> alist = service.getAnameonly();
 		model.addObject("alist",alist);
+		//종류탭 출력위해 종류만 받아오기
+		List<MenuDto> kind = service.getKindonly();
+		model.addObject("kind",kind);
 		
 		/*전체 탭 내용출력*/
 		List<AllergyDto> total = service.getAllergyTotaltap();
@@ -48,8 +51,9 @@ public class AllergyController {
 		ModelAndView model = new ModelAndView();
 		List<AllergyDto> list = service.getAllergyTotalList();
 		model.addObject("list",list);
-		List<AllergyDto> alist = service.getAnameonly();
-		model.addObject("alist",alist);
+		//종류탭 출력위해 종류만 받아오기
+		List<MenuDto> kind = service.getKindonly();
+		model.addObject("kind",kind);
 		List<AllergyDto> total = service.getAllergyTotaltap();
 		model.addObject("total",total);
 		model.setViewName("/menu/allergyList");
@@ -90,6 +94,9 @@ public class AllergyController {
 		
 		AllergyDto dto = service.getAllergyDataF(idx);
 		model.addObject("dto",dto);
+		
+		MenuDto mdto = service.getMenuDataIdx(idx);
+		model.addObject("mdto",mdto);
 		
 		model.setViewName("/menu/allergyUpdateform");
 		return model;
