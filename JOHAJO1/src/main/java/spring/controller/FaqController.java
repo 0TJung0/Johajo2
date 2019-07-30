@@ -1,10 +1,10 @@
 package spring.controller;
 
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,10 +34,18 @@ public class FaqController {
 	public ModelAndView FnQData(@RequestParam int kind)
 	{
 		ModelAndView model=new ModelAndView();
-		
-		List<FaqDto> list=service.FnQSelKind(kind);
+		List<FaqDto> list=new Vector<FaqDto>();
+		int KindCount;
+		if(kind==4) {
+			list=service.FaQList();
+			KindCount=service.totalCount();
+		}else {
+			list=service.FnQSelKind(kind);
+			KindCount=service.kindCount(kind);
+		}
 		
 		model.addObject("list",list);
+		model.addObject("KindCount", KindCount);
 		model.setViewName("/notice/noticeFaq_Data");
 		return model;
 	}

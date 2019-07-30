@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import spring.data.EndEventDto;
 import spring.data.EventDao;
 import spring.data.EventDto;
 
@@ -19,9 +20,18 @@ public class EventService {
 		return dao.getTotalCount();
 	}
 	
+	public int getEndTotalCount()
+	{
+		return dao.getEndTotalCount();
+	}
 	public List<EventDto> getList(int start, int end)
 	{
 		return dao.getList(start,end);
+	}
+	
+	public List<EndEventDto> getEndList(int start, int end)
+	{
+		return dao.getEndList(start, end);
 	}
 	
 	public EventDto getData(int idx)
@@ -57,5 +67,9 @@ public class EventService {
 	public void updateEvent(EventDto dto)
 	{
 		dao.updateEvent(dto);
+	}
+	public int EventShowCount()
+	{
+		return dao.EventShowCount();
 	}
 }

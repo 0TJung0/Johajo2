@@ -44,4 +44,8 @@ public class NoticeDao extends SqlSessionDaoSupport {
 	{
 		return getSqlSession().selectList("noticeShowList");
 	}
+	public int noticeShowTotal()
+	{
+		return getSqlSession().selectOne("noticeShowToTal");
+	}
 }

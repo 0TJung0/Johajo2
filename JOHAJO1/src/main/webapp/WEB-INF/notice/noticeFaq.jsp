@@ -9,39 +9,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/notice.css">
-<style>
-/* 	 ul li.main_nvb{
-		list-style: none;
-		float: left;
-		margin-left: 10%;
-		cursor: pointer;
-	}
-	tr.FaQ_content{
-		display: none;
-	}
-	tr.FaQ_title{
-		padding:0px;
-		width: 80%;
-		text-align: center;
-		cursor: pointer;
-		border-bottom: 0.5px solid gray;
-	}
-	
-	table tr.FaQ_content{
-		text-align: left;
-		border-bottom: 0.5px solid gray; 
-	}
-	div#FaQ_dispaly{
-		margin-left: 10%;
-		margin-top: 5%;
-	}  */
-</style>
 <script type="text/javascript">
 	$(function(){
-		showData(1);
+		num=5;
+		showData(4);
+		
 	});
 	function showData(kind)
 	{	
+		num=5;
 		var str="<table>";
 		$.ajax({
 			type:"get",
@@ -57,10 +33,12 @@
 					writeday=s.find("writeday").text();
 					hide=s.find("hide").text();
 					count=s.find("count").text();
+					KindCount=s.find("KindCount").text();
 								
 					str+="<tr class='FaQ_title' title='"+index+"' onclick='showContent("+index+")'}>";
-					/* str+="<td>"+count+"</td>"; */
-					str+="<td><b>Q&nbsp;.</b></td>";
+					str+="<td><b>Q&nbsp;.</b>";
+					str+="<input type='hidden' value='"+count+"' class='hi_count'>";
+					str+="<input type='hidden' value='"+KindCount+"' class='hi_kindcount'></td>";
 					str+="<td>"+title+"</td>";
 					str+="<td>"+writeday+"</td>";
 					str+="</tr>";
@@ -70,6 +48,8 @@
 				});
 					str+="</table>";
 				$("div#FaQ_dispaly").html(str);
+				$("div.noticebtn1").show();
+				hideFaQ();
 			},error:function(){
 				alert("error");
 			}
@@ -79,16 +59,53 @@
 	{
 		$("div tr.FaQ_content").eq(index).toggle();
 	}
+	
+	function listmore()
+	{
+		var lc=[];
+		num=num+5;
+		if(num>=totalCount){
+			num=totalCount;
+			$("div.noticebtn1").hide();
+		}
+		for(i=0;i<totalCount;i++){
+			lc[i]=$(".hi_count").eq(i).val();
+			
+			if(lc[i]<=num){
+				$("tr.FaQ_title").eq(i).show();
+			}
+			
+		}
+	}
+	function hideFaQ()
+	{
+		totalCount=$(".hi_kindcount").val();
+		if(num>=totalCount){
+			num=totalCount;
+			$("div.noticebtn1").hide();
+		}
+		var lc=[];
+
+		for(i=0;i<totalCount;i++){
+			lc[i]=$(".hi_count").eq(i).val();
+			
+			if(lc[i]>num){
+				$("tr.FaQ_title").eq(i).hide();
+			}
+		}
+	}
 </script>
 </head>
 <body>
-
 	<div id="notice_dispaly">
 		<span class="logo mt100">FAQ</span>
 		<span class="icon map5-1"></span>
 		
 		<div class="faqCategory">
 			<ul>
+				<li class="main_nvb" onclick="showData(4)">
+					<p >전체보기</p>
+				</li>
 				<li class="main_nvb" onclick="showData(3)">
 					<p >예약</p>
 				</li>
@@ -100,14 +117,10 @@
 				</li>
 			</ul>	
 		</div>
-		
-		
 		<div id="FaQ_dispaly">
 		</div>
-		
-		
 		<div class="noticebtn1">
-			<a href="#">LOAD MORE</a>
+			<a onclick="listmore()">LOAD MORE</a>
 		</div>
 	</div>
 </body>

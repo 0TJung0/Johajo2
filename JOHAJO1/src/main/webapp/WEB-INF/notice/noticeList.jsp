@@ -22,10 +22,40 @@
 			$("tr.notice_content").eq(index).toggle();
 		});
 		
+		num=5;
+		var total=$(".noticeTotal").val();
+		var lc=[];
+		for(i=0;i<total;i++){
+			lc[i]=$(".listCount").eq(i).text();
+		
+			if(lc[i]>num){
+				$("tr.notice_title").eq(i).hide();
+				$("tr.notice_content").eq(i).hide();
+			}
+		}
+			
+		
+		
 	});
 
-	
-	
+	function listmore()
+	{
+		var total=$(".noticeTotal").val();
+		var lc=[];
+		num=num+5;
+		if(num>=total){
+			num=total;
+			$("div.noticebtn1").hide();
+		}
+		for(i=0;i<total;i++){
+			lc[i]=$(".listCount").eq(i).text();
+			
+			if(lc[i]<=num){
+				$("tr.notice_title").eq(i).slideDown(5000);
+			}
+			
+		}
+	}
 </script>
 </head>
 <body>
@@ -36,26 +66,23 @@
 			<c:forEach var="dto" items="${list }" varStatus="index">
 			<input type="hidden" value="${dto.topnotice }" class="hi_topnotice">
 				<tr class="notice_title" title="${index.index }">
-					<td width="10%">${index.count }</td>
+					<td width="10%" class="listCount">${index.count }</td>
 					<td width="70%">${dto.title }</td>
 					<td>
 						<fmt:formatDate value="${dto.writeday}"/>
 					</td>
-					
 				</tr>
  				<tr class="notice_content">
 					<td colspan="3" width="20%">${dto.contents }
 					<img src="./noticeImg/${dto.photo }">
 					</td>
-				</tr>
-				
-					
-					
+				</tr>		
 			</c:forEach>
 		</table>
 		
 		<div class="noticebtn1">
-			<a href="#">LOAD MORE</a>
+			<input type="hidden" value="${ShowtotalCount }" class="noticeTotal">
+			<a onclick="listmore()">LOAD MORE</a>
 		</div>
 	</div>
 </body>
