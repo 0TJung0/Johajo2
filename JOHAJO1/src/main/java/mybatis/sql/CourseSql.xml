@@ -12,7 +12,7 @@
 		select * from course where course_name = #{course_name}
 	</select>
 	<select id="courseList" parameterType="int" resultType="cdto">
-		select c.idx,c.tot_pri,c.show,a.fname as appe,s.fname as soup,m.fname as main,si.fname as side,de.fname as des,
+		select c.idx,c.course_name,c.show,c.tot_pri,c.show,a.fname as appe,s.fname as soup,m.fname as main,si.fname as side,de.fname as des,
 		 dr.fname as drink from course c INNER JOIN food a on c.appe=a.idx INNER JOIN food s 
 		 on c.soup=s.idx INNER JOIN food m on c.main=m.idx INNER JOIN food si on 
 		 c.side=si.idx INNER JOIN food de on c.des=de.idx INNER JOIN food dr on c.drink=dr.idx where c.idx=#{idx}	 

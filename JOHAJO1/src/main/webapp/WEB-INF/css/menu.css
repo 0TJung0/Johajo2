@@ -17,10 +17,9 @@
 	#menu_list{
 		position:relative;
 		float:left;
-		border:1px solid lightgray;
 		width: 100%;
 		height: 100%;
-		
+		background-color: #F5F5F5;
 	}
 	#menu_left{
 		position:relative;
@@ -33,9 +32,11 @@
 		#menu_mmain{
 			position:relative;
 			float:left;
-			border:1px solid lightgray;
-			width: 100%;
+			width: 90%;
 			height: 400px;
+			margin: 15px;
+			margin-left: 35px;
+			margin-top: 35px;
 		}
 	#menu_left2{
 		position:relative;
@@ -48,16 +49,19 @@
 		#menu_soup{
 			position:relative;
 			float:left;
-			border:1px solid lightgray;
-			width: 50%;
+			width: 41%;
 			height: 400px;
+			margin: 15px;
+			margin-left: 35px;
+			margin-bottom: 35px;
+			margin-right: 20px;
 		}
 		#menu_dess{
 			position:relative;
 			float:left;
-			border:1px solid lightgray;
-			width: 50%;
+			width: 42%;
 			height: 400px;
+			margin: 15px;
 		}
 	#menu_right{
 		position:relative;
@@ -70,9 +74,10 @@
 		#menu_appe{
 			position:relative;
 			float:left;
-			border:1px solid lightgray;
-			width: 100%;
+			width: 90%;
 			height: 400px;
+			margin: 15px;
+			margin-top: 35px;
 		}
 	#menu_right2{
 		position:relative;
@@ -86,20 +91,25 @@
 		#menu_side{
 			position:relative;
 			float:left;
-			border:1px solid lightgray;
-			width: 55%;
+			width: 44%;
 			height: 400px;
+			margin: 15px;
 			}
 		#menu_drink{
 			position:relative;
 			float:left;
-			border:1px solid lightgray;
-			width: 45%;
+			width: 40%;
 			height: 400px;
+			margin: 15px;
 	
 		}
 		
 	/*------------------------*/
+	
+	.menu_list div{
+		overflow: hidden;
+	}
+	
 	.menumore{
 		position: absolute;
 	    width: 100%;
@@ -109,34 +119,48 @@
 	    margin: 0 auto;
 	    top: 18%;
 	    display: none;
-	    
 	}
 	
 	.menubtn1{
-		background: none;
-		border: 2px solid black;
-	    padding: 4px 16px;
-		font-weight: bold;
-		font-size: 20px;
-		text-align: center;
-		
-		margin-left:40%;
-		margin-top:15%;
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
 	}
-	.menubtn{
-		background: none;
-		border: 2px solid black;
-	    padding: 4px 16px;
-		font-weight: bold;
-		font-size: 20px;
-		text-align: center;
-		
-		margin-left:28%;
-		margin-top:30%;
+	a.menubtn1:link, a.menubtn1:visited {
+    color: #fff;
+    text-decoration: none;
 	}
-		
-		
-		
+	#btnmain{
+		margin-left: 180px;
+    	margin-top: 80px;
+	}	
+	#btnappe{
+		margin-left: 180px;
+    	margin-top: 80px;
+	}
+	#btnsoup,#btndes{
+		margin-left: 50px;
+    	margin-top: 80px;
+	}
+	#btnside{
+	    margin-left: 60px;
+    	margin-top: 80px;
+	}
+	#btndrink{
+	    margin-left: 45px;
+    	margin-top: 80px;
+	}
+	
 	/* menu 메인페이지 이미지 */
 	
 	.menu_list img{
@@ -147,79 +171,695 @@
 	}
 	
 	/* --------------------------------------------------- */
-	/* menuList_list.jsp */
+	/* menuAppe */
+	.appe_list{
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+	}
+	.appelist2{
+		height: 250px;
+		display: block;
+	}
+	.appelist_list{
+		background-color:white;
+		margin-left:10px;
+		margin-right:10px;
+		margin-bottom:20px;
+		position:relative;
+		float:left;
+		width: 30%;
+		height: 100%;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
 	
+	.appelist_list ul{
+		padding-left:0px;
+		list-style: none;
+	}
+	.appelist_img{
+		display: block;
+		width: 100%;
+		max-height: 176.66px;
+	}
+	.appe_fname{
+		margin-top:25px;
+		font-size: 1em;
+		text-align: center;
+		z-index: 2;
+	}
+	.appelist1{
+		font-size: 350%;
+		text-align: center;
+		padding : 100px;
+	}
+	.appemore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
+	}
+	.appebtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.appebtn1:link, a.appebtn1:visited{
+   	 	color: #fff;
+    	text-decoration: none;
+	}
 	
+	/* menuSoup ----------------------------- */
+		.soup_list{
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+	}
+	.souplist2{
+		display: block;
+	}
+	.souplist_list{
+		background-color:white;
+		margin-left:10px;
+		margin-right:10px;
+		margin-bottom:20px;
+		position:relative;
+		float:left;
+		width: 30%;
+		height: 100%;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	
+	.souplist_list ul{
+		padding-left:0px;
+		list-style: none;
+	}
+	.souplist_img{
+		display: block;
+		width: 100%;
+		max-height: 232.16px;
+	}
+	.soup_fname{
+		margin-top: 15px; 
+		font-size: 1em;
+		text-align: center;
+		z-index: 2;
+	}
+	.souplist1{
+		font-size: 350%;
+		text-align: center;
+		padding : 100px;
+	}
+	.soupmore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
+	}
+	.soupbtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.soupbtn1:link, a.soupbtn1:visited{
+    color: #fff;
+    text-decoration: none;
+	}
+		
+	/* menuMain ----------------------------- */
+		.main_list{
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+	}
+	.mainlist2{
+		display: block;
+	}
+	.mainlist_list{
+		background-color:white;
+		margin-left:10px;
+		margin-right:10px;
+		margin-bottom:20px;
+		position:relative;
+		float:left;
+		width: 30%;
+		height: 100%;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	
+	.mainlist_list ul{
+		padding-left:0px;
+		list-style: none;
+	}
+	.mainlist_img{
+		display: block;
+		width: 100%;
+	    max-height: 180.69px;
+	}
+	.main_fname{
+	    margin-top: 15px;
+		font-size: 1em;
+		text-align: center;
+		z-index: 2;
+	}
+	.mainlist1{
+		font-size: 350%;
+		text-align: center;
+		padding : 100px;
+	}
+	.mainmore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
+	}
+	.mainbtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.mainbtn1:link, a.mainbtn1:visited{
+    color: #fff;
+    text-decoration: none;
+	}
+	/* menuSide ----------------------------- */
+		.side_list{
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+	}
+	.sidelist2{
+		height: 250px;
+		display: block;
+	}
+	.sidelist_list{
+		background-color:white;
+		margin-left:10px;
+		margin-right:10px;
+		margin-bottom:20px;
+		position:relative;
+		float:left;
+		width: 30%;
+		height: 100%;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	
+	.sidelist_list ul{
+		padding-left:0px;
+		list-style: none;
+	}
+	.sidelist_img{
+		display: block;
+		width: 100%;
+	    max-height: 178.66px;
+	}
+	.side_fname{
+		margin-top:25px;
+		font-size: 1em;
+		text-align: center;
+		z-index: 2;
+	}
+	.sidelist1{
+		font-size: 350%;
+		text-align: center;
+		padding : 100px;
+	}
+	.sidemore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
+	}
+	.sidebtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.sidebtn1:link, a.sidebtn1:visited{
+    	color: #fff;
+    	text-decoration: none;
+	}
+	/* menuDessert ----------------------------- */
+		.des_list{
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+	}
+	.deslist2{
+		display: block;
+	}
+	.deslist_list{
+		background-color:white;
+		margin-left:10px;
+		margin-right:10px;
+		margin-bottom:20px;
+		position:relative;
+		float:left;
+		width: 30%;
+		height: 100%;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	
+	.deslist_list ul{
+		padding-left:0px;
+		list-style: none;
+	}
+	.deslist_img{
+		display: block;
+		width: 100%;
+	    max-height: 285.45px;
+	}
+	.des_fname{
+		margin-top: 15px;
+		font-size: 1em;
+		text-align: center;
+		z-index: 2;
+	}
+	.deslist1{
+		font-size: 350%;
+		text-align: center;
+		padding : 100px;
+	}
+	.desmore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
+	}
+	.desbtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.desbtn1:link, a.desbtn1:visited{
+	    color: #fff;
+	    text-decoration: none;
+	}
+	/* menuDrink ----------------------------- */
+		.drink_list{
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+	}
+	.drinklist2{
+		display: block;
+	}
+	.drinklist_list{
+		background-color:white;
+		margin-left:10px;
+		margin-right:10px;
+		margin-bottom:20px;
+		position:relative;
+		float:left;
+		width: 30%;
+		height: 100%;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	
+	.drinklist_list ul{
+		padding-left:0px;
+		list-style: none;
+	}
+	.drinklist_img{
+		display: block;
+		width: 100%;
+	}
+	.drink_fname{
+		margin-top: 15px;
+		font-size: 1em;
+		text-align: center;
+		z-index: 2;
+	}
+	.drinklist1{
+		font-size: 350%;
+		text-align: center;
+		padding : 100px;
+	}
+	.drinkmore{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+   	    margin-top: 85px;
+	    top: 18%;
+	    display: none;
+	}
+	.drinkbtn1{
+		background-color: #231f20;
+    	color: #fff;
+    	display: inline-block;
+   	 	position: relative;
+    	padding: 11px 20px 0;
+    	text-align: center;
+   	 	font-size: 11px;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+	}
+	a.drinkbtn1:link, a.drinkbtn1:visited{
+	    color: #fff;
+	    text-decoration: none;
+	}
 	
 	/* -------------------------------------------------- */
 	/* menuList_list2 */
-	
-	.list2_img{
-		width:100%;
-		padding-top: 5%;
-		padding-left: 5%;
-		padding-right: 5%;
-	}
-	.list2_div{
-		margin-left : 80px;
-		margin-right: 80px;
-		margin-top : 100px;
-		background-color: #F5F5F5;
-		font-size: 1.3em;
-	}
 	.list2btn{
 		padding:8px;
-		padding-left:12px;
-		padding-right:12px;
+		padding-left:18px;
+		padding-right:18px;
 		margin-left:20px;
 		margin-bottom:20px;
-		background-color: #F5F5F5;
-		border: 2px solid gray;
-		text-align: center;
-		color: #686868;
+		background-color: #686868ad;
+	   	text-align: center;
+	   	color: #fff;
 	}
-	.list2fname{
-		padding-left: 15%;
-		font-size: 1.4em;	
+	/*---appetizer---*/
+	#list2_div1{
+		margin-left : 50px;
+		margin-right: 50px;
+        margin-top: 80px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	#list2img1{
+		width: 90%;
+	    margin-left: 20px;
+	    margin-top: 20px;
+	}
+	#list2fname1{
+		padding-left: 5%;
+   		font-size: 1.3em;	
 		line-height: 50px;
 		color: #686868;
 	}
-	.list2content{
-		padding-left: 70%;
+	#list2calorie1,#list2price1{
+		margin-left: 70%;
 		line-height: 30px;
-		font-size: 0.8em;
+		font-size: 1em;
 		color: #686868;
 	}
-	.list2origin{
+	#list2origin1{
 		padding-left: 60%;
 		line-height: 30px;
 		font-size: 0.8em;
 		color: #686868;
 	}
 	
+	/*---soup---*/
+	#list2_div2{
+		margin-left : 80px;
+		margin-right: 80px;
+        margin-top: 70px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	#list2img2{
+	    width: 90%;
+    	margin-left: 16px;
+    	margin-top: 20px;
+	}
+	#list2fname2{
+		padding-left: 15%;
+   		font-size: 1.5em;	
+		line-height: 50px;
+		color: #686868;
+	}
+	#list2calorie2,#list2price2{
+		margin-left: 70%;
+		line-height: 30px;
+		font-size: 1em;
+		color: #686868;
+	}
+	#list2origin2{
+		padding-left: 60%;
+		line-height: 30px;
+		font-size: 0.8em;
+		color: #686868;
+	}
+	
+	/*---main---*/
+	#list2_div3{
+		margin-left : 80px;
+		margin-right: 80px;
+	    margin-top: 50px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	#list2img3{
+		width: 90%;
+    	margin-left: 17px;
+    	margin-top: 20px;
+	}
+	#list2fname3{
+		padding-left: 3%;
+    	font-size: 1.3em;	
+		line-height: 50px;
+		color: #686868;
+	}
+	#list2calorie3,#list2price3{
+		margin-left: 70%;
+		line-height: 30px;
+		font-size: 1em;
+		color: #686868;
+	}
+	#list2origin3{
+		margin-left: 63%;
+		line-height: 30px;
+		font-size: 0.8em;
+		color: #686868;
+	}
+	
+	/*---side---*/
+	#list2_div4{
+		margin-left : 80px;
+		margin-right: 80px;
+	    margin-top: 100px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	#list2img4{
+	    width: 90%;
+	    margin-left: 17px;
+	    margin-top: 20px;
+	}
+	#list2fname4{
+	    margin-left: 20%;
+   		font-size: 1.5em;	
+		line-height: 50px;
+		color: #686868;
+	}
+	#list2calorie4,#list2price4{
+		padding-left: 70%;
+		line-height: 30px;
+		font-size: 1em;
+		color: #686868;
+	}
+	#list2origin4{
+		margin-left: 35%;
+		line-height: 30px;
+		font-size: 0.8em;
+		color: #686868;
+	}
+	
+	/*---dessert---*/
+	#list2_div5{
+		margin-left: 80px;
+    	margin-right: 80px;
+    	margin-top: 40px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	#list2img5{
+		width: 90%;
+	    margin-left: 15px;
+	    margin-top: 20px;
+
+	}
+	#list2fname5{
+		margin-left: 20%;
+   		font-size: 1.5em;	
+		line-height: 50px;
+		color: #686868;
+	}
+	#list2calorie5,#list2price5{
+		margin-left: 70%;
+		line-height: 30px;
+		font-size: 1em;
+		color: #686868;
+	}
+	#list2origin5{
+		margin-left: 60%;
+		line-height: 30px;
+		font-size: 0.8em;
+		color: #686868;
+	}
+	
+	/*---drink---*/
+	#list2_div6{
+		margin-left : 80px;
+		margin-right: 80px;
+	    margin-top: 10px;
+		background-color: #F5F5F5;
+		font-size: 1.3em;
+		box-shadow: 1px 1px 5px -2px gray;
+	}
+	#list2img6{
+		width: 90%;
+	    margin-left: 40px;
+	    margin-top: 20px;
+	}
+	#list2fname6{
+		padding-left: 15%;
+   		font-size: 1.5em;	
+		line-height: 50px;
+		color: #686868;
+	}
+	#list2calorie6,#list2price6{
+		margin-left: 70%;
+		line-height: 30px;
+		font-size: 1em;
+		color: #686868;
+	}
+	#list2origin6{
+		padding-left: 0px;
+    	margin-left: 65%;
+		line-height: 30px;
+		font-size: 0.9em;
+		color: #686868;
+	}
+	
+	
 	/* ------------------------------------------------------------------ */
 	/* menuCourse */
 	.course{
-		border: 1px solid blue;
-		margin-left: 150px;
-		margin-right: 150px;
-		background-color: #F5F5F5;
 		position: relative;
-		height: 700px;
+		background-color: #F5F5F5;
+		padding-left: 100px;
+        padding-right: 100px;
+        overflow: hidden;
+        margin-bottom: 100px;
+        padding-bottom: 100px;
 	}
-
-	.course_list li.on {
-		background: #ff6600;
-		color: #fff;
+	.cmsg{
+		display: none;
 	}
-
+	.course_title{
+		position: relative;
+		font-size: 550%;
+		text-align: center;
+		padding : 100px;
+	}
+	.course_titleimg{
+		vertical-align: middle;
+		width: 60px;
+	}
+	#course_titleimg0,#course_titleimg1{
+		width: 60px;
+	}
 	.course_menu{
-		border: 1px solid green;
 		position: relative;
 		width: 80%;
 		float: left;
 		left: 10%;
 		top:10%;
+		text-align: center;
+	    font-size: 2em;
+   	 	line-height: 3em;
+   	 	padding: 3em;
+    	background: white;
+		box-shadow: 1px 1px 5px -2px gray;
+		padding-bottom: 100px;
 	}
 	
 	.course_select{
@@ -235,18 +875,37 @@
 		padding: 0;
 		
 	}
-	.course_select .course_list li{
-		list-style:none;
-		height: 40px; line-height: 40px;
-		color: #666; text-indent: 22px;
-		width : 100%;
-		background: rgba(35,35,35,0.8);
-		position: relative;
+	.courseres{
+		position: absolute;
+	    width: 100%;
+	    height : 80%;
+	    z-index: 13;
+	    top: 25%;
+	    margin-left: 70px;
+    	margin-top: 50px;
+	    top: 18%;
+	    display: none;
 	}
-	
-	.course_select .course_list li:hover{
-		background: #ff6600;
-		color: #fff;
+	.coursebtn1{
+		background-color: #231f20;
+    	color: #fff;
+   	 	position: relative;
+    	padding: 20px 50px 20px;
+    	text-align: center;
+   	 	width: 127px;
+    	height: 40px;
+        text-align: center;
+    	font-size: 11px;
+    	letter-spacing: 2px;
+    	text-decoration: none;
+    	top: 78%;
+	}
+	.coursebtn1>b{
+		font-size: 1.5em;	
+	}
+	a.coursebtn1:link, a.coursebtn1:visited{
+   	 	color: #fff;
+    	text-decoration: none;
 	}
 	
 	/* ------------------------------------------------------ */
