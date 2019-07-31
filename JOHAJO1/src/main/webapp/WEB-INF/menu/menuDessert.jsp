@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'>
-<%-- 
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/> --%>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script type="text/javascript">
 $(function(){
 	$(".desbtn1").click(function(){
@@ -44,77 +43,6 @@ $(function(){
 </script>
 <style type="text/css">
 	a,b{font-family: Nanum Gothic;}
-	.des_list{
-		background-color: #F5F5F5;
-		padding-left: 100px;
-        padding-right: 100px;
-        overflow: hidden;
-	}
-	.deslist2{
-		height: 250px;
-		display: block;
-	}
-	.deslist_list{
-		background-color:white;
-		margin-left:10px;
-		margin-right:10px;
-		margin-bottom:20px;
-		position:relative;
-		float:left;
-		border: 1px solid lightgray;
-		width: 30%;
-		height: 100%;
-	}
-	
-	.deslist_list ul{
-		padding-left:0px;
-		list-style: none;
-	}
-	.deslist_img{
-		display: block;
-		width: 100%;
-	}
-	.des_fname{
-		margin-top:25px;
-		font-size: 1em;
-		text-align: center;
-		z-index: 2;
-	}
-	.deslist1{
-		font-size: 350%;
-		text-align: center;
-		padding : 100px;
-	}
-	.desmore{
-		position: absolute;
-	    width: 100%;
-	    height : 80%;
-	    z-index: 13;
-	    top: 25%;
-	    margin-left: 70px;
-    	margin-top: 50px;
-	    top: 18%;
-	    display: none;
-	}
-	.desbtn1{
-		background-color: #231f20;
-    	color: #fff;
-    	display: inline-block;
-   	 	position: relative;
-    	padding: 11px 20px 0;
-    	text-align: center;
-   	 	font-size: 11px;
-   	 	width: 127px;
-    	height: 40px;
-        text-align: center;
-    	font-size: 11px;
-    	letter-spacing: 2px;
-    	text-decoration: none;
-	}
-	a.desbtn1:link, a.desbtn1:visited{
-    color: #fff;
-    text-decoration: none;
-	}
 </style>
 </head>
 <body>
@@ -132,10 +60,10 @@ $(function(){
 					<ul>
 						<li><img class="deslist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
 						
-						<li class="des_fname">&nbsp;&nbsp;&nbsp;<b>${dto.fname},${dto.idx}</b></li>
-						<%-- 
+						<li class="des_fname"><b>${dto.fname}</b></li>
+						
 						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
-						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li> --%>
+						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
 					</ul>
 				</div>
 			</c:forEach>

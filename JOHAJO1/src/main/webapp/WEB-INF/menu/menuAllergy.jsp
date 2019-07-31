@@ -8,19 +8,56 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
 	<style type="text/css">
-		.menuatable tr,.menuatable th,.menuatable td{
-			border:1px solid gray;
+		a,b{font-family: Nanum Gothic;}
+	</style>
+	<style type="text/css">
+		
+		.menuatable li{
+			padding: 1em;
+    		background: white;
+    		text-align: center;
+    		list-style: none;
+    		box-shadow: 1px 1px 5px -2px gray;
 		}
-		.menuatable th,.menuatable td{
-			padding : 5px;
+		.menuatable ul{
+			margin-bottom: 10px;
+			width: 60%;
 		}
-	
+		.menutable{
+			display: block;
+		}
+		.disp{
+			position: relative;
+		    bottom: 80px;
+    		left: 500px;
+		    width: 20%;
+			box-shadow: 1px 1px 5px -2px gray;
+			background: white;
+			padding: 12px;
+			display: none;
+		}
 		#aldiv{
-			margin-top: 10px;
-			margin-left:50px;
-			margin-right: 50px;
+			overflow:hidden;
+			background:#F5F5F5;
+			margin-bottom: 100px;
 		}
+		
+		.allist{
+			font-size: 350%;
+			text-align: center;
+			padding : 100px;
+		}
+		.allimg{
+			width: 50px;
+		}
+		
+		.alcont{
+			margin-left : 150px;
+			margin-right: 155px;
+		}
+		
 		
 		/* ------------------------------------------------- */
 		
@@ -34,13 +71,19 @@
 		#altabs li{
 			float: left;
  		 	margin: 0 .1em 0 0;
- 		 	border: 1px solid lightgray;
+ 		 	border-bottom : 1px solid #bdbdbd;
+		}
+		
+		#altabs li b{
+			color : #bdbdbd;
 		}
 		#altabs a{
 			position: relative;
-			padding: .2em 1em;
-			float: left;
-			text-decoration: none;
+		    padding: 1em 1em;
+		    float: left;
+		    text-decoration: none;
+		    width: 129px;
+		    text-align: center;
 		}
 		#altabs a:hover,#altabs a:focus{
 		  	color : black;
@@ -48,7 +91,7 @@
 		}
 		#altabs a:focus{
 		    outline: 0;
-		    color : black;
+		    color : #231f20;
 		}
 		#altabs a:visited{
 			content:'';
@@ -58,20 +101,23 @@
 			right: -.5em;  
 			bottom: 0;
 			width: 1em; 
-			color : black;
+			color : #bdbdbd;
 		}
 		#altabs #current a{
 		  z-index: 3;
-		  background: lightgray;
-		  color : tomato;
+		  border-bottom : solid #231f20;
+		}
+		#altabs #current b{
+		  color : #231f20;
 		}
 		
 		/* ------------------------------------------------- */
 		
 		#alcontent{
-			background: #fff;
 		    padding: 2em;
-		    height: 
+		    padding-left:5em;
+		    padding-right : 5em;
+		    width: 100%;
 		}
 		
 	</style>
@@ -94,118 +140,138 @@
 	});
 	
 	$(function(){
-		$("#altabs li").click(function(){
-			var kind = $(this).attr("aname");
-			console.log(kind);
+		$(".menuatable li").click(function(){
+			$(".disp").show();
+			var f = $(this).val();
+			var result = $.ajax({
+				type:"post",
+				url:"foodselect.do",
+				data:{"f":f},
+				success:function(redata){
+					var str="";
+					$(redata).find("data").each(function(){
+					var s = $(this);
+					var allergy = s.find("aname").text();
+					var a = allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
+							:allergy==4?'돼지고기':allergy==5?'소고기':allergy==6?'닭고기':allergy==7?'토마토':allergy==8?'오징어':'조개류';
+					
+						str+="<b>"+a+"</b>"+"&nbsp;";
+						
+					});
+					$(".disp").html(str);
+					
+				},
+				statusCode:{
+					404:function(){
+						alert("해당 파일을 찾을수 없습니다");
+					},
+					500:function(){
+						alert("서버 코드 오류");
+					}
+				}
+			});
 		});
 	});
+	
 	</script>
 	</head>
 	<body>
-		<div id="aldiv">
 			<button type="button" onclick="location.href='allergylist.do'">관리</button>
 			<button type="button" onclick="location.href='allergyadd.do'">추가</button>
-			
-			<ul id="altabs">
-				<c:forEach var="dto" items="${kind}">
-					<c:set var="mkindnum" value="${dto.kind}"></c:set>
-					<c:set var="mkind" value="${mkindnum==1?'APPETIZER':mkindnum==2?'SOUP':mkindnum==3?'MAIN':mkindnum==4?'SIDE':mkindnum==5?'DESSERT':'DRINK'}"/>
-					    <li><a href="#" kind="${mkindnum}">${mkind}</a></li>
-				</c:forEach>
-			</ul>
-			
-			<div id="alcontent"> 
-			    
-			    <div id="1">
-		        	<table class="menuatable">
-		        		<tr>
-							<th>메뉴</th>
-						</tr>
-		        		<c:forEach var="dto" items="${total}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-		        			<c:if test="${mkindnum==1}">
-								<tr>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="2">
-			       	<table class="menuatable">
-		        		<tr>
-							<th>메뉴</th>
-						</tr>
-		        		<c:forEach var="dto" items="${total}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-		        			<c:if test="${mkindnum==2}">
-								<tr>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="3">
-			       <table class="menuatable">
-		        		<tr>
-							<th>메뉴</th>
-						</tr>
-		        		<c:forEach var="dto" items="${total}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-		        			<c:if test="${mkindnum==3}">
-								<tr>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="4">
-			        <table class="menuatable">
-		        		<tr>
-							<th>메뉴</th>
-						</tr>
-		        		<c:forEach var="dto" items="${total}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-		        			<c:if test="${mkindnum==4}">
-								<tr>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="5">
-			        <table class="menuatable">
-		        		<tr>
-							<th>메뉴</th>
-						</tr>
-		        		<c:forEach var="dto" items="${total}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-		        			<c:if test="${mkindnum==5}">
-								<tr>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
-			    <div id="6">
-			      <table class="menuatable">
-		        		<tr>
-							<th>메뉴</th>
-						</tr>
-		        		<c:forEach var="dto" items="${total}">
-		        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
-		        			<c:if test="${mkindnum==6}">
-								<tr>
-									<td>${dto.fname}</td>
-								</tr>	
-							</c:if>
-		        		</c:forEach>
-		        	</table>
-			    </div>
+		<div id="aldiv">	
+			<div class="allist"> 
+				<b>ALLERGY</b><br>
+				<img class="allimg" src="image/allergy.png">
+			</div>
+			<div class="alcont">
+				<ul id="altabs">
+					<c:forEach var="dto" items="${kind}">
+						<c:set var="mkindnum" value="${dto.kind}"></c:set>
+						<c:set var="mkind" value="${mkindnum==1?'APPETIZER':mkindnum==2?'SOUP':mkindnum==3?'MAIN':mkindnum==4?'SIDE':mkindnum==5?'DESSERT':'DRINK'}"/>
+						    <li><a href="#" kind="${mkindnum}"><b>${mkind}</b></a></li>
+					</c:forEach>
+				</ul>
+				
+				<div id="alcontent"> 
+					    <div id="1">
+				        	<span class="menuatable">
+				        		<c:forEach var="dto" items="${total}">
+				        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
+				        			<c:if test="${mkindnum==1}">
+										<ul>
+											<li value="${dto.f}"><b>${dto.fname}</b></li>
+										</ul>
+									</c:if>
+				        		</c:forEach>
+				        	</span>
+				        	<span class="disp"></span>
+					    </div>
+					    <div id="2">
+					       	<span class="menuatable">
+				        		<c:forEach var="dto" items="${total}">
+				        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
+				        			<c:if test="${mkindnum==2}">
+										<ul class="alltr">
+											<li value="${dto.f}"><b>${dto.fname}</b></li>
+										</ul>	
+									</c:if>
+				        		</c:forEach>
+				        	</span>
+				        	<span class="disp"></span>
+					    </div>
+					    <div id="3">
+					       <span class="menuatable">
+				        		<c:forEach var="dto" items="${total}">
+				        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
+				        			<c:if test="${mkindnum==3}">
+										<ul class="alltr">
+											<li value="${dto.f}"><b>${dto.fname}</b></li>
+										</ul>	
+									</c:if>
+				        		</c:forEach>
+				        	</span>
+				        	<span class="disp"></span>
+					    </div>
+					    <div id="4">
+					        <span class="menuatable">
+				        		<c:forEach var="dto" items="${total}">
+				        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
+				        			<c:if test="${mkindnum==4}">
+										<ul class="alltr">
+											<li value="${dto.f}"><b>${dto.fname}</b></li>
+										</ul>	
+									</c:if>
+				        		</c:forEach>
+				        	</span>
+				        	<span class="disp"></span>
+					    </div>
+					    <div id="5">
+					        <span class="menuatable">
+				        		<c:forEach var="dto" items="${total}">
+				        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
+				        			<c:if test="${mkindnum==5}">
+										<ul class="alltr">
+											<li value="${dto.f}"><b>${dto.fname}</b></li>
+										</ul>	
+									</c:if>
+				        		</c:forEach>
+				        	</span>
+				        	<span class="disp"></span>
+					    </div>
+					    <div id="6">
+					      <span class="menuatable">
+				        		<c:forEach var="dto" items="${total}">
+				        			<c:set var="mkindnum" value="${dto.kind}"></c:set>
+				        			<c:if test="${mkindnum==6}">
+										<ul class="alltr">
+											<li value="${dto.f}"><b>${dto.fname}</b></li>
+										</ul>	
+									</c:if>
+				        		</c:forEach>
+				        	</span>
+				        	<span class="disp"></span>
+					    </div>
+				</div>
 			</div>
 		</div>
 	</body>

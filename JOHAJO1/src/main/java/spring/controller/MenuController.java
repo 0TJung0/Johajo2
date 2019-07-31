@@ -99,6 +99,11 @@ public class MenuController {
 		return model;
 	}
 	
+	@RequestMapping("/courselook.do")
+	public String courselook()
+	{
+		return "/pop/menu/courselook";
+	}
 	
 	/* 메뉴 이미지 클릭하면 상세보기 창 열리도록 ---------------------------------------------- */
 	@RequestMapping(value={"/menuselpop.do"},method={RequestMethod.GET})
@@ -181,7 +186,7 @@ public class MenuController {
 		
 		//dto 수정내용 저장
 		service.updateMenu(dto);
-		return "redirect:menusel.do?kind="+kind;
+		return "redirect:menulist.do";
 	}
 	
 	/* 메뉴 삭제 ----------------------------------------------------------------------- */
@@ -207,7 +212,7 @@ public class MenuController {
 		}
 		
 		service.deleteMenu(idx);
-		return "redirect:menusel.do?kind="+kind;
+		return "redirect:menulist.do";
 	}
 
 }

@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'>
-<%-- 
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/> --%>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script type="text/javascript">
 $(function(){
 	$(".sidebtn1").click(function(){
@@ -44,77 +43,6 @@ $(function(){
 </script>
 <style type="text/css">
 	a,b{font-family: Nanum Gothic;}
-	.side_list{
-		background-color: #F5F5F5;
-		padding-left: 100px;
-        padding-right: 100px;
-        overflow: hidden;
-	}
-	.sidelist2{
-		height: 250px;
-		display: block;
-	}
-	.sidelist_list{
-		background-color:white;
-		margin-left:10px;
-		margin-right:10px;
-		margin-bottom:20px;
-		position:relative;
-		float:left;
-		border: 1px solid lightgray;
-		width: 30%;
-		height: 100%;
-	}
-	
-	.sidelist_list ul{
-		padding-left:0px;
-		list-style: none;
-	}
-	.sidelist_img{
-		display: block;
-		width: 100%;
-	}
-	.side_fname{
-		margin-top:25px;
-		font-size: 1em;
-		text-align: center;
-		z-index: 2;
-	}
-	.sidelist1{
-		font-size: 350%;
-		text-align: center;
-		padding : 100px;
-	}
-	.sidemore{
-		position: absolute;
-	    width: 100%;
-	    height : 80%;
-	    z-index: 13;
-	    top: 25%;
-	    margin-left: 70px;
-    	margin-top: 50px;
-	    top: 18%;
-	    display: none;
-	}
-	.sidebtn1{
-		background-color: #231f20;
-    	color: #fff;
-    	display: inline-block;
-   	 	position: relative;
-    	padding: 11px 20px 0;
-    	text-align: center;
-   	 	font-size: 11px;
-   	 	width: 127px;
-    	height: 40px;
-        text-align: center;
-    	font-size: 11px;
-    	letter-spacing: 2px;
-    	text-decoration: none;
-	}
-	a.sidebtn1:link, a.sidebtn1:visited{
-    color: #fff;
-    text-decoration: none;
-	}
 </style>
 </head>
 <body>
@@ -132,10 +60,10 @@ $(function(){
 					<ul>
 						<li><img class="sidelist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
 						
-						<li class="side_fname">&nbsp;&nbsp;&nbsp;<b>${dto.fname},${dto.idx}</b></li>
-						<%-- 
+						<li class="side_fname"><b>${dto.fname}</b></li>
+						
 						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
-						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li> --%>
+						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
 					</ul>
 				</div>
 			</c:forEach>
