@@ -49,18 +49,18 @@
             	if(currentyear1==year1){
             		if(currentMonth1<month1){
             		str2+="<li class='prev' month="+s2+">&#10094;</li>";
+            		}else{
+            			str2+="<li class='noprev'></li>";
             		}
-            	}else{
-            		str2+="<li class='prev' month="+s2+">&#10094;</li>";
             	}
-				str2+="<li>";
+				//str2+="<li>";
 				
-				
+            	str2+="<li><span style='font-size: 18px'><b class='yearget'>"+year+"</b>년"+month+"월</span></li>";
 				if(month1<lastmonth){
 					str2+="<li><a class='next' month="+s1+">&#10095;</a></li>";
 					
 				}
-				str2+="<li><span style='font-size: 18px'>"+year+"년<br>"+month+"월</span></li>";
+				
             	
             	for(i=0;i<week1;i++){
    					str+="<li></li>";
@@ -156,6 +156,8 @@
   	   }
   	   var s=m+"/"+d;
   	   //console.log(s);
+  	   year=$("b.yearget").text();
+  	   $(".year").val(year);
   	   $(".hmonth").val(m);
   	   $(".hday").val(d);
   	   $(".seday").html(s);
@@ -167,46 +169,115 @@
      });
     //시간 클릭시
      $(document).on('click','a.selTime',function(){
-  	   var n=$(this).attr("store");
-   	   var t=$(this).attr("time");
-   	   $(".se_sitname").val(n+t);
-   	   var s=n+" "+t;
+       
+  	   var store=$(this).attr("store");
+   	   var time=$(this).attr("time");
+   	   $(".hstore").val(store);
+   	   $(".htime").val(time);
+   	   $(".se_sitname").val(store+time);
+   	   var s=store+" "+time;
    	 	$.ajax({
 	        type:'get',
 	        url:'reservation2.do',
-	        data:{"store":n,"time":t},
+	        data:{"store":store,"time":time},
 	        success:function(redata){
 	        	var str="";
-	        	var cl="class='selClass'";
-	        	var img="src='image/home.jpg'";
+	        	
 	        $(redata).find("data").each(function(){
 	        	var s=$(this);
             	var top=s.find("toplo").text();
             	var left=s.find("leftlo").text();
             	var max=s.find("maxres").text();
-            	console.log("top"+top+"left"+left);
+            	//console.log("top"+top+"left"+left);
 	        	var tablename=s.find("tbname").text();
-            	console.log("table_n"+tablename);
-            	str+="<span class='selClass' tablen="+tablename+">";
-            	str+="<img "+img+" "+cl+" style='position: relative;max-width: 20px;top:"+top+"px;left:"+left+"px;'>";
-            	str+="</span>";	
+	        	sitcheck(tablename,top,left);
+            	//console.log("table_n"+tablename);
+            
 	        });
-	       
-	        $("div.selsit").html(str);
 	        },error : function( jqXHR, textStatus, errorThrown ) {
 	        	alert( jqXHR.status );
 	        }
-	        
-   	 		});
+	   });
    	   $(".selStore").html(s)
-   	   $(".hstore").val(n);
-   	   $(".htime").val(t);
+   	   
    	   $(".cal").css("display","none");
        $(".store").css("display","none");
        $(".selsit").css("display","block");
        $(".selmenu").css("display","none");
    	   //console.log(n+t);
      });
+     
+     function sitcheck(tablename,top,left){
+    	 var resstore=$(".hstore").val();
+     	   var restime=$(".htime").val();
+     	   var month=$(".hmonth").val();
+     	   var year=$(".yearget").text();
+     	   var day=$(".hday").val();
+     	  console.log(year);
+     	   console.log("sitcheck: "+resstore);
+     	
+    	 $.ajax({
+             type:'get',
+             //async:false,
+             url:'sitcheck.do',
+             data:{"resstore":resstore,"restime":restime,"month":month,"day":day,"year":year},
+             success:function(data){
+            	str="";
+            	var cl="class='selClass'";
+            	var ncl="class='nselClass'";
+	        	var img="src='image/yessit.png'";
+	        	var noimg="src='image/nosit.png'";
+	        	console.log("sitcheck ajax: "+cl);
+	        	//console.log(sitcount);
+	        	var test=firstAjax();
+	        	console.log("test : "+test);
+			    $.each(data, function(idx, val) {
+			            	console.log("sitcheck.do val: "+val);	
+			            	
+		            		if(test!=0){
+		                 		if(val!=tablename){
+		                 			str+="<span class='selClass' tablen="+tablename+">";
+		                         	str+="<img "+img+" "+cl+" style='position: relative;max-width: 20px;top:"+top+"px;left:"+left+"px;'>";
+		                         	str+="</span>";	
+		                         	$("div.selsit").append(str);
+		                 		}else{
+		                 			str+="<span class='noselClass' tablen="+tablename+">";
+		                         	str+="<img "+noimg+" "+ncl+" style='position: relative;max-width: 20px;top:"+top+"px;left:"+left+"px;'>";
+		                         	str+="</span>";	
+		                         	$("div.selsit").append(str);
+		                 		}
+		            		}
+		            		if(test==0){
+                 				str+="<span class='selClass' tablen="+tablename+">";
+	                         	str+="<img "+img+" "+cl+" style='position: relative;max-width: 20px;top:"+top+"px;left:"+left+"px;'>";
+	                         	str+="</span>";	
+	                         	$("div.selsit").append(str);
+	                 		} 
+		            		
+            			});
+             		}
+            	});   
+     }
+     function firstAjax(){
+    	    return new Promise(function(resolve, reject){
+          	 var resstore=$(".hstore").val();
+      	   	 var restime=$(".htime").val();
+      	     var month=$(".hmonth").val();
+      	     var year=$(".yearget").text();
+      	     var day=$(".hday").val();
+      	     console.log(year);	
+       	 $.ajax({
+                type:'get',
+                async:false,
+                url:'sitcountcheck.do',
+                data:{"resstore":resstore,"restime":restime,"month":month,"day":day,"year":year},
+                success:function(data){
+                	console.log("sitcount ajax: "+data);
+                	resolve(data); 
+                }
+       	 });
+    	 });
+   	}
     /*  $(document).on('click','Button.btnadd',function() { 
      	 f1=$(".hfname").val();
      	 p1=$(".hprice").val();
@@ -253,8 +324,16 @@
                      if(i==0){
                     	 str+="<tr class='trfood'>";
                      }
-                     str+="<td><img class='fimg' src='image/"+imgname+"' title="+fname+" fidx="+idx+"></td>";
-                     
+                     	console.log(getContextPath());
+                    	var files=new Image;
+                    	files.src="http://localhost:9000/SpringTilesMybatis/menuImg/"+imgname;
+             			if(!files.complete){
+             				str+="<td><img class='fimg' src='http://localhost:9000/SpringTilesMybatis/menuImg/"+imgname+"' title="+fname+" fidx="+idx+"></td>";
+             			}else{
+             				var s=getContextPath();
+             				str+="<td><img class='fimg' src="+s+"/"+imgname+"' title="+fname+" fidx="+idx+"></td>";
+             			}
+             	   
                      if(i<2){
                     	 i++;
                      }else if(i==0){
@@ -295,6 +374,7 @@
     	 //var hidx=$(".hidx").val();
     	 //var foodname=$(this).attr("title");
     	 var se_nmname=$(".se_nmname").val();
+    	
     	 $.ajax({
 	            type:'get',
 	            url:'nmbasketadd.do',
@@ -303,7 +383,6 @@
 	            success:function(redata){
 	            }
     	 });
-    	 //basketCount(se_nmname);
     	 basketreslist();
      });
      /* function basketCount(se_nmname){
@@ -368,6 +447,7 @@
 	   $.ajax({
 	        url:'rescoursesellist.do',
 	        cache : false,
+	        async:false,
 	        success : function(res){
 	        var html = "";
 	        html +="<table><tr>";
@@ -390,7 +470,7 @@
   	   var resstore=$(".hstore").val();
 	   $.ajax({
 	        url:'rescoursesel.do',
-	        data:{"idx":idx,"se_nmname":se_nmname,"restime":restime,"restable":restable,"resstore":hstore},
+	        data:{"idx":idx,"se_nmname":se_nmname,"restime":restime,"restable":restable,"resstore":resstore},
 	        cache : false,
 	        success : function(res){
 	        	
@@ -406,13 +486,34 @@
 	        var html = "";
 	        html +="<table><tr>";
 	        for(var i=0; i<res.length; i++){
-	       		html +="<th idx="+res[i].idx+">"+res[i].course_name+"</th>";
+	       		html +="<th class='bestmenu' fidx="+res[i].idx+">"+res[i].fname+"</th>";
 	        	}
 	        html +="</tr></table>";
 	        $("span#datatest123").html(html);
 	        }
        });
+	   basketreslist();
 	});
+   //베스트메뉴 선택시 db추가
+   $(document).on('click','.bestmenu',function() {
+	   var fidx=$(this).attr("fidx");
+	   var restime=$(".htime").val();
+  	   var restable=$(".hsit").val();
+  	   var se_nmname=$(".se_nmname").val();
+  	   var resstore=$(".hstore").val();
+  	   console.log("fidx"+fidx);
+	   $.ajax({
+		    type:'get',
+		    async:false,
+	        url:'bestmenuchoose.do',
+	        data:{"fidx":fidx,"se_nmname":se_nmname,"restime":restime,"restable":restable,"resstore":resstore},
+	        cache : false,
+	        success : function(res){
+	        	
+	        }
+	   });
+	   basketreslist();
+   });
    //baskekdb에 있는 데이터 출력
    function basketreslist(){
 	    var restime=$(".htime").val();
@@ -425,6 +526,7 @@
 	        async:false,
             data:{"se_nmname":se_nmname,"restime":restime,"restable":restable,"resstore":resstore},
 	        success : function(res){
+	        	//var count=res.length+1;
 	        	html="";
 	        	html+="<div>";
 	        	 for(var i=0; i<res.length; i++){
@@ -435,15 +537,36 @@
 	        	 	 html+="<b name='countb'>"+res[i].count+"</b>";
 	        	 	 html+="<input onclick='countaddfunc(\"" + res[i].fname + "\")' name='countbtn' type='button' value='+'>";
 	        	 	 //html+="<input onclick='countaddfunc("+res[i].fname+")' name='countbtn' type='button' value='+'>";
-	        	 	 html+="<input type='button' fname="+res[i].fname+" value='삭제'><br>";
+	        	 	 html+="<input type='button' onclick='delbasket(\"" + res[i].fname + "\")' value='삭제'><br>";
+	        	 	 count++;
 	        	 }
 	        	 html+="</div>"
 	        	 $("div.resselect").html(html);
+	        	// $("span.badge").text(count);
 	        },error : function( jqXHR, textStatus, errorThrown ) {
 
             	alert( jqXHR.status );
 	        }
 	   });
+   }
+   //버튼 누른 db에있는 메뉴 삭제
+   function delbasket(fname){
+	    var restime=$(".htime").val();
+	  	var restable=$(".hsit").val();
+	 	var se_nmname=$(".se_nmname").val();
+	 	var resstore=$(".hstore").val();
+	 	$.ajax({
+	 	   url:'delbasket.do',
+	 	   async:false,
+	        cache : false,
+	        		data:{"fname":fname,"se_nmname":se_nmname,"restime":restime,"restable":restable,"resstore":resstore},
+	         		success : function(res){
+	         			
+	         		},error : function( jqXHR, textStatus, errorThrown ) {
+	 					alert( jqXHR.status );
+	 		        }
+	 		   });
+	 	   basketreslist();
    }
    //count 1마이너스 0이면 삭제
    function countdelfunc(fname){
@@ -504,8 +627,8 @@
    }
    function selectsit(){
 	   //console.log("1");
-	  var day=$("b.seday").text()
-	  var store=$("b.selStore").text()
+	  var day=$("b.seday").text();
+	  var store=$("b.selStore").text();
 	  if(day!=""&&store!=""){
       	$(".cal").css("display","none");
       	$(".store").css("display","none");
@@ -513,15 +636,38 @@
       	$(".selmenu").css("display","none");
       	//$(".resselect").css("display","none");
 	  }else if(day==""){
-		  alert("날짜를 선택해주세요")
+		  alert("날짜를 선택해주세요");
 	  }else if(store==""){
-		  alert("매장 및 시간을 선택해주세요")
+		  alert("매장 및 시간을 선택해주세요");
 	  }   
 	 }
    function menu(){
-      $(".cal").css("display","none");
-      $(".store").css("display","none");
-      $(".selsit").css("display","none");
-      $(".selmenu").css("display","block");
+	   var day=$("b.seday").text();
+	   var store=$("b.selStore").text();
+	   var sit=$("b.seleted").text();
+	   if(day!=""&&store!=""&&sit!=""){
+		  $(".cal").css("display","none");
+		  $(".store").css("display","none");
+		  $(".selsit").css("display","none");
+		  $(".selmenu").css("display","block");
+	   }else if(day==""){
+			  alert("날짜를 선택해주세요");
+	   }else if(store==""){
+			  alert("매장 및 시간을 선택해주세요");
+	   }else if(store==""){
+			  alert("자리를 선택해주세요");
+	   }
       //$(".resselect").css("display","block");
    }
+   function getContextPath() {
+
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+
+		return location.href.substring( hostIndex, location.href.indexOf('/menuImg', hostIndex + 1) );
+
+	}
+   function gohome(){
+	   location.href="main.do";
+   }
+
+

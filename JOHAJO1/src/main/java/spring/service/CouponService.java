@@ -39,4 +39,7 @@ public class CouponService {
 	{
 		return dao.getCouponId(member_f, event_f);
 	}
+	public void useCoupone(int idx) {
+		dao.updateUsecoupone(idx);
+	}
 }

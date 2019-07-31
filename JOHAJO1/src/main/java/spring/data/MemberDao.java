@@ -91,5 +91,7 @@ public class MemberDao  extends SqlSessionDaoSupport{
 		// TODO Auto-generated method stub
 		getSqlSession().delete("memberDelete",idx);
 	}
-
+	public void pointuser(Map<String,Integer> map) {
+		getSqlSession().update("pointuse",map);
+	}
 }

@@ -28,4 +28,7 @@
 	<select id="selCouponId" parameterType="HashMap" resultType="int">
 		select count(*) from coupon where member_f=#{member_f} and event_f=#{event_f}
 	</select>
+	<update id="usecoupone" parameterType="int">
+		update coupon set use=1 where idx=#{idx}
+	</update>
 </mapper>

@@ -37,6 +37,7 @@ import spring.data.singlebasketDto;
 import spring.service.CourseService;
 import spring.service.FoodService;
 import spring.service.MemberService;
+import spring.service.ReservationService;
 import spring.service.StoreService;
 import spring.service.TableService;
 import spring.service.nm_basketService;
@@ -60,6 +61,8 @@ public class ReservationController {
 	  private singlebasketService basket_service;
 	  @Autowired
 	  private nm_basketService nm_basket_service;
+	  @Autowired
+	  private ReservationService res_service;
 	  int year2=0;
 	  int n=0;
       List<FoodDto> list2=new ArrayList<FoodDto>();
@@ -99,7 +102,7 @@ public class ReservationController {
    @RequestMapping(value="/reslist2.do",method=RequestMethod.GET)
    public ModelAndView ReservationList2(HttpServletRequest req,@RequestParam int month)throws Exception {
 	   Calendar cal=Calendar.getInstance();
-	
+	   
 	   int currentMonth=cal.get(Calendar.MONTH);
 	   int year=cal.get(Calendar.YEAR);
 	   if(n==0){
@@ -107,7 +110,7 @@ public class ReservationController {
 		   n++;
 	   }
 	   int today=0;
-	   today=cal.get(Calendar.DATE);
+	   today=cal.get(Calendar.DATE)+1;
 	   int week=cal.get(Calendar.DAY_OF_WEEK);
 	   cal.set(year2, currentMonth, today+90);
 	   
@@ -145,7 +148,7 @@ public class ReservationController {
       model.addObject("currentMonth",currentMonth+1);
       model.addObject("currentyear",year);
       model.addObject("year",year2);
-      model.addObject("today",today+1);
+      model.addObject("today",today);
       model.addObject("lastday",lastday);
       model.addObject("month",mon+1);
       model.addObject("week",week);
@@ -333,7 +336,7 @@ public class ReservationController {
 		   if(basket_service.checkmbasket(dto)<=0) {
 			   basket_service.insertmbasket(dto);
 		   }else {
-			   basket_service.updatembasket(dto);
+			   basket_service.mBasketaddupdate(dto);
 		   }		   
 	   }
 	   model.setViewName("/res/reservationList");
@@ -399,12 +402,15 @@ public class ReservationController {
 	}
 	//코스 메뉴선택시
 	@RequestMapping(value="/rescoursesel.do",method=RequestMethod.GET)
-	public void rescoursesel(HttpSession session,@RequestParam int idx,@RequestParam(defaultValue="A",required=false)String se_nmname,
+	public @ResponseBody int rescoursesel(HttpSession session,@RequestParam int idx,@RequestParam(defaultValue="A",required=false)String se_nmname,
 			   @RequestParam String restable,@RequestParam String restime,@RequestParam String resstore)throws Exception{
 		CourseDto cdto=new CourseDto();
+		System.out.println(idx);
 		cdto=cou_service.resCourseOne(idx);
+		System.out.println("drink"+cdto.getDrink_p());
 		int[] nidx= {cdto.getAppe_p(),cdto.getSoup_p(),cdto.getMain_p(),cdto.getSide_p(),cdto.getDes_p(),cdto.getDrink_p()};
 		for(int s:nidx) {
+			System.out.println(s);
 		if(!se_nmname.equals("A")){ 
 			   Integer se_n=(Integer)session.getAttribute(se_nmname);
 			   NmBasketDto nmdto=new NmBasketDto();
@@ -431,9 +437,37 @@ public class ReservationController {
 			   if(basket_service.checkmbasket(mdto)<=0) {
 				   basket_service.insertmbasket(mdto);
 			   }else {
-				   basket_service.updatembasket(mdto);
+				   basket_service.mBasketaddupdate(mdto);
 			   }		 
 		   }
+		}
+		return 1;
+	}
+	//장바구니에있는거 선택한거 삭제
+	@RequestMapping(value="/delbasket.do",method=RequestMethod.GET)
+	@ResponseBody
+	public void delbasket(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
+		    String restable, String fname, String restime,String resstore) {
+		int fidx=fservice.getFoodIdx(fname);
+		if(se_nmname!="A") {
+			NmBasketDto dto = new NmBasketDto();
+			//ReservationDto dto = new ReservationDto()
+			int nmidx=(Integer) session.getAttribute(se_nmname);
+			dto.setNmidx(nmidx);
+			dto.setFidx(fidx);
+			dto.setRestable(restable);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			nm_basket_service.nmBasketDelete(dto);
+		}else {
+			singlebasketDto dto=new singlebasketDto();
+			int midx=(Integer) session.getAttribute("log_idx");
+			dto.setMidx(midx);
+			dto.setFidx(fidx);
+			dto.setRestable(restable);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			basket_service.mBasketdelete(dto);
 		}
 	}
 	//장바구니 db에서 count낮추기 0되면 삭제
@@ -454,11 +488,7 @@ public class ReservationController {
 			dto.setRestable(restable);
 			dto.setResstore(resstore);
 			dto.setRestime(restime);
-			System.out.println(dto.getNmidx());
-			System.out.println(dto.getFidx());
-			System.out.println(dto.getRestable());
-			System.out.println(dto.getResstore());
-			System.out.println(dto.getRestime());
+			
 			int count=nm_basket_service.nmBasketcountcheck(dto);
 			System.out.println(count);
 			if(count>1) {
@@ -474,7 +504,13 @@ public class ReservationController {
 			dto.setRestable(restable);
 			dto.setResstore(resstore);
 			dto.setRestime(restime);
-			basket_service.mBasketaddupdate(dto);
+			int mcheck=basket_service.checkmbasket(dto);
+			System.out.println("count"+mcheck);
+			if(mcheck>1) {
+				basket_service.mBasketdelupdate(dto);
+			}else {
+				basket_service.mBasketdelete(dto);
+			}
 		}
 		
 	}
@@ -507,5 +543,60 @@ public class ReservationController {
 			
 		}
 		
+	}
+	//베스트메뉴 선택시 db추가
+	@RequestMapping(value="/bestmenuchoose.do",method=RequestMethod.GET)
+	public @ResponseBody int bestsellmenu(HttpSession session,@RequestParam(defaultValue="A",required=false)String se_nmname,
+		    String restable,@RequestParam int fidx, String restime,String resstore){
+		System.out.println(fidx);
+		if(se_nmname.equals("A")) {
+			singlebasketDto dto=new singlebasketDto();
+			int idx=(Integer)session.getAttribute("log_idx");
+			dto.setMidx(idx);
+			dto.setFidx(fidx);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			dto.setRestable(restable);
+			basket_service.insertmbasket(dto);
+		}else {
+			NmBasketDto dto=new NmBasketDto();
+			int nmidx=(Integer)session.getAttribute(se_nmname);
+			dto.setNmidx(nmidx);
+			dto.setFidx(fidx);
+			dto.setResstore(resstore);
+			dto.setRestime(restime);
+			dto.setRestable(restable);
+			
+			nm_basket_service.insertnMemberBasket(dto);
+		}
+		
+		return 1;
+	}
+	
+	//예약테이블에 테이블 예약 했는지 확인
+	@RequestMapping(value="/sitcheck.do",method=RequestMethod.GET)
+	public @ResponseBody List<String> ressitcheck(String resstore,String restime,int month,int day,int year){
+		//List<String> list = null;
+		
+		ReservationDto dto=new ReservationDto();
+		System.out.println("/sitcheck.do");
+		String date=day+"/"+month+"/"+year;
+		dto.setResdate(date);
+		dto.setStore(service.getDataName(resstore));
+		dto.setRestime(restime);
+		for (String str : res_service.gettablecheck(dto)) {
+			System.out.println("/sitcheck.do: "+str);
+		}
+		return res_service.gettablecheck(dto);
+	}
+	
+	@RequestMapping(value="/sitcountcheck.do",method=RequestMethod.GET)
+	public @ResponseBody int ressitcountcheck(String resstore,String restime,int month,int day,int year){
+		ReservationDto dto=new ReservationDto();
+		String date=day+"/"+month+"/"+year;
+		dto.setResdate(date);
+		dto.setStore(service.getDataName(resstore));
+		dto.setRestime(restime);
+		return res_service.gettablecountcheck(dto);
 	}
 }

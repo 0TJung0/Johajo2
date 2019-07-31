@@ -1,57 +1,109 @@
-* {box-sizing: border-box;}
+/* * {box-sizing: border-box;}
 ul {list-style-type: none;}
 body {font-family: Verdana, sans-serif;}
 span.mon{
-	cursor: pointer;
+   cursor: pointer;
 }
 tr td a:HOVER{
-	color:blue;
-	cursor: pointer;
+   color:blue;
+   cursor: pointer;
 }
-/* .resselect{
-	display: none;
-} */
+.resselect{
+   display: none;
+}
 b#countb:hover{
-	display: block;
+   display: block;
 }
 #countbtn{
-	display: none;
+   display: none;
 }
 
 .page-content-wrapper{
-	position: relative;
-	float: left;
+   position: relative;
+   float: left;
 }
 .sidebar1{
-	position: relative;
+   position: relative;
 }
 .selmenu{
-	display: none;
+   display: none;
 }
 .fimg{
-	max-width: 100px;
-	max-height: 100px;
+   max-width: 100px;
+   max-height: 100px;
 }
 .sitback{
-	display: none;
-	border: 2px solid gray;
+   display: none;
+   border: 2px solid gray;
 }
 .selsit{
-	display: none;
-	width: 30%;
-	height: 30%;
-}
-.cal{
-
-   width: 80%;
+   display: none;
+   width: 30%;
    height: 30%;
 }
+*/
+
+
+#reserv_menu{
+   position: relative;
+   width: 800px;
+   margin: 0 auto;
+   
+}
+#reserv_menu ul{
+   margin: 0;
+   padding:0;
+   
+}
+#reserv_menu>ul>li{
+   list-style: none;
+   float: left;
+   width: 100%;
+   background-color: #f7f7f7;
+   
+}
+
+
+
+#reserv_menu>ul>li>span{
+   display: block;
+   width: 100%;
+   height: 40px;
+   line-height: 40px;
+   text-align: center;
+   font-size: 17px;
+   background-color: #ddd;
+   cursor: pointer;
+}
+
+#reserv_menu>ul>li>span:hover {
+   background-color: #464646;
+   color: #fff;
+   
+}
+
+
+#reserv_menu ul li ul{
+   overflow: hidden;
+   /* display:none; */
+}
+
+
+
+/*******************************************************날짜선택*/
+
+.cal{
+   position:relative;
+   width: 80%;
+   height: 30%;
+   margin: 30px auto;
+}
 tr,td,th{
-	border: 1px solid gray;
-	text-align: center;
+   border: 1px solid gray;
+   text-align: center;
 }
 .selstore:HOVER{
-	background-color: pink;
+   background-color: pink;
 }
 .store{
    display: none;
@@ -61,29 +113,37 @@ tr,td,th{
    cursor: pointer;
 }
 .nday:HOVER{
-	color:gray;
-	background-color: gray;	
-	cursor: default;
+   color:gray;
+   background-color: gray;   
+   cursor: default;
 }
 .month {
-  padding: 1em 1em;
-  width: 100%;
-  background: gray;
-  text-align: center;
+   position: relative;
+    width: 100%;
+     background: gray;
 }
 
-.month ul {
+.month>ul {
   margin: 0;
   padding: 0;
 }
 
-.month ul li {
+.month>ul>li {
   color: white;
   font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 3px;
+  float: left;
+  width: 33%;
+  height:59.2px;
+  list-style: none;
 }
 
+
+.month>ul>li>span{
+   width: 100px;
+   
+}
 .month .prev {
   float: left;
   padding-top: 10px;
@@ -105,6 +165,8 @@ tr,td,th{
   width: 13.6%;
   color: #666;
   text-align: center;
+  line-height: 42px;
+    font-size: 15px;
 }
 
 .days {
@@ -115,12 +177,13 @@ tr,td,th{
 
 .days li {
   list-style-type: none;
-  display: inline-block;
-  width: 13.6%;
-  text-align: center;
-  margin-bottom: 5px;
-  font-size:12px;
-  color: #777;
+    display: inline-block;
+    width: 13.97%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #777;
+    line-height: 25px;
 }
 
 .days li .active {
@@ -140,4 +203,139 @@ tr,td,th{
 
 @media screen and (max-width: 290px) {
   .weekdays li, .days li {width: 12.2%;}
+} 
+
+
+
+
+
+/*******************************************************매장선택*/
+
+.store{
+   position: relative;
+   width: 100%;
+   margin: 0 auto;
+   
 }
+
+.store1{
+   width: 640px;
+   margin: 30px auto;
+   
+}
+.store1 ul:nth-child(odd){
+   background-color: #e8e8e8;
+}
+
+.store1 ul:nth-child(1){
+   line-height: 40px;
+   background-color: gray;
+   color: #fff;
+   font-weight: bold;
+   margin-bottom: 20px;
+   
+}
+.store1 ul li{
+   width:33%;
+   float:left;
+   list-style:none;
+   border-color: 1px solid #ededed;
+   text-align: center;
+   font-size: 14px;
+   line-height: 35px;
+   
+}
+
+.store1 ul li:nth-child(1),
+.store1 ul li:nth-child(2){
+   width: 20%;
+}
+.store1 ul li:nth-child(3){
+   width: 50%;
+   margin-left: 63px;
+}
+
+
+
+.store1 ul li.time div{
+   position: relative;
+   float: left;
+   width:25%;
+   padding: 5px 3px;
+   
+}
+.store1 ul li.time div:hover{
+   background-color: orange;
+   color:#fff;
+   font-weight: bold;
+}
+   
+
+/*******************************************************자리선택*/
+
+.selsit{
+   position: relative;
+   width: 500px;
+    height: 179px;
+   margin: 30px auto;
+   
+}
+/*******************************************************메뉴선택*/
+
+#sidebar{
+   position: relative;
+   width: 100%;
+   float: left;
+   
+}
+
+#sidebar1{
+   position: relative;
+   width: 640px;
+   margin: 30px auto;
+   display: block;
+   
+}
+
+#sidebar1 ul{
+   margin: 0 auto;
+   padding: 0;
+   width: 100%;
+   float: left;
+}
+#sidebar1 ul li{
+   list-style:none;
+   float: left;
+   width: 16.66%;
+   line-height: 40px;
+   text-align: center;
+   background-color: gray;
+   color: #fff;
+   font-size: 14px;
+}
+#sidebar1 ul:nth-child(1) li{
+   width: 50%;
+   font-size: 16px;
+   font-weight: bold;
+}
+
+
+div.menuList{
+   position: relative;
+   width: 100%;
+   float: left;
+   
+}
+
+div.menuList div.menuitem{
+   position: relative;
+   width: 640px;
+   margin: 30px auto;
+   
+   
+}
+
+
+
+
+

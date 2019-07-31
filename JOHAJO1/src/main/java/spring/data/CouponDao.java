@@ -35,4 +35,7 @@ public class CouponDao extends SqlSessionDaoSupport {
 	public int getcouponediscount(int idx) {
 		return getSqlSession().selectOne("couponegetdiscount",idx);
 	}
+	public void updateUsecoupone(int idx) {
+		getSqlSession().update("usecoupone",idx);
+	}
 }

@@ -93,5 +93,7 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		dao.memberDelete(idx);
 	}
-
+	public void usepoint(Map<String,Integer> map) {
+		dao.pointuser(map);
+	}
 }

@@ -30,9 +30,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE singlebasket set count=count+1 where fidx=#{fidx} and midx=#{midx} and restime = #{restime} 
 		and residx=0 and today=to_date(sysdate,'DD/MM/RR') and restable=#{restable} and resstore=#{resstore}	
 	</update>
+	<update id="mBasketdelupdate" parameterType="singledto">
+		UPDATE singlebasket set count=count-1 where fidx=#{fidx} and midx=#{midx} and restime = #{restime} 
+		and residx=0 and today=to_date(sysdate,'DD/MM/RR') and restable=#{restable} and resstore=#{resstore}	
+	</update>
 	<update id="mBasketResfin" parameterType="singledto">
 		UPDATE singlebasket set residx=#{residx} where midx=#{midx} and restime = #{restime} 
 		and residx=0 and today=to_date(sysdate,'DD/MM/RR') and restable=#{restable} and resstore=#{resstore}	
 	</update>
-	
+	<delete id="mBasketdelete" parameterType="singledto">
+		delete from singlebasket where where midx=#{midx} and restime = #{restime} 
+		and residx=0 and today=to_date(sysdate,'DD/MM/RR') and restable=#{restable} and resstore=#{resstore}	
+	</delete>
 </mapper>

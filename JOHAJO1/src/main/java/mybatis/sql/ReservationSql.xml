@@ -7,9 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</insert>
 	<insert id="nmResInsert" parameterType="resdto">
-		insert into reservation(idx,rem,resdate,store,restime,restable,coupon,usepoint,totalprice,
-		nm_hp,nm_pass) values(seq_reservation.nextval,0,to_date(${resdate},'DD/MM/RR'),#{store},#{restime},#{restable},
-		#{coupon},#{usepoint},#{totalprice},#{nm_ph},#{nm_pass})
+		insert into reservation(idx,rem,resdate,store,restime,restable,totalprice,
+		nm_hp,nm_pass) values(seq_reservation.nextval,0,to_date(#{resdate},'DD/MM/RR'),#{store},#{restime},#{restable},
+		#{totalprice},#{nm_ph},#{nm_pass})
 	</insert>	
 	<insert id="mResInsertall" parameterType="resdto">
 		insert into reservation(idx,rem,resdate,store,restime,restable,coupon,usepoint,totalprice)
@@ -33,5 +33,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<select id="SelectMaxIdx" resultType="int" parameterType="int">
 		select Max(idx) from reservation where rem=#{midx}
+	</select>
+	<select id="nmSelectMaxIdx" resultType="int">
+		select Max(idx) from reservation where rem=0
+	</select>
+	<select id="getresfin" parameterType="int" resultType="resdto">
+		select * from reservation where idx=#{idx}
+	</select>
+	<select id="gettablecheck" parameterType="resdto" resultType="String">
+		select restable from reservation where store=#{store} and resdate=to_date(#{resdate},'DD/MM/RR') and restime=#{restime}
+	</select>
+	<select id="gettablecountcheck" parameterType="resdto" resultType="int">
+		select count(restable) from reservation where store=#{store} and resdate=to_date(#{resdate},'DD/MM/RR') and restime=#{restime}
 	</select>
 </mapper>

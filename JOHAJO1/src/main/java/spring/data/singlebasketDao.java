@@ -13,7 +13,6 @@ public class singlebasketDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("mBasketlist",sdto);
 	}
 	public void Insertmbasket(singlebasketDto dto) {
-		
 		getSqlSession().insert("mBasketInsert",dto);
 	}
 	public int checkmbasket(singlebasketDto dto) {
@@ -28,8 +27,18 @@ public class singlebasketDao extends SqlSessionDaoSupport{
 	public void mBasketaddupdate(singlebasketDto dto) {
 		getSqlSession().update("mBasketaddupdate",dto);
 	}
+	public void mBasketdelupdate(singlebasketDto dto) {
+		getSqlSession().update("mBasketdelupdate",dto);
+	}
 	public void mBasketResfin(singlebasketDto dto) {
 		getSqlSession().update("mBasketResfin",dto);
 	}
+	public int mBasketcountcheck(singlebasketDto dto) {
+		return getSqlSession().selectOne("mBasketcountcheck",dto);
+	}
+	public void mBasketdelete(singlebasketDto dto) {
+		getSqlSession().selectOne("mBasketdelete",dto);
+	}
+	
 }
 

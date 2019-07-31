@@ -54,7 +54,8 @@
 	</delete>
 
 	<select id="rescourseOne" parameterType="int" resultType="cdto">
-		select * from course where idx=#{idx}
+		select idx,appe as appe_p,soup as soup_p,main as main_p,side as side_p,des as des_p,
+		drink as drink_p,tot_pri,course_name from course where idx=#{idx}
 
 	</select>
 </mapper>

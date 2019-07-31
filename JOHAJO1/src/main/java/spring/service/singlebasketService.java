@@ -27,10 +27,23 @@ public class singlebasketService {
 	public void updatembasket(singlebasketDto dto) {
 		dao.updatembasket(dto);
 	}
+	public void mBasketcountcheck(int idx) {
+		dao.mBasketcountcheck(idx);
+	}
 	public void mBasketaddupdate(singlebasketDto dto) {
 		dao.mBasketaddupdate(dto);
+	}
+	public void mBasketdelupdate(singlebasketDto dto) {
+		dao.mBasketdelupdate(dto);
 	}
 	public void mBasketResfin(singlebasketDto dto) {
 		dao.mBasketResfin(dto);
 	}
+	public void mBasketcountcheck(singlebasketDto dto) {
+		dao.mBasketcountcheck(dto);
+	}
+	public void mBasketdelete(singlebasketDto dto) {
+		dao.mBasketdelete(dto);
+	}
+	
 }

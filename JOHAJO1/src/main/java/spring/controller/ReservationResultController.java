@@ -4,7 +4,9 @@ package spring.controller;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +29,7 @@ import spring.data.mSearchDto;
 import spring.data.singlebasketDto;
 import spring.service.CouponService;
 import spring.service.FoodService;
+import spring.service.MemberService;
 import spring.service.ReservationService;
 import spring.service.StoreService;
 import spring.service.nm_basketService;
@@ -45,6 +48,8 @@ public class ReservationResultController {
 	private ReservationService res_service;
 	@Autowired
 	private CouponService coupon_service;
+	@Autowired
+	private MemberService member_service;
 	
 	ReservationDto dto=new ReservationDto();
 	//db에있는 선택한 음식 리스트 출력
@@ -96,24 +101,19 @@ public class ReservationResultController {
 	}
 	//db예약 넣기
 	@RequestMapping(value="/resfinsh.do",method=RequestMethod.GET)	
-	public @ResponseBody int resfinsh3(String pass,String hp,HttpSession session,String sit,@RequestParam(required=false,defaultValue="0") int usepoint,int totalprice,
+	public @ResponseBody ReservationDto resfinsh3(@RequestParam(required=false)String pass,@RequestParam(required=false)String hp,HttpSession session,String sit,@RequestParam(required=false,defaultValue="0") int usepoint,int totalprice,
 			String month,String day,@RequestParam String store,String time,@RequestParam(required=false,defaultValue="A") String sid,@RequestParam(required=false,defaultValue="0") int usecouponidx){
 		int storeidx=store_service.getDataName(store);
 		Calendar cal=Calendar.getInstance();
 		int year=cal.get(Calendar.YEAR)%100;
 		String date=day+"/"+month+"/"+year;
-		System.out.println(date);
 		ReservationDto dto = new ReservationDto();
 		dto.setResdate(date);
-		System.out.println(dto.getResdate());
 		dto.setStore(storeidx);
-		System.out.println(dto.getStore());
 		dto.setTotalprice(totalprice);
-		System.out.println(dto.getTotalprice());
 		dto.setRestime(time);
-		System.out.println(dto.getRestime());
 		dto.setRestable(sit);
-		System.out.println(dto.getRestable());
+		
 		if(usepoint!=0) {
 			dto.setUsepoint(usepoint);
 		}else {
@@ -139,6 +139,11 @@ public class ReservationResultController {
 				sdto.setRestable(sit);
 				sdto.setResidx(res_service.getMaxidx(midx));
 				mb_service.mBasketResfin(sdto);
+				Map<String, Integer> map=new HashMap<String, Integer>();
+				map.put("idx", midx);
+				map.put("point", usepoint);
+				member_service.usepoint(map);
+				coupon_service.useCoupone(usecouponidx);
 			}else if(dto.getUsepoint()==0&&dto.getCoupon()!=0) {
 				res_service.InsertResusepoint(dto);
 				singlebasketDto sdto=new singlebasketDto();
@@ -148,6 +153,7 @@ public class ReservationResultController {
 				sdto.setRestable(sit);
 				sdto.setResidx(res_service.getMaxidx(midx));
 				mb_service.mBasketResfin(sdto);
+				coupon_service.useCoupone(usecouponidx);
 			}else if(dto.getUsepoint()!=0&&dto.getCoupon()==0) {
 				res_service.InsertResusecoupon(dto);
 				singlebasketDto sdto=new singlebasketDto();
@@ -157,6 +163,10 @@ public class ReservationResultController {
 				sdto.setRestable(sit);
 				sdto.setResidx(res_service.getMaxidx(midx));
 				mb_service.mBasketResfin(sdto);
+				Map<String, Integer> map=new HashMap<String, Integer>();
+				map.put("idx", midx);
+				map.put("point", usepoint);
+				member_service.usepoint(map);
 			}else {
 				res_service.InsertResmember(dto);
 				singlebasketDto sdto=new singlebasketDto();
@@ -170,19 +180,34 @@ public class ReservationResultController {
 			}
 			
 		}else {
-			//int nmidx=(Integer) session.getAttribute(sid);
+			int nmidx=(Integer) session.getAttribute(sid);
 			//int price=nmb_service.nmBasketPrice(nmidx);
 			//dto.setFsingle(nmidx);
-			System.out.println(hp);
+			
+			System.out.println("nmidx"+nmidx);
+			System.out.println("hp"+hp);
 			dto.setNm_ph(hp);
-			System.out.println(pass);
 			dto.setNm_pass(pass);
+			System.out.println(dto.getNm_pass());
+			System.out.println(dto.getStore());
+			System.out.println(dto.getRestime());
+			System.out.println(dto.getRestable());
+			System.out.println(dto.getResdate());
 			res_service.InsertnmRes(dto);
+			NmBasketDto nmdto=new NmBasketDto();
+			nmdto.setNmidx(nmidx);
+			res_service.nmSelectMaxIdx();
+			session.removeAttribute(sid);
 		}
-		
-
-		
-		return 1;
+		ReservationDto rdto=new ReservationDto();
+		int idx;
+		if(sid.equals("A")) {
+			int midx=(Integer)session.getAttribute("log_idx");
+			idx=res_service.getMaxidx(midx);
+		}else {
+			idx=res_service.nmSelectMaxIdx();
+		}
+		return res_service.getresfin(idx);
 	}
 	@RequestMapping(value="/coupongetdiscount.do",method=RequestMethod.GET)	
 	public @ResponseBody int getdiscount(int couponeidx) {

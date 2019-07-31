@@ -32,22 +32,62 @@ $(function(){
 		str1+="<b class='usecoupon'>사용쿠폰<b><button type='button' class='couponbtn' onclick='coupongetlist()'>쿠폰 사용하기</button><div class='coupon'></div><br>"
 		str1+="포인트 사용 <input type='text' size=5 class='point'>사용가능 포인트 : <b class='havapoint'>${point}<b><Button type='button' class='usepoint'>포인트사용</button><br>";
 		str1+="결제금액<b class='resprice'></b>"
-		str1+="<br><button type='button' class='resfinbtn'>예약하기</button>"
+		str1+="<br><button type='button' class='mresfinbtn'>예약하기</button>"
 	}else{
 		str1+="핸드폰 번호  010<input type='text' class='nmhp' placeholder='-없이 입력해주세요'><br>";
-		str1+="비밀번호 <input type='password' class='nmpass' placeholder='비밀번호를 입력해주세요'><br>";
+		str1+="비밀번호 <input type='password' class='nmpass' placeholder='비밀번호를 4자이상 입력해주세요'><br>";
 		str1+="결제금액<b class='resprice'></b>"
-		str1+="<br><button type='button' class='resfinbtn'>예약하기</button>"
+		str1+="<br><button type='button' class='nmresfinbtn'>예약하기</button>"
 	}
 	
 	
-	$(document).on('click','button.resfinbtn',function() { 
+	$(document).on('click','button.mresfinbtn',function() { 
+		  
+		  var usecouponidx=$(".couponeidx").val();
+		  var usepoint=$(".usepoint").val();
+		  var totalprice=$("b.resprice").text();
+		  
+		  $.ajax({
+	           url : "resfinsh.do",
+	           type : "GET",
+	           data:{"month":month,"day":day,"store":store,"totalprice":totalprice,
+	        	   "time":time,"sit":sit,"sid":sid,"usepoint":usepoint,"usecouponidx":usecouponidx},
+	           cache : false,
+	           success : function(res){
+	             var html = "";
+	              html+="예약이 완료되었습니다.";
+	              html+="<table><tr>";
+	              html+="<td>예약번호 </td>";
+	              html+="<td>예약일자 </td>";
+	              html+="<td>예약시간 </td>";
+	              html+="<td>예약테이블 </td>";
+	              html+="</tr><tr>";
+	              html+="<td>"+res.idx+"</td>";
+	              html+="<td>"+res.resdate+"</td>";
+	              html+="<td>"+res.restime+"</td>";
+	              html+="<td>"+res.restable+"</td>";
+	              html+="</tr></table>";
+	              $("div.finout").html(html);  
+	            },error : function( jqXHR, textStatus, errorThrown ) {
+	            	alert( jqXHR.status );
+		        }
+	                   
+	      });
+	  });
+	$(document).on('click','button.nmresfinbtn',function() { 
+		  
 		  var usecouponidx=$(".couponeidx").val();
 		  var usepoint=$(".usepoint").val();
 		  var hp=$(".nmhp").val();
 		  var pass=$(".nmpass").val();
 		  var totalprice=$("b.resprice").text();
-		 
+		  if(pass.length<4){
+			  alert("비밀번호를 4글자이상 해주세요");
+			  return false;
+		  }else if(hp.length!=8){
+			  alert("전화번호를 정확히 해주세요");
+			  return false;
+		  }
 		  $.ajax({
 	           url : "resfinsh.do",
 	           type : "GET",
@@ -57,6 +97,17 @@ $(function(){
 	           success : function(res){
 	             var html = "";
 	              html+="예약이 완료되었습니다.";
+	              html+="<table><tr>";
+	              html+="<td>예약번호 </td>";
+	              html+="<td>예약일자 </td>";
+	              html+="<td>예약시간 </td>";
+	              html+="<td>예약테이블 </td>";
+	              html+="</tr><tr>";
+	              html+="<td>"+res.idx+"</td>";
+	              html+="<td>"+res.resdate+"</td>";
+	              html+="<td>"+res.restime+"</td>";
+	              html+="<td>"+res.restable+"</td>";
+	              html+="</tr></table>";
 	              $("div.finout").html(html);  
 	            },error : function( jqXHR, textStatus, errorThrown ) {
 	            	alert( jqXHR.status );
@@ -117,7 +168,7 @@ function list(){
              var html = "";
              var price=0;
                for(var i=0; i<res.length; i++){
-            	   html += res[i].fname+"<b> 수량:"+res[i].count+"</b> 가격 : "+(res[i].price*res[i].count)+"<button type='button' idx="+res[i].idx+">삭제</button><br>";
+            	   html += res[i].fname+"<b> 수량:"+res[i].count+"</b> 가격 : "+(res[i].price*res[i].count)+"<br>";
                	   price=price+(res[i].price*res[i].count);
                }
               // html+="</li>"
