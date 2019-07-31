@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/course.css"/>
 <script type="text/javascript">
 	$(function(){
 		$("#btndel").click(function(){

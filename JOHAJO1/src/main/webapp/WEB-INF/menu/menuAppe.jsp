@@ -46,6 +46,9 @@ $(function(){
 </style>
 </head>
 <body>
+<%
+	String log_id   = (String)session.getAttribute("log_id");
+%>
 	<div class="appe_list">
 		<div class="appelist1" id="appelist1" > 
 			<b>APPETIZER</b><br>
@@ -62,8 +65,10 @@ $(function(){
 						
 						<li class="appe_fname"><b>${dto.fname}</b></li>
 						
-						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
-						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
+						<c:if test="${log_id =='manager'}">
+				 			<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
+							<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
+				 		</c:if>
 					</ul>
 					
 				</div>

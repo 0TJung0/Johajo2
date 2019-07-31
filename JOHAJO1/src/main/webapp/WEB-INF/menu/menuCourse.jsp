@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/course.css"/>
 <script type="text/javascript">
 	$(function(){
 			$(".cmsg").show();
@@ -63,9 +63,15 @@
 </style>
 </head>
 <body>
-	<div class="course_ma">
-		<button type="button" onclick="location.href='courselist.do'">코스 관리</button>
-	</div>
+	<%
+				String log_id   = (String)session.getAttribute("log_id");
+	%>
+	<c:if test="${log_id =='manager'}">
+	 	<div class="course_ma">
+			<button type="button" onclick="location.href='courselist.do'">코스 관리</button>
+		</div>		
+	</c:if>
+	
 	<div class="course">
 		<div class="course_title"> 
 			<b>COURSE</b><br>

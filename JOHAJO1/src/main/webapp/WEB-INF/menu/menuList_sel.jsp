@@ -45,6 +45,9 @@
 	</script>
 	</head>
 	<body>
+		<%
+			String log_id   = (String)session.getAttribute("log_id");
+		%>
 			<div class="menu_list" id="menu_list">
 				<div class="menu_left" id="menu_left">
 				
@@ -128,8 +131,13 @@
 						</div>
 				</div>
 			</div>
-			<div class="menu_add">
-				<button type="button" onclick="location.href='menuinsert.do'">메뉴 추가</button>
-			</div>
+						
+			<c:if test="${log_id =='manager'}">
+	 			<div class="menu_add">
+					<button type="button" onclick="location.href='menuinsert.do'">메뉴 추가</button>
+				</div>
+	 		</c:if>
+			
+			
 	</body>
 </html>

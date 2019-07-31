@@ -8,91 +8,29 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-	<style type="text/css">
-		.clisttable tr,.clisttable th,.clisttable td{
-			border:1px solid gray;
-		}
-	
-		#aldiv{
-			margin-top: 10px;
-			margin-left:50px;
-			margin-right: 50px;
-		}
-		
-		/* ------------------------------------------------- */
-		
-		#altabs{
-			overflow: hidden;
-			width: 100%;
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
-		#altabs li{
-			float: left;
- 		 	margin: 0 .1em 0 0;
- 		 	border: 1px solid lightgray;
-		}
-		#altabs a{
-			position: relative;
-			padding: .2em 1em;
-			float: left;
-			text-decoration: none;
-		}
-		#altabs a:hover,#altabs a:focus{
-		  	color : black;
-		  	text-decoration: none;
-		}
-		#altabs a:focus{
-		    outline: 0;
-		    color : black;
-		}
-		#altabs a:visited{
-			content:'';
-			position:absolute;
-			z-index: 1;
-			top: 0;
-			right: -.5em;  
-			bottom: 0;
-			width: 1em;
-			color : black;
-		}
-		#altabs #current a{
-		  z-index: 3;
-		  background: lightgray;
-		  color : tomato;
-		}
-		
-		/* ------------------------------------------------- */
-		
-		#alcontent{
-			background: #fff;
-		    padding: 2em;
-		    height: 
-		}
-		
-	</style>
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/allergy.css"/>
+
 	<script type="text/javascript">
 	$(document).ready(function() {
 		//모든 내용 숨김
-		$("#alcontent div").hide();
+		$("#alcontent2 div").hide();
 
 		//첫 탭만 활성화
-		$("#altabs li:first").attr("id","current");
+		$("#altabs2 li:first").attr("id","current");
 		//첫번째 탭 내용만 보이도록
-		$("#alcontent div:first").fadeIn();
+		$("#alcontent2 div:first").fadeIn();
 	    
-	    $('#altabs a').click(function(e) {
+	    $('#altabs2 a').click(function(e) {
 	        e.preventDefault();        
-	        $("#alcontent div").hide(); //모든 내용 숨기기
-	        $("#altabs li").attr("id",""); 
+	        $("#alcontent2 div").hide(); //모든 내용 숨기기
+	        $("#altabs2 li").attr("id",""); 
 	        $(this).parent().attr("id","current"); 
 	        $('#' + $(this).attr('aname')).fadeIn(); //활성화된 탭만 보이도록
 	    });
 	});
 	
 	$(function(){
-		$("#altabs li").click(function(){
+		$("#altabs2 li").click(function(){
 			var aname = $(this).attr("aname");
 			console.log(aname);
 		});
@@ -100,9 +38,9 @@
 	</script>
 	</head>
 	<body>
-		<div id="aldiv">
+		<div id="aldiv2">
 			<button type="button" onclick="location.href='allergylist.do'">관리</button>
-			<ul id="altabs">
+			<ul id="altabs2">
 				<c:forEach var="a" items="${alist}">
 					<c:set var="allergy" value="${dto.aname}"></c:set>
 					<c:set var="allergyn" value="${allergy==1?'전체':allergy==10?'난류':allergy==11?'우유':allergy==2?'대두':allergy==3?'밀'
@@ -111,7 +49,7 @@
 				</c:forEach>
 			</ul>
 			
-			<div id="alcontent"> 
+			<div id="alcontent2"> 
 			    
 			    <div id="1">
 		        	<table class="clisttable">

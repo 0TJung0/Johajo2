@@ -46,6 +46,9 @@ $(function(){
 </style>
 </head>
 <body>
+<%
+	String log_id   = (String)session.getAttribute("log_id");
+%>
 	<div class="drink_list">
 		<div class="drinklist1" id="drinklist1" > 
 			<b>DRINK</b><br>
@@ -61,9 +64,11 @@ $(function(){
 						<li><img class="drinklist_img" src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" idx="${dto.idx}" ></li>
 						
 						<li class="drink_fname"><b>${dto.fname}</b></li>
-						 
-						<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
-						<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
+						
+						<c:if test="${log_id =='manager'}">
+				 			<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
+							<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
+				 		</c:if>
 					</ul>
 				</div>
 			</c:forEach>

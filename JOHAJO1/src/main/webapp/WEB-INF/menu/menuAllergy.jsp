@@ -8,118 +8,10 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/allergy.css"/>
 	<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
 	<style type="text/css">
 		a,b{font-family: Nanum Gothic;}
-	</style>
-	<style type="text/css">
-		
-		.menuatable li{
-			padding: 1em;
-    		background: white;
-    		text-align: center;
-    		list-style: none;
-    		box-shadow: 1px 1px 5px -2px gray;
-		}
-		.menuatable ul{
-			margin-bottom: 10px;
-			width: 60%;
-		}
-		.menutable{
-			display: block;
-		}
-		.disp{
-			position: relative;
-		    bottom: 80px;
-    		left: 500px;
-		    width: 20%;
-			box-shadow: 1px 1px 5px -2px gray;
-			background: white;
-			padding: 12px;
-			display: none;
-		}
-		#aldiv{
-			overflow:hidden;
-			background:#F5F5F5;
-			margin-bottom: 100px;
-		}
-		
-		.allist{
-			font-size: 350%;
-			text-align: center;
-			padding : 100px;
-		}
-		.allimg{
-			width: 50px;
-		}
-		
-		.alcont{
-			margin-left : 150px;
-			margin-right: 155px;
-		}
-		
-		
-		/* ------------------------------------------------- */
-		
-		#altabs{
-			overflow: hidden;
-			width: 100%;
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
-		#altabs li{
-			float: left;
- 		 	margin: 0 .1em 0 0;
- 		 	border-bottom : 1px solid #bdbdbd;
-		}
-		
-		#altabs li b{
-			color : #bdbdbd;
-		}
-		#altabs a{
-			position: relative;
-		    padding: 1em 1em;
-		    float: left;
-		    text-decoration: none;
-		    width: 129px;
-		    text-align: center;
-		}
-		#altabs a:hover,#altabs a:focus{
-		  	color : black;
-		  	text-decoration: none;
-		}
-		#altabs a:focus{
-		    outline: 0;
-		    color : #231f20;
-		}
-		#altabs a:visited{
-			content:'';
-			position:absolute;
-			z-index: 1;
-			top: 0;
-			right: -.5em;  
-			bottom: 0;
-			width: 1em; 
-			color : #bdbdbd;
-		}
-		#altabs #current a{
-		  z-index: 3;
-		  border-bottom : solid #231f20;
-		}
-		#altabs #current b{
-		  color : #231f20;
-		}
-		
-		/* ------------------------------------------------- */
-		
-		#alcontent{
-		    padding: 2em;
-		    padding-left:5em;
-		    padding-right : 5em;
-		    width: 100%;
-		}
-		
 	</style>
 	<script type="text/javascript">
 	$(document).ready(function() {
@@ -176,8 +68,14 @@
 	</script>
 	</head>
 	<body>
-			<button type="button" onclick="location.href='allergylist.do'">관리</button>
+		<%
+			String log_id   = (String)session.getAttribute("log_id");
+		%>
+		<c:if test="${log_id =='manager'}">
+ 			<button type="button" onclick="location.href='allergylist.do'">관리</button>
 			<button type="button" onclick="location.href='allergyadd.do'">추가</button>
+ 		</c:if>
+			
 		<div id="aldiv">	
 			<div class="allist"> 
 				<b>ALLERGY</b><br>
