@@ -12,6 +12,11 @@
 	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 	<style type="text/css">
 		a{font-family: Nanum Gothic;}
+		.mwbtn{
+			background: white;
+			color: gray;
+			font-family: Nanum Gothic;
+		}
 	</style>
 	<script type="text/javascript">
 	$(function(){
@@ -48,6 +53,13 @@
 		<%
 			String log_id   = (String)session.getAttribute("log_id");
 		%>
+		<br>
+			<c:if test="${log_id =='manager'}">
+	 			<div class="menu_add">
+					<button type="button" onclick="location.href='menuinsert.do'" class="mwbtn">메뉴 추가</button>
+				</div>
+	 		</c:if>
+			
 			<div class="menu_list" id="menu_list">
 				<div class="menu_left" id="menu_left">
 				
@@ -132,11 +144,6 @@
 				</div>
 			</div>
 						
-			<c:if test="${log_id =='manager'}">
-	 			<div class="menu_add">
-					<button type="button" onclick="location.href='menuinsert.do'">메뉴 추가</button>
-				</div>
-	 		</c:if>
 			
 			
 	</body>

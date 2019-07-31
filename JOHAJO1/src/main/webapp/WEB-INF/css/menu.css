@@ -807,5 +807,98 @@
 		font-size: 0.9em;
 		color: #686868;
 	}
+	/* menuUpdateform */
+	.menuupdateb{
+		font-family: Nanum Gothic;
+		font-size: 2em;
+		margin-left: 250px;
+	}
+	.menuupdatediv{
+		background: #F5F5F5;
+		margin-left: 150px;
+		margin-right: 150px; 
+		padding-top: 50px;
+		padding-bottom: 50px;
+		margin-bottom: 10px;
+		font-family: Nanum Gothic;
+	}
+	.menuuformtable{
+		position: relative;
+	    margin-bottom: 50px;
+	    margin-left: 150px;
+	    margin-right: 150px;
+	    top: 50px;
+	    top: 50px;
+	    margin-bottom: 50px;
+	    padding: 20px;
+	    background: white;
+	    box-shadow: 1px 1px 5px -2px grey;
+	}
+	.menuuformtable th,.menuuformtable td{
+		padding-left: 40px;
+	    padding-top: 15px;
+	    padding-bottom: 15px;
+		font-size: 1em;
+	}
 	
+	.menuuformtable th{
+		width: 30%;
+    	text-align: center;
+	}
+
+	.originimg{
+		display: block;
+		width: 50%;
+	}
+	
+	/* ------------------------------------------------------ */
+	/* menuWriteform */
+		.menuwriteb{
+		font-family: Nanum Gothic;
+		font-size: 2em;
+		margin-left: 250px;
+	}
+	.menuwritediv{
+		background: #F5F5F5;
+		margin-left: 150px;
+		margin-right: 150px; 
+		padding-top: 50px;
+		padding-bottom: 50px;
+		margin-bottom: 10px;
+		font-family: Nanum Gothic;
+	}
+	.menuwformtable{
+		position: relative;
+	    margin-bottom: 50px;
+	    margin-left: 150px;
+	    margin-right: 150px;
+	    top: 50px;
+	    top: 50px;
+	    margin-bottom: 50px;
+	    padding: 20px;
+	    background: white;
+	    box-shadow: 1px 1px 5px -2px grey;
+	}
+	.menuwformtable th,.menuwformtable td{
+		padding-left: 40px;
+	    padding-top: 15px;
+	    padding-bottom: 15px;
+		font-size: 1em;
+	}
+	
+	.menuwformtable th{
+		width: 30%;
+    	text-align: center;
+	}
+	
+	#imgname_second>img{
+		display: block;
+		width: 50%;
+	}
+	/* 관리자페이지 버튼 */
+	.mwbtn{
+		background: white;
+		color: gray;
+		font-family: Nanum Gothic;
+	}
 	

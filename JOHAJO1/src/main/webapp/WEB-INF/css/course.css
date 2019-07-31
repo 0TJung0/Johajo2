@@ -89,41 +89,124 @@
 	}
 	
 	/* ------------------------------------------------------ */
-	/* menuUpdateform */
-	.menuuformtable th,.menuuformtable td{
-		border: 1px solid gray;
-	}
-	#imgname_second>img{
-		max-width: 200px;
-	}
 	
-	/* ------------------------------------------------------ */
-	/* menuWriteform */
-	.menuwformtable th,.menuwformtable td{
-		border: 1px solid gray;
-	}
-	#imgname_second>img{
-		max-width: 200px;
-	}
 	
 	/* ------------------------------------------------------ */
 	/* courseList */
-	.clisttable th,.clisttable td{
-		border:1px solid gray;
-		padding:10px;
+		.course_list{
+		background: #F5F5F5;
+		font-family: Nanum Gothic;
+		margin-left: 5px;
+		margin-right: 5px;
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	.courselistb{
+		font-size: 2em;
+		margin-left: 480px;
+	}
+	.clisttable{
+		margin-top: 50px;
+		margin-left: 15px;
+	}
+	.clisttable th{
+		background: #FAFAFA;
+	}
+	.clisttable td{
+		background: white;
+	}
+	.clisttable th, .clisttable td {
+	    border-bottom: 1px solid lightgray;
+	    padding: 9px;
+	    text-align: center;
 	}
 	
 	/* ------------------------------------------------------ */
 	/* courseUpdateform */
+	.courseupdateb{
+		font-family: Nanum Gothic;
+		font-size: 2em;
+		margin-left: 250px;
+	}
+	.courseupdatediv{
+		background: #F5F5F5;
+		margin-left: 150px;
+		margin-right: 150px; 
+		padding-top: 50px;
+		padding-bottom: 50px;
+		margin-bottom: 10px;
+		font-family: Nanum Gothic;
+	}
+	.cuformtable{
+		position: relative;
+	    margin-bottom: 50px;
+	    margin-left: 150px;
+	    margin-right: 150px;
+	    top: 50px;
+	    top: 50px;
+	    margin-bottom: 50px;
+	    padding: 20px;
+	    background: white;
+	    box-shadow: 1px 1px 5px -2px grey;
+	}
 	.cuformtable th,.cuformtable td{
-		border: 1px solid gray;
+		padding-left: 40px;
+	    padding-top: 15px;
+	    padding-bottom: 15px;
+		font-size: 1em;
+		padding-right: 20px;
+	}
+	
+	.cuformtable th{
+		width: 30%;
+    	text-align: center;
 	}
 	
 	/* ------------------------------------------------------ */
 	/* courseWriteform */
+	.coursewriteb{
+		font-family: Nanum Gothic;
+		font-size: 2em;
+		margin-left: 250px;
+	}
+	.coursewritediv{
+		background: #F5F5F5;
+		margin-left: 150px;
+		margin-right: 150px; 
+		padding-top: 50px;
+		padding-bottom: 50px;
+		margin-bottom: 10px;
+		font-family: Nanum Gothic;
+	}
+	.cwformtable{
+		position: relative;
+	    margin-bottom: 50px;
+	    margin-left: 150px;
+	    margin-right: 150px;
+	    top: 50px;
+	    top: 50px;
+	    margin-bottom: 50px;
+	    padding: 20px;
+	    background: white;
+	    box-shadow: 1px 1px 5px -2px grey;
+	}
 	.cwformtable th,.cwformtable td{
-		border: 1px solid gray;
-
-
+		padding-left: 40px;
+	    padding-top: 15px;
+	    padding-bottom: 15px;
+		font-size: 1em;
+		padding-right: 20px;
+	}
+	
+	.cwformtable th{
+		width: 30%;
+    	text-align: center;
+	}
 	
 	
+	/* 관리자페이지 버튼 */
+	.mwbtn{
+		background: white;
+		color: gray;
+		font-family: Nanum Gothic;
+	}

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
 <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script>
 // input file 이미지 미리보기 함수
@@ -101,8 +102,10 @@ $(function() {
 </script>
 </head>
 <body>
-	<form action="menuupdate.do" method="post" enctype="multipart/form-data">
-		<table class="menuuformtable">
+	<div class="menuupdatediv">
+	<b class="menuupdateb">관리자용 : 메뉴 수정</b><br>
+		<form action="menuupdate.do" method="post" enctype="multipart/form-data">
+			<table class="menuuformtable">
 			<tr>
 				<th>종류</th>
 				<td>
@@ -127,7 +130,7 @@ $(function() {
 			<tr>
 				<th>이미지</th>
 				<td>
-				<img src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}">
+				<img src="http://localhost:9000/SpringTilesMybatis/menuImg/${dto.imgname}" class="originimg">
 				<br>
 				<input type="text" value="${dto.imgname}" readonly="readonly">
 				<div id="imgname_second"></div>
@@ -145,11 +148,12 @@ $(function() {
 			<tr>
 				<td colspan="2" align="center">
 				<input type="hidden" name=idx value="${dto.idx}">
-				<input type="submit" value="수정">
-				<input type="button" value="취소" onclick="history.back()">
+				<input type="submit" value="수정" class="mwbtn">
+				<input type="button" value="취소" onclick="history.back()" class="mwbtn">
 				</td>
 			</tr>
 		</table>
-	</form>
+		</form>
+	</div>
 </body>
 </html>

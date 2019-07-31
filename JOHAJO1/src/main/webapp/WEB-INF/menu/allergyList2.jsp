@@ -77,7 +77,7 @@
 								<td>${allergyn}</td>
 								<td>${dto.fname}</td>
 								<td>
-									<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+									<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -109,7 +109,7 @@
 								<td>${allergyn}</td>
 								<td>${dto.fname}</td>
 								<td>
-									<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+									<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 								</td>
 							</tr>
 						</c:forEach>

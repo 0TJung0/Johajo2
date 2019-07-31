@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
 <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
 <script type="text/javascript">
 //input file 이미지 미리보기 함수
@@ -93,8 +94,10 @@ function previewImage(targetObj, previewId) {
 </script>
 </head>
 <body>
-	<form action="menuwrite.do" method="post" enctype="multipart/form-data">
-		<table class="menuwformtable">
+	<div class="menuwritediv">
+	<b class="menuwriteb">관리자용 : 메뉴 추가</b><br>
+		<form action="menuwrite.do" method="post" enctype="multipart/form-data">
+			<table class="menuwformtable">
 			<tr>
 				<th>종류</th>
 				<td>
@@ -135,11 +138,12 @@ function previewImage(targetObj, previewId) {
 			
 			<tr>
 				<td colspan="2" align="center">
-				<input type="submit" value="저장">
-				<button type="button" onclick="history.back()">취소</button>
-				</td>
+				<input type="submit" value="저장" class="mwbtn">
+				<button type="button" onclick="history.back()" class="mwbtn">취소</button>
+			</td>
 			</tr>
 		</table>
-	</form>
+		</form>
+	</div>
 </body>
 </html>

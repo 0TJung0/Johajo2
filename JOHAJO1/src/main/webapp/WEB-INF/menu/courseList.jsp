@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
 <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/course.css"/>
 <script type="text/javascript">
 	$(function(){
@@ -41,10 +42,12 @@
 </script>
 </head>
 <body>
+	
+		<button type="button" onclick="location.href='courseinsert.do'" class="mwbtn">코스 추가</button>
+		<button type="button" id="btndel" class="mwbtn" >코스 삭제</button>
+	
 	<div class="course_list">
-		<button type="button" onclick="location.href='courseinsert.do'">코스 추가</button>
-		<button type="button" id="btndel" >코스 삭제</button>
-	<br>
+	<b class="courselistb">코스 리스트</b><br>
 	<table class="clisttable">
 		<tr>
 			<th></th>
@@ -81,7 +84,7 @@
 					</c:if>
 				</td>
 				<td>
-					<button type="button" onclick="location.href='courseupdateform.do?idx=${dto.idx}'">수정</button>
+					<button type="button" onclick="location.href='courseupdateform.do?idx=${dto.idx}'" class="mwbtn">수정</button>
 				</td>
 			</tr>
 		</c:forEach>

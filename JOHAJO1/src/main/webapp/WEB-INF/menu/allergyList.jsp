@@ -8,7 +8,8 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/allergy.css"/>
+	<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'>
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/allergy.css"/>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		//모든 내용 숨김
@@ -67,20 +68,20 @@
 	</head>
 	<body>
 		<div id="allistdiv">
-			
-			<button type="button" id="btndel" >알러지 삭제</button>
+			<b class="allistb">관리자용 : 유발성분 리스트</b><br>
+			<button type="button" id="btndel" class="mwbtn">알러지 삭제</button>
 		
 			<ul id="allisttabs">
 				<c:forEach var="dto" items="${kind}">
 					<c:set var="mkindnum" value="${dto.kind}"></c:set>
 					<c:set var="mkind" value="${mkindnum==1?'APPETIZER':mkindnum==2?'SOUP':mkindnum==3?'MAIN':mkindnum==4?'SIDE':mkindnum==5?'DESSERT':'DRINK'}"/>
-					    <li><a href="#" kind="${mkindnum}">${mkind}</a></li>
+					    <li><a href="#" kind="${mkindnum}"><b>${mkind}</b></a></li>
 				</c:forEach>
 			</ul>
 			
 			<div id="allistcontent"> 
 			    <div id="1">
-			        <table class="clisttable">
+			        <table class="alisttable">
 						<tr>
 							<th></th>
 							<th>메뉴</th>
@@ -95,7 +96,7 @@
 									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -103,7 +104,7 @@
 					</table>
 			    </div>
 			    <div id="2">
-			       <table class="clisttable">
+			       <table class="alisttable">
 						<tr>
 							<th></th>
 							<th>메뉴</th>
@@ -118,7 +119,7 @@
 									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -126,7 +127,7 @@
 					</table>
 			    </div>
 			    <div id="3">
-			        <table class="clisttable">
+			        <table class="alisttable">
 						<tr>
 							<th></th>
 							<th>메뉴</th>
@@ -141,7 +142,7 @@
 									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -149,7 +150,7 @@
 					</table>
 			    </div>
 			    <div id="4">
-			        <table class="clisttable">
+			        <table class="alisttable">
 						<tr>
 							<th></th>
 							<th>메뉴</th>
@@ -164,7 +165,7 @@
 									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -172,7 +173,7 @@
 					</table>
 			    </div>
 			    <div id="5">
-			       <table class="clisttable">
+			       <table class="alisttable">
 						<tr>
 							<th></th>
 							<th>메뉴</th>
@@ -187,7 +188,7 @@
 									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 									</td>
 								</tr>	
 							</c:if>
@@ -195,7 +196,7 @@
 					</table>
 			    </div>
 			    <div id="6">
-			        <table class="clisttable">
+			        <table class="alisttable">
 						<tr>
 							<th></th>
 							<th>메뉴</th>
@@ -210,7 +211,7 @@
 									<td><input type="checkbox" class="delchk" idx="${dto.f}"></td>
 									<td>${dto.fname}</td>
 									<td>
-										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'">수정</button>
+										<button type="button" onclick="location.href='allergyupdateform.do?idx=${dto.f}'" class="mwbtn">수정</button>
 									</td>
 								</tr>	
 							</c:if>

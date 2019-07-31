@@ -67,8 +67,9 @@
 				String log_id   = (String)session.getAttribute("log_id");
 	%>
 	<c:if test="${log_id =='manager'}">
+	<br><br>
 	 	<div class="course_ma">
-			<button type="button" onclick="location.href='courselist.do'">코스 관리</button>
+			<button type="button" onclick="location.href='courselist.do'" class="mwbtn">코스 관리</button>
 		</div>		
 	</c:if>
 	

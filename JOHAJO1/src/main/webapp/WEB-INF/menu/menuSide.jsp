@@ -66,8 +66,8 @@ $(function(){
 						<li class="side_fname"><b>${dto.fname}</b></li>
 						
 						<c:if test="${log_id =='manager'}">
-				 			<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'">수정</button></li>
-							<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'">삭제</button></li>
+				 			<li><button type="button" onclick="location.href='menuupdateform.do?idx=${dto.idx}'" class="mwbtn">수정</button></li>
+							<li><button type="button" onclick="location.href='menudelete.do?idx=${dto.idx}&kind=${dto.kind}'" class="mwbtn">삭제</button></li>
 				 		</c:if>
 					</ul>
 				</div>

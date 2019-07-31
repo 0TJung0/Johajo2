@@ -8,6 +8,8 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/allergy.css"/>
 	<script type="text/javascript">
 		$(function(){
 			$(".alupop").each(function(index,item){
@@ -60,8 +62,10 @@
 	</script>
 	</head>
 	<body>
-		<form action="allergyupdate.do" method="post">
-			<table class="awformtable">
+			<div class="alupdatediv">
+			<b class="alupdateb">관리자용 : 알레르기 수정</b><br>
+			<form action="allergyupdate.do" method="post">
+				<table class="awformtable">
 				<tr>
 					<th>메뉴명,${mdto.idx}</th>
 					<td>
@@ -86,11 +90,13 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="hidden" name="idx" value="${dto.f}">
-						<input type="submit" value="수정">
-						<input type="button" value="취소" onclick="history.back()">
+						<!-- <input type="submit" value="수정" class="mwbtn"> -->
+						<input type="button" value="수정" class="mwbtn"  onClick="window.open('courselook.do','_blank','resizable=no,width=700,height=500,left=500,top=100')">
+						<input type="button" value="취소" onclick="history.back()" class="mwbtn">
 					</td>
 				</tr>
 			</table>
-		</form>
+			</form>
+			</div>
 	</body>
 </html>

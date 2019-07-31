@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/course.css"/>
 
 <script type="text/javascript">
 	$(function(){
@@ -55,8 +56,10 @@
 </script>
 </head>
 <body>
-	<form action="coursewrite.do" method="post">
-		<table class="cwformtable">
+		<div class="coursewritediv">
+	<b class="coursewriteb">관리자용 : 코스 추가</b><br>
+			<form action="coursewrite.do" method="post">
+			<table class="cwformtable">
 			<tr>
 				<th>appetizer</th>
 				<td>
@@ -136,10 +139,11 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="저장">
+					<input type="submit" value="저장" class="mwbtn">
 				</td>
 			</tr>
 		</table>
-	</form>
+		</form>
+		</div>
 </body>
 </html>

@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/menu.css"/>
+<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/course.css"/>
 <script type="text/javascript">
 $(function(){
 	//수정 전 메뉴명 셀렉트박스에 뜨게
@@ -53,14 +54,14 @@ $(function(){
 				opt += $(this).val();
 			});
 	});
-	
-	
 });
 </script>
 </head>
 <body>
-	<form action="courseupdate.do" method="post">
-		<table class="cuformtable">
+	<div class="courseupdatediv">
+	<b class="courseupdateb">관리자용 : 코스 수정</b><br>
+		<form action="courseupdate.do" method="post">
+			<table class="cuformtable">
 			<tr>
 				<th>appetizer</th>
 				<td>
@@ -147,10 +148,11 @@ $(function(){
 			<tr>
 				<td colspan="2" align="center">
 					<input type="hidden" name="idx" value="${dto.idx}">
-					<input type="submit" value="수정">
+					<input type="submit" value="수정" class="mwbtn">
 				</td>
 			</tr>
 		</table>
-	</form>
+		</form>
+	</div>
 </body>
 </html>

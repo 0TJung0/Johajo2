@@ -111,18 +111,38 @@
 		
 		/* ------------------------------------------------------ */
 		/* allergyList */
-		.clisttable tr,.clisttable th,.clisttable td{
-			border:1px solid gray;
-			
+		.alisttable{
+			margin-left: 100px;
+    		width: 500px;
 		}
-		.clisttable th,.clisttable td{
-			padding : 5px;
+		.alisttable th{
+			background: #FAFAFA;
+		}
+		.alisttable td{
+			background: white;
+		}
+		.alisttable th,.alisttable td{
+			padding: 1em;
+    		background: white;
+    		text-align: center;
+    		list-style: none;
+    		box-shadow: 1px 1px 5px -2px gray;
 		}
 	
 		#allistdiv{
-			margin-top: 10px;
-			margin-left:50px;
-			margin-right: 50px;
+			overflow:hidden;
+			background:#F5F5F5;
+			margin-bottom: 100px;
+			float: left;
+			font-family: Nanum Gothic;
+			margin-left: 150px;
+			padding-top: 50px;
+			padding-bottom: 30px;
+		}
+		.allistb{
+			font-family: Nanum Gothic;
+			font-size: 2em;
+			margin-left: 250px;
 		}
 		
 		/* ------------ */
@@ -137,13 +157,20 @@
 		#allisttabs li{
 			float: left;
  		 	margin: 0 .1em 0 0;
- 		 	border: 1px solid lightgray;
+ 		 	border-bottom : 1px solid #bdbdbd;
 		}
+		
+		#allisttabs li b{
+			color : #bdbdbd;
+		}
+		
 		#allisttabs a{
 			position: relative;
-			padding: .2em 1em;
-			float: left;
-			text-decoration: none;
+		    padding: 1em 1em;
+		    float: left;
+		    text-decoration: none;
+		    width: 129px;
+		    text-align: center;
 		}
 		#allisttabs a:hover,#allisttabs a:focus{
 		  	color : black;
@@ -151,7 +178,7 @@
 		}
 		#allisttabs a:focus{
 		    outline: 0;
-		    color : black;
+		    color : #231f20;
 		}
 		#allisttabs a:visited{
 			content:'';
@@ -160,21 +187,24 @@
 			top: 0;
 			right: -.5em;  
 			bottom: 0;
-			width: 1em;
-			color : black;
+			width: 1em; 
+			color : #bdbdbd;
 		}
 		#allisttabs #current a{
 		  z-index: 3;
-		  background: lightgray;
-		  color : tomato;
+		  border-bottom : solid #231f20;
+		}
+		#allisttabs #current b{
+		  color : #231f20;
 		}
 		
 		/* -------------- */
 		
 		#allistcontent{
-			background: #fff;
-		    padding: 2em;
-		    height: 
+			padding: 2em;
+		    padding-left:5em;
+		    padding-right : 5em;
+		    width: 100%;
 		}
 		
 		/* ----------------------------------------------------- */
@@ -241,7 +271,48 @@
 		    padding: 2em;
 		    height: 
 		}
-
-
-	
+		
+		/* allergyUpdateform */
+		.alupdatediv{
+			background:#F5F5F5;
+			margin-bottom: 100px;
+			font-family: Nanum Gothic;
+			margin-left: 100px;
+			margin-right: 100px;
+			padding-top: 50px;
+			padding-bottom: 30px;
+		}
+		.alupdateb{
+			font-family: Nanum Gothic;
+			font-size: 2em;
+			margin-left: 300px;
+		}
+		.awformtable{
+			margin-top: 30px;
+    		width: 800px;
+    		margin-left: 50px;
+    		margin-bottom: 50px;
+		}
+		.awformtable th{
+			background: #FAFAFA;
+		}
+		.alcb{
+		    margin-left: 3px;
+		}
+		.awformtable td{
+			background: white;
+		}
+		.awformtable th,.awformtable td{
+			padding: 1em;
+    		background: white;
+    		text-align: center;
+    		list-style: none;
+    		box-shadow: 1px 1px 5px -2px gray;
+		}
+	/* 관리자페이지 버튼 */
+	.mwbtn{
+		background: white;
+		color: gray;
+		font-family: Nanum Gothic;
+	}
 	

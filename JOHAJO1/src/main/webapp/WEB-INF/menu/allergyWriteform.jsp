@@ -8,11 +8,14 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-	
+	<link href='http://fonts.googleapis.com/css?family=Nanum Gothic' rel='stylesheet'> 
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/allergy.css"/>
 	</head>
 	<body>
-		<form action="allergywrite.do" method="post">
-			<table class="awformtable">
+			<div class="alwritediv">
+			<b class="alupdateb">관리자용 : 알레르기 추가</b><br>
+			<form action="allergywrite.do" method="post">
+				<table class="awformtable">
 				<tr>
 					<th>메뉴명</th>
 					<td>
@@ -40,6 +43,7 @@
 					</td>
 				</tr>
 			</table>
-		</form>
+			</form>
+			</div>
 	</body>
 </html>
