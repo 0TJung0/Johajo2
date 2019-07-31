@@ -57,8 +57,13 @@
 						<b class="caterory">예약 현황</b>
 						<a href="#">
 							<div>
-								<span>[${rdto.sname}]</span>
-								<span>${rdto.rdate} <b>${rdto.rtime}</b></span>
+							<c:if test="${rdto.ridx == null}">
+								예약  없음
+							</c:if>
+								<c:if test="${rdto.ridx >0}">
+									<span>[${rdto.sname}]</span>
+									<span>${rdto.rdate} <b>${rdto.rtime}</b></span>
+								</c:if>
 							</div>
 						</a>
 					</div>
