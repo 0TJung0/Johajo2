@@ -57,7 +57,7 @@
 			<c:if test="${log_id =='manager'}">
 	 			<div class="menu_add">
 					<button type="button" onclick="location.href='menuinsert.do'" class="mwbtn">메뉴 추가</button>
-				</div>
+				</div> 
 	 		</c:if>
 			
 			<div class="menu_list" id="menu_list">
