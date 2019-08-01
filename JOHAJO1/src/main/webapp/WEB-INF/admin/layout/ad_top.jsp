@@ -116,9 +116,6 @@
 	<div class="mainMenu">
 	<ul>
 		<li><span><a href="main.do">고객 페이지</a></span></li>
-		<li><span><a href="admain.do">관리자 홈</a></span></li>
-		<li><span><a href="ad_MainForm.do">메인관리</a></span></li>
-		<li><span><a href="ad_MenuList.do">메뉴관리</a></span></li>
 		<li><span><a href="ad_StoreList.do">STORE</a></span></li>
 		<li><span><a href="ad_NoticeList.do">NOTICE</a></span></li>
 		<li><span><a href="ad_MemberList.do">회원관리</a></span></li>
